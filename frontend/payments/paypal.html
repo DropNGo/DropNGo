@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script src="https://www.paypal.com/sdk/js?client-id=DEINE_ECHTE_CLIENT_ID&currency=EUR"></script>
 <div id="paypal-button-container"></div>
 
@@ -21,3 +22,28 @@
     }
   }).render('#paypal-button-container');
 </script>
+=======
+<script src="https://www.paypal.com/sdk/js?client-id=DEINE_ECHTE_CLIENT_ID&currency=EUR"></script>
+<div id="paypal-button-container"></div>
+
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      // Bestellung auf Server erstellen (optional)
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '49.99' // Betrag anpassen
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        alert('Zahlung abgeschlossen von ' + details.payer.name.given_name);
+        // Hier Weiterleitung oder Anzeige
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
+>>>>>>> ef080fb (Erster Commit mit meinem DropNGo Projekt)

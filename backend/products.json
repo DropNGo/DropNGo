@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
   {
     "id": 1,
@@ -12,3 +13,19 @@
     "image": "https://via.placeholder.com/200x200?text=Adidas+Superstar"
   }
 ]
+=======
+[
+  {
+    "id": 1,
+    "name": "Nike Air Max",
+    "price": 129.99,
+    "image": "https://via.placeholder.com/200x200?text=Nike+Air+Max"
+  },
+  {
+    "id": 2,
+    "name": "Adidas Superstar",
+    "price": 99.99,
+    "image": "https://via.placeholder.com/200x200?text=Adidas+Superstar"
+  }
+]
+>>>>>>> ef080fb (Erster Commit mit meinem DropNGo Projekt)
