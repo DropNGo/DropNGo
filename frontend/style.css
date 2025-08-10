@@ -1,0 +1,1077 @@
+body {
+  background-image: url('images/grt.png');
+  background-repeat: no-repeat;       /* Keine Kacheln */
+  background-position: center center; /* Bild mittig */
+  background-size: cover;              /* Passt sich dem Bildschirm an */
+  background-attachment: fixed;        /* Bild bleibt fix beim Scrollen */
+
+  background-color: #000000;           /* Fallback-Hintergrundfarbe */
+  color: #ff0000;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+
+.cart,
+#cart-icon,
+#warenkorb,
+.shopping-cart {
+  display: none !important;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes slideBG {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -150px 0;
+  }
+}
+
+header {
+  position: relative;
+  padding: 50px 25px;         /* Mehr Innenabstand */
+  margin: 40px auto 0 auto;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  max-width: 450px;           /* Breiter als vorher */
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+}
+
+
+
+
+
+
+/* Inhalt über Overlay legen */
+header * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Titel-Animation */
+header h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  margin: 40px 0;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+  opacity: 0;
+  animation: fadeSlideIn 1.5s ease forwards;
+}
+
+/* Sanfte Animation */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+/* NAVIGATION */
+nav a {
+  display: inline-block;  /* sehr wichtig für transform */
+    color:rgb(24, 161, 150);
+  margin: 0 15px;
+  font-size: 2.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+nav a:hover {
+  color: rgb(24, 161, 150);
+}
+nav a:hover {
+  animation: swing 0.6s ease;
+  color: rgb(24, 161, 150);
+}
+
+
+
+main {
+  padding: 40px 20px;       /* etwas weniger Innenabstand */
+  max-width: 600px;         /* schmalere maximale Breite */
+  margin: 40px auto;        /* etwas Abstand oben und unten */
+  text-align: center;
+  color: #f0f4f8;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+main:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+/* PRODUKTE */
+.products {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.product {
+  animation: floatUpDown 3s ease-in-out infinite;
+  animation-delay: var(--delay); /* wenn du willst, dass sie versetzt starten */
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgb(24, 161, 150);
+    background-color: rgb(24, 161, 150);
+  }
+  50% {
+    box-shadow: 0 0 20px rgb(24, 161, 150);
+    background-color: rgb(24, 161, 150);
+  }
+}
+
+
+
+.product {
+  border: 1px solid rgb(24, 161, 150);
+  padding: 18px 15px 15px 15px; /* Noch etwas mehr Abstand oben */
+  border-radius: 10px;
+  background-color: #1a1a1a;
+  width: 250px;
+  box-shadow: 0 0 8px rgb(24, 161, 150);
+  transition: transform 0.3s ease;
+  color: white;
+}
+.product:hover {
+  transform: scale(1.05);
+}
+
+/* BUTTONS */
+.btn {
+  background-color: rgb(24, 161, 150);
+  color: #ffffff;
+  padding: 12px 25px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgb(24, 161, 150);
+  transition: background-color 0.3s ease;
+}
+.btn:hover {
+  background-color: rgb(24, 161, 150);
+  box-shadow: 0 6px 12px rgb(24, 161, 150);
+}
+
+/* === LEBENDIGKEIT FÜR PRODUKTE === */
+
+/* Produkt Hover: Vergrößern + intensiver Schatten */
+.product:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 16px rgb(24, 161, 150);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Button Animation: Pulsierender Hover-Effekt */
+.btn {
+  position: relative;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgb(24, 161, 150);
+}
+.btn:hover {
+  animation: pulse 1.5s infinite;
+  background-color: rgb(24, 161, 150);
+  box-shadow: 0 6px 20px rgb(24, 161, 150);
+}
+
+/* Pulse Animation für Button */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgb(24, 161, 150);
+  }
+  50% {
+    box-shadow: 0 0 20px rgb(24, 161, 150);
+  }
+}
+
+.fly-icon {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  background: url('images/shopping-cart.png') no-repeat center/contain;
+  pointer-events: none;
+  animation: flyToCart 1s forwards ease-in-out;
+  z-index: 9999;
+}
+
+@keyframes flyToCart {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(300px, -150px) scale(0.1);
+  }
+}
+
+
+/* Größe des Warenkorb-Icons */
+#cart-icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+/* Warenkorb-Icon Styling */
+#cart-icon {
+  position: relative;
+  display: inline-block;
+}
+
+/* Icon selbst */
+#cart-icon img {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+
+/* Roter Zähler-Bubble */
+#cart-count {
+  position: absolute;
+  top: -10px;
+  right: -12px;
+  background-color: rgb(24, 161, 150);
+  color: white;
+  font-size: 14px;
+  padding: 3px 7px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+
+
+body {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+nav {
+  text-align: center;
+  margin: 20px 0;
+}
+
+nav a {
+  color: rgb(24, 161, 150);
+  margin: 0 15px;
+  font-size: 2rem;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  animation: pulse 1.5s infinite;
+  background-color: rgb(24, 161, 150);
+  box-shadow: 0 6px 20px rgb(24, 161, 150);
+  color: white !important;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgb(24, 161, 150);
+  }
+  50% {
+    box-shadow: 0 0 20px rgb(24, 161, 150);
+  }
+}
+
+
+footer {
+  background-color: #0a0a0a;
+  color: rgb(24, 161, 150);
+  text-align: center;
+  padding: 30px 10px;
+  margin-top: 60px;
+  border-top: 1px solid #111;
+  font-size: 1rem;
+  box-shadow: 0 -2px 10px rgba(0, 255, 136, 0.2);
+}
+
+.footer-links {
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  margin: 0 15px;
+  color: rgb(24, 161, 150);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: white;
+  text-shadow: 0 0 10px rgb(24, 161, 150);
+}
+
+
+@media (max-width: 600px) {
+  .footer-links a {
+    display: block;
+    margin: 10px 0;
+  }
+}
+
+.home-btn {
+  display: inline-block;
+  margin: 30px auto;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: rgb(24, 161, 150);
+  text-decoration: none;
+  border: 2px solid rgb(24, 161, 150);
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+  background-color: rgb(24, 161, 150);
+  color: #000;
+}
+
+.announcement {
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #c4baba, #c0bbbb);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+  animation: slideDown 0.5s ease forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  
+}
+
+.announcement-close {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.announcement-close:hover {
+  color: #000;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.footer-contact {
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: rgb(24, 161, 150);
+}
+
+.footer-contact p {
+  margin: 5px 0;
+}
+
+.footer-contact a {
+  color: rgb(24, 161, 150);
+  text-decoration: underline;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-contact a:hover {
+  color: white;
+  text-shadow: 0 0 10px rgb(24, 161, 150);
+}
+
+@media (max-width: 600px) {
+  .footer-contact {
+    text-align: center;
+  }
+}
+
+
+
+
+
+/* Animation für fliegendes Item zum Warenkorb-Icon */
+@keyframes flyToCart {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--fly-x), var(--fly-y)) scale(0.1);
+  }
+}
+
+/* Animation für Shrink (Warenkorb leeren) */
+@keyframes shrinkAndFade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+/* Für einzelne Items */
+.fly-animate {
+  animation-fill-mode: forwards;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-in-out;
+}
+
+/* Für Shrink beim Warenkorb leeren */
+.shrink-animate {
+  animation-fill-mode: forwards;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
+}
+
+/* Kleine Animation für den Cart-Count wenn sich der Wert ändert */
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#cart-count.animate-pop {
+  animation: pop 0.3s ease forwards;
+}
+
+
+
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+#cart-icon.animate-pop {
+  animation: pop 0.3s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+#cart-container {
+  max-width: 400px;
+  background: #1e1e1e;
+  color: #eee;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#cart-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#cart-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2a2a2a;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+#cart-items li:hover {
+  background: #444;
+}
+
+#cart-items .item-info {
+  flex: 1;
+}
+
+#cart-items .quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#cart-items button {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#cart-items button:hover {
+  background-color: #ffffff;
+}
+
+#cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+#total {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+#checkout-btn, #clear-cart-btn {
+  background-color: #0078d7;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+#checkout-btn:hover, #clear-cart-btn:hover {
+  background-color: #005fa3;
+}
+
+
+
+
+@keyframes animate-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.animate-pop {
+  animation: animate-pop 0.3s ease;
+}
+
+
+
+
+
+.btn {
+  background-color: rgb(24, 161, 150);
+  color: #000;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: rgb(24, 161, 150);
+}
+
+/* Modal Hintergrund */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+/* Modal sichtbar */
+.modal.active {
+  display: flex;
+}
+
+/* Modal Inhalt */
+.modal-content {
+  background-color: #111;
+  border-radius: 12px;
+  padding: 25px 30px;
+  max-width: 400px;
+  width: 90%;
+  color: rgb(24, 161, 150);
+  box-shadow: 0 0 20px rgb(24, 161, 150);
+  position: relative;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: rgb(24, 161, 150);
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0;
+}
+
+.close-btn:hover {
+  color: rgb(24, 161, 150);
+}
+
+/* Formular Antwort */
+.form-response {
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  max-width: 440px;
+  background-color: #0a0a0a;
+  color: rgb(24, 161, 150);
+  border: 2px solid rgb(24, 161, 150);
+  border-radius: 8px;
+  padding: 15px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgb(24, 161, 150);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.cookie-banner.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+.cookie-banner p {
+  margin: 0;
+  padding-right: 10px;
+  flex: 1;
+}
+.cookie-buttons {
+  display: flex;
+  gap: 10px;
+}
+#accept-cookies-btn, #decline-cookies-btn {
+  background-color: transparent;
+  color: rgb(24, 161, 150);
+  border: 2px solid rgb(24, 161, 150);
+  padding: 8px 15px;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#accept-cookies-btn:hover, #decline-cookies-btn:hover {
+  background-color: rgb(24, 161, 150);
+  color: #000;
+  box-shadow: 0 0 10px rgb(24, 161, 150);
+}
+
+
+
+
+
+
+
+
+
+
+/* Vollbild-Overlay Loader */
+#page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+/* Der Balken, der von links nach rechts "slide" */
+#page-loader::before {
+  content: '';
+  display: block;
+  height: 5px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgb(24, 161, 150), transparent);
+  animation: slideLoad 2s ease forwards;
+}
+
+#main-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+#main-content.visible {
+  opacity: 1;
+}
+
+
+/* Animation: von links nach rechts */
+@keyframes slideLoad {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Verstecke den Loader nach der Animation */
+#page-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  pointer-events: none; /* damit er keine Mausereignisse blockiert */
+}
+
+
+/* Main Content anfänglich unsichtbar */
+#main-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Main Content sichtbar */
+#main-content.visible {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.announcement {
+  background: linear-gradient(90deg, #111 0%, #222 100%);
+  color: rgb(24, 161, 150);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 15px 10px;
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+  animation: slideDown 0.4s ease-out;
+}
+
+.announcement .announcement-close {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgb(24, 161, 150);
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+#warenkorb, .cart, .shopping-cart {
+  display: none !important;
+}
+
+#warenkorb {
+    display: none !important;
+}
+
+
+
+
+
+#warenkorb {
+  display: none !important;
+}
+
+
+
+#warenkorb, .cart, .shopping-cart {
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+
+
+
+#support-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: rgb(24, 161, 150);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgb(24, 161, 150);
+  z-index: 10000;
+  transition: background-color 0.3s ease;
+}
+
+#support-button:hover {
+  background-color: rgb(20, 140, 130);
+}
+
+
+
+
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  top: 33%;
+  left: 0;
+  height: 270px; /* minimal kürzer */
+  width: 200px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  gap: 15px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  transform: translateY(-50%);
+}
+
+
+
+
+
+
+
+
+
+
+/* Buttons in Sidebar */
+.sidebar button {
+  width: 160px;
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(24, 161, 150, 0.8);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(24, 161, 150, 0.7);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover-Effekt */
+.sidebar button:hover,
+.sidebar button:focus {
+  background-color: #00fff0;
+  color: #000;
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px #00fff0;
+  outline: none;
+}
+
+/* Aktiver Klick-Effekt */
+.sidebar button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(0, 255, 240, 0.8);
+}
+
+/* Inhalt rechts neben Sidebar */
+.content {
+  margin-left: 220px; /* Platz für Sidebar */
+  padding: 20px;
+}
+
+/* Responsive: Bei kleinen Bildschirmen Sidebar oben als horizontale Leiste */
+@media (max-width: 600px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: center;
+    padding: 15px 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    background: rgba(0,0,0,0.7);
+  }
+  .sidebar button {
+    width: auto;
+    flex: 1;
+    margin: 0 8px;
+  }
+  .content {
+    margin-left: 0;
+  }
+}
+
+
+.products .product {
+  text-decoration: none; /* Entfernt Unterstreichung vom gesamten Link */
+}
+
+
+
+
+
