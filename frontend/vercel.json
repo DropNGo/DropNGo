@@ -3,15 +3,29 @@
   "name": "DropNGo",
   "builds": [
     {
-      "src": "frontend",
+      "src": "**/*",
       "use": "@vercel/static"
     }
   ],
-  "outputDirectory": ".",
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "src": "/(.*)\\.html",
+      "dest": "/$1.html"
+    },
+    {
+      "src": "/",
       "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "status": 404
     }
   ]
 }
