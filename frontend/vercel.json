@@ -1,40 +1,16 @@
 {
-  "version": "1.0.0",
+  "version": 2,
   "name": "DropNGo",
-  "description": "Eine Beispiel-Anwendung",
-  "keywords": ["DropNGo", "App", "Example", "Vercel", "Web-App"],
-  "author": "Zukur",
   "builds": [
     {
-      "src": "**/*",
-      "use": "@vercel/static-build"
+      "src": "index.html",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/",
-      "dest": "index.html"
-    },
-    {
       "src": "/(.*)",
-      "dest": "index.html"
+      "dest": "/index.html"
     }
-  ],
-  "headers": [
-    {
-      "source": "/",
-      "headers": [
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self';"
-        }
-      ]
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
   ]
 }

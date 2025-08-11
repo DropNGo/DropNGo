@@ -1,17 +1,12 @@
 {
-  "name": "ghetto_runnerz",
+  "name": "dropngo",
   "version": "1.0.0",
-  "description": "",
-  "main": "script.js",
+  "description": "DropNGo statische Web-App",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^5.1.0"
-  }
+  "keywords": ["DropNGo", "Web-App"],
+  "author": "Zukur",
+  "license": "ISC"
 }
