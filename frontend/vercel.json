@@ -3,7 +3,7 @@
   "name": "DropNGo",
   "builds": [
     {
-      "src": "index.html",
+      "src": "frontend",
       "use": "@vercel/static"
     }
   ],
