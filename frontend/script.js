@@ -627,5 +627,3 @@ document.addEventListener('DOMContentLoaded', () => {
     cart.style.display = 'none';
   }
 });
-
-import { SpeedInsights } from "@vercel/speed-insights/next"
