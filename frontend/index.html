@@ -1,41 +1,16 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <head>
   <meta charset="UTF-8">
-  <title>DropNGo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DropNGo - Home</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.ico" type="image/png">
-</head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DropNGo - Home</title>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="announcement">
     🔥 2025 New Launch 🔥
     <button class="announcement-close" aria-label="Schließen">&times;</button>
-  </div>
-
-<!--
-<nav class="sidebar" aria-label="Seitennavigation">
-  <button id="home-btn" onclick="location.href='index.html'">Home</button>
-  <button id="login-btn" onclick="location.href='login.html'">Login</button>
-  <button id="register-btn" onclick="location.href='register.html'">Registrieren</button>
-  <button id="guest-btn" onclick="location.href='guest.html'">Gast beitreten</button>
-</nav>
--->
-
-
-
-
-
-
-
-  <!-- dein anderer Seiteninhalt hier -->
-  <div class="content">
-    <!-- bestehender Content -->
   </div>
 
   <header>
@@ -49,71 +24,13 @@
       </a>
     </nav>
   </header>
-</body>
-
 
   <main>
-    
     <h2>Welcome to DropNGo</h2>
     <p>Deine Auswahl. Modern. Zeitlos. Dropn Go</p>
     <a href="products.html" class="btn">Jetzt shoppen</a>
+    <button id="open-support-btn" class="btn">Support kontaktieren</button>
   </main>
-<script>
-  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/speed-insights/script.js"></script>
-  <script src="script.js"></script>
-  <script type="text/javascript">
-    (function (l) {
-      if (l.search[1] === "/") {
-        var decoded = l.search
-          .slice(1)
-          .split("&")
-          .map(function (s) {
-            return s.replace(/~and~/g, "&");
-          })
-          .join("?");
-        window.history.replaceState(
-          null,
-          null,
-          l.pathname.slice(0, -1) + decoded + l.hash
-        );
-      }
-    })(window.location);
-  </script>
-</body>
-
-</html> 
-
-
-
-<body>
-  <!-- Hauptinhalt ... -->
-
-  <!-- Hier erscheint das Cookie-Banner -->
-  <div id="cookie-container"></div>
-
-  <!-- Am besten das Script ganz unten im Body -->
-  <script>
-    // Cookie Banner JS Code (siehe Beispiel)
-  </script>
-  <style>
-    /* Cookie Banner CSS (siehe Beispiel) */
-  </style>
-</body>
-
-<body>
-<!--
-<div class="announcement">
-    🔥 Hol dir jetzt 10% Rabatt auf alle Sneaker! Nur für kurze Zeit! 🔥
-    <button class="announcement-close" aria-label="Schließen">&times;</button>
-</div>
--->
-
-  <!-- Rest deiner Seite kommt hier -->
-</body>
-
-
 
   <footer>
     <div class="footer-links">
@@ -123,126 +40,35 @@
       <a href="agb.html">AGB</a>
     </div>
     <div class="footer-contact">
-      <!--<p>Kontakt:</p> -->
       <p>Email: <a href="mailto:kontakt@dropngo.shop">kontakt@dropngo.shop</a></p>
-<!--
-<p>Telefon: <a href="tel:+49123456789">+49 123 456 789</a></p>
--->
-
     </div>
     <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten.</p>
   </footer>
 
-  
-
-
-
-
-<!-- Support Button irgendwo auf der Hauptseite -->
-<main>
-  <!-- anderer Content -->
-
-  <button id="open-support-btn" class="btn">Support kontaktieren</button>
-
-  <!-- anderer Content -->
-</main>
-
-
-<!-- Support Formular Modal -->
-<div id="support-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="support-modal-title">
-  <div class="modal-content">
-    <button class="close-btn" id="close-support-btn" aria-label="Schließen">&times;</button>
-    <h2 id="support-modal-title">Kontakt & Support</h2>
-    <form id="support-form">
-      <label for="name">Name:</label><br />
-      <input type="text" id="name" name="name" required /><br /><br />
-      
-      <label for="email">E-Mail:</label><br />
-      <input type="email" id="email" name="email" required /><br /><br />
-      
-      <label for="message">Nachricht:</label><br />
-      <textarea id="message" name="message" rows="5" required></textarea><br /><br />
-      
-      <button type="submit" class="btn">Nachricht senden</button>
-    </form>
-    <p id="form-response" class="form-response"></p>
+  <!-- Support Modal -->
+  <div id="support-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="support-modal-title">
+    <div class="modal-content">
+      <button class="close-btn" id="close-support-btn" aria-label="Schließen">&times;</button>
+      <h2 id="support-modal-title">Kontakt & Support</h2>
+      <form id="support-form">
+        <label for="name">Name:</label><br />
+        <input type="text" id="name" name="name" required /><br /><br />
+        <label for="email">E-Mail:</label><br />
+        <input type="email" id="email" name="email" required /><br /><br />
+        <label for="message">Nachricht:</label><br />
+        <textarea id="message" name="message" rows="5" required></textarea><br /><br />
+        <button type="submit" class="btn">Nachricht senden</button>
+      </form>
+      <p id="form-response" class="form-response"></p>
+    </div>
   </div>
-</div>
 
-
-
-
-<body>
+  <div id="cookie-container"></div>
   <div id="page-loader"></div>
+  <div id="main-content" style="opacity: 0;"></div>
 
-  <!-- Dein restlicher Seiteninhalt -->
-  <div id="main-content" style="opacity: 0;">
-    <!-- Alles, was auf deiner Seite ist -->
-  </div>
-
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script src="script.js"></script>
   <script src="loader.js"></script>
 </body>
-´<script>window.addEventListener('load', () => {
-  const loader = document.getElementById('page-loader');
-  const mainContent = document.getElementById('main-content');
-
-  // Nach 2.2 Sekunden (etwas länger als Animation) Loader ausblenden
-  setTimeout(() => {
-    loader.classList.add('hide');
-    mainContent.classList.add('visible');
-  }, 2200);
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-document.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', async (e) => {
-    e.preventDefault();
-
-    // Zeige Animation "Seite lädt"
-    showLoadingAnimation();
-
-    const href = link.getAttribute('href');
-    const response = await fetch(href);
-    const html = await response.text();
-
-    // Parsen, extrahieren, ersetzen
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const newContent = doc.querySelector('main'); // Beispiel: tausche main-Inhalt aus
-    document.querySelector('main').innerHTML = newContent.innerHTML;
-
-    // Animation "Seite geladen" beenden
-    hideLoadingAnimation();
-
-    // URL ändern (ohne reload)
-    history.pushState(null, '', href);
-  });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</html>
