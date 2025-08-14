@@ -7,21 +7,26 @@
       "use": "@vercel/static"
     }
   ],
-  "cleanUrls": true,
   "routes": [
+    { "src": "/agb", "dest": "/agb.html" },
+    { "src": "/cookie-banner", "dest": "/cookie-banner.html" },
+    { "src": "/datenschutz", "dest": "/datenschutz.html" },
+    { "src": "/impressum", "dest": "/impressum.html" },
+    { "src": "/produkte", "dest": "/products.html" },
+    { "src": "/produkte/detail1", "dest": "/produkt-detail1.html" },
+    { "src": "/produkte/detail2", "dest": "/produkt-detail2.html" },
+    { "src": "/produkte/detail3", "dest": "/produkt-detail3.html" },
+    { "src": "/support-formular", "dest": "/support-formular.html" },
+    { "src": "/widerrufsbelehrung", "dest": "/widerrufsbelehrung.html" },
+
     {
       "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
       "headers": {
         "Cache-Control": "public, max-age=31536000, immutable"
       }
     },
-    {
-      "src": "/",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1.html"
-    }
+
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/(.*)", "dest": "/index.html", "status": 404 }
   ]
 }
