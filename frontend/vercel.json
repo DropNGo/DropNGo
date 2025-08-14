@@ -14,10 +14,10 @@
     { "source": "/datenschutz", "destination": "/datenschutz.html" },
     { "source": "/impressum", "destination": "/impressum.html" },
     { "source": "/produkte", "destination": "/products.html" },
-    { "source": "/produkt-detail1", "destination": "/produkt-detail1.html" },
-    { "source": "/produkt-detail2", "destination": "/produkt-detail2.html" },
-    { "source": "/produkt-detail3", "destination": "/produkt-detail3.html" },
-    { "source": "/support-formular", "destination": "/support-formular.html" },
+    { "source": "/produkt1", "destination": "/produkt-detail1.html" },
+    { "source": "/produkt2", "destination": "/produkt-detail2.html" },
+    { "source": "/produkt3", "destination": "/produkt-detail3.html" },
+    { "source": "/support", "destination": "/support-formular.html" },
     { "source": "/widerrufsbelehrung", "destination": "/widerrufsbelehrung.html" }
   ]
 }
