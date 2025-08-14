@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <head>
+<head><meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+    <link rel="stylesheet" href="mobile-universal.css">
+</head>
+
   <meta charset="UTF-8">
   <title>DropNGo</title>
   <link rel="stylesheet" href="style.css">
@@ -63,9 +66,23 @@
 
   <main>
     
-    <h2>Welcome to DropNGo</h2>
-    <p>Deine Auswahl. Modern. Zeitlos. Dropn Go</p>
-    <a href="products.html" class="btn">Jetzt shoppen</a>
+<h2 style="font-size: 2.5rem; font-weight: bold; color: #ffffff; text-shadow: 2px 2px 5px rgba(6, 216, 205, 0.2);">
+  Welcome to <span style="
+    color: rgb(14, 160, 145); 
+    padding: 0 8px; 
+    border-radius: 4px; 
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  ">DropNGo</span>
+</h2>
+
+<p style="line-height: 1.6; font-size: 1.2rem; color: #ffffff;">
+  Deine Auswahl. Modern. Zeitlos.
+</p>
+
+<a href="products.html" class="btn" style="margin-top: 10px; display: inline-block;">
+  Jetzt shoppen
+</a>
+
   </main>
 </body>
 
@@ -105,7 +122,6 @@
     <div class="footer-links">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
-      <a href="widerrufsbelehrung.html">Widerrufsbelehrung</a>
       <a href="agb.html">AGB</a>
     </div>
     <div class="footer-contact">
@@ -154,6 +170,18 @@
     <p id="form-response" class="form-response"></p>
   </div>
 </div>
+
+<footer style="margin-top: 50px; padding: 20px; text-align: center; font-size: 14px; color: #555; line-height: 1.6;">
+  <p>
+    <strong>Hinweis zur Produktvermittlung:</strong> DropNGo agiert ausschließlich als Plattform zur Präsentation und Vermittlung von Produkten externer Anbieter. 
+    DropNGo ist nicht Vertragspartei und verkauft selbst keine Waren. 
+    Der Kaufvertrag kommt ausschließlich zwischen Ihnen und dem jeweiligen Händler zustande. 
+    Sämtliche Fragen zu Bestellung, Zahlung, Lieferung, Rückgabe oder Widerruf richten Sie bitte direkt an den jeweiligen Anbieter. 
+    DropNGo übernimmt keine Haftung für die Produkte oder Dienstleistungen der externen Händler.
+  </p>
+</footer>
+
+
 
 <script>
   window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -214,6 +242,7 @@
 
 
 
+
 document.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -238,7 +267,6 @@ document.querySelectorAll('a').forEach(link => {
     history.pushState(null, '', href);
   });
 });
-
 
 
 

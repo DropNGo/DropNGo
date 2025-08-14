@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="de">
-<head><head><div class="announcement">
+<head><meta name="viewport" content="width=device-width, initial-scale=1">
+<head><div class="announcement"><head>
+    <link rel="stylesheet" href="mobile-universal.css">
+</head>
+
   👟 Entdecke unsere neuesten Produkte – limitiert & nur solange der Vorrat reicht!
   <button class="announcement-close" aria-label="Schließen">&times;</button>
 </div>
@@ -15,7 +19,7 @@
   <meta charset="UTF-8">
   <title>DropNGo - Produkte</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="images/wblogo.png" type="image/png">
+ <link rel="icon" href="favicon.ico" type="image/png">
 </head>
 
   <meta charset="UTF-8" />
@@ -192,21 +196,39 @@ header h1 {
 </header>
 <main class="products">
   <a href="produkt-detail1.html" class="product" style="--delay: 0.1s;">
-    <h3>Test 1</h3>
-    <p>Preis: 10 €</p>
-    <button class="btn">Jetzt ansehen</button>
+    <div class="image-wrapper">
+      <img src="images/produkt1.png" alt="Robofun 5.0" />
+    </div>
+    <div class="info">
+      <h3>Robofun 5.0</h3>
+      <p>Preis: 10 €</p>
+      <button class="btn">Jetzt ansehen</button>
+    </div>
   </a>
+
   <a href="produkt-detail2.html" class="product" style="--delay: 0.2s;">
-    <h3>Test 2</h3>
-    <p>Preis: 20 €</p>
-    <button class="btn">Jetzt ansehen</button>
+    <div class="image-wrapper">
+      <img src="images/produkt2.png" alt="Test 2" />
+    </div>
+    <div class="info">
+      <h3>Test 2</h3>
+      <p>Preis: 20 €</p>
+      <button class="btn">Jetzt ansehen</button>
+    </div>
   </a>
+
   <a href="produkt-detail3.html" class="product" style="--delay: 0.3s;">
-    <h3>Test 3</h3>
-    <p>Preis: 30 €</p>
-    <button class="btn">Jetzt ansehen</button>
+    <div class="image-wrapper">
+      <img src="images/produkt3.png" alt="Test 3" />
+    </div>
+    <div class="info">
+      <h3>Test 3</h3>
+      <p>Preis: 30 €</p>
+      <button class="btn">Jetzt ansehen</button>
+    </div>
   </a>
 </main>
+
 
 
 <body>
@@ -241,7 +263,6 @@ header h1 {
     <div class="footer-links">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
-      <a href="widerrufsbelehrung.html">Widerrufsbelehrung</a>
       <a href="agb.html">AGB</a>
     </div>
     <div class="footer-contact">
@@ -255,7 +276,18 @@ header h1 {
     <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten.</p>
   </footer>
 
-  
+<footer style="margin-top: 50px; padding: 20px; text-align: center; font-size: 14px; color: #555; line-height: 1.6;">
+  <p>
+    <strong>Hinweis zur Produktvermittlung:</strong> DropNGo agiert ausschließlich als Plattform zur Präsentation und Vermittlung von Produkten externer Anbieter. 
+    DropNGo ist nicht Vertragspartei und verkauft selbst keine Waren. 
+    Der Kaufvertrag kommt ausschließlich zwischen Ihnen und dem jeweiligen Händler zustande. 
+    Sämtliche Fragen zu Bestellung, Zahlung, Lieferung, Rückgabe oder Widerruf richten Sie bitte direkt an den jeweiligen Anbieter. 
+    DropNGo übernimmt keine Haftung für die Produkte oder Dienstleistungen der externen Händler.
+  </p>
+</footer>
+
+
+
 
 
 
@@ -290,6 +322,8 @@ header h1 {
     <p id="form-response" class="form-response"></p>
   </div>
 </div>
+
+
     
     
 

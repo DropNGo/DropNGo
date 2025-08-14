@@ -505,8 +505,8 @@ document.addEventListener('DOMContentLoaded', () => {
 const cookieBannerHTML = `
   <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie Hinweis">
     <p>
-      Wir verwenden Cookies, um dir das beste Erlebnis zu bieten. Durch die Nutzung unserer Website stimmst du der Verwendung von Cookies zu. 
-      <a href="datenschutz.html" style="color:#00ff88; text-decoration: underline;">Mehr Infos</a>
+      Wir nutzen Cookies für das beste Erlebnis. Mit der Nutzung unserer Website stimmst du zu. 
+      <a href="datenschutz.html" style="color:rgb(24, 161, 150); text-decoration: underline;">Mehr Infos</a>
     </p>
     <div class="cookie-buttons">
       <button id="accept-cookies-btn" aria-label="Cookies akzeptieren">Akzeptieren</button>

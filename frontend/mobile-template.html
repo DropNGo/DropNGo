@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#121212">
+  <title>DropNGo - Mobile Optimiert</title>
+  
+  <!-- Universal Mobile CSS -->
+  <link rel="stylesheet" href="mobile-universal.css">
+  <link rel="stylesheet" href="style.css">
+  
+  <link rel="icon" href="favicon.ico" type="image/png">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+  <!-- Page Loader -->
+  <div id="page-loader" class="page-loader">
+    <div class="loader-content">
+      <div class="spinner"></div>
+      <p>Lädt...</p>
+    </div>
+  </div>
+
+  <!-- Announcement Banner -->
+  <div class="announcement">
+    🔥 2025 New Launch 🔥
+    <button class="announcement-close" aria-label="Schließen">&times;</button>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="nav-container">
+        <h1>DropNGo</h1>
+        <nav>
+          <a href="index.html" class="btn">Homepage</a>
+          <a href="products.html" class="btn">Produkte</a>
+          <a href="cart.html" id="cart-icon" class="btn" aria-label="Warenkorb">
+            🛒 <span id="cart-count">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <div class="container">
+      <!-- Ihr Seiteninhalt hier -->
+      <h2>Willkommen bei DropNGo</h2>
+      <p>Ihre mobile-optimierte E-Commerce-Lösung</p>
+      <a href="products.html" class="btn">Jetzt shoppen</a>
+    </div>
+  </main>
+
+  <!-- Support Button -->
+  <button id="open-support-btn" class="btn" style="position: fixed; bottom: 80px; right: 20px; z-index: 1000;">
+    💬 Support
+  </button>
+
+  <!-- Support Modal -->
+  <div id="support-modal" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-content">
+      <button class="close-btn" id="close-support-btn" aria-label="Schließen">&times;</button>
+      <h2>Kontakt & Support</h2>
+      <form id="support-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="message">Nachricht:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        
+        <button type="submit" class="btn">Nachricht senden</button>
+      </form>
+      <p id="form-response" class="form-response"></p>
+    </div>
+  </div>
+
+  <!-- Cookie Banner Container -->
+  <div id="cookie-container"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="widerrufsbelehrung.html">Widerrufsbelehrung</a>
+        <a href="agb.html">AGB</a>
+      </div>
+      <div class="footer-contact">
+        <p>Email: <a href="mailto:kontakt@dropngo.shop">kontakt@dropngo.shop</a></p>
+      </div>
+      <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="cookie-banner.js"></script>
+  
+  <!-- Universal Mobile JavaScript -->
+  <script>
+    // Mobile-optimized loading
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('page-loader');
+      const mainContent = document.getElementById('main-content');
+      
+      setTimeout(() => {
+        if (loader) loader.style.display = 'none';
+        if (mainContent) mainContent.style.opacity = '1';
+      }, 1000);
+    });
+
+    // Touch-friendly interactions
+    document.addEventListener('touchstart', function() {}, {passive: true});
+    
+    // Prevent zoom on input focus (iOS)
+    document.addEventListener('touchstart', function(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        e.target.style.fontSize = '16px';
+      }
+    });
+
+    // Mobile-optimized smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
