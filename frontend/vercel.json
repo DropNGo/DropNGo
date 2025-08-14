@@ -7,36 +7,17 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
-    { "src": "/agb", "dest": "/agb.html" },
-    { "src": "/cookie-banner", "dest": "/cookie-banner.html" },
-    { "src": "/datenschutz", "dest": "/datenschutz.html" },
-    { "src": "/impressum", "dest": "/impressum.html" },
-    { "src": "/produkte", "dest": "/products.html" },
-    { "src": "/produkt-detail1", "dest": "/produkt-detail1.html" },
-    { "src": "/produkt-detail2", "dest": "/produkt-detail2.html" },
-    { "src": "/produkt-detail3", "dest": "/produkt-detail3.html" },
-    { "src": "/support-formular", "dest": "/support-formular.html" },
-    { "src": "/widerrufsbelehrung", "dest": "/widerrufsbelehrung.html" },
-
-    {
-      "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
-      "src": "/(.*)\\.html",
-      "dest": "/$1.html"
-    },
-    {
-      "src": "/",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html",
-      "status": 404
-    }
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/agb", "destination": "/agb.html" },
+    { "source": "/cookie-banner", "destination": "/cookie-banner.html" },
+    { "source": "/datenschutz", "destination": "/datenschutz.html" },
+    { "source": "/impressum", "destination": "/impressum.html" },
+    { "source": "/produkte", "destination": "/products.html" },
+    { "source": "/produkt-detail1", "destination": "/produkt-detail1.html" },
+    { "source": "/produkt-detail2", "destination": "/produkt-detail2.html" },
+    { "source": "/produkt-detail3", "destination": "/produkt-detail3.html" },
+    { "source": "/support-formular", "destination": "/support-formular.html" },
+    { "source": "/widerrufsbelehrung", "destination": "/widerrufsbelehrung.html" }
   ]
 }
