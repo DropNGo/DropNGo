@@ -67,3 +67,32 @@ document.addEventListener('DOMContentLoaded', () => {
 // - Alle DOM-Zugriffe sind null-sicher (prüfen Existenz vor Nutzung).
 // - Falls du ein Element per ID/Selector ansprechen willst, stelle sicher,
 //   dass es im HTML existiert oder prüfe vorher mit if(el) {...}.
+
+
+// Mobile menu toggle (global)
+document.addEventListener('DOMContentLoaded', () => {
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (navToggle && mobileMenu) {
+    navToggle.addEventListener('click', () => {
+      const open = !mobileMenu.hasAttribute('hidden');
+      if (open) {
+        mobileMenu.setAttribute('hidden', '');
+        navToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileMenu.removeAttribute('hidden');
+        navToggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+
+  // Aktiven Link markieren
+  const path = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav__links a, .mobile-menu a').forEach(a => {
+    if (a.getAttribute('href') === path) a.setAttribute('aria-current','page');
+  });
+});
+
+
+
