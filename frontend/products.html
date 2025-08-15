@@ -1,377 +1,159 @@
 <!DOCTYPE html>
 <html lang="de">
-<head><meta name="viewport" content="width=device-width, initial-scale=1">
-<head><div class="announcement"><head>
-</head>
-
-  👟 Entdecke unsere neuesten Produkte – limitiert & nur solange der Vorrat reicht!
-  <button class="announcement-close" aria-label="Schließen">&times;</button>
-</div>
-<!--
-<nav class="sidebar" aria-label="Seitennavigation">
-  <button id="home-btn" onclick="location.href='index.html'">Home</button>
-  <button id="login-btn" onclick="location.href='login.html'">Login</button>
-  <button id="register-btn" onclick="location.href='register.html'">Registrieren</button>
-  <button id="guest-btn" onclick="location.href='guest.html'">Gast beitreten</button>
-</nav>
--->
+<head>
   <meta charset="UTF-8">
-  <title>DropNGo - Produkte</title>
-  <link rel="stylesheet" href="style.css">
- <link rel="icon" href="favicon.ico" type="image/png">
- <link rel="stylesheet" href="style.css">
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produkte – DropNGo</title>
+  <meta name="description" content="Entdecke sorgfältig ausgewählte Fitness‑ und Gesundheitsprodukte bei DropNGo – fair, modern und seriös.">
+  <link rel="icon" href="/favicon.ico">
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DropNGo - Produkte</title>
-  <link rel="stylesheet" href="mobile-universal.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-/* BODY ohne Kachel-Hintergrund */
-body {
-  background-color: #000000;
-  color: #dbdbdb;
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-}
-
-/* HEADER mit Hintergrundbild */
-header {
-  position: relative;
-
-  padding: 60px 20px;
-  text-align: center;
- 
-  color: white;
-  overflow: hidden;
-}
-
-
-
-/* Header-Inhalt über Overlay */
-header * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Header Titel */
-header h1 {
-  font-size: 3.5rem;
-  font-weight: bold;
-  white-space: nowrap;
-  letter-spacing: 0.1em;
-  margin: 0;
-  padding: 0;
-}
-
-    
-
-    /* NAVIGATION */
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      justify-content: center;
-      margin-top: 15px;
-    }
-    nav .nav-links {
-      display: flex;
-      gap: 20px;
-      flex-grow: 1;
-      justify-content: center;
-    }
-    nav a {
-      color: rgb(24, 161, 150);
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 2.5rem;
-      transition: color 0.3s ease;
-      display: flex;
-      align-items: center;
-    }
-    nav a:hover {
-      color: rgb(24, 161, 150);
+    :root {
+      --bg: #0b0d0f;
+      --surface: #121417;
+      --elev: #191c20;
+      --text: #e6e9ee;
+      --muted: #aab3be;
+      --brand: #18a196;
+      --brand-700: #0e9d90;
+      --brand-900: #0a6d64;
+      --danger: #ef4444;
+      --ok: #22c55e;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --transition: 0.25s ease;
     }
 
-    /* Warenkorb-Icon */
-    #cart-icon {
-      width: 40px;
-      height: 40px;
-      position: relative;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    #cart-icon img {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    #cart-count {
-      position: absolute;
-      top: -4px;
-      right: -8px;
-      background: rgb(24, 161, 150);
-      color: black;
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      display: none; /* Zeigt sich erst bei Warenkorb mit Inhalt */
-      pointer-events: none;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; border-radius: var(--radius); }
 
-    /* MAIN ohne rote Umrandungen */
-    main.products {
-      padding: 20px;
-      max-width: 1200px;
-      margin: 40px auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      color: white;
-      position: relative;
-      z-index: 1;
-    }
+    /* Container */
+    .container { width: min(1100px, 90%); margin: 0 auto; }
 
-    .product {
-      background-color: #1a1a1a;
-      padding: 15px;
-      border-radius: 10px;
-      width: 250px;
-      box-shadow: 0 0 8px rgba(248, 246, 246, 0.3);
-      transition: transform 0.3s ease;
-      text-align: center;
-      color: white;
-      cursor: default;
-    }
-    .product:hover {
-      transform: scale(1.05);
-    }
+    /* Header */
+    header { position: sticky; top: 0; z-index: 100; background: rgba(11,13,15,.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; flex-wrap: wrap; }
+    .brand { font-weight: 700; font-size: 1.3rem; color: var(--brand); cursor: pointer; display: flex; align-items: center; gap: 10px; }
+    .brand img { width: 34px; height: 34px; border-radius: 10px; box-shadow: 0 6px 18px rgba(24,161,150,.3); }
+    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .nav-links a { padding: 8px 14px; border-radius: 10px; color: var(--muted); transition: var(--transition); }
+    .nav-links a:hover { background: rgba(255,255,255,.05); color: var(--text); }
+    .btn { padding: 10px 18px; border-radius: 10px; background: var(--brand); color: #041413; font-weight: 700; cursor: pointer; transition: var(--transition); border: none; }
+    .btn:hover { background: var(--brand-700); }
 
-    .product h3 {
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
-    .product p {
-      margin: 10px 0;
-      font-size: 1.1rem;
-    }
+    /* Hero Section */
+    .hero { padding: 100px 0; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+    .hero h1 { font-size: clamp(32px,5vw,48px); line-height: 1.1; margin-bottom: 16px; }
+    .hero p { color: var(--muted); margin-bottom: 24px; font-size: 1rem; }
+    .hero img { box-shadow: var(--shadow); }
 
-    /* Buttons */
-    .btn, .product button {
-      background-color: rgb(24, 161, 150);
-      color: #ffffff;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgb(24, 161, 150);
-      transition: background-color 0.3s ease;
-      font-size: 1rem;
-      user-select: none;
-    }
-    .btn:hover, .product button:hover {
-      background-color: rgb(24, 161, 150);
-      box-shadow: 0 6px 12px rgb(24, 161, 150);
+    @media(max-width:900px) { .hero { grid-template-columns: 1fr; text-align: center; } }
+
+    /* Products */
+    .products { padding: 60px 0; }
+    .products h2 { font-size: clamp(24px,4vw,32px); margin-bottom: 32px; text-align: center; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 24px; }
+    .card { background: var(--surface); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); cursor: pointer; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 15px 35px rgba(0,0,0,.45); }
+    .card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+    .card-body { padding: 16px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-body h3 { margin-bottom: 8px; font-size: 1rem; font-weight: 600; }
+    .price { color: var(--brand); font-weight: 700; font-size: 0.95rem; }
+
+    /* Trust Section */
+    .trust { display: flex; justify-content: center; align-items: center; gap: 20px; padding: 40px 0; background: rgba(255,255,255,.05); border-radius: 12px; flex-wrap: wrap; text-align: center; }
+    .trust span { color: var(--muted); font-size: 14px; }
+
+    /* Footer */
+    footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,.06); color: var(--muted); font-size: 14px; }
+
+    /* Footer Links */
+    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); transition: var(--transition); }
+    .footer-links a:hover { color: var(--text); }
+
+    /* Responsive Mobile */
+    @media(max-width:600px){
+      .nav-links, .btn { width: 100%; text-align: center; margin-top: 10px; }
     }
   </style>
 </head>
-<script src="script.js"></script>
 <body>
-  <header>
-    <h1>Produkte</h1>
-    <nav class="nav-container">
-  <a href="index.html"class="btn">Homepage</a>
-  <a href="products.html" class="btn">Produkte</a>
-  <a href="cart.html" id="cart-icon" aria-label="Warenkorb">
-    <img src="images/shopping-cart.png" alt="Warenkorb" />
-    <span id="cart-count">0</span>
-  </a>
-</nav>
 
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <img src="favicon.ico" alt="DropNGo Logo">
+      <span>DropNGo</span>
+    </a>
+    <nav class="nav-links" aria-label="Hauptnavigation">
+      <a href="index.html">Home</a>
+      <a href="products.html" style="color: var(--text);">Produkte</a>
+      <a href="info.html">Über uns</a>
+      <a href="support-formular.html">Support</a>
+    </nav>
+  </div>
 </header>
-<main class="products">
-  <a href="produkt-detail1.html" class="product" style="--delay: 0.1s;">
-    <div class="image-wrapper">
-      <img src="images/produkt1.png" alt="Robofun 5.0" />
-    </div>
-    <div class="info">
-      <h3>Robofun 5.0</h3>
-      <p>Preis: 10 €</p>
-      <button class="btn">Jetzt ansehen</button>
-    </div>
-  </a>
 
-  <a href="produkt-detail2.html" class="product" style="--delay: 0.2s;">
-    <div class="image-wrapper">
-      <img src="images/produkt2.png" alt="Test 2" />
-    </div>
-    <div class="info">
-      <h3>Test 2</h3>
-      <p>Preis: 20 €</p>
-      <button class="btn">Jetzt ansehen</button>
-    </div>
-  </a>
+<section class="hero container">
+  <div class="hero-text">
+    <h1>Unsere Produkt‑Highlights</h1>
+    <p>Entdecke sorgfältig ausgewählte Fitness‑ und Gesundheitsprodukte von vertrauenswürdigen Partnern.</p>
+    <button class="btn" onclick="window.location.href='#products'">Jetzt entdecken</button>
+  </div>
+  <img src="hero-sneaker.jpg" alt="Produktübersicht">
+</section>
 
-  <a href="produkt-detail3.html" class="product" style="--delay: 0.3s;">
-    <div class="image-wrapper">
-      <img src="images/produkt3.png" alt="Test 3" />
-    </div>
-    <div class="info">
-      <h3>Test 3</h3>
-      <p>Preis: 30 €</p>
-      <button class="btn">Jetzt ansehen</button>
-    </div>
-  </a>
-</main>
+<section class="products container" id="products">
+  <h2>Unsere Highlights</h2>
+  <div class="grid">
+    <a href="produkt-detail1.html" class="card">
+      <img src="product1.jpg" alt="Produkt 1">
+      <div class="card-body">
+        <h3>Produkt 1</h3>
+        <p class="price">€199</p>
+      </div>
+    </a>
+    <a href="produkt-detail2.html" class="card">
+      <img src="product2.jpg" alt="Produkt 2">
+      <div class="card-body">
+        <h3>Produkt 2</h3>
+        <p class="price">€249</p>
+      </div>
+    </a>
+    <a href="produkt-detail3.html" class="card">
+      <img src="product3.jpg" alt="Produkt 3">
+      <div class="card-body">
+        <h3>Produkt 3</h3>
+        <p class="price">€299</p>
+      </div>
+    </a>
+  </div>
+</section>
 
+<section class="trust container">
+  <span>100% echte Produkte</span>
+  <span>•</span>
+  <span>Schneller Versand</span>
+  <span>•</span>
+  <span>Top Kundenservice</span>
+</section>
 
-
-<body>
-  <!-- Hauptinhalt ... -->
-
-  <!-- Hier erscheint das Cookie-Banner -->
-  <div id="cookie-container"></div>
-
-  <!-- Am besten das Script ganz unten im Body -->
-  <script>
-    // Cookie Banner JS Code (siehe Beispiel)
-  </script>
-  <style>
-    /* Cookie Banner CSS (siehe Beispiel) */
-  </style>
-</body>
-
-<body>
-<!--
-<div class="announcement">
-    🔥 Hol dir jetzt 10% Rabatt auf alle Sneaker! Nur für kurze Zeit! 🔥
-    <button class="announcement-close" aria-label="Schließen">&times;</button>
-</div>
--->
-
-  <!-- Rest deiner Seite kommt hier -->
-</body>
-
-
-
-  <footer>
-    <div class="footer-links">
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-      <a href="agb.html">AGB</a>
-    </div>
-    <div class="footer-contact">
-      <p>Kontakt:</p>
-      <p>Email: <a href="mailto:kontakt@dropngo.shop">kontakt@dropngo.shop</a></p>
-<!--
-<p>Telefon: <a href="tel:+49123456789">+49 123 456 789</a></p>
--->
-
-    </div>
-    <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten.</p>
-  </footer>
-
-<footer style="margin-top: 50px; padding: 20px; text-align: center; font-size: 14px; color: #555; line-height: 1.6;">
-  <p>
-    <strong>Hinweis zur Produktvermittlung:</strong> DropNGo agiert ausschließlich als Plattform zur Präsentation und Vermittlung von Produkten externer Anbieter. 
-    DropNGo ist nicht Vertragspartei und verkauft selbst keine Waren. 
-    Der Kaufvertrag kommt ausschließlich zwischen Ihnen und dem jeweiligen Händler zustande. 
-    Sämtliche Fragen zu Bestellung, Zahlung, Lieferung, Rückgabe oder Widerruf richten Sie bitte direkt an den jeweiligen Anbieter. 
-    DropNGo übernimmt keine Haftung für die Produkte oder Dienstleistungen der externen Händler.
-  </p>
+<footer>
+  <div class="container footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="agb.html">AGB</a>
+  </div>
+  <div class="container">
+    <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten. Hinweis: DropNGo vermittelt Produkte externer Anbieter. Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen Händler.</p>
+  </div>
 </footer>
 
-
-
-
-
-
-
-<!-- Support Button irgendwo auf der Hauptseite -->
-<main>
-  <!-- anderer Content -->
-
-  <button id="open-support-btn" class="btn">Support kontaktieren</button>
-
-  <!-- anderer Content -->
-</main>
-
-
-<!-- Support Formular Modal -->
-<div id="support-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="support-modal-title">
-  <div class="modal-content">
-    <button class="close-btn" id="close-support-btn" aria-label="Schließen">&times;</button>
-    <h2 id="support-modal-title">Kontakt & Support</h2>
-    <form id="support-form">
-      <label for="name">Name:</label><br />
-      <input type="text" id="name" name="name" required /><br /><br />
-      
-      <label for="email">E-Mail:</label><br />
-      <input type="email" id="email" name="email" required /><br /><br />
-      
-      <label for="message">Nachricht:</label><br />
-      <textarea id="message" name="message" rows="5" required></textarea><br /><br />
-      
-      <button type="submit" class="btn">Nachricht senden</button>
-    </form>
-    <p id="form-response" class="form-response"></p>
-  </div>
-</div>
-
-
-    
-    
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <!--<div class="product" style="--delay: 0.4s;">
-      <h3>Test 4</h3>
-      <p>Preis: 40 €</p>
-      <button class="btn" onclick="addToCart('Test 4', 40); animateFlyIcon(event)">Jetzt ansehen</button>
-    </div>
-    <div class="product" style="--delay: 0.5s;">
-      <h3>Test 5</h3>
-      <p>Preis: 50 €</p>
-      <button class="btn" onclick="addToCart('Test 5', 50); animateFlyIcon(event)">Jetzt ansehen</button>
-    </div>
-    <div class="product" style="--delay: 0.6s;">
-      <h3>Test 6</h3>
-      <p>Preis: 60 €</p>
-      <button class="btn" onclick="addToCart('Test 6', 60); animateFlyIcon(event)">Jetzt ansehen</button>
-    </div>
-    <div class="product" style="--delay: 0.7s;">
-      <h3>Test 7</h3>
-      <p>Preis: 70 €</p>
-      <button class="btn" onclick="addToCart('Test 7', 70); animateFlyIcon(event)">Jetzt ansehen</button>
-    </div>
-    <div class="product" style="--delay: 0.8s;">
-      <h3>Test 8</h3>
-      <p>Preis: 80 €</p>
-      <button class="btn" onclick="addToCart('Test 8', 80); animateFlyIcon(event)">Jetzt ansehen</button>
-    </div>
-  
-
-
-    
+</body>
+</html>

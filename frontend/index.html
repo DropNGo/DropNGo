@@ -1,285 +1,376 @@
 <!DOCTYPE html>
 <html lang="de">
-<head><meta name="viewport" content="width=device-width, initial-scale=1">
-   <head>
-    <link rel="stylesheet" href="mobile-universal.css">
-</head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DropNGo – Exklusive Sneaker & mehr</title>
+  <meta name="description" content="DropNGo – Dein Marktplatz für ausgewählte Sneaker und Streetwear. Fair, modern, seriös." />
+  <link rel="icon" href="/favicon.ico" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <meta charset="UTF-8">
-  <title>DropNGo</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico" type="image/png">
+  <style>
+    :root{
+      --bg: #0b0d0f;            /* Haupt-Hintergrund */
+      --surface: #121417;       /* Karten/Flächen */
+      --elev: #191c20;          /* leichte Erhöhung */
+      --text: #e6e9ee;          /* Primärtext */
+      --muted: #aab3be;         /* Sekundärtext */
+      --brand: rgb(24,161,150); /* Akzent (deine Farbe) */
+      --brand-700: #0e9d90;
+      --brand-900: #0a6d64;
+      --danger: #ef4444;
+      --ok: #22c55e;
+      --ring: rgba(24,161,150,.35);
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    /* Reset + Base */
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 70% -10%, rgba(24,161,150,.08), transparent 60%),
+                  radial-gradient(900px 600px at 0% 100%, rgba(24,161,150,.06), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    img{ max-width:100%; display:block; }
+    a{ color:inherit; text-decoration:none; }
+    button{ font:inherit; }
+
+    /* Container */
+    .container{ width:min(1100px, 92%); margin-inline:auto; }
+
+    /* Header */
+    header.site-header{ position:sticky; top:0; z-index:50; backdrop-filter: saturate(160%) blur(10px); background: rgba(11,13,15,.75); border-bottom:1px solid rgba(255,255,255,.06); }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px; }
+    .brand__logo{ width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, var(--brand), var(--brand-700)); display:grid; place-items:center; box-shadow: 0 6px 18px rgba(24,161,150,.3); }
+    .brand__logo span{ font-size:18px; font-weight:800; color:#051311; }
+
+    .nav__links{ display:flex; gap:18px; align-items:center; }
+    .nav__links a{ padding:8px 12px; border-radius:10px; color:var(--muted); transition: all .2s ease; }
+    .nav__links a:hover{ color:var(--text); background:rgba(255,255,255,.04); }
+
+    .nav__cta{ display:flex; gap:10px; }
+    .btn{ padding:10px 14px; border-radius:10px; border:1px solid transparent; background:var(--brand); color:#041413; font-weight:700; box-shadow: 0 8px 18px rgba(24,161,150,.25); cursor:pointer; transition: transform .08s ease, box-shadow .2s ease, background .2s ease; }
+    .btn:hover{ background:var(--brand-700); box-shadow: 0 12px 26px rgba(24,161,150,.35); }
+    .btn:active{ transform: translateY(1px); }
+    .btn--ghost{ background:transparent; color:var(--text); border-color:rgba(255,255,255,.12); box-shadow:none; }
+    .btn--ghost:hover{ background:rgba(255,255,255,.06); }
+
+    /* Mobile nav */
+    .nav-toggle{ display:none; background:transparent; border:1px solid rgba(255,255,255,.14); padding:10px; border-radius:10px; }
+    .nav-toggle svg{ width:22px; height:22px; }
+    @media (max-width: 820px){
+      .nav__links{ display:none; }
+      .nav__cta{ display:none; }
+      .nav-toggle{ display:block; }
+      .mobile-menu{ display:none; position:fixed; inset:64px 0 0 0; background:rgba(9,11,12,.98); border-top:1px solid rgba(255,255,255,.06); padding:18px; }
+      .mobile-menu a{ display:block; padding:14px 10px; border-radius:10px; color:var(--muted); }
+      .mobile-menu a:hover{ background:rgba(255,255,255,.05); color:var(--text); }
+      .mobile-menu .mobile-cta{ display:grid; gap:10px; margin-top:14px; }
+    }
+
+    /* Hero */
+    .hero{ padding:64px 0 36px; position:relative; }
+    .hero__inner{ display:grid; grid-template-columns: 1.1fr .9fr; gap:36px; align-items:center; }
+    .hero h1{ font-size: clamp(30px, 5vw, 48px); line-height:1.1; letter-spacing:.2px; margin:0 0 14px; }
+    .hero p{ color:var(--muted); margin:0 0 22px; }
+    .hero__card{ background:linear-gradient(180deg, var(--surface), var(--elev)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+    .hero__img{ aspect-ratio: 4/3; background:#0f1114; display:grid; place-items:center; }
+    .hero__badges{ display:flex; gap:12px; margin-top:10px; flex-wrap:wrap; }
+    .badge{ font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.12); color:var(--muted); }
+
+    @media (max-width: 920px){ .hero__inner{ grid-template-columns:1fr; } }
+
+    /* Section heading */
+    .section{ padding: 30px 0 10px; }
+    .section h2{ font-size: clamp(22px, 3.4vw, 30px); margin: 0 0 6px; }
+    .section p.lead{ color:var(--muted); margin:0 0 16px; }
+
+    /* Products grid */
+    .grid{ display:grid; gap:16px; grid-template-columns: repeat(12, 1fr); }
+    .col-3{ grid-column: span 3; }
+    @media (max-width: 1100px){ .col-3{ grid-column: span 4; } }
+    @media (max-width: 760px){ .col-3{ grid-column: span 6; } }
+    @media (max-width: 520px){ .col-3{ grid-column: span 12; } }
+
+    .card{ background: var(--surface); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); overflow:hidden; transition: transform .18s ease, box-shadow .2s ease; }
+    .card:hover{ transform: translateY(-3px); box-shadow: 0 14px 28px rgba(0,0,0,.35); }
+    .card__img{ aspect-ratio: 1 / 1; background:#0f1114; }
+    .card__body{ padding:14px; }
+    .price{ color: var(--brand); font-weight:700; }
+    .meta{ color: var(--muted); font-size: 14px; }
+
+    /* Trust row */
+    .trust{ display:flex; gap:18px; flex-wrap:wrap; align-items:center; justify-content:center; padding: 18px; background: rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06); border-radius: 12px; }
+    .trust span{ color:var(--muted); font-size:14px; }
+    .dot{ width:6px; height:6px; border-radius:50%; background: var(--brand); display:inline-block; margin:0 8px; opacity:.7; }
+
+    /* Testimonials */
+    .testimonials{ display:grid; gap:16px; grid-template-columns: repeat(3, 1fr); }
+    .quote{ background: var(--surface); border:1px solid rgba(255,255,255,.06); border-radius: 12px; padding:16px; color:var(--muted); }
+    .quote strong{ color:var(--text); }
+    @media (max-width: 820px){ .testimonials{ grid-template-columns: 1fr; } }
+
+    /* Footer */
+    footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06); background:#0a0c0e; }
+    .footer-grid{ display:grid; grid-template-columns: 2fr 1fr 1fr; gap:18px; padding: 26px 0; }
+    .footer-col h4{ margin:0 0 8px; font-size: 16px; color:#d7dde6; }
+    .footer-col a{ color:var(--muted); display:inline-block; padding:6px 0; }
+    .footer-col a:hover{ color:var(--text); }
+    .copyright{ color:#8f98a3; font-size: 14px; padding: 12px 0 32px; }
+    @media (max-width: 760px){ .footer-grid{ grid-template-columns: 1fr; } }
+
+    /* Cookie banner */
+    .cookie{ position: fixed; inset: auto 16px 16px 16px; max-width: 520px; margin-left:auto; background: var(--surface); border:1px solid rgba(255,255,255,.08); border-radius: 14px; box-shadow: var(--shadow); padding:14px; display:none; z-index:9999; }
+    .cookie__row{ display:flex; gap:14px; align-items:flex-start; }
+    .cookie__text{ color:var(--muted); font-size:14px; }
+    .cookie__actions{ display:flex; gap:10px; margin-left:auto; }
+    .cookie .btn{ padding:9px 12px; border-radius: 8px; }
+
+    /* Utility */
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  </style>
 </head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DropNGo - Home</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<!-- ... -->
-</body>
-<script>
-  // Vercel-Deploy-Script
-  if (window.location.hostname === 'dropngo-4ruohn147-dropngos-projects.vercel.app') {
-    console.log('Vercel-Deploy-Script aktiviert');
-  }
-</script>
-</html>
 <body>
-  <div class="announcement">
-    🔥 2025 New Launch 🔥
-    <button class="announcement-close" aria-label="Schließen">&times;</button>
-  </div>
-
-<!--
-<nav class="sidebar" aria-label="Seitennavigation">
-  <button id="home-btn" onclick="location.href='index.html'">Home</button>
-  <button id="login-btn" onclick="location.href='login.html'">Login</button>
-  <button id="register-btn" onclick="location.href='register.html'">Registrieren</button>
-  <button id="guest-btn" onclick="location.href='guest.html'">Gast beitreten</button>
-</nav>
--->
-
-
-
-
-
-
-
-  <!-- dein anderer Seiteninhalt hier -->
-  <div class="content">
-    <!-- bestehender Content -->
-  </div>
-
-  <header>
-    <h1>DropNGo</h1>
-    <nav class="nav-container">
-      <a href="index.html" class="btn">Homepage</a>
-      <a href="products.html" class="btn">Produkte</a>
-      <a href="cart.html" id="cart-icon" aria-label="Warenkorb">
-        <img src="images/shopping-cart.png" alt="Warenkorb" class="cart-image" />
-        <span id="cart-count">0</span>
-      </a>
-    </nav>
-  </header>
-</body>
-
-
-  <main>
-    
-<h2 style="font-size: 2.5rem; font-weight: bold; color: #ffffff; text-shadow: 2px 2px 5px rgba(6, 216, 205, 0.2);">
-  Welcome to <span style="
-    color: rgb(14, 160, 145); 
-    padding: 0 8px; 
-    border-radius: 4px; 
-    text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-  ">DropNGo</span>
-</h2>
-
-<p style="line-height: 1.6; font-size: 1.2rem; color: #ffffff;">
-  Deine Auswahl. Modern. Zeitlos.
-</p>
-
-<a href="products.html" class="btn" style="margin-top: 10px; display: inline-block;">
-  Jetzt shoppen
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" style="gap: 12px;">
+  <img src="favicon.ico" alt="DropNGo Logo" style="width:34px; height:34px; border-radius:10px; box-shadow:0 6px 18px rgba(24,161,150,.3);" />
+  <span>DropNGo</span>
 </a>
 
-  </main>
-</body>
 
-</html> 
+      <nav class="nav__links" aria-label="Hauptnavigation">
+        <a href="index.html">Home</a>
+        <a href="products.html">Produkte</a>
+        <a href="info.html">Über uns</a>
+        <a href="support-formular.html">Support</a>
+      </nav>
 
+      <div class="nav__cta">
+        <a class="btn btn--ghost" href="impressum.html">Rechtliches</a>
+        <a class="btn" href="products.html">Jetzt shoppen</a>
+      </div>
 
-
-<body>
-  <!-- Hauptinhalt ... -->
-
-  <!-- Hier erscheint das Cookie-Banner -->
-  <div id="cookie-container"></div>
-
-  <!-- Am besten das Script ganz unten im Body -->
-  <script>
-    // Cookie Banner JS Code (siehe Beispiel)
-  </script>
-  <style>
-    /* Cookie Banner CSS (siehe Beispiel) */
-  </style>
-</body>
-
-<body>
-<!--
-<div class="announcement">
-    🔥 Hol dir jetzt 10% Rabatt auf alle Sneaker! Nur für kurze Zeit! 🔥
-    <button class="announcement-close" aria-label="Schließen">&times;</button>
-</div>
--->
-
-  <!-- Rest deiner Seite kommt hier -->
-</body>
-
-
-
-  <footer>
-    <div class="footer-links">
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-      <a href="agb.html">AGB</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menü öffnen">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
     </div>
-    <div class="footer-contact">
-      <!--<p>Kontakt:</p> -->
-      <p>Email: <a href="mailto:kontakt@dropngo.shop">kontakt@dropngo.shop</a></p>
-<!--
-<p>Telefon: <a href="tel:+49123456789">+49 123 456 789</a></p>
--->
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <nav class="container" aria-label="Mobile Navigation">
+        <a href="index.html">Home</a>
+        <a href="products.html">Produkte</a>
+        <a href="info.html">Über uns</a>
+        <a href="support-formular.html">Support</a>
+        <div class="mobile-cta">
+          <a class="btn btn--ghost" href="impressum.html">Rechtliches</a>
+          <a class="btn" href="products.html">Jetzt shoppen</a>
+        </div>
+      </nav>
     </div>
-    <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten.</p>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div>
+        <h1>Performance & Gesundheit.<br/> Seriös. Fair. Direkt vom Partner.</h1>
+<p>DropNGo vermittelt geprüfte Fitness- und Gesundheitsprodukte – Fokus auf Qualität, Wirksamkeit und Vertrauen. Sichere Zahlung & verlässliche Partner.</p>
+
+        <div class="hero__actions" style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="/products.html">Produkte ansehen</a>
+          <a class="btn btn--ghost" href="/info.html">Wie wir arbeiten</a>
+        </div>
+        <div class="hero__badges" aria-hidden="true">
+           <span class="badge">Käuferschutz</span>
+          <span class="badge">SSL‑verschlüsselt</span>
+        <!--  <span class="badge">14‑Tage Widerruf</span> -->
+        </div>
+      </div>
+
+      <div class="hero__card">
+        <div class="hero__img">
+          <img src="/images/hero-sneaker.jpg" alt="Ein Paar moderne Sneaker auf dunklem Hintergrund" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust logos / badges -->
+  <div class="container" style="margin-top:6px;">
+    <div class="trust" role="group" aria-label="Sicherheits- & Zahlungslogos">
+      <span>Bezahlarten:</span>
+      <img src="/images/payments/visa.svg" alt="Visa" height="20" />
+      <img src="/images/payments/mastercard.svg" alt="Mastercard" height="20" />
+      <img src="/images/payments/paypal.svg" alt="PayPal" height="20" />
+      <span class="dot"></span>
+      <span>Geschützt durch SSL & Käuferschutz</span>
+    </div>
+  </div>
+
+  <!-- Produkte (Beispiele) -->
+  <section class="section">
+    <div class="container">
+      <h2>Neu eingetroffen</h2>
+      <p class="lead">Sorgfältig ausgewählte Modelle von verifizierten Händlern.</p>
+
+      <div class="grid" style="margin-top:14px;">
+        <!-- Card 1 -->
+        <article class="card col-3">
+          <a href="/produkte/nova-1" aria-label="Zum Produkt Nova 1">
+            <div class="card__img"><img src="/images/products/p1.jpg" alt="Sneaker Nova 1 schwarz"/></div>
+            <div class="card__body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                <h3 style="margin:0; font-size:16px;">Nova 1</h3>
+                <span class="price">129,00 €</span>
+              </div>
+              <div class="meta">Lieferzeit: 2–4 Werktage</div>
+            </div>
+          </a>
+        </article>
+        <!-- Card 2 -->
+        <article class="card col-3">
+          <a href="/produkte/air-lite" aria-label="Zum Produkt Air Lite">
+            <div class="card__img"><img src="/images/products/p2.jpg" alt="Sneaker Air Lite weiß"/></div>
+            <div class="card__body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                <h3 style="margin:0; font-size:16px;">Air Lite</h3>
+                <span class="price">149,00 €</span>
+              </div>
+              <div class="meta">Kostenloser Rückversand</div>
+            </div>
+          </a>
+        </article>
+        <!-- Card 3 -->
+        <article class="card col-3">
+          <a href="/produkte/runner-pro" aria-label="Zum Produkt Runner Pro">
+            <div class="card__img"><img src="/images/products/p3.jpg" alt="Sneaker Runner Pro grau"/></div>
+            <div class="card__body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                <h3 style="margin:0; font-size:16px;">Runner Pro</h3>
+                <span class="price">119,00 €</span>
+              </div>
+              <div class="meta">Nur noch wenige verfügbar</div>
+            </div>
+          </a>
+        </article>
+        <!-- Card 4 -->
+        <article class="card col-3">
+          <a href="/produkte/urban-x" aria-label="Zum Produkt Urban X">
+            <div class="card__img"><img src="/images/products/p4.jpg" alt="Sneaker Urban X blau"/></div>
+            <div class="card__body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                <h3 style="margin:0; font-size:16px;">Urban X</h3>
+                <span class="price">139,00 €</span>
+              </div>
+              <div class="meta">Versand aus DE</div>
+            </div>
+          </a>
+        </article>
+      </div>
+
+      <div style="margin-top:16px; display:flex; gap:10px;">
+        <a class="btn" href="/products.html">Alle Produkte</a>
+        <a class="btn btn--ghost" href="/datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials / Social Proof -->
+  <section class="section">
+    <div class="container">
+      <h2>Was Kund:innen sagen</h2>
+      <div class="testimonials" style="margin-top:12px;">
+        <div class="quote"><strong>„Schmerz endlich im Griff“</strong><br/>Nach 2 Wochen gezielter Nutzung deutlich weniger Kniebeschwerden beim Training. Endlich wieder ohne Pause beugen.</div>
+<div class="quote"><strong>„Spürbar bessere Beweglichkeit“</strong><br/>Die Mobilitäts-Tools haben meine Hüfte lockerer gemacht. Aufwärmen geht schneller, Technik fühlt sich stabiler an.</div>
+<div class="quote"><strong>„Top Beratung & fair“</strong><br/>Schnelle Antworten vom Support, klare Empfehlungen für mein Problem (unterer Rücken). Rückgabeinfos transparent.</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>DropNGo</h4>
+        <p class="meta">Dein kuratierter Marktplatz für Fitness- & Gesundheitslösungen.
+Wir vermitteln nur geprüfte Produkte, die dir helfen, Schmerzen zu lindern, Beweglichkeit zu steigern und dein Wohlbefinden nachhaltig zu verbessern – transparent, ehrlich und seriös.
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <a href="impressum.html">Impressum</a><br/>
+        <a href="datenschutz.html">Datenschutz</a><br/>
+        <a href="agb.html">AGB</a>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <a href="mailto:kontakt@dropngo.shop">kontakt@dropngo.shop</a><br/>
+        <a href="support-formular.html">Support</a>
+      </div>
+    </div>
+    <div class="container">
+      <p class="copyright">© 2025 DropNGo – Alle Rechte vorbehalten. | Hinweis: DropNGo vermittelt Produkte externer Anbieter. Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen Händler.</p>
+    </div>
   </footer>
 
-  
-
-
-
-
-<!-- Support Button irgendwo auf der Hauptseite -->
-<main>
-  <!-- anderer Content -->
-
-  <button id="open-support-btn" class="btn">Support kontaktieren</button>
-
-  <!-- anderer Content -->
-</main>
-
-
-<!-- Support Formular Modal -->
-<div id="support-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="support-modal-title">
-  <div class="modal-content">
-    <button class="close-btn" id="close-support-btn" aria-label="Schließen">&times;</button>
-    <h2 id="support-modal-title">Kontakt & Support</h2>
-    <form id="support-form">
-      <label for="name">Name:</label><br />
-      <input type="text" id="name" name="name" required /><br /><br />
-      
-      <label for="email">E-Mail:</label><br />
-      <input type="email" id="email" name="email" required /><br /><br />
-      
-      <label for="message">Nachricht:</label><br />
-      <textarea id="message" name="message" rows="5" required></textarea><br /><br />
-      
-      <button type="submit" class="btn">Nachricht senden</button>
-    </form>
-    <p id="form-response" class="form-response"></p>
-  </div>
-</div>
-
-<footer style="margin-top: 50px; padding: 20px; text-align: center; font-size: 14px; color: #555; line-height: 1.6;">
-  <p>
-    <strong>Hinweis zur Produktvermittlung:</strong> DropNGo agiert ausschließlich als Plattform zur Präsentation und Vermittlung von Produkten externer Anbieter. 
-    DropNGo ist nicht Vertragspartei und verkauft selbst keine Waren. 
-    Der Kaufvertrag kommt ausschließlich zwischen Ihnen und dem jeweiligen Händler zustande. 
-    Sämtliche Fragen zu Bestellung, Zahlung, Lieferung, Rückgabe oder Widerruf richten Sie bitte direkt an den jeweiligen Anbieter. 
-    DropNGo übernimmt keine Haftung für die Produkte oder Dienstleistungen der externen Händler.
-  </p>
-</footer>
-
-
-
-<script>
-  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/speed-insights/script.js"></script>
-<script src="script.js"></script>
-<script type="text/javascript">
-  (function (l) {
-    if (l.search[1] === "/") {
-      var decoded = l.search
-        .slice(1)
-        .split("&")
-        .map(function (s) {
-          return s.replace(/~and~/g, "&");
-        })
-        .join("?");
-      window.history.replaceState(
-        null,
-        null,
-        l.pathname.slice(0, -1) + decoded + l.hash
-      );
-    }
-  })(window.location);
-</script>
-
-
-<body>
-  <div id="page-loader"></div>
-
-  <!-- Dein restlicher Seiteninhalt -->
-  <div id="main-content" style="opacity: 0;">
-    <!-- Alles, was auf deiner Seite ist -->
+  <!-- Cookie Banner -->
+  <div class="cookie" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText" aria-live="polite">
+    <div class="cookie__row">
+      <div>
+        <strong id="cookieTitle">Cookies für ein besseres Erlebnis</strong>
+        <p id="cookieText" class="cookie__text">Wir verwenden Cookies für grundlegende Funktionen, Statistiken und um Inhalte zu verbessern. Details findest du in unserer <a href="datenschutz.html" style="color:var(--brand); text-decoration:underline;">Datenschutz</a>.</p>
+      </div>
+      <div class="cookie__actions">
+        <button class="btn btn--ghost" id="cookieDecline">Nur nötig</button>
+        <button class="btn" id="cookieAccept">Akzeptieren</button>
+      </div>
+    </div>
   </div>
 
-  <script src="loader.js"></script>
+  <script>
+    // Mobile nav
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    navToggle?.addEventListener('click', () => {
+      const open = mobileMenu.style.display === 'block';
+      mobileMenu.style.display = open ? 'none' : 'block';
+      mobileMenu.toggleAttribute('hidden', open);
+      navToggle.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Cookie banner
+    const banner = document.getElementById('cookieBanner');
+    const accept = document.getElementById('cookieAccept');
+    const decline = document.getElementById('cookieDecline');
+    const KEY = 'dng_cookies_v1';
+
+    function showCookieBanner(){ banner.style.display = 'block'; }
+    function hideCookieBanner(){ banner.style.display = 'none'; }
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if(!saved){ showCookieBanner(); }
+    } catch (_) { showCookieBanner(); }
+
+    accept?.addEventListener('click', () => {
+      localStorage.setItem(KEY, JSON.stringify({ necessary:true, analytics:true, date: new Date().toISOString() }));
+      hideCookieBanner();
+    });
+    decline?.addEventListener('click', () => {
+      localStorage.setItem(KEY, JSON.stringify({ necessary:true, analytics:false, date: new Date().toISOString() }));
+      hideCookieBanner();
+    });
+  </script>
 </body>
-´<script>window.addEventListener('load', () => {
-  const loader = document.getElementById('page-loader');
-  const mainContent = document.getElementById('main-content');
-
-  // Nach 2.2 Sekunden (etwas länger als Animation) Loader ausblenden
-  setTimeout(() => {
-    loader.classList.add('hide');
-    mainContent.classList.add('visible');
-  }, 2200);
-}); 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-document.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', async (e) => {
-    e.preventDefault();
-
-    // Zeige Animation "Seite lädt"
-    showLoadingAnimation();
-
-    const href = link.getAttribute('href');
-    const response = await fetch(href);
-    const html = await response.text();
-
-    // Parsen, extrahieren, ersetzen
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const newContent = doc.querySelector('main'); // Beispiel: tausche main-Inhalt aus
-    document.querySelector('main').innerHTML = newContent.innerHTML;
-
-    // Animation "Seite geladen" beenden
-    hideLoadingAnimation();
-
-    // URL ändern (ohne reload)
-    history.pushState(null, '', href);
-  });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</html>

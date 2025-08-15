@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Impressum – DropNGo</title>
-  <meta name="description" content="Angaben gemäß § 5 TMG für DropNGo." />
+  <title>Über uns – DropNGo</title>
+  <meta name="description" content="Erfahre mehr über DropNGo – unser Konzept, unsere Mission und unsere Werte." />
   <link rel="icon" href="/favicon.ico" />
 
   <!-- Google Fonts -->
@@ -29,8 +29,10 @@
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; border-radius: var(--radius); }
 
+    /* Container */
     .container { width: min(1100px, 90%); margin: 0 auto; }
 
+    /* Header */
     header { position: sticky; top: 0; z-index: 100; background: rgba(11,13,15,.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.06); }
     .nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; flex-wrap: wrap; }
     .brand { font-weight: 700; font-size: 1.3rem; color: var(--brand); cursor: pointer; display: flex; align-items: center; gap: 6px; }
@@ -38,29 +40,30 @@
     .nav-links a { padding: 8px 14px; border-radius: 10px; color: var(--muted); transition: var(--transition); }
     .nav-links a:hover { background: rgba(255,255,255,.05); color: var(--text); }
 
-    .hero { padding: 80px 0 40px; text-align: center; background: var(--elev); border-radius: var(--radius); box-shadow: var(--shadow); margin-top: 30px; }
+    /* Hero Section */
+    .hero { padding: 80px 0; text-align: center; background: var(--elev); border-radius: var(--radius); box-shadow: var(--shadow); margin-top: 30px; }
     .hero h1 { font-size: clamp(32px, 5vw, 48px); margin-bottom: 16px; font-weight: 700; }
     .hero p { max-width: 700px; margin: 0 auto 24px; color: var(--muted); font-size: 1rem; }
 
-    .legal-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 40px; margin-top: 40px; }
-    .legal-card h2 { font-size: clamp(20px, 4vw, 28px); color: var(--brand); margin-top: 30px; margin-bottom: 10px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 6px; }
-    .legal-card p { color: var(--muted); margin-top: 12px; font-size: 0.95rem; line-height: 1.6; }
-    .legal-card p:last-child { margin-top: 30px; font-size: 0.85rem; font-style: italic; color: var(--muted); }
-    .legal-card a { color: var(--brand); text-decoration: underline; }
-    .legal-card a:hover { color: var(--brand-hover); }
+    /* About Sections */
+    .about-section { padding: 60px 0; }
+    .about-section h2 { font-size: clamp(24px, 4vw, 32px); margin-bottom: 20px; font-weight: 600; color: var(--brand); }
+    .about-section p { color: var(--muted); margin-bottom: 20px; max-width: 800px; }
+    .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
 
-    footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,.06); color: var(--muted); font-size: 14px; margin-top: 60px; }
+    /* Footer */
+    footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,.06); color: var(--muted); font-size: 14px; margin-top: 80px; }
     .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
     .footer-links a { color: var(--muted); transition: var(--transition); }
     .footer-links a:hover { color: var(--text); }
 
     @media(max-width:600px){
       .nav-links, .brand { width: 100%; text-align: center; margin-top: 10px; }
-      .legal-card { padding: 30px 20px; }
     }
   </style>
 </head>
 <body>
+  <!-- Header mit Navigation -->
   <header>
     <div class="container nav">
       <a class="brand" href="index.html" style="gap: 12px;">
@@ -70,70 +73,70 @@
       <nav class="nav-links" aria-label="Hauptnavigation">
         <a href="index.html">Home</a>
         <a href="products.html">Produkte</a>
-        <a href="info.html">Über uns</a>
+        <a href="info.html" style="color: var(--text);">Über uns</a>
         <a href="support-formular.html">Support</a>
       </nav>
     </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <h1>Impressum</h1>
+      <h1>Über DropNGo</h1>
       <p>
-        Hier findest du die gesetzlich vorgeschriebenen Angaben gemäß § 5 TMG
-        sowie weitere rechtliche Hinweise zu DropNGo.
+        DropNGo ist dein kuratierter Marktplatz für Fitness‑ und Gesundheitsprodukte. Wir suchen die
+        besten Produkte am Markt, damit du dich ganz auf dein Training und dein Wohlbefinden
+        konzentrieren kannst. Als Affiliate‑Plattform vermitteln wir ausschließlich Produkte
+        vertrauenswürdiger Partner und sorgen für transparente Informationen.
       </p>
     </div>
   </section>
 
-  <main class="container">
-    <div class="legal-card">
-      <h2>Angaben gemäß § 5 TMG</h2>
-      <p><strong>DropNGo</strong><br />
-        Inhaber: Mert Albayrak<br />
-        Deutschland
-      </p>
-
-      <p><strong>Kontakt:</strong><br />
-        E‑Mail: <a href="mailto:kontakt@dropngo.shop">kontakt@dropngo.shop</a>
-      </p>
-
-      <p><strong>Umsatzsteuer‑ID:</strong><br />
-        Keine Umsatzsteuer gemäß § 19 UStG (Kleinunternehmerregelung)
-      </p>
-
-      <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-      <p>Mert Albayrak</p>
-
-      <h2>Haftungsausschluss</h2>
-      <p>
-        Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die
-        Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch
-        keine Gewähr übernehmen.
-      </p>
-
-      <h2>Haftung für Links</h2>
-      <p>
-        Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte
-        wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte
-        auch keine Gewähr übernehmen.
-      </p>
-
-      <h2>Urheberrecht</h2>
-      <p>
-        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
-        Seiten unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als
-        solche gekennzeichnet. Die Vervielfältigung, Bearbeitung und Verwertung
-        bedürfen der schriftlichen Zustimmung des jeweiligen Autors.
-      </p>
-
-      <p>Letzte Aktualisierung: August 2025</p>
+  <!-- About Sections -->
+  <section class="about-section container">
+    <div class="about-grid">
+      <div>
+        <h2>Wer wir sind</h2>
+        <p>
+          Wir sind ein Team aus Sportbegeisterten, die es sich zur Aufgabe gemacht haben,
+          hochwertige Fitness‑ und Gesundheitsprodukte auf einfache Weise zugänglich zu machen.
+          Unser Fokus liegt auf Qualität, Transparenz und einem seriösen Auftritt – fernab
+          von dubiosen Online‑Shops.
+        </p>
+      </div>
+      <div>
+        <h2>Unsere Mission</h2>
+        <p>
+          DropNGo will mehr sein als nur ein Affiliate‑Portal: Wir möchten Menschen unterstützen,
+          die sich fit halten oder ihre Gesundheit verbessern möchten. Deshalb arbeiten wir nur
+          mit geprüften Anbietern zusammen und stellen detaillierte Informationen bereit, damit du
+          fundierte Entscheidungen treffen kannst.
+        </p>
+      </div>
+      <div>
+        <h2>Blick in die Zukunft</h2>
+        <p>
+          Unsere Plattform wächst ständig weiter. In Zukunft planen wir, ein eigenes
+          Dropshipping‑Sortiment aufzubauen, damit du noch schneller an deine Lieblingsprodukte
+          kommst. Bis dahin bleiben wir dein zuverlässiger Vermittler für ausgewählte Artikel.
+        </p>
+      </div>
     </div>
-  </main>
+  </section>
 
+  <!-- Call‑to‑Action Section -->
+  <section class="container" style="text-align: center; padding-bottom: 60px;">
+    <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--muted);">
+      Bereit, dein Training auf das nächste Level zu bringen? Schau dir unsere aktuellen
+      <a href="products.html" style="color: var(--brand); text-decoration: underline;">Produkt‑Highlights</a>
+      an.
+    </p>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <div class="container footer-links">
-      <a href="impressum.html" style="color: var(--text);">Impressum</a>
+      <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
       <a href="agb.html">AGB</a>
     </div>

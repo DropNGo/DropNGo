@@ -1,144 +1,125 @@
 <!DOCTYPE html>
 <html lang="de">
-<head><meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
-    <link rel="stylesheet" href="mobile-universal.css">
-</head>
-  <meta charset="UTF-8">
-  <title>DropNGo - AGB</title>
-  <link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.ico" type="image/png">
-</head>
-
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DropNGo - AGB</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGB – DropNGo</title>
+  <meta name="description" content="Allgemeine Geschäftsbedingungen für die Nutzung von DropNGo." />
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: rgb(24, 161, 150);
-      margin: 0;
-      padding: 0 20px 60px;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    :root {
+      --bg: #0b0d0f;
+      --surface: #121417;
+      --elev: #191c20;
+      --text: #e6e9ee;
+      --muted: #aab3be;
+      --brand: #18a196;
+      --brand-hover: #0e9d90;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --transition: 0.25s ease;
     }
-    header {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 20px 0;
-      border-bottom: 2px solid rgb(24, 161, 150);
-      flex-shrink: 0;
-    }
-    header button {
-      background: transparent;
-      border: 2px solid rgb(24, 161, 150);
-      color: rgb(24, 161, 150);
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 8px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    header button:hover {
-      background-color: rgb(24, 161, 150);
-      color: #121212;
-      box-shadow: 0 0 10px rgb(24, 161, 150);
-    }
-    header h1 {
-      margin: 0;
-      font-weight: 700;
-      font-size: 1.8rem;
-      flex-grow: 1;
-    }
-    main {
-      max-width: 720px;
-      margin: 30px auto;
-      background-color: #1e1e1e;
-      padding: 30px 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgb(24, 161, 150);
-      flex-grow: 1;
-    }
-    main section h2 {
-      margin-top: 30px;
-      font-weight: 700;
-      border-bottom: 1px solid rgb(24, 161, 150);
-      padding-bottom: 5px;
-    }
-    main section p {
-      margin-top: 12px;
-      font-size: 1rem;
-    }
-    footer {
-      max-width: 720px;
-      margin: 40px auto 20px;
-      text-align: center;
-      color: rgb(24, 161, 150);
-      font-size: 0.9rem;
-      flex-shrink: 0;
-    }
-    .footer-links {
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-    .footer-links a {
-      color: rgb(24, 161, 150);
-      text-decoration: underline;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-    .footer-links a:hover {
-      color: rgb(24, 161, 150);
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; border-radius: var(--radius); }
+
+    .container { width: min(1100px, 90%); margin: 0 auto; }
+
+    header { position: sticky; top: 0; z-index: 100; background: rgba(11,13,15,.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; flex-wrap: wrap; }
+    .brand { font-weight: 700; font-size: 1.3rem; color: var(--brand); cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .nav-links a { padding: 8px 14px; border-radius: 10px; color: var(--muted); transition: var(--transition); }
+    .nav-links a:hover { background: rgba(255,255,255,.05); color: var(--text); }
+
+    .hero { padding: 80px 0 40px; text-align: center; background: var(--elev); border-radius: var(--radius); box-shadow: var(--shadow); margin-top: 30px; }
+    .hero h1 { font-size: clamp(32px, 5vw, 48px); margin-bottom: 16px; font-weight: 700; }
+    .hero p { max-width: 700px; margin: 0 auto 24px; color: var(--muted); font-size: 1rem; }
+
+    .legal-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 40px; margin-top: 40px; }
+    .legal-card h2 { font-size: clamp(20px, 4vw, 28px); color: var(--brand); margin-top: 30px; margin-bottom: 10px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 6px; }
+    .legal-card p { color: var(--muted); margin-top: 12px; font-size: 0.95rem; line-height: 1.6; }
+
+    footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,.06); color: var(--muted); font-size: 14px; margin-top: 60px; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); transition: var(--transition); }
+    .footer-links a:hover { color: var(--text); }
+
+    @media(max-width:600px){
+      .nav-links, .brand { width: 100%; text-align: center; margin-top: 10px; }
+      .legal-card { padding: 30px 20px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <button type="button" aria-label="Zurück" onclick="history.back()">← Zurück</button>
-    <h1>Allgemeine Geschäftsbedingungen (AGB)</h1>
+    <div class="container nav">
+      <a class="brand" href="index.html" style="gap: 12px;">
+  <img src="favicon.ico" alt="DropNGo Logo" style="width:34px; height:34px; border-radius:10px; box-shadow:0 6px 18px rgba(24,161,150,.3);" />
+  <span>DropNGo</span>
+</a>
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="index.html">Home</a>
+        <a href="products.html">Produkte</a>
+        <a href="info.html">Über uns</a>
+        <a href="support-formular.html">Support</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section>
+  <section class="hero">
+    <div class="container">
+      <h1>Allgemeine Geschäftsbedingungen</h1>
+      <p>
+        Diese Allgemeinen Geschäftsbedingungen (AGB) regeln die Nutzung von
+        DropNGo. Bitte lies sie sorgfältig durch. Mit der Nutzung unserer
+        Website akzeptierst du diese Bedingungen.
+      </p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="legal-card">
       <h2>1. Geltungsbereich</h2>
-<p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung der Website <strong>DropNGo</strong> (nachfolgend „Website“). Durch die Nutzung der Website erklären Sie sich mit diesen Bedingungen einverstanden.</p>
+      <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung der Website <strong>DropNGo</strong> (nachfolgend „Website“). Durch die Nutzung der Website erklärst du dich mit diesen Bedingungen einverstanden.</p>
 
-<h2>2. Leistungen von DropNGo</h2>
-<p>DropNGo betreibt eine Empfehlungs- und Vergleichsplattform für Produkte und Dienstleistungen externer Anbieter. Wir verkaufen selbst keine Produkte und führen keine Bestellungen oder Zahlungen durch. Verträge über den Kauf von Produkten kommen ausschließlich zwischen Ihnen und dem jeweiligen Drittanbieter zustande.</p>
+      <h2>2. Leistungen von DropNGo</h2>
+      <p>DropNGo betreibt eine Empfehlungs‑ und Vergleichsplattform für Produkte und Dienstleistungen externer Anbieter. Wir verkaufen selbst keine Produkte und führen keine Bestellungen oder Zahlungen durch. Verträge über den Kauf von Produkten kommen ausschließlich zwischen dir und dem jeweiligen Drittanbieter zustande.</p>
 
-<h2>3. Affiliate-Links</h2>
-<p>Einige Links auf dieser Website sind sogenannte Affiliate-Links. Wenn Sie auf einen solchen Link klicken und einen Kauf tätigen, erhält DropNGo möglicherweise eine Provision. Für Sie entstehen dadurch keine zusätzlichen Kosten.</p>
+      <h2>3. Affiliate‑Links</h2>
+      <p>Einige Links auf dieser Website sind sogenannte Affiliate‑Links. Wenn du auf einen solchen Link klickst und einen Kauf tätigst, erhält DropNGo möglicherweise eine Provision. Für dich entstehen dadurch keine zusätzlichen Kosten.</p>
 
-<h2>4. Verantwortung für Inhalte externer Anbieter</h2>
-<p>Die auf unserer Website dargestellten Produktinformationen, Preise und Lieferzeiten stammen direkt von den jeweiligen Anbietern. Für deren Richtigkeit, Aktualität und Vollständigkeit übernehmen wir keine Haftung. Maßgeblich sind stets die Angaben auf der Website des jeweiligen Anbieters.</p>
+      <h2>4. Verantwortung für Inhalte externer Anbieter</h2>
+      <p>Die auf unserer Website dargestellten Produktinformationen, Preise und Lieferzeiten stammen direkt von den jeweiligen Anbietern. Für deren Richtigkeit, Aktualität und Vollständigkeit übernehmen wir keine Haftung. Maßgeblich sind stets die Angaben auf der Website des jeweiligen Anbieters.</p>
 
-<h2>5. Haftung</h2>
-<p>DropNGo haftet nicht für Schäden, die aus der Nutzung der Website oder aus Vertragsbeziehungen mit Drittanbietern entstehen. Unsere Haftung ist – soweit gesetzlich zulässig – ausgeschlossen.</p>
+      <h2>5. Haftung</h2>
+      <p>DropNGo haftet nicht für Schäden, die aus der Nutzung der Website oder aus Vertragsbeziehungen mit Drittanbietern entstehen. Unsere Haftung ist – soweit gesetzlich zulässig – ausgeschlossen.</p>
 
-<h2>6. Geistiges Eigentum</h2>
-<p>Alle Inhalte dieser Website (Texte, Bilder, Layout) sind urheberrechtlich geschützt. Eine Nutzung ohne ausdrückliche schriftliche Zustimmung ist nicht gestattet.</p>
+      <h2>6. Geistiges Eigentum</h2>
+      <p>Alle Inhalte dieser Website (Texte, Bilder, Layout) sind urheberrechtlich geschützt. Eine Nutzung ohne ausdrückliche schriftliche Zustimmung ist nicht gestattet.</p>
 
-<h2>7. Schlussbestimmungen</h2>
-<p>Es gilt deutsches Recht. Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
-    </section>
+      <h2>7. Schlussbestimmungen</h2>
+      <p>Es gilt deutsches Recht. Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
+    </div>
   </main>
 
   <footer>
-    <div class="footer-links">
+    <div class="container footer-links">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
-      <a href="agb.html">AGB</a>
+      <a href="agb.html" style="color: var(--text);">AGB</a>
     </div>
-    <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten.</p>
+    <div class="container">
+      <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten. Hinweis: DropNGo vermittelt Produkte
+        externer Anbieter. Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen
+        Händler.</p>
+    </div>
   </footer>
 </body>
 </html>
