@@ -244,48 +244,44 @@
   </style>
 </head>
 <body>
-  <!-- ===== Header (gleich wie index) ===== -->
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="index.html" style="gap: 12px;">
-      <img src="favicon.ico" alt="DropNGo Logo" style="width:34px; height:34px; border-radius:10px; box-shadow:0 6px 18px rgba(24,161,150,.3);" />
-      <span>DropNGo</span>
+  <!-- ===== Global Header (neu) ===== -->
+<header class="dng-header" data-mobile>
+  <div class="dng-container dng-nav">
+    <a class="dng-brand" href="index.html" aria-label="DropNGo Startseite">
+      <img src="favicon.ico" alt="" class="dng-logo">
+      <span class="dng-brand-text">DropNGo</span>
     </a>
 
-    <nav class="nav__links" aria-label="Hauptnavigation">
+    <!-- Desktop-Links -->
+    <nav class="dng-links" aria-label="Hauptnavigation">
       <a href="index.html">Home</a>
-      <a href="products.html" aria-current="page">Produkte</a>
+      <a href="products.html">Produkte</a>
       <a href="info.html">Über uns</a>
       <a href="support-formular.html">Support</a>
+      <a href="account.html" class="dng-account">Mein Konto</a>
     </nav>
 
-    <div class="nav__cta">
-      <a class="btn btn--ghost" href="impressum.html">Rechtliches</a>
-      <a class="btn" href="products.html">Jetzt shoppen</a>
-    </div>
-
-    <!-- Account-Icon Slot -->
-    <div id="accountSlot"></div>
-
     <!-- Burger -->
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menü öffnen">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <button id="dngNavToggle" class="dng-burger" aria-expanded="false" aria-controls="dngMobileMenu" aria-label="Menü öffnen">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </svg>
     </button>
   </div>
+</header>
 
-  <!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu" hidden>
-  <nav class="container" aria-label="Mobile Navigation">
+<!-- ===== Mobile Drawer + Overlay (neu) ===== -->
+<div id="dngOverlay" class="dng-overlay" hidden></div>
+
+<aside id="dngMobileMenu" class="dng-drawer" hidden aria-label="Mobile Navigation">
+  <nav class="dng-drawer-nav">
     <a href="index.html">Home</a>
     <a href="products.html">Produkte</a>
     <a href="info.html">Über uns</a>
     <a href="support-formular.html">Support</a>
     <a href="account.html">Mein Konto</a>
   </nav>
-</div>
-</header>
+</aside>
 
 
 
@@ -457,19 +453,7 @@ durch eine Ärztin oder einen Arzt.
 
   <!-- ===== Scripts ===== -->
   <script>
-    // Mobile menu toggle
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    navToggle?.addEventListener('click', () => {
-      const open = !mobileMenu.hasAttribute('hidden');
-      if (open) {
-        mobileMenu.setAttribute('hidden', '');
-        navToggle.setAttribute('aria-expanded', 'false');
-      } else {
-        mobileMenu.removeAttribute('hidden');
-        navToggle.setAttribute('aria-expanded', 'true');
-      }
-    });
+  
 
     // Active link markieren
     (function(){
@@ -509,80 +493,11 @@ durch eine Ärztin oder einen Arzt.
   <script defer src="script.js"></script>
   <script src="auth-config.js"></script>               <!-- falls benötigt -->
 <script defer src="account-slot.js"></script>        <!-- Pfad anpassen -->
-<script defer src="account-menu.js"></script>        <!-- rendert das Icon -->
-<style id="fix-acc-icon">
-  /* exakt den Button im Header treffen – mit höchster Spezifität + !important */
-  #accountSlot > button,
-  #accountSlot .account__btn,
-  #accountSlot .acc-btn{
-    all: unset !important;                  /* natives Button-Face killen */
-    display: inline-grid !important; place-items: center !important;
-    width: 36px !important; height: 36px !important;
-    border-radius: 10px !important;
-    border: 1px solid rgba(255,255,255,.12) !important;
-    background: rgba(255,255,255,.04) !important;
-    color: #e6e9ee !important;
-    cursor: pointer !important;
-    transition: .2s background, .2s border-color, .08s transform !important;
-  }
-  #accountSlot > button:hover,
-  #accountSlot .account__btn:hover,
-  #accountSlot .acc-btn:hover{
-    background: rgba(255,255,255,.08) !important;
-    border-color: rgba(255,255,255,.18) !important;
-  }
 
-  /* Kreis-Glyph + Statuspunkt (wie auf account.html) */
-  #accountSlot .acc-glyph, 
-  #accountSlot .acc-badge{
-    position: relative !important;
-    width: 20px !important; height: 20px !important; border-radius: 50% !important;
-    display: grid !important; place-items: center !important;
-    background: linear-gradient(135deg,#101215,#171b20) !important;
-    border: 1px solid rgba(255,255,255,.14) !important;
-    box-shadow: 0 6px 14px rgba(0,0,0,.28) !important;
-  }
-  #accountSlot .acc-glyph svg,
-  #accountSlot .acc-badge svg{ width: 16px !important; height: 16px !important; opacity: .9 !important; }
 
-  #accountSlot .acc-dot{
-    position: absolute !important; right: 4px !important; top: 4px !important;
-    width: 8px !important; height: 8px !important; border-radius: 50% !important;
-    background: #18a196 !important; box-shadow: 0 0 0 2px #0b0d0f !important;
-    display: none;
-  }
-  #accountSlot .acc-dot[data-active="true"]{ display: block; }
-</style>
-<script>
-  (function(){
-    const btn = document.getElementById('navToggle');
-    const menu = document.getElementById('mobileMenu');
-    if(!btn || !menu) return;
-
-    function openMenu(){
-      menu.removeAttribute('hidden');
-      btn.setAttribute('aria-expanded','true');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeMenu(){
-      menu.setAttribute('hidden','');
-      btn.setAttribute('aria-expanded','false');
-      document.body.style.overflow = '';
-    }
-
-    // Falls ein altes display:none vom CSS noch greift, hier hart öffnen.
-    btn.addEventListener('click', () => {
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      isOpen ? closeMenu() : openMenu();
-    });
-
-    // ESC schließt
-    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
-
-    // Link-Klick schließt
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-  })();
 </script>
+<link rel="stylesheet" href="mobile.css">
+<script src="mobile.js" defer></script>
 
 </body>
 </html>
