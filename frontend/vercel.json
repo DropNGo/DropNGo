@@ -8,7 +8,7 @@
     }
   ],
   "cleanUrls": true,
-  "rewrites": [
+ "rewrites": [
     { "source": "/agb", "destination": "/agb.html" },
     { "source": "/cookie-banner", "destination": "/cookie-banner.html" },
     { "source": "/datenschutz", "destination": "/datenschutz.html" },
@@ -21,9 +21,9 @@
     { "source": "/widerrufsbelehrung", "destination": "/widerrufsbelehrung.html" },
     { "source": "/login", "destination": "/login.html" },
     { "source": "/reset", "destination": "/reset.html" },
-    { "source": "/account", "destination": "/account.html" },
-    { "source": "/login", "destination": "/login.html" },
-    { "source": "/reset", "destination": "/reset.html" },
+    { "source": "/account", "destination": "/account.html" }
+  ],
+  "redirects": [
     { "source": "/mobile-template", "destination": "/", "permanent": true },
     { "source": "/mobile-template.html", "destination": "/", "permanent": true }
   ]
