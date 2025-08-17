@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Danke – DropNGo</title>
+  <title>Danke | DropNGo</title>
   <link rel="icon" href="favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -46,7 +46,54 @@
 </head>
 <body>
   <h1>Vielen Dank!</h1>
-  <p>Deine Nachricht wurde erfolgreich übermittelt.<br>Wir melden uns in Kürze bei dir.</p>
+  <p>Du hast dich Erfolgreich registriert.<br>Hier unten kannst du zur Startseite zurück.</p>
   <a href="index.html">Zurück zur Startseite</a>
 </body>
 </html>
+
+<!-- Keys laden -->
+<script src="auth-config.js"></script>
+
+<!-- Zustand erkennen & Session persistieren -->
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+  const supabase = createClient(window.SUPABASE_URL, window.SUPABASE_ANON);
+
+  // Textelemente (falls vorhanden – sonst kannst du die IDs in deinem HTML ergänzen)
+  const title   = document.getElementById('thanks-title');   // z.B. "Danke für deine Registrierung"
+  const lead    = document.getElementById('thanks-lead');    // kurzer Leadtext
+  const actions = document.getElementById('thanks-actions'); // Buttons-Container
+
+  // 1) Wenn man direkt nach Signup hierher kam:
+  const justSignedUp = new URLSearchParams(location.search).has('checkmail');
+
+  // 2) Wenn man aus der Bestätigungs-Mail kommt (Hash mit Token)
+  const hasTokensInHash = location.hash.includes('access_token');
+
+  if (hasTokensInHash) {
+    // Persistiert die Session im Browser (nimmt Token aus dem Hash)
+    await supabase.auth.getSession();
+    // Optional: Hash aus der URL entfernen (schöner)
+    history.replaceState({}, document.title, location.pathname);
+  }
+
+  if (justSignedUp) {
+    // Fall A: frisch registriert, soll Mail prüfen
+    title?.replaceChildren(document.createTextNode('Noch ein Schritt: E-Mail bestätigen'));
+    lead?.replaceChildren(document.createTextNode('Wir haben dir gerade eine E-Mail gesendet. Öffne den Link, um dein Konto zu aktivieren.'));
+  } else if (hasTokensInHash) {
+    // Fall B: aus Bestätigungs-Mail zurück → man ist jetzt eingeloggt
+    title?.replaceChildren(document.createTextNode('E-Mail bestätigt – Willkommen!'));
+    lead?.replaceChildren(document.createTextNode('Dein Konto ist aktiv. Du kannst jetzt dein Profil bearbeiten oder shoppen.'));
+  }
+
+  // Optional: Direkt-Buttons setzen, wenn du IDs nutzt:
+  if (actions) {
+    actions.innerHTML = `
+      <a class="btn" href="account.html">Mein Konto</a>
+      <a class="btn btn--ghost" href="products.html">Jetzt shoppen</a>
+    `;
+  }
+</script>
+
+

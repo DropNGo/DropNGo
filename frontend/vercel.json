@@ -18,6 +18,13 @@
     { "source": "/produkt2", "destination": "/produkt-detail2.html" },
     { "source": "/produkt3", "destination": "/produkt-detail3.html" },
     { "source": "/support", "destination": "/support-formular.html" },
-    { "source": "/widerrufsbelehrung", "destination": "/widerrufsbelehrung.html" }
+    { "source": "/widerrufsbelehrung", "destination": "/widerrufsbelehrung.html" },
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/reset", "destination": "/reset.html" },
+    { "source": "/account", "destination": "/account.html" },
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/reset", "destination": "/reset.html" },
+    { "source": "/mobile-template", "destination": "/", "permanent": true },
+    { "source": "/mobile-template.html", "destination": "/", "permanent": true }
   ]
 }

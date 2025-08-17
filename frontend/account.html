@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mein Konto | DropNGo</title>
+  <link rel="icon" href="/favicon.ico"/>
+
+  <!-- Inter -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0d0f;--surface:#121417;--elev:#191c20;--text:#e6e9ee;--muted:#aab3be;
+      --brand:#18a196;--brand-700:#0e9d90;--radius:14px;--shadow:0 10px 30px rgba(0,0,0,.35)
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    body{
+      margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:
+        radial-gradient(1200px 700px at 70% -10%, rgba(24,161,150,.08), transparent 60%),
+        radial-gradient(900px 600px at 0% 100%, rgba(24,161,150,.06), transparent 60%),
+        var(--bg);
+      color:var(--text);line-height:1.6
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1100px,92%);margin-inline:auto}
+
+    /* Header wie Index */
+    header.site-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(10px);background:rgba(11,13,15,.75);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+    .nav__links{display:flex;gap:18px;align-items:center}
+    .nav__links a{padding:8px 12px;border-radius:10px;color:var(--muted);transition:.2s}
+    .nav__links a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+    .nav__cta{display:flex;gap:10px}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid transparent;background:var(--brand);color:#041413;font-weight:700;box-shadow:0 8px 18px rgba(24,161,150,.25);cursor:pointer;transition:.08s transform,.2s box-shadow,.2s background}
+    .btn:hover{background:var(--brand-700);box-shadow:0 12px 26px rgba(24,161,150,.35)}
+    .btn--ghost{background:transparent;color:var(--text);border-color:rgba(255,255,255,.12);box-shadow:none}
+    .btn--ghost:hover{background:rgba(255,255,255,.06)}
+    .nav-toggle{display:none;background:transparent;border:1px solid rgba(255,255,255,.14);padding:10px;border-radius:10px}
+    .nav-toggle svg{width:22px;height:22px}
+    @media (max-width:820px){
+      .nav__links,.nav__cta{display:none}
+      .nav-toggle{display:block}
+      .mobile-menu{display:none;position:fixed;inset:64px 0 0 0;background:rgba(9,11,12,.98);border-top:1px solid rgba(255,255,255,.06);padding:18px}
+      .mobile-menu a{display:block;padding:14px 10px;border-radius:10px;color:var(--muted)}
+      .mobile-menu a:hover{background:rgba(255,255,255,.05);color:var(--text)}
+      .mobile-cta{display:grid;gap:10px;margin-top:14px}
+    }
+
+    /* Account-Icon Styles (wird per account-menu.js injiziert) */
+    #accountSlot{display:flex;align-items:center;margin-left:8px}
+    .acc-btn{all:unset;cursor:pointer;position:relative;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;color:#e6e9ee;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+    .acc-btn:hover{background:rgba(255,255,255,.08)}
+    .acc-glyph{width:20px;height:20px}
+    .acc-dot{position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:50%;background:#18a196;box-shadow:0 0 0 2px #0b0d0f}
+
+    /* Seite */
+    main{padding: clamp(22px,3vw,34px) 0 70px}
+    .lead{color:var(--muted);margin:6px 0 0}
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--surface);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);box-shadow:var(--shadow);padding: clamp(18px,2.2vw,24px)}
+    .card h2{margin:0 0 12px;font-size: clamp(20px,3.2vw,28px)}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    .tabs button{background:transparent;border:1px solid rgba(255,255,255,.12);color:var(--text);padding:8px 12px;border-radius:10px;cursor:pointer}
+    .tabs button[aria-selected="true"]{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+    .panel[hidden]{display:none!important}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:680px){.grid-2{grid-template-columns:1fr}}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field input{background:#0f1114;color:#e6e9ee;border:1px solid rgba(255,255,255,.10);border-radius:10px;padding:10px 12px}
+    .muted{color:var(--muted)}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .alert{display:none;margin-top:10px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+    .alert--ok{display:block;background:rgba(24,161,150,.1);color:#bdf3ec;border-color:rgba(24,161,150,.35)}
+    .alert--warn{display:block;background:rgba(255,196,0,.12);color:#ffe6a6;border-color:rgba(255,196,0,.35)}
+    .pw-meter{height:6px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}
+    .pw-bar{display:block;height:100%;width:0%;background:#18a196;transition:width .25s ease}
+    footer.site-footer{border-top:1px solid rgba(255,255,255,.06);background:#0a0c0e;margin-top:42px}
+    .copy{color:#8f98a3;font-size:14px;padding:26px 0}
+    .stack{display:grid;gap:18px}
+
+    
+        
+       /* --- Mobile-Menü Fix products.html --- */
+@media (max-width: 900px){
+  header .nav__links { display: none !important; }
+
+  #navToggle {
+    display: inline-flex !important;
+    align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: transparent; color: var(--text);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+  }
+
+  #mobileMenu[hidden] { display: none !important; }
+  #mobileMenu {
+    position: fixed;
+    inset: 64px 0 0 0; /* direkt unter dem Header, wie index.html */
+    background: rgba(9,11,12,.98);
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding: 18px;
+    z-index: 999;
+  }
+  #mobileMenu a {
+    display: block; padding: 14px 10px;
+    border-radius: 10px; color: #aab3be; text-decoration: none;
+  }
+  #mobileMenu a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+}
+
+@media (min-width: 901px){
+  #navToggle { display: none !important; }
+  #mobileMenu { display: none !important; }
+}
+
+@media (max-width: 820px){
+  .mobile-menu{
+    position: fixed;
+    inset: 64px 0 0 0;
+    background: rgba(9,11,12,.98);
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding: 18px;
+    display: none;
+    z-index: 10000;     /* <- über alles legen */
+    pointer-events: auto;
+  }
+  .mobile-menu a{ display:block; padding:14px 10px; border-radius:10px; color:var(--muted); }
+  .mobile-menu a:hover{ background:rgba(255,255,255,.05); color:var(--text); }
+}
+
+@media (max-width: 820px){
+  header.site-header{ z-index: 10001; }     /* Header über die Seite */
+  header .mobile-menu{
+    z-index: 10002;                          /* Mobile-Menü über Header-Inhalt */
+    pointer-events: auto;
+  }
+}
+
+/* --- Fix: mobile-menu sichtbar, wenn nicht [hidden] --- */
+@media (max-width: 900px){
+  .mobile-menu { display: block !important; }         /* überschreibt alte display:none-Regel */
+  .mobile-menu[hidden] { display: none !important; }  /* bleibt sauber versteckbar über [hidden] */
+  header.site-header { z-index: 10001; }              /* Header unter Menü */
+  .mobile-menu { z-index: 10002; pointer-events: auto; }
+}
+
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" style="gap:12px;">
+        <img src="favicon.ico" alt="DropNGo Logo" style="width:34px;height:34px;border-radius:10px;box-shadow:0 6px 18px rgba(24,161,150,.3)"/>
+        <span>DropNGo</span>
+      </a>
+      <nav class="nav__links" aria-label="Hauptnavigation">
+        <a href="index.html">Home</a>
+        <a href="products.html">Produkte</a>
+        <a href="info.html">Über uns</a>
+        <a href="support-formular.html">Support</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--ghost" href="impressum.html">Rechtliches</a>
+        <a class="btn" href="products.html">Jetzt shoppen</a>
+      </div>
+      <div id="accountSlot"></div>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menü öffnen">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <nav class="container" aria-label="Mobile Navigation">
+        <a href="index.html">Home</a>
+        <a href="products.html">Produkte</a>
+        <a href="info.html">Über uns</a>
+        <a href="support-formular.html">Support</a>
+        <div class="mobile-cta">
+          <a class="btn btn--ghost" href="impressum.html">Rechtliches</a>
+          <a class="btn" href="products.html">Jetzt shoppen</a>
+          <a href="account.html">Mein Konto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <div class="container">
+      <h1 style="margin:0;font-size:clamp(26px,4.2vw,36px);">Mein Konto</h1>
+      <p class="lead">Verwalte Anmeldung, Passwort & Profildaten.</p>
+
+      <div class="grid" style="margin-top:14px;">
+        <!-- Auth-Karte (wenn nicht eingeloggt) -->
+        <section class="card" id="authSection" hidden>
+          <div class="tabs" role="tablist" aria-label="Kontoaktionen">
+            <button id="t-login"  role="tab" aria-selected="true">Anmelden</button>
+            <button id="t-signup" role="tab" aria-selected="false">Registrieren</button>
+            <button id="t-forgot" role="tab" aria-selected="false">Passwort vergessen</button>
+          </div>
+
+          <!-- Login -->
+          <form id="p-login" class="panel" role="tabpanel" aria-labelledby="t-login">
+            <div class="grid-2">
+              <div class="field">
+                <label for="login-email">E-Mail</label>
+                <input id="login-email" type="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label for="login-pw">Passwort</label>
+                <input id="login-pw" type="password" autocomplete="current-password" required>
+              </div>
+            </div>
+            <div class="btn-row" style="margin-top:12px;">
+              <button class="btn" type="submit">Anmelden</button>
+              <a href="#" data-open="forgot" class="muted">Passwort vergessen?</a>
+            </div>
+            <div id="login-msg" class="alert"></div>
+          </form>
+
+          <!-- Signup -->
+          <form id="p-signup" class="panel" role="tabpanel" aria-labelledby="t-signup" hidden>
+            <div class="grid-2">
+              <div class="field">
+                <label for="su-name">Voller Name</label>
+                <input id="su-name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="su-email">E-Mail</label>
+                <input id="su-email" type="email" autocomplete="email" required>
+              </div>
+            </div>
+            <div class="field" style="margin-top:8px;">
+              <label for="su-pw">Passwort</label>
+              <input id="su-pw" type="password" autocomplete="new-password" required>
+              <div class="pw-meter"><span id="pw-bar" class="pw-bar"></span></div>
+              <div id="pw-hint" class="muted" style="margin-top:6px;">Stärke: –</div>
+            </div>
+            <div class="btn-row" style="margin-top:12px;">
+              <button class="btn" type="submit">Konto erstellen</button>
+            </div>
+            <div id="signup-msg" class="alert"></div>
+            <p class="muted" style="margin-top:10px;">Du erhältst eine E-Mail zur Bestätigung.</p>
+          </form>
+
+          <!-- Forgot -->
+          <form id="p-forgot" class="panel" role="tabpanel" aria-labelledby="t-forgot" hidden>
+            <div class="field">
+              <label for="fg-email">E-Mail</label>
+              <input id="fg-email" type="email" autocomplete="email" required>
+            </div>
+            <div class="btn-row" style="margin-top:12px;">
+              <button class="btn" type="submit">Zurücksetzen senden</button>
+            </div>
+            <div id="forgot-msg" class="alert"></div>
+          </form>
+        </section>
+
+        <!-- Profil-Karte (wenn eingeloggt) -->
+        <section class="card" id="profileSection" hidden>
+          <h2 style="margin:0 0 10px;">Mein Konto</h2>
+          <p class="muted" style="margin:0 0 14px;">Verwalte Profil, Adresse, Sicherheit & Einstellungen.</p>
+
+          <div class="grid">
+            <!-- Linke Spalte -->
+            <div class="stack">
+              <!-- Profil -->
+              <div class="card">
+                <h3 style="margin:0 0 10px;">Profil</h3>
+                <form id="profileForm" class="grid-2">
+                  <div class="field">
+                    <label for="pf-name">Voller Name</label>
+                    <input id="pf-name" type="text" autocomplete="name" required>
+                  </div>
+                  <div class="field">
+                    <label for="pf-phone">Telefon (optional)</label>
+                    <input id="pf-phone" type="tel" autocomplete="tel">
+                  </div>
+                  <div class="field">
+                    <label for="pf-bday">Geburtstag (optional)</label>
+                    <input id="pf-bday" type="date">
+                  </div>
+                  <div style="grid-column:1/-1" class="btn-row">
+                    <button class="btn" type="submit">Speichern</button>
+                    <span id="profileMsg" class="alert"></span>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Adresse -->
+              <div class="card">
+                <h3 style="margin:0 0 10px;">Adresse</h3>
+                <form id="addressForm" class="grid-2">
+                  <div class="field">
+                    <label for="ad-street">Straße & Nr.</label>
+                    <input id="ad-street" type="text" autocomplete="address-line1">
+                  </div>
+                  <div class="field">
+                    <label for="ad-zip">PLZ</label>
+                    <input id="ad-zip" type="text" autocomplete="postal-code">
+                  </div>
+                  <div class="field">
+                    <label for="ad-city">Stadt</label>
+                    <input id="ad-city" type="text" autocomplete="address-level2">
+                  </div>
+                  <div class="field">
+                    <label for="ad-country">Land</label>
+                    <input id="ad-country" type="text" autocomplete="country-name" placeholder="Deutschland">
+                  </div>
+                  <div style="grid-column:1/-1" class="btn-row">
+                    <button class="btn" type="submit">Speichern</button>
+                    <span id="addressMsg" class="alert"></span>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Kommunikation -->
+              <div class="card">
+                <h3 style="margin:0 0 10px;">Kommunikation</h3>
+                <label style="display:flex;align-items:center;gap:10px;">
+                  <input id="opt-news" type="checkbox">
+                  <span>Newsletter & Hinweise erhalten</span>
+                </label>
+                <div class="btn-row" style="margin-top:10px;">
+                  <button id="optSave" class="btn" type="button">Einstellungen speichern</button>
+                  <span id="optMsg" class="alert"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rechte Spalte -->
+            <div class="stack">
+              <!-- E-Mail / Verifizierung -->
+              <div class="card">
+                <h3 style="margin:0 0 10px;">E-Mail & Verifizierung</h3>
+                <p class="muted" style="margin:0 0 6px;">Aktuelle E-Mail: <strong id="line-email">—</strong></p>
+                <p class="muted" id="veri-line" style="margin:0 0 12px;">Status: –</p>
+
+                <form id="emailForm" class="grid-2">
+                  <div class="field" style="grid-column:1/-1">
+                    <label for="em-new">E-Mail ändern</label>
+                    <input id="em-new" type="email" autocomplete="email" placeholder="neue@mail.de">
+                  </div>
+                  <div class="btn-row" style="grid-column:1/-1">
+                    <button class="btn" type="submit">Änderung starten</button>
+                    <button id="verifyResend" class="btn btn--ghost" type="button">Bestätigungs-Mail erneut senden</button>
+                  </div>
+                  <span id="emailMsg" class="alert" style="grid-column:1/-1"></span>
+                </form>
+              </div>
+
+              <!-- Passwort & Sitzungen -->
+              <div class="card">
+                <h3 style="margin:0 0 10px;">Sicherheit</h3>
+                <form id="pwForm" class="grid-2">
+                  <div class="field">
+                    <label for="newPw">Neues Passwort</label>
+                    <input id="newPw" type="password" autocomplete="new-password" required>
+                  </div>
+                  <div class="field">
+                    <label for="newPw2">Bestätigen</label>
+                    <input id="newPw2" type="password" autocomplete="new-password" required>
+                  </div>
+                  <div class="btn-row" style="grid-column:1/-1">
+                    <button class="btn" type="submit">Passwort speichern</button>
+                    <button id="logoutAll" class="btn btn--ghost" type="button" title="Auf allen Geräten abmelden">Überall abmelden</button>
+                  </div>
+                  <span id="pwMsg" class="alert" style="grid-column:1/-1"></span>
+                </form>
+              </div>
+
+              <!-- Konto -->
+              <div class="card">
+                <h3 style="margin:0 0 10px;">Konto</h3>
+                <div class="btn-row">
+                  <button id="logoutBtn" class="btn btn--ghost" type="button">Abmelden</button>
+                  <button id="exportBtn" class="btn" type="button">Profildaten exportieren</button>
+                </div>
+                <p class="muted" style="margin-top:10px;">Konto löschen ist aus Sicherheitsgründen nur über den Support möglich.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container copy">© 2025 DropNGo – Alle Rechte vorbehalten.</div>
+  </footer>
+
+  <!-- Keys -->
+  <script src="/auth-config.js"></script>
+
+  <!-- Seite: Logik -->
+  <script type="module">
+    const $ = s => document.querySelector(s);
+    const authSec = $('#authSection');
+    const profSec = $('#profileSection');
+
+    const tabs = {
+      login:  { btn: $('#t-login'),  panel: $('#p-login')  },
+      signup: { btn: $('#t-signup'), panel: $('#p-signup') },
+      forgot: { btn: $('#t-forgot'), panel: $('#p-forgot') }
+    };
+    function openTab(key){
+      Object.values(tabs).forEach(({btn,panel}) => { btn.setAttribute('aria-selected','false'); panel.hidden = true; });
+      const t = tabs[key]; t.btn.setAttribute('aria-selected','true'); t.panel.hidden = false;
+      authSec.hidden = false; profSec.hidden = true; history.replaceState(null,'','#'+key);
+    }
+    tabs.login.btn.addEventListener('click', ()=>openTab('login'));
+    tabs.signup.btn.addEventListener('click', ()=>openTab('signup'));
+    tabs.forgot.btn.addEventListener('click', ()=>openTab('forgot'));
+    document.querySelectorAll('[data-open="forgot"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openTab('forgot')}));
+
+    // Kein Key? => nur Login UI
+    if(!window.SUPABASE_URL || !window.SUPABASE_ANON){
+      console.warn('[account] auth-config fehlt – zeige Login');
+      openTab(location.hash.replace('#','') || 'login');
+    }else{
+      const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+      const supabase = createClient(window.SUPABASE_URL, window.SUPABASE_ANON);
+
+      // ===== Session & Prefill =====
+      const { data:{ session } } = await supabase.auth.getSession();
+      if(session){
+        authSec.hidden = true; profSec.hidden = false;
+
+        const user = session.user;
+        const meta = user.user_metadata || {};
+        // Headerinfos
+        $('#line-email').textContent = user.email || '—';
+        const ver = user.email_confirmed_at ? 'Verifiziert' : 'Noch nicht verifiziert';
+        $('#veri-line').textContent = 'Status: ' + ver;
+
+        // Profil
+        $('#pf-name').value  = meta.full_name || '';
+        $('#pf-phone').value = meta.phone || '';
+        $('#pf-bday').value  = meta.bday || '';
+
+        // Adresse
+        $('#ad-street').value  = meta.ad_street  || '';
+        $('#ad-zip').value     = meta.ad_zip     || '';
+        $('#ad-city').value    = meta.ad_city    || '';
+        $('#ad-country').value = meta.ad_country || '';
+
+        // Kommunikation
+        $('#opt-news').checked = Boolean(meta.opt_news);
+      }else{
+        openTab(location.hash.replace('#','') || 'login');
+      }
+
+      // ===== Auth: Login / Signup / Forgot =====
+      $('#p-login').addEventListener('submit', async e=>{
+        e.preventDefault();
+        const email=$('#login-email').value.trim();
+        const password=$('#login-pw').value;
+        const msg=$('#login-msg'); msg.style.display='none';
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+        location.href='account.html';
+      });
+
+      // PW-Stärke
+      const pwInput=$('#su-pw'), pwBar=$('#pw-bar'), pwHint=$('#pw-hint');
+      function score(p){let s=0;if(!p)return 0; if(p.length>=8)s++; if(/[A-Z]/.test(p))s++; if(/[a-z]/.test(p))s++; if(/[0-9]/.test(p))s++; if(/[^A-Za-z0-9]/.test(p))s++; return Math.min(s,5)}
+      pwInput?.addEventListener('input',()=>{const s=score(pwInput.value); pwBar.style.width=(s*20)+'%'; pwHint.textContent='Stärke: '+(['sehr schwach','schwach','okay','gut','stark'][Math.max(s-1,0)])})
+
+      $('#p-signup').addEventListener('submit', async e=>{
+        e.preventDefault();
+        const full_name=$('#su-name').value.trim();
+        const email=$('#su-email').value.trim();
+        const password=$('#su-pw').value;
+        const msg=$('#signup-msg'); msg.style.display='none';
+        const { error } = await supabase.auth.signUp({
+          email, password,
+          options:{ data:{ full_name }, emailRedirectTo:`${location.origin}/login.html` }
+        });
+        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+        location.href='danke.html?checkmail=1';
+      });
+
+      $('#p-forgot').addEventListener('submit', async e=>{
+        e.preventDefault();
+        const email=$('#fg-email').value.trim();
+        const msg=$('#forgot-msg'); msg.style.display='none';
+        const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo:`${location.origin}/reset.html` });
+        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+        msg.textContent='Wir haben dir eine E-Mail zum Zurücksetzen gesendet.'; msg.className='alert alert--ok'; msg.style.display='block';
+      });
+
+      // ===== Profil speichern =====
+      async function mergeMeta(patch){
+        const { data:{ user } } = await supabase.auth.getUser();
+        const current = user?.user_metadata || {};
+        return supabase.auth.updateUser({ data:{ ...current, ...patch }});
+      }
+
+      $('#profileForm').addEventListener('submit', async e=>{
+        e.preventDefault();
+        const full_name=$('#pf-name').value.trim();
+        const phone=$('#pf-phone').value.trim();
+        const bday=$('#pf-bday').value || '';
+        const msg=$('#profileMsg'); msg.style.display='none';
+        const { error } = await mergeMeta({ full_name, phone, bday });
+        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+        msg.textContent='Gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
+      });
+
+      $('#addressForm').addEventListener('submit', async e=>{
+        e.preventDefault();
+        const ad_street=$('#ad-street').value.trim();
+        const ad_zip=$('#ad-zip').value.trim();
+        const ad_city=$('#ad-city').value.trim();
+        const ad_country=$('#ad-country').value.trim();
+        const msg=$('#addressMsg'); msg.style.display='none';
+        const { error } = await mergeMeta({ ad_street, ad_zip, ad_city, ad_country });
+        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+        msg.textContent='Gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
+      });
+
+      $('#optSave').addEventListener('click', async ()=>{
+        const opt_news = $('#opt-news').checked;
+        const msg=$('#optMsg'); msg.style.display='none';
+        const { error } = await mergeMeta({ opt_news });
+        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+        msg.textContent='Einstellungen gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
+      });
+
+      // E-Mail ändern
+      $('#emailForm').addEventListener('submit', async e=>{
+        e.preventDefault();
+        const newEmail=$('#em-new').value.trim();
+        const msg=$('#emailMsg'); msg.style.display='none';
+        if(!newEmail){ msg.textContent='Bitte eine neue E-Mail eingeben.'; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+        const { error } = await supabase.auth.updateUser({ email:newEmail });
+        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+        msg.textContent='Wir haben Bestätigungs-Mails an alt & neu gesendet.'; msg.className='alert alert--ok'; msg.style.display='block';
+        $('#em-new').value='';
+      });
+
+      // Verifizierung erneut senden (für noch nicht bestätigte aktuelle Adresse)
+      $('#verifyResend').addEventListener('click', async ()=>{
+        const { data:{ user } } = await supabase.auth.getUser();
+        const email=user?.email; const span=$('#emailMsg'); span.style.display='none';
+        if(!email){ span.textContent='Keine E-Mail gefunden.'; span.className='alert alert--warn'; span.style.display='block'; return; }
+        // resend signup confirmation
+        const { error } = await supabase.auth.resend({ type:'signup', email });
+        if(error){ span.textContent='Fehler: '+error.message; span.className='alert alert--warn'; span.style.display='block'; return; }
+        span.textContent='Bestätigungs-Mail erneut gesendet.'; span.className='alert alert--ok'; span.style.display='block';
+      });
+
+      // Passwort ändern
+      $('#pwForm').addEventListener('submit', async e=>{
+        e.preventDefault();
+        const a=$('#newPw').value.trim(), b=$('#newPw2').value.trim();
+        const msg=$('#pwMsg'); msg.style.display='none';
+        if(a!==b){ msg.textContent='Passwörter stimmen nicht überein.'; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+        const { error } = await supabase.auth.updateUser({ password:a });
+        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+        msg.textContent='Passwort gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
+        $('#newPw').value=''; $('#newPw2').value='';
+      });
+
+      // Logout
+      $('#logoutBtn').addEventListener('click', async ()=>{
+        await supabase.auth.signOut(); location.href='index.html';
+      });
+      $('#logoutAll').addEventListener('click', async ()=>{
+        await supabase.auth.signOut({ scope:'global' }); location.href='index.html';
+      });
+
+      // Export als JSON
+      $('#exportBtn').addEventListener('click', async ()=>{
+        const { data:{ user } } = await supabase.auth.getUser();
+        const payload = {
+          email: user?.email || null,
+          email_confirmed_at: user?.email_confirmed_at || null,
+          metadata: user?.user_metadata || {}
+        };
+        const blob = new Blob([JSON.stringify(payload,null,2)], { type:'application/json' });
+        const url  = URL.createObjectURL(blob);
+        const a = Object.assign(document.createElement('a'), { href:url, download:'dropngo-profile.json' });
+        document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      });
+    }
+  </script>
+
+  <!-- Account-Icon -->
+  <script type="module" src="/account-menu.js"></script>
+    <!-- ===== Scripts ===== -->
+  <script>
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    navToggle?.addEventListener('click', () => {
+      const open = !mobileMenu.hasAttribute('hidden');
+      if (open) {
+        mobileMenu.setAttribute('hidden', '');
+        navToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileMenu.removeAttribute('hidden');
+        navToggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    // Active link markieren
+    (function(){
+      const path = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav__links a, .mobile-menu a').forEach(a => {
+        if (a.getAttribute('href') === path) a.setAttribute('aria-current','page');
+      });
+    })();
+
+    // Thumbnails -> Hero wechseln
+    const heroImg = document.getElementById('heroImg');
+    document.querySelectorAll('.thumbs [data-src]').forEach(t => {
+      t.addEventListener('click', () => {
+        const src = t.getAttribute('data-src');
+        if (src && heroImg) heroImg.setAttribute('src', src);
+      });
+    });
+
+    // Tabs
+    const tabButtons = document.querySelectorAll('.tab-head button');
+    const panels = {
+      desc: document.getElementById('tab-desc'),
+      features: document.getElementById('tab-features'),
+      shipping: document.getElementById('tab-shipping')
+    };
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.setAttribute('aria-selected','false'));
+        Object.values(panels).forEach(p => p?.setAttribute('data-active','false'));
+        btn.setAttribute('aria-selected','true');
+        const key = btn.dataset.tab;
+        panels[key]?.setAttribute('data-active','true');
+      });
+    });
+  </script>
+</body>
+</html>

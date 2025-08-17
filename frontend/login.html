@@ -1,144 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Transparente Sidebar</title>
-<style>
-  /* Reset */
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-
-  body {
-    display: flex;
-    min-height: 100vh;
-    background: #121212;
-    color: white;
-  }
-
-  /* Sidebar: Vertikal mittig, kürzer */
-  .sidebar {
-    position: fixed;
-    top: 50%;
-    left: 0;
-    width: 180px;
-    height: 300px;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.7);
-    display: flex;
-    flex-direction: column;
-    padding: 40px 20px;
-    gap: 20px;
-    z-index: 1000;
-    border-radius: 0 15px 15px 0;
-  }
-
-  .sidebar button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: rgba(24, 161, 150, 0.8);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 3px 6px rgba(24, 161, 150, 0.6);
-  }
-
-  .sidebar button:hover,
-  .sidebar button:focus {
-    background-color: rgba(24, 161, 150, 1);
-    transform: scale(1.05);
-    outline: none;
-    box-shadow: 0 5px 12px rgba(24, 161, 150, 0.9);
-  }
-
-  .sidebar button:active {
-    transform: scale(0.95);
-    box-shadow: 0 2px 5px rgba(24, 161, 150, 1);
-  }
-
-  main.content {
-    margin-left: 180px;
-    padding: 40px 30px;
-    flex-grow: 1;
-  }
-
-  main.content h1 {
-    margin-bottom: 20px;
-  }
-
-  main.content p {
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    .sidebar {
-      position: relative;
-      width: 100%;
-      height: auto;
-      transform: none;
-      top: auto;
-      left: auto;
-      flex-direction: row;
-      padding: 15px 10px;
-      gap: 10px;
-      border-radius: 0;
-      box-shadow: none;
-      backdrop-filter: none;
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    .sidebar button {
-      flex: 1;
-      font-size: 14px;
-      padding: 10px 15px;
-      box-shadow: none;
-      background-color: rgba(24, 161, 150, 0.9);
-      border-radius: 5px;
-    }
-
-    main.content {
-      margin-left: 0;
-      padding: 20px;
-    }
-  }
-</style>
+  <meta charset="utf-8">
+  <title>Weiterleitung …</title>
+  <meta http-equiv="refresh" content="0; url=account.html#login">
+  <script>
+    // nimmt Query + Hash mit (z.B. ?message=... oder #recovery)
+    location.replace('account.html#login' + (location.search || '') + (location.hash || ''));
+  </script>
+  <noscript>
+    <a href="account.html#login">Weiter zu Mein Konto</a>
+  </noscript>
 </head>
-<body>
-
-  <nav class="sidebar" aria-label="Seitennavigation">
-    <button id="home-btn" onclick="location.href='index.html'">Home</button>
-    <button id="login-btn" onclick="location.href='login.html'">Login</button>
-    <button id="register-btn" onclick="location.href='register.html'">Registrieren</button>
-    <button id="guest-btn" onclick="location.href='guest.html'">Gast beitreten</button>
-  </nav>
-
-<main class="content">
-  <h1>Willkommen auf der Seite</h1>
-  <p>Schön, dass du da bist! Hier findest du alle Infos rund um unser Angebot.</p>
-  <h2>Über uns</h2>
-  <p>Wir sind ein junges Team, das dir mit coolen Produkten und Services zur Seite steht.</p>
-  <h2>Unsere Leistungen</h2>
-  <ul>
-    <li>Beratung und Support</li>
-    <li>Individuelle Lösungen</li>
-    <li>Schneller Versand</li>
-  </ul>
-  <p>Scroll nach unten für mehr Details und Aktionen.</p>
-</main>
-
-
-</body>
+<body></body>
 </html>
-
-

@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Support – DropNGo</title>
+    <title>Support | DropNGo</title>
     <link rel="icon" href="/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
@@ -14,7 +14,7 @@
         --elev: #191c20;
         --text: #e6e9ee;
         --muted: #aab3be;
-        --brand: #18a196;
+        --brand: rgb(24, 161, 150);
         --brand-hover: #0e9d90;
         --radius: 14px;
         --shadow: 0 10px 30px rgba(0,0,0,.35);
@@ -29,7 +29,7 @@
 
       header { position: sticky; top: 0; z-index: 100; background: rgba(11,13,15,.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.06); }
       .nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; flex-wrap: wrap; }
-      .brand { font-weight: 700; font-size: 1.3rem; color: var(--brand); display: flex; align-items: center; gap: 10px; }
+      .brand { font-weight: 700; font-size: 1.3rem; color: var(--text); display: flex; align-items: center; gap: 10px; }
       .brand img { width: 34px; height: 34px; border-radius: 10px; box-shadow: 0 6px 18px rgba(24,161,150,.3); }
       .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
       .nav-links a { padding: 8px 14px; border-radius: 10px; color: var(--muted); transition: var(--transition); }
@@ -53,6 +53,118 @@
         .nav-links, .brand { width: 100%; text-align: center; margin-top: 10px; }
         .form { padding: 30px 20px; }
       }
+
+          
+
+        
+       /* --- Mobile-Menü Fix products.html --- */
+@media (max-width: 900px){
+  header .nav__links { display: none !important; }
+
+  #navToggle {
+    display: inline-flex !important;
+    align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: transparent; color: var(--text);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+  }
+
+  #mobileMenu[hidden] { display: none !important; }
+  #mobileMenu {
+    position: fixed;
+    inset: 64px 0 0 0; /* direkt unter dem Header, wie index.html */
+    background: rgba(9,11,12,.98);
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding: 18px;
+    z-index: 999;
+  }
+  #mobileMenu a {
+    display: block; padding: 14px 10px;
+    border-radius: 10px; color: #aab3be; text-decoration: none;
+  }
+  #mobileMenu a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+}
+
+@media (min-width: 901px){
+  #navToggle { display: none !important; }
+  #mobileMenu { display: none !important; }
+}
+
+@media (max-width: 820px){
+  .mobile-menu{
+    position: fixed;
+    inset: 64px 0 0 0;
+    background: rgba(9,11,12,.98);
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding: 18px;
+    display: none;
+    z-index: 10000;     /* <- über alles legen */
+    pointer-events: auto;
+  }
+  .mobile-menu a{ display:block; padding:14px 10px; border-radius:10px; color:var(--muted); }
+  .mobile-menu a:hover{ background:rgba(255,255,255,.05); color:var(--text); }
+}
+
+@media (max-width: 820px){
+  header.site-header{ z-index: 10001; }     /* Header über die Seite */
+  header .mobile-menu{
+    z-index: 10002;                          /* Mobile-Menü über Header-Inhalt */
+    pointer-events: auto;
+  }
+}
+
+/* --- Fix: mobile-menu sichtbar, wenn nicht [hidden] --- */
+@media (max-width: 900px){
+  .mobile-menu { display: block !important; }         /* überschreibt alte display:none-Regel */
+  .mobile-menu[hidden] { display: none !important; }  /* bleibt sauber versteckbar über [hidden] */
+  header.site-header { z-index: 10001; }              /* Header unter Menü */
+  .mobile-menu { z-index: 10002; pointer-events: auto; }
+}
+
+/* Burger-Linien sichtbar (nur Support-Seite) */
+@media (max-width: 900px){
+  #navToggle { color: #e6e9ee !important; }                  /* Referenz für currentColor */
+  #navToggle svg path { stroke: #e6e9ee !important; }        /* Linien erzwingen */
+  #navToggle svg { width: 22px; height: 22px; }              /* wie auf den anderen Seiten */
+}
+
+/* Sichtbares Burger-Icon nur auf support-formular.html */
+@media (max-width: 900px){
+  #navToggle { 
+    color: #e6e9ee !important;          /* currentColor für das SVG */
+    border-color: rgba(255,255,255,.14); /* Rahmen bleibt dezent */
+  }
+  #navToggle svg path{
+    stroke: #e6e9ee !important;          /* Linien wirklich hell erzwingen */
+    stroke-width: 2; 
+    stroke-linecap: round;
+  }
+  #navToggle svg{ width:22px; height:22px; }
+}
+
+/* Burger-Button sichtbar halten – überschreibt die globale Button-Farbe */
+.nav-toggle,
+#navToggle{
+  color: var(--text) !important;             /* helle Icon-Farbe */
+  background: transparent;                   /* wie auf Startseite */
+  border: 1px solid rgba(255,255,255,.14);
+}
+.nav-toggle svg,#navToggle svg{ width:22px; height:22px; }
+
+/* Fix: Burger-Menü auf Support-Seite */
+#navToggle {
+  color: #e6e9ee !important;      /* helle Farbe für currentColor */
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+}
+
+#navToggle svg path {
+  stroke: #e6e9ee !important;     /* Striche hell erzwingen */
+}
+
+
     </style>
   </head>
   <body>
@@ -69,7 +181,7 @@
           <a href="support-formular.html" class="active">Support</a>
         </nav>
       </div>
-    </header>  <!-- Burger -->
+ <!-- Burger -->
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menü öffnen">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -78,19 +190,17 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu" hidden>
-    <nav class="container" aria-label="Mobile Navigation">
-      <a href="index.html">Home</a>
-      <a href="products.html">Produkte</a>
-      <a href="info.html">Über uns</a>
-      <a href="support-formular.html">Support</a>
-      <div class="mobile-cta">
-        <a class="btn btn--ghost" href="impressum.html">Rechtliches</a>
-        <a class="btn" href="products.html">Jetzt shoppen</a>
-      </div>
-    </nav>
-  </div>
+<div class="mobile-menu" id="mobileMenu" hidden>
+  <nav class="container" aria-label="Mobile Navigation">
+    <a href="index.html">Home</a>
+    <a href="products.html">Produkte</a>
+    <a href="info.html">Über uns</a>
+    <a href="support-formular.html">Support</a>
+    <a href="account.html">Mein Konto</a>
+  </nav>
+</div>
 </header>
+
 
     <main class="container">
       <h1>Support-Anfrage</h1>
@@ -115,6 +225,56 @@
       <div class="container">
         <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten. Hinweis: DropNGo vermittelt Produkte externer Anbieter. Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen Händler.</p>
       </div>
+        <!-- ===== Scripts ===== -->
+  <script>
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    navToggle?.addEventListener('click', () => {
+      const open = !mobileMenu.hasAttribute('hidden');
+      if (open) {
+        mobileMenu.setAttribute('hidden', '');
+        navToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileMenu.removeAttribute('hidden');
+        navToggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    // Active link markieren
+    (function(){
+      const path = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav__links a, .mobile-menu a').forEach(a => {
+        if (a.getAttribute('href') === path) a.setAttribute('aria-current','page');
+      });
+    })();
+
+    // Thumbnails -> Hero wechseln
+    const heroImg = document.getElementById('heroImg');
+    document.querySelectorAll('.thumbs [data-src]').forEach(t => {
+      t.addEventListener('click', () => {
+        const src = t.getAttribute('data-src');
+        if (src && heroImg) heroImg.setAttribute('src', src);
+      });
+    });
+
+    // Tabs
+    const tabButtons = document.querySelectorAll('.tab-head button');
+    const panels = {
+      desc: document.getElementById('tab-desc'),
+      features: document.getElementById('tab-features'),
+      shipping: document.getElementById('tab-shipping')
+    };
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.setAttribute('aria-selected','false'));
+        Object.values(panels).forEach(p => p?.setAttribute('data-active','false'));
+        btn.setAttribute('aria-selected','true');
+        const key = btn.dataset.tab;
+        panels[key]?.setAttribute('data-active','true');
+      });
+    });
+  </script>
     </footer>
 
     <script>
@@ -151,5 +311,139 @@
         }
       });
     </script>
+    <script defer src="script.js"></script>
+    <script src="auth-config.js"></script>               <!-- falls benötigt -->
+<script defer src="account-slot.js"></script>        <!-- Pfad anpassen -->
+<script defer src="account-menu.js"></script>        <!-- rendert das Icon -->
+<style id="fix-acc-icon">
+  /* exakt den Button im Header treffen – mit höchster Spezifität + !important */
+  #accountSlot > button,
+  #accountSlot .account__btn,
+  #accountSlot .acc-btn{
+    all: unset !important;                  /* natives Button-Face killen */
+    display: inline-grid !important; place-items: center !important;
+    width: 36px !important; height: 36px !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(255,255,255,.12) !important;
+    background: rgba(255,255,255,.04) !important;
+    color: #e6e9ee !important;
+    cursor: pointer !important;
+    transition: .2s background, .2s border-color, .08s transform !important;
+  }
+  #accountSlot > button:hover,
+  #accountSlot .account__btn:hover,
+  #accountSlot .acc-btn:hover{
+    background: rgba(255,255,255,.08) !important;
+    border-color: rgba(255,255,255,.18) !important;
+  }
+
+  /* Kreis-Glyph + Statuspunkt (wie auf account.html) */
+  #accountSlot .acc-glyph, 
+  #accountSlot .acc-badge{
+    position: relative !important;
+    width: 20px !important; height: 20px !important; border-radius: 50% !important;
+    display: grid !important; place-items: center !important;
+    background: linear-gradient(135deg,#101215,#171b20) !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+    box-shadow: 0 6px 14px rgba(0,0,0,.28) !important;
+  }
+  #accountSlot .acc-glyph svg,
+  #accountSlot .acc-badge svg{ width: 16px !important; height: 16px !important; opacity: .9 !important; }
+
+  #accountSlot .acc-dot{
+    position: absolute !important; right: 4px !important; top: 4px !important;
+    width: 8px !important; height: 8px !important; border-radius: 50% !important;
+    background: #18a196 !important; box-shadow: 0 0 0 2px #0b0d0f !important;
+    display: none;
+  }
+  #accountSlot .acc-dot[data-active="true"]{ display: block; }
+</style>
+<script>
+  (function(){
+    const btn = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    if(!btn || !menu) return;
+
+    function openMenu(){
+      menu.removeAttribute('hidden');
+      btn.setAttribute('aria-expanded','true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      menu.setAttribute('hidden','');
+      btn.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    }
+
+    // Falls ein altes display:none vom CSS noch greift, hier hart öffnen.
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    // ESC schließt
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
+
+    // Link-Klick schließt
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  })();
+</script>
+<style>
+/* --- Support-Seite: Burger sichtbar + Mobile-Menü korrekt --- */
+@media (max-width: 900px){
+  /* Desktop-Navi einklappen wie überall */
+  .nav-links { display: none !important; }
+
+  /* Burger-Button sichtbar/hell */
+  #navToggle{
+    display: inline-flex !important;
+    align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 10px;
+    color: #e6e9ee !important;                 /* -> currentColor fürs SVG */
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #navToggle svg{ width:22px; height:22px; }
+  #navToggle svg path{ stroke: currentColor !important; } /* Linien hell */
+
+  /* Menü liegt über dem Inhalt und ist klickbar */
+  header.site-header{ z-index: 10001; }
+  #mobileMenu{
+    z-index: 10002;
+    pointer-events: auto;
+  }
+  /* Einheitliches Sichtbarkeitsmodell über [hidden] */
+  #mobileMenu { display: block !important; }
+  #mobileMenu[hidden] { display: none !important; }
+}
+</style>
+<script>
+  (function(){
+    const btn = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    if(!btn || !menu) return;
+
+    const openMenu = () => {
+      menu.removeAttribute('hidden');
+      btn.setAttribute('aria-expanded','true');
+      document.body.style.overflow = 'hidden';
+    };
+    const closeMenu = () => {
+      menu.setAttribute('hidden','');
+      btn.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    };
+
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      open ? closeMenu() : openMenu();
+    });
+
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  })();
+</script>
+
   </body>
 </html>

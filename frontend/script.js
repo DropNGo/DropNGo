@@ -68,31 +68,76 @@ document.addEventListener('DOMContentLoaded', () => {
 // - Falls du ein Element per ID/Selector ansprechen willst, stelle sicher,
 //   dass es im HTML existiert oder prüfe vorher mit if(el) {...}.
 
-
-// Mobile menu toggle (global)
+// ===== Mobile-Navi (drop-in replacement: Scroll-Lock, ESC, Outside-Click, MQ) =====
 document.addEventListener('DOMContentLoaded', () => {
-  const navToggle = document.getElementById('navToggle');
+  const navToggle  = document.getElementById('navToggle');
   const mobileMenu = document.getElementById('mobileMenu');
+  if (!navToggle || !mobileMenu) return;
 
-  if (navToggle && mobileMenu) {
-    navToggle.addEventListener('click', () => {
-      const open = !mobileMenu.hasAttribute('hidden');
-      if (open) {
-        mobileMenu.setAttribute('hidden', '');
-        navToggle.setAttribute('aria-expanded', 'false');
-      } else {
-        mobileMenu.removeAttribute('hidden');
-        navToggle.setAttribute('aria-expanded', 'true');
-      }
-    });
+  // ARIA/Wiring
+  navToggle.setAttribute('aria-controls', mobileMenu.id);
+  navToggle.setAttribute('aria-expanded', 'false');
+
+  // Backdrop erstellen (einmalig)
+  let backdrop = document.getElementById('mobileMenuBackdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.id = 'mobileMenuBackdrop';
+    backdrop.className = 'mobile-menu-backdrop';
+    document.body.appendChild(backdrop);
   }
 
-  // Aktiven Link markieren
+  const focusablesSel = 'a,button,input,select,textarea,[tabindex]:not([tabindex="-1"])';
+
+  const openMenu = () => {
+    mobileMenu.hidden = false;
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('no-scroll');
+    backdrop.dataset.open = 'true';
+
+    // Fokus auf erstes Element im Menü
+    (mobileMenu.querySelector(focusablesSel) || navToggle).focus();
+
+    // Beim Klick auf einen Menülink schließen
+    mobileMenu.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', closeMenu, { once: true })
+    );
+  };
+
+  const closeMenu = () => {
+    mobileMenu.hidden = true;
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('no-scroll');
+    backdrop.dataset.open = 'false';
+    navToggle.focus();
+  };
+
+  const isOpen = () => !mobileMenu.hasAttribute('hidden');
+
+  // Toggle-Button
+  navToggle.addEventListener('click', () => (isOpen() ? closeMenu() : openMenu()));
+
+  // Backdrop klickbar
+  backdrop.addEventListener('click', closeMenu);
+
+  // ESC schließt
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) closeMenu();
+  });
+
+  // Bei Desktop-Breite automatisch schließen
+  const mq = window.matchMedia('(min-width: 900px)');
+  const onMQ = () => { if (mq.matches && isOpen()) closeMenu(); };
+  mq.addEventListener ? mq.addEventListener('change', onMQ) : mq.addListener(onMQ);
+
+  // ---- Aktiven Link markieren (wie vorher) ----
   const path = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav__links a, .mobile-menu a').forEach(a => {
     if (a.getAttribute('href') === path) a.setAttribute('aria-current','page');
+    
   });
 });
+
 
 
 
