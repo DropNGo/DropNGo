@@ -21,7 +21,14 @@
     { "source": "/widerrufsbelehrung", "destination": "/widerrufsbelehrung.html" },
     { "source": "/login", "destination": "/login.html" },
     { "source": "/reset", "destination": "/reset.html" },
-    { "source": "/account", "destination": "/account.html" }
+    { "source": "/account", "destination": "/account.html" },
+    {
+  "rewrites": [
+    { "source": "/:file.(png|jpg|jpeg|webp|svg)", "destination": "/frontend/:file.:extension" },
+    { "source": "/images/:path*", "destination": "/frontend/images/:path*" },
+    { "source": "/", "destination": "/frontend/index.html" }
+  ]
+}
   ],
   "redirects": [
     { "source": "/mobile-template", "destination": "/", "permanent": true },
