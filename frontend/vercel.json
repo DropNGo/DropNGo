@@ -25,6 +25,7 @@
   ],
   "redirects": [
     { "source": "/mobile-template", "destination": "/", "permanent": true },
-    { "source": "/mobile-template.html", "destination": "/", "permanent": true }
+    { "source": "/mobile-template.html", "destination": "/", "permanent": true },
+     { "source": "/(.*)", "destination": "https://www.dropngo.shop/$1", "permanent": true }
   ]
 }
