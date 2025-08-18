@@ -1,2 +1,0 @@
-window.SUPABASE_URL  = 'https://msujfthocapnebptlvoi.supabase.co';
-window.SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zdWpmdGhvY2FwbmVicHRsdm9pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUzMDQ5MzEsImV4cCI6MjA3MDg4MDkzMX0.OsnqDf7qWLhAhAG1Q-VwJG0MwWAOMob0lBIep6isHOo';
