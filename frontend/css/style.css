@@ -1,5 +1,5 @@
 body {
-  background-image: url('images/grt.png');
+  background-image: url('../assets/images/grt.png');
   background-repeat: no-repeat;       /* Keine Kacheln */
   background-position: center center; /* Bild mittig */
   background-size: cover;              /* Passt sich dem Bildschirm an */
@@ -356,7 +356,7 @@ main:hover {
   position: fixed;
   width: 30px;
   height: 30px;
-  background: url('images/shopping-cart.png') no-repeat center/contain;
+  background: url('../assets/images/shopping-cart.png') no-repeat center/contain;
   pointer-events: none;
   animation: flyToCart 1s forwards ease-in-out;
   z-index: 9999;
