@@ -165,6 +165,39 @@
   .mobile-menu { z-index: 10002; pointer-events: auto; }
 }
 
+/* === Passwort-Auge: flush an der rechten Ecke === */
+.pw-wrap { position: relative; }
+.pw-wrap input { padding-right: 52px; } /* etwas mehr Platz für das Auge */
+
+.pw-toggle{
+  position: absolute;
+  top: 0; right: 0;              /* an die Ecke */
+  height: 100%; width: 46px;     /* volle Input-Höhe */
+  display: grid; place-items: center;
+  border: 0;
+  border-left: 1px solid rgba(255,255,255,.12);
+  background: transparent;       /* wirkt wie im Feld */
+  color: var(--muted);
+  border-radius: 0 10px 10px 0;  /* gleiche Rundung wie Input rechts */
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.pw-wrap:focus-within .pw-toggle{
+  color: var(--text);
+  background: rgba(255,255,255,.04);
+  border-left-color: rgba(255,255,255,.18);
+}
+.pw-toggle:hover{
+  background: rgba(255,255,255,.06);
+}
+
+.pw-toggle svg{ width: 18px; height: 18px; }
+.pw-toggle .eye-off{ display: none; }
+.pw-toggle[data-visible="true"] .eye{ display: none; }
+.pw-toggle[data-visible="true"] .eye-off{ display: block; }
+
+
+
   </style>
 </head>
 <body>
@@ -230,11 +263,20 @@
                 <label for="login-email">E-Mail</label>
                 <input id="login-email" type="email" autocomplete="email" required>
               </div>
-              <div class="field">
-                <label for="login-pw">Passwort</label>
-                <input id="login-pw" type="password" autocomplete="current-password" required>
-              </div>
-            </div>
+             <div class="field">
+  <label for="login-pw">Passwort</label>
+  <div class="pw-wrap">
+    <input id="login-pw" type="password" autocomplete="current-password" required>
+    <button type="button" class="pw-toggle" data-target="#login-pw" aria-label="Passwort anzeigen" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <!-- Auge -->
+        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
+        <!-- Auge durchgestrichen -->
+        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+    </button>
+  </div>
+</div>
             <div class="btn-row" style="margin-top:12px;">
               <button class="btn" type="submit">Anmelden</button>
               <a href="#" data-open="forgot" class="muted">Passwort vergessen?</a>
@@ -254,12 +296,20 @@
                 <input id="su-email" type="email" autocomplete="email" required>
               </div>
             </div>
-            <div class="field" style="margin-top:8px;">
-              <label for="su-pw">Passwort</label>
-              <input id="su-pw" type="password" autocomplete="new-password" required>
-              <div class="pw-meter"><span id="pw-bar" class="pw-bar"></span></div>
-              <div id="pw-hint" class="muted" style="margin-top:6px;">Stärke: –</div>
-            </div>
+          <div class="field" style="margin-top:8px;">
+  <label for="su-pw">Passwort</label>
+  <div class="pw-wrap">
+    <input id="su-pw" type="password" autocomplete="new-password" required>
+    <button type="button" class="pw-toggle" data-target="#su-pw" aria-label="Passwort anzeigen" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
+        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+    </button>
+  </div>
+  <div class="pw-meter"><span id="pw-bar" class="pw-bar"></span></div>
+  <div id="pw-hint" class="muted" style="margin-top:6px;">Stärke: –</div>
+</div>
             <div class="btn-row" style="margin-top:12px;">
               <button class="btn" type="submit">Konto erstellen</button>
             </div>
@@ -378,13 +428,30 @@
                 <h3 style="margin:0 0 10px;">Sicherheit</h3>
                 <form id="pwForm" class="grid-2">
                   <div class="field">
-                    <label for="newPw">Neues Passwort</label>
-                    <input id="newPw" type="password" autocomplete="new-password" required>
-                  </div>
-                  <div class="field">
-                    <label for="newPw2">Bestätigen</label>
-                    <input id="newPw2" type="password" autocomplete="new-password" required>
-                  </div>
+  <label for="newPw">Neues Passwort</label>
+  <div class="pw-wrap">
+    <input id="newPw" type="password" autocomplete="new-password" required>
+    <button type="button" class="pw-toggle" data-target="#newPw" aria-label="Passwort anzeigen" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
+        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+    </button>
+  </div>
+</div>
+                 <div class="field">
+  <label for="newPw2">Bestätigen</label>
+  <div class="pw-wrap">
+    <input id="newPw2" type="password" autocomplete="new-password" required>
+    <button type="button" class="pw-toggle" data-target="#newPw2" aria-label="Passwort anzeigen" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
+        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
                   <div class="btn-row" style="grid-column:1/-1">
                     <button class="btn" type="submit">Passwort speichern</button>
                     <button id="logoutAll" class="btn btn--ghost" type="button" title="Auf allen Geräten abmelden">Überall abmelden</button>
@@ -652,5 +719,25 @@
   </script>
   <link rel="stylesheet" href="css/mobile.css">
 <script src="js/mobile.js" defer></script>
+<script>
+  // Passwort-Auge: generisch für alle .pw-toggle Buttons
+  document.querySelectorAll('.pw-toggle').forEach(btn => {
+    const sel = btn.getAttribute('data-target');
+    const input = sel ? document.querySelector(sel) : null;
+    if(!input) return;
+
+    btn.addEventListener('click', () => {
+      const isText = input.type === 'text';
+      input.type = isText ? 'password' : 'text';
+      btn.dataset.visible = String(!isText);
+      btn.setAttribute('aria-pressed', String(!isText));
+      btn.setAttribute('aria-label', isText ? 'Passwort anzeigen' : 'Passwort verbergen');
+      // Cursor am Ende lassen
+      const v = input.value; input.value = ''; input.value = v;
+      input.focus();
+    });
+  });
+</script>
+
 </body>
 </html>

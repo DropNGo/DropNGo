@@ -128,6 +128,142 @@
   #navToggle { display: none !important; }
   #mobileMenu { display: none !important; }
 }
+/* Produktkarte Upgrade */
+.card--product .row{ display:flex; justify-content:space-between; align-items:center; gap:8px }
+.card--product h3{ margin:0; font-size:16px }
+.card--product .stars{ display:flex; align-items:center; gap:4px; color:#ffcf5b; font-size:14px }
+.card--product .stars .muted{ color:#6b7280 }
+.card--product .stars .count{ color:var(--muted); margin-left:4px; font-size:13px }
+.card__img{ position:relative }
+.label{ position:absolute; left:8px; top:8px; padding:6px 10px; border-radius:999px; font-size:12px; backdrop-filter:saturate(140%) blur(6px); border:1px solid rgba(255,255,255,.15) }
+.label--low{ background:rgba(239,68,68,.16); color:#fecaca; border-color:rgba(239,68,68,.35) }
+.card--product:hover{ transform: translateY(-3px); box-shadow: 0 14px 28px rgba(0,0,0,.35) }
+
+/* === Produktgrid: 3/2/1 Spalten, keine übergroßen Karten === */
+.products.container .grid{
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* Desktop: 3 Spalten */
+}
+
+@media (max-width: 1100px){
+  .products.container .grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Tablet: 2 */
+  }
+}
+@media (max-width: 640px){
+  .products.container .grid{
+    grid-template-columns: 1fr; /* Mobile: 1 */
+  }
+}
+
+/* Falls noch .col-3 aus altem Layout existiert: neutralisieren */
+.products.container .grid .col-3{ grid-column: auto / span 1; }
+
+/* Karten sauber aufbauen */
+.card{ height:100%; display:flex; flex-direction:column; background:var(--surface); border:1px solid rgba(255,255,255,.06); border-radius: var(--radius); overflow:hidden; }
+.card__img{ position:relative; aspect-ratio: 1 / 1; background:#0f1114; }
+.card__img img{ width:100%; height:100%; object-fit:cover; display:block; }
+.card__body{ padding:14px; display:flex; flex-direction:column; gap:6px; }
+.card .row{ display:flex; justify-content:space-between; align-items:center; gap:8px; }
+
+.label{ position:absolute; left:8px; top:8px; padding:6px 10px; border-radius:999px; font-size:12px;
+  backdrop-filter:saturate(140%) blur(6px); border:1px solid rgba(255,255,255,.15) }
+.label--low{ background:rgba(239,68,68,.16); color:#fecaca; border-color:rgba(239,68,68,.35) }
+
+/* --- Trust-Band: klar, dezent, responsive --- */
+.trust{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:22px;
+  flex-wrap:wrap;
+  padding:16px 18px;
+  margin:26px 0 30px;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;
+  text-align:center;
+}
+.trust span{
+  color:var(--muted);
+  font-size:14px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+/* die beiden "•" zu echten Dots stylen */
+.trust span:nth-child(2),
+.trust span:nth-child(4){
+  width:6px; height:6px;
+  padding:0; border:none; background:var(--brand);
+  border-radius:50%;
+  display:inline-block;
+  text-indent:-9999px; overflow:hidden; /* Text ausblenden */
+  opacity:.8; transform:translateY(1px);
+}
+
+/* --- Footer polisher --- */
+footer{
+  margin-top:14px;
+  padding:32px 0 40px;
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,.06);
+  background:#0a0c0e;
+  color:var(--muted);
+  font-size:14px;
+}
+.footer-links{
+  display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:10px;
+}
+.footer-links a{
+  color:var(--muted);
+  padding:6px 10px; border-radius:8px;
+  transition:color .2s ease, background .2s ease;
+  position:relative;
+}
+.footer-links a:hover{ color:var(--text); background:rgba(255,255,255,.06); }
+.footer-links a + a::before{
+  content:""; position:absolute; left:-8px; top:50%; transform:translate(-50%,-50%);
+  width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.25);
+}
+footer p{ max-width:900px; margin:8px auto 0; line-height:1.6; }
+/* Footer – identisch zur Startseite */
+footer.site-footer{
+  margin-top: 42px;
+  border-top: 1px solid rgba(255,255,255,.06);
+  background: #0a0c0e;
+}
+.footer-grid{
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 18px;
+  padding: 26px 0;
+}
+.footer-col h4{
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: #d7dde6;
+}
+.footer-col a{
+  color: var(--muted);
+  display: inline-block;
+  padding: 6px 0;
+}
+.footer-col a:hover{ color: var(--text); }
+footer .meta{ color: var(--muted); line-height: 1.6; }
+.copyright{
+  color: #8f98a3;
+  font-size: 14px;
+  padding: 12px 0 32px;
+}
+@media (max-width: 760px){
+  .footer-grid{ grid-template-columns: 1fr; }
+}
+/* statt 90% */
+.container { width: min(1100px, 92%); margin: 0 auto; }
 
   </style>
 </head>
@@ -186,85 +322,263 @@
 
 <section class="products container" id="products">
   <h2>Unsere Highlights</h2>
-  <div class="grid">
-    <a href="produkt-detail1.html" class="card">
-      <img src="product1.jpg" alt="Produkt 1">
-      <div class="card-body">
-        <h3>Produkt 1</h3>
-        <p class="price">€299</p>
+<div class="grid" style="margin-top:14px">
+  <!-- Produkt 1 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail1.html" aria-label="Zum Produkt 1">
+      <div class="card__img">
+        <img src="/assets/images/products/p1.jpg" alt="Produkt 1" loading="lazy">
+        <span class="label label--low">Nur 3 übrig</span>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 1</h3>
+          <span class="price">129,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.7 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+          <span class="count">4.7</span>
+        </div>
+        <div class="meta">Versand aus DE</div>
       </div>
     </a>
-    <a href="produkt-detail2.html" class="card">
-      <img src="product2.jpg" alt="Produkt 2">
-      <div class="card-body">
-        <h3>Produkt 2</h3>
-        <p class="price">€349</p>
-      </div>
-    </a>
-    <a href="produkt-detail3.html" class="card">
-      <img src="product3.jpg" alt="Produkt 3">
-      <div class="card-body">
-        <h3>Produkt 3</h3>
-        <p class="price">€399</p>
-      </div>
+  </article>
 
-      <a href="produkt-detail4.html" class="card">
-      <img src="product4.jpg" alt="Produkt 4">
-      <div class="card-body">
-        <h3>Produkt 4</h3>
-        <p class="price">€449</p>
+  <!-- Produkt 2 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail2.html" aria-label="Zum Produkt 2">
+      <div class="card__img">
+        <img src="/assets/images/products/p2.jpg" alt="Produkt 2" loading="lazy">
+        <span class="label">Bestseller</span>
       </div>
-      <a href="produkt-detail5.html" class="card">
-      <img src="product5.jpg" alt="Produkt 5">
-      <div class="card-body">
-        <h3>Produkt 5</h3>
-        <p class="price">€499</p>
-      </div>
-            <a href="produkt-detail6.html" class="card">
-      <img src="product6.jpg" alt="Produkt 6">
-      <div class="card-body">
-        <h3>Produkt 6</h3>
-        <p class="price">€549</p>
-      </div>
-            <a href="produkt-detail7.html" class="card">
-      <img src="product7.jpg" alt="Produkt 7">
-      <div class="card-body">
-        <h3>Produkt 7</h3>
-        <p class="price">€599</p>
-      </div>
-            <a href="produkt-detail8.html" class="card">
-      <img src="product8.jpg" alt="Produkt 8">
-      <div class="card-body">
-        <h3>Produkt 8</h3>
-        <p class="price">€649</p>
-      </div>
-             <a href="produkt-detail9.html" class="card">
-      <img src="product9.jpg" alt="Produkt 9">
-      <div class="card-body">
-        <h3>Produkt 9</h3>
-        <p class="price">€699</p>
-      </div>
-             <a href="produkt-detail10.html" class="card">
-      <img src="product10.jpg" alt="Produkt 10">
-      <div class="card-body">
-        <h3>Produkt 10</h3>
-        <p class="price">€749</p>
-      </div>
-             <a href="produkt-detail11.html" class="card">
-      <img src="product11.jpg" alt="Produkt 11">
-      <div class="card-body">
-        <h3>Produkt 11</h3>
-        <p class="price">€799</p>
-      </div>
-             <a href="produkt-detail12.html" class="card">
-      <img src="product12.jpg" alt="Produkt 12">
-      <div class="card-body">
-        <h3>Produkt 12</h3>
-        <p class="price">€849</p>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 2</h3>
+          <span class="price">149,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.9 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i>★</i>
+          <span class="count">4.9</span>
+        </div>
+        <div class="meta">Kostenloser Rückversand</div>
       </div>
     </a>
-  </div>
-</section>
+  </article>
+
+  <!-- Produkt 3 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail3.html" aria-label="Zum Produkt 3">
+      <div class="card__img">
+        <img src="/assets/images/products/p3.jpg" alt="Produkt 3" loading="lazy">
+        <span class="label">Heute versandfertig</span>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 3</h3>
+          <span class="price">119,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.6 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+          <span class="count">4.6</span>
+        </div>
+        <div class="meta">Lieferzeit: 2–4 Werktage</div>
+      </div>
+    </a>
+  </article>
+
+  <!-- Produkt 4 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail4.html" aria-label="Zum Produkt 4">
+      <div class="card__img">
+        <img src="/assets/images/products/p4.jpg" alt="Produkt 4" loading="lazy">
+        <span class="label label--low">Nur 2 übrig</span>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 4</h3>
+          <span class="price">139,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.7 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+          <span class="count">4.7</span>
+        </div>
+        <div class="meta">Versand aus DE</div>
+      </div>
+    </a>
+  </article>
+
+  <!-- Produkt 5 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail5.html" aria-label="Zum Produkt 5">
+      <div class="card__img">
+        <img src="/assets/images/products/p5.jpg" alt="Produkt 5" loading="lazy">
+        <span class="label">Neu</span>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 5</h3>
+          <span class="price">89,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.5 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+          <span class="count">4.5</span>
+        </div>
+        <div class="meta">Beliebt bei Athleten</div>
+      </div>
+    </a>
+  </article>
+
+  <!-- Produkt 6 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail6.html" aria-label="Zum Produkt 6">
+      <div class="card__img">
+        <img src="/assets/images/products/p6.jpg" alt="Produkt 6" loading="lazy">
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 6</h3>
+          <span class="price">159,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.8 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+          <span class="count">4.8</span>
+        </div>
+        <div class="meta">Kostenloser Rückversand</div>
+      </div>
+    </a>
+  </article>
+
+  <!-- Produkt 7 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail7.html" aria-label="Zum Produkt 7">
+      <div class="card__img">
+        <img src="/assets/images/products/p7.jpg" alt="Produkt 7" loading="lazy">
+        <span class="label label--low">Nur 1 übrig</span>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 7</h3>
+          <span class="price">129,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.7 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+          <span class="count">4.7</span>
+        </div>
+        <div class="meta">Schneller Versand</div>
+      </div>
+    </a>
+  </article>
+
+  <!-- Produkt 8 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail8.html" aria-label="Zum Produkt 8">
+      <div class="card__img">
+        <img src="/assets/images/products/p8.jpg" alt="Produkt 8" loading="lazy">
+        <span class="label">Angebot</span>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 8</h3>
+          <span class="price">99,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.4 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+          <span class="count">4.4</span>
+        </div>
+        <div class="meta">Versand aus DE</div>
+      </div>
+    </a>
+  </article>
+
+  <!-- Produkt 9 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail9.html" aria-label="Zum Produkt 9">
+      <div class="card__img">
+        <img src="/assets/images/products/p9.jpg" alt="Produkt 9" loading="lazy">
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 9</h3>
+          <span class="price">179,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.8 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+          <span class="count">4.8</span>
+        </div>
+        <div class="meta">Premium Auswahl</div>
+      </div>
+    </a>
+  </article>
+
+  <!-- Produkt 10 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail10.html" aria-label="Zum Produkt 10">
+      <div class="card__img">
+        <img src="/assets/images/products/p10.jpg" alt="Produkt 10" loading="lazy">
+        <span class="label">Bestseller</span>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 10</h3>
+          <span class="price">109,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.6 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+          <span class="count">4.6</span>
+        </div>
+        <div class="meta">Lieferzeit: 2–4 Werktage</div>
+      </div>
+    </a>
+  </article>
+
+  <!-- Produkt 11 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail11.html" aria-label="Zum Produkt 11">
+      <div class="card__img">
+        <img src="/assets/images/products/p11.jpg" alt="Produkt 11" loading="lazy">
+        <span class="label label--low">Nur wenige da</span>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 11</h3>
+          <span class="price">149,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.7 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+          <span class="count">4.7</span>
+        </div>
+        <div class="meta">Kostenloser Rückversand</div>
+      </div>
+    </a>
+  </article>
+
+  <!-- Produkt 12 -->
+  <article class="card col-3 card--product">
+    <a href="produkt-detail12.html" aria-label="Zum Produkt 12">
+      <div class="card__img">
+        <img src="/assets/images/products/p12.jpg" alt="Produkt 12" loading="lazy">
+        <span class="label">Empfohlen</span>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <h3>Produkt 12</h3>
+          <span class="price">119,00 €</span>
+        </div>
+        <div class="stars" aria-label="4.5 von 5">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+          <span class="count">4.5</span>
+        </div>
+        <div class="meta">Versand aus DE</div>
+      </div>
+    </a>
+  </article>
+
+
+  <!-- Produkt 12 -->
+  </article>
+
+</div> <!-- /grid -->
+</section> <!-- /products -->
 
 <section class="trust container">
   <span>100% echte Produkte</span>
@@ -274,20 +588,49 @@
   <span>Top Kundenservice</span>
 </section>
 
-<footer>
-  <div class="container footer-links">
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
-    <a href="agb.html">AGB</a>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>DropNGo</h4>
+      <p class="meta">
+       Entdecke unsere kuratierte Auswahl an Fitness- und Gesundheitsprodukten – für weniger Schmerzen,
+        mehr Beweglichkeit und nachhaltiges Wohlbefinden. Wir listen nur Angebote verifizierter 
+        Partner und achten auf Qualität, Wirksamkeit und faire Konditionen. Klare Angaben zu Preis, 
+        Lieferung und Service helfen dir, schnell das passende Produkt zu finden.
+
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Rechtliches</h4>
+      <a href="impressum.html">Impressum</a><br>
+      <a href="datenschutz.html">Datenschutz</a><br>
+      <a href="agb.html">AGB</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <a href="mailto:kontakt@dropngo.shop">kontakt@dropngo.shop</a><br>
+      <a href="support-formular.html">Support</a>
+    </div>
   </div>
+
   <div class="container">
-    <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten. Hinweis: DropNGo vermittelt Produkte externer Anbieter. Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen Händler.</p>
+    <p class="copyright">
+      © 2025 DropNGo – Alle Rechte vorbehalten. |
+      Hinweis: DropNGo vermittelt Produkte externer Anbieter.
+      Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen Händler.
+    </p>
   </div>
 </footer>
 
 <script defer src="js/script.js"></script>
-<script src="js/auth-config.js"></script>               <!-- falls benötigt -->
-<script defer src="js/account-slot.js"></script>        <!-- Pfad anpassen -->
+<script src="js/auth-config.js"></script>
+<script defer src="js/account-slot.js"></script>
+
+<link rel="stylesheet" href="css/mobile.css">
+<script src="js/mobile.js" defer></script>
+
 
   
   

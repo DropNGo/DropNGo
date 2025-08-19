@@ -132,6 +132,96 @@
 
     /* Footer-light */
     footer{ padding:30px 0 50px; color:#8f98a3; border-top:1px solid rgba(255,255,255,.06); margin-top:50px; text-align:center }
+
+/* === Passwort-Auge: bündig rechts im Feld === */
+.pw-wrap{ position: relative; }
+.pw-wrap input{ width:100%; padding-right:52px; border-radius:10px; } /* Platz für Auge */
+
+.pw-toggle{
+  position:absolute; top:0; right:0;
+  height:100%; width:46px; display:grid; place-items:center;
+  border:0; border-left:1px solid rgba(255,255,255,.12);
+  background:transparent; color:#aab3be;
+  border-radius:0 10px 10px 0;          /* gleiche rechte Rundung wie Input */
+  cursor:pointer; -webkit-tap-highlight-color:transparent;
+}
+.pw-wrap:focus-within .pw-toggle{
+  color:#e6e9ee; background:rgba(255,255,255,.04);
+  border-left-color:rgba(255,255,255,.18);
+}
+.pw-toggle:hover{ background:rgba(255,255,255,.06); }
+
+.pw-toggle svg{ width:18px; height:18px; }
+.pw-toggle .eye-off{ display:none; }
+.pw-toggle[data-visible="true"] .eye{ display:none; }
+.pw-toggle[data-visible="true"] .eye-off{ display:block; }
+
+/* Text- & Passwortfelder identisch stylen */
+.field :is(input[type="password"], input[type="text"]) {
+  width: 100%;
+  padding-right: 52px;            /* Platz fürs Auge */
+  border-radius: 10px;
+  background: #14181c;            /* DEIN Feld-Background */
+  color: #e6e9ee;
+  border: 1px solid rgba(255,255,255,.12);
+  outline: 0;
+}
+.field :is(input[type="password"], input[type="text"]):focus {
+  border-color: rgba(255,255,255,.20);
+  box-shadow: 0 0 0 2px rgba(255,255,255,.06) inset;
+}
+
+/* ----- FIX: Passwort/Text identisch + feste Höhe ----- */
+:root { --in-h: 44px; }               /* gewünschte Feldhöhe */
+
+.pw-wrap{ position: relative; }
+.pw-wrap input[type="password"],
+.pw-wrap input[type="text"]{
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: var(--in-h);                 /* gleiche Höhe */
+  padding: 0 52px 0 14px;              /* Platz fürs Auge rechts */
+  border-radius: 10px;
+  background: #14181c;
+  color: #e6e9ee;
+  border: 1px solid rgba(255,255,255,.12);
+  outline: 0;
+  appearance: none;                    /* Browser-Defaults neutralisieren */
+  -webkit-appearance: none;
+  font-size: 16px;                     /* iOS-Zoom vermeiden, gleiche Metrics */
+  line-height: 1.2;                    /* stabil */
+}
+
+.pw-wrap input[type="password"]:focus,
+.pw-wrap input[type="text"]:focus{
+  border-color: rgba(255,255,255,.20);
+  box-shadow: 0 0 0 2px rgba(255,255,255,.06) inset;
+}
+
+/* Auge bündig rechts, gleiche Höhe wie Input */
+.pw-toggle{
+  position: absolute; right: 0; top: 0;
+  width: 46px; height: var(--in-h);
+  display: grid; place-items: center;
+  border: 0; border-left: 1px solid rgba(255,255,255,.12);
+  background: transparent; color: #aab3be;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.pw-wrap:focus-within .pw-toggle{
+  color:#e6e9ee; background:rgba(255,255,255,.04);
+  border-left-color:rgba(255,255,255,.18);
+}
+.pw-toggle:hover{ background:rgba(255,255,255,.06); }
+.pw-toggle svg{ width:18px; height:18px; }
+.pw-toggle .eye-off{ display:none; }
+.pw-toggle[data-visible="true"] .eye{ display:none; }
+.pw-toggle[data-visible="true"] .eye-off{ display:block; }
+
+
+
+
   </style>
 </head>
 <body>
@@ -183,20 +273,38 @@
     </section>
 
     <section class="card" aria-labelledby="reset-head">
-      <h2 id="reset-head" style="margin:0 0 6px; font-size:1.15rem; color:#d7dde6">Neues Passwort</h2>
+      <h2 id="reset-head" style="margin:0 0 6px; font-size:1.15rem; color:#d7dde6">Passwort Änderung</h2>
 
       <div class="grid" style="max-width:560px">
-        <div class="field">
-          <label for="pw1">Neues Passwort</label>
-          <input id="pw1" type="password" autocomplete="new-password" placeholder="••••••••" required>
-          <button class="toggle" type="button" data-target="pw1" aria-label="Passwort anzeigen/ausblenden">👁️</button>
-        </div>
+     <!-- Neues Passwort -->
+<div class="field">
+  <label for="pw1">Neues Passwort</label>
+  <div class="pw-wrap">
+    <input id="pw1" type="password" autocomplete="new-password" placeholder="••••••••" required>
+    <button type="button" class="pw-toggle" data-target="#pw1" aria-label="Passwort anzeigen" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
+        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+    </button>
+  </div>
+</div>
 
-        <div class="field">
-          <label for="pw2">Passwort bestätigen</label>
-          <input id="pw2" type="password" autocomplete="new-password" placeholder="••••••••" required>
-          <button class="toggle" type="button" data-target="pw2" aria-label="Passwort anzeigen/ausblenden">👁️</button>
-        </div>
+<!-- Passwort bestätigen -->
+<div class="field">
+  <label for="pw2">Passwort bestätigen</label>
+  <div class="pw-wrap">
+    <input id="pw2" type="password" autocomplete="new-password" placeholder="••••••••" required>
+    <button type="button" class="pw-toggle" data-target="#pw2" aria-label="Passwort anzeigen" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
+        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+
 
         <div class="meter" aria-hidden="true"><span id="bar"></span></div>
         <ul class="hints" aria-live="polite" id="reqList">
@@ -238,14 +346,30 @@
     const bar = document.getElementById('bar');
     const capsHint = document.getElementById('capsHint');
 
-    // Augen-Toggles
-    document.querySelectorAll('.toggle').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const id = btn.getAttribute('data-target');
-        const input = document.getElementById(id);
-        input.type = input.type === 'password' ? 'text' : 'password';
-      });
+    // Augen-Toggle (Selector in data-target, z. B. "#pw1")
+  document.querySelectorAll('.pw-toggle').forEach((btn) => {
+    const sel = btn.getAttribute('data-target');
+    const input = document.querySelector(sel);
+    if (!input) return;
+
+    btn.addEventListener('click', () => {
+      const willShow = input.type === 'password';
+      input.type = willShow ? 'text' : 'password';
+      btn.dataset.visible = String(willShow);
+      btn.setAttribute('aria-pressed', String(willShow));
+      btn.setAttribute('aria-label', willShow ? 'Passwort verbergen' : 'Passwort anzeigen');
+
+      // Fokus + Cursor ans Ende ohne Wert-Trick
+      input.focus();
+      const end = input.value.length;
+      try {
+        // in manchen Browsern erst im nächsten Frame verfügbar
+        requestAnimationFrame(() => input.setSelectionRange(end, end));
+      } catch (_) {}
     });
+  });
+
+
 
     // Caps-Lock Hinweis
     [pw1, pw2].forEach(el=>{

@@ -252,6 +252,11 @@
   header.site-header { z-index: 10001; }              /* Header unter Menü */
   .mobile-menu { z-index: 10002; pointer-events: auto; }
 }
+.trust-row{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; padding:14px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06); border-radius:12px; margin:18px 0 }
+.sticky-cta{ position:sticky; bottom:0; background:rgba(11,13,15,.86); backdrop-filter:saturate(140%) blur(8px); border-top:1px solid rgba(255,255,255,.08); }
+.sticky-cta__inner{ padding:12px 0; display:flex; gap:12px; align-items:center; justify-content:space-between }
+.sc-title{ display:flex; gap:10px; align-items:baseline }
+.sc-title .price{ color:var(--brand); font-weight:700 }
 
   </style>
 </head>
@@ -295,6 +300,16 @@
   </nav>
 </aside>
 
+
+<div class="sticky-cta" role="region" aria-label="Kaufaktion">
+  <div class="container sticky-cta__inner">
+    <div class="sc-title">
+      <strong id="scName">Produktname</strong>
+      <span class="price">129,00 €</span>
+    </div>
+    <a class="btn btn--primary" href="#kaufen">Beim Partner kaufen</a>
+  </div>
+</div>
 
 
   <!-- ===== Main ===== -->

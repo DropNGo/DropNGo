@@ -65,3 +65,12 @@
 @media (min-width: 901px){
   .dng-overlay, .dng-drawer{ display:none !important; }
 }
+
+/* Touch-Targets größer */
+a.btn, .btn{ min-height:44px; min-width:44px; }
+
+/* Mehr Luft zwischen Sektionen auf Mobile */
+@media (max-width:820px){
+  .section, .hero{ padding-top:44px; padding-bottom:28px; }
+  .grid{ gap:14px }
+}

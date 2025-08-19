@@ -222,7 +222,13 @@
     pointer-events: auto;
   }
 }
-    
+    /* HERO Upgrade */
+.hero--pro .lead{ color:var(--muted); margin:4px 0 18px }
+.btn--primary{ background:var(--brand); color:#041413; font-weight:700; border-radius:12px; padding:12px 16px }
+.btn--primary:hover{ background:var(--brand-700) }
+.hero__points{ display:flex; gap:14px; flex-wrap:wrap; margin:14px 0 0; padding:0; list-style:none; color:var(--muted); }
+.hero__points li{ background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.07); padding:8px 12px; border-radius:999px; font-size:14px }
+
   </style>
 </head>
 <body>
@@ -267,30 +273,31 @@
 
 
   <!-- Hero -->
-  <section class="hero">
-    <div class="container hero__inner">
-      <div>
-        <h1>Performance & Gesundheit.<br/> Seriös. Fair. Direkt vom Partner.</h1>
-<p>DropNGo vermittelt geprüfte Fitness- und Gesundheitsprodukte – Fokus auf Qualität, Wirksamkeit und Vertrauen. Sichere Zahlung & verlässliche Partner.</p>
+<section class="hero hero--pro">
+  <div class="container hero__inner">
+    <div>
+      <h1>Smarte Produkte. Echte Wirkung.</h1>
+      <p class="lead">Geprüfte Fitness- & Gesundheitslösungen – fair, seriös und schnell geliefert.</p>
 
-        <div class="hero__actions" style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn" href="/products.html">Produkte ansehen</a>
-          <a class="btn btn--ghost" href="/info.html">Wie wir arbeiten</a>
-        </div>
-        <div class="hero__badges" aria-hidden="true">
-           <span class="badge">Käuferschutz</span>
-          <span class="badge">SSL‑verschlüsselt</span>
-        <!--  <span class="badge">14‑Tage Widerruf</span> -->
-        </div>
+      <div class="hero__actions" style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn btn--primary" href="products.html">Jetzt entdecken</a>
+        <a class="btn btn--ghost" href="info.html">So arbeiten wir</a>
       </div>
 
-      <div class="hero__card">
-        <div class="hero__img">
-          <img src="/assets/images/hero-sneaker.jpg" alt="Ein Paar moderne Sneaker auf dunklem Hintergrund" />
-        </div>
+      <ul class="hero__points">
+        <li>✔️ Verifizierte Partner</li>
+        <li>✔️ SSL & Käuferschutz</li>
+        <li>✔️ Support in 24h</li>
+      </ul>
+    </div>
+
+    <div class="hero__card">
+      <div class="hero__img">
+        <img src="/assets/images/hero/cover.jpg" alt="DropNGo – kuratierte Produkte" loading="lazy">
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Trust logos / badges -->
   <div class="container" style="margin-top:6px;">

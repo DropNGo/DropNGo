@@ -2133,3 +2133,20 @@ body.no-scroll{ overflow:hidden; }
   border: 0 !important;
   box-shadow: none !important;
 }
+
+
+/* === Passwort-Auge === */
+.pw-wrap{ position:relative; }
+.pw-wrap input{ padding-right:44px; } /* Platz für das Auge */
+.pw-toggle{
+  position:absolute; right:8px; top:50%; transform:translateY(-50%);
+  width:36px; height:36px; display:inline-grid; place-items:center;
+  border-radius:10px; border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04); color:var(--muted);
+  cursor:pointer; -webkit-tap-highlight-color:transparent;
+}
+.pw-toggle:hover{ background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:var(--text); }
+.pw-toggle svg{ width:18px; height:18px; }
+.pw-toggle .eye-off{ display:none; }
+.pw-toggle[data-visible="true"] .eye{ display:none; }
+.pw-toggle[data-visible="true"] .eye-off{ display:block; }
