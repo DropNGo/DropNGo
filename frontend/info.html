@@ -139,6 +139,52 @@
   header.site-header { z-index: 10001; }              /* Header unter Menü */
   .mobile-menu { z-index: 10002; pointer-events: auto; }
 }
+.footer-social svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  transition: color .2s;
+}
+.footer-social a:hover {
+  color: var(--text);
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.footer-social a {
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.footer-social a:hover {
+  color: var(--text);
+}
+
+.footer-social svg {
+  width: 18px;
+  height: 18px;
+}
+
   </style>
 </head>
 <body>
@@ -239,17 +285,32 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    <div class="container footer-links">
+<footer>
+  <div class="container">
+    <!-- Footer-Links -->
+    <div class="footer-links">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
       <a href="agb.html">AGB</a>
     </div>
-    <div class="container">
-      <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten. Hinweis: DropNGo vermittelt Produkte
-        externer Anbieter. Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen
-        Händler.</p>
+
+    <!-- Social Media mittig -->
+    <div class="footer-social">
+      <a href="https://www.instagram.com/dropngo.shop" target="_blank" aria-label="Instagram">Instagram</a>
+      <a href="https://www.tiktok.com/@dropngo.shop" target="_blank" aria-label="TikTok">TikTok</a>
     </div>
+
+    <!-- Copyright -->
+    <p class="copyright">
+      &copy; 2025 DropNGo – Alle Rechte vorbehalten. 
+      Hinweis: DropNGo vermittelt Produkte externer Anbieter. 
+      Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen Händler.
+    </p>
+  </div>
+</footer>
+
+
+    
       <!-- ===== Scripts ===== -->
   <script>
     // Mobile menu toggle

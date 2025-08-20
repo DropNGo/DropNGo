@@ -264,6 +264,18 @@ footer .meta{ color: var(--muted); line-height: 1.6; }
 }
 /* statt 90% */
 .container { width: min(1100px, 92%); margin: 0 auto; }
+/* Footer */
+footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06); background:#0a0c0e; }
+.footer-grid{
+  display:grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr; /* vorher: 2fr 1fr 1fr */
+  gap:18px;
+  padding:26px 0;
+}
+/* Mobile bleibt einspaltig */
+@media (max-width: 760px){
+  .footer-grid{ grid-template-columns: 1fr; }
+}
 
   </style>
 </head>
@@ -597,7 +609,6 @@ footer .meta{ color: var(--muted); line-height: 1.6; }
         mehr Beweglichkeit und nachhaltiges Wohlbefinden. Wir listen nur Angebote verifizierter 
         Partner und achten auf Qualität, Wirksamkeit und faire Konditionen. Klare Angaben zu Preis, 
         Lieferung und Service helfen dir, schnell das passende Produkt zu finden.
-
       </p>
     </div>
 
@@ -613,6 +624,13 @@ footer .meta{ color: var(--muted); line-height: 1.6; }
       <a href="mailto:kontakt@dropngo.shop">kontakt@dropngo.shop</a><br>
       <a href="support-formular.html">Support</a>
     </div>
+
+    <!-- Folge uns jetzt rechts vom Kontakt -->
+    <div class="footer-col">
+      <h4>Folge uns</h4>
+      <a href="https://www.instagram.com/dropngo.shop" target="_blank" rel="noopener">Instagram</a><br>
+      <a href="https://www.tiktok.com/@dropngo.shop" target="_blank" rel="noopener">TikTok</a>
+    </div>
   </div>
 
   <div class="container">
@@ -623,6 +641,8 @@ footer .meta{ color: var(--muted); line-height: 1.6; }
     </p>
   </div>
 </footer>
+
+
 
 <script defer src="js/script.js"></script>
 <script src="js/auth-config.js"></script>
