@@ -7,17 +7,16 @@
   <link rel="icon" href="assets/favicon.ico"/>
 
   <!-- Open Graph -->
-<meta property="og:title" content="Mein Konto | DropNGo" />
-<meta property="og:description" content="Verwalte dein Konto, Bestellungen und Einstellungen sicher und bequem." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.dropngo.shop/account.html" />
-<meta property="og:image" content="https://www.dropngo.shop/assets/images/dropngo-preview.png" />
-<meta property="og:image:type" content="image/png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<link rel="canonical" href="https://www.dropngo.shop/account.html" />
-<meta name="twitter:card" content="summary_large_image" />
-
+  <meta property="og:title" content="Mein Konto | DropNGo" />
+  <meta property="og:description" content="Verwalte dein Konto, Bestellungen und Einstellungen sicher und bequem." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.dropngo.shop/account.html" />
+  <meta property="og:image" content="https://www.dropngo.shop/assets/images/dropngo-preview.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <link rel="canonical" href="https://www.dropngo.shop/account.html" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Inter -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +38,7 @@
     }
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
-    .container{width:min(1100px,92%);margin-inline:auto}
+    .container{width:min(1360px,96%);margin-inline:auto}
 
     /* Header wie Index */
     header.site-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(10px);background:rgba(11,13,15,.75);border-bottom:1px solid rgba(255,255,255,.06)}
@@ -74,7 +73,7 @@
     /* Seite */
     main{padding: clamp(22px,3vw,34px) 0 70px}
     .lead{color:var(--muted);margin:6px 0 0}
-    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start}
+    .grid{display:grid;grid-template-columns:1.35fr .65fr;gap:28px;align-items:start}
     @media (max-width:980px){.grid{grid-template-columns:1fr}}
     .card{background:var(--surface);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);box-shadow:var(--shadow);padding: clamp(18px,2.2vw,24px)}
     .card h2{margin:0 0 12px;font-size: clamp(20px,3.2vw,28px)}
@@ -85,7 +84,7 @@
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     @media (max-width:680px){.grid-2{grid-template-columns:1fr}}
     .field{display:flex;flex-direction:column;gap:6px}
-    .field input{background:#0f1114;color:#e6e9ee;border:1px solid rgba(255,255,255,.10);border-radius:10px;padding:10px 12px}
+    .field input{background:#0f1114;color:#e6e9ee;border:1px solid rgba(255,255,255,.10);border-radius:12px;padding:14px 14px;font-size:16px}
     .muted{color:var(--muted)}
     .btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     .alert{display:none;margin-top:10px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
@@ -97,111 +96,208 @@
     .copy{color:#8f98a3;font-size:14px;padding:26px 0}
     .stack{display:grid;gap:18px}
 
-    
-        
-       /* --- Mobile-Menü Fix products.html --- */
-@media (max-width: 900px){
-  header .nav__links { display: none !important; }
+    /* --- Mobile-Menü Fix --- */
+    @media (max-width: 900px){
+      header .nav__links { display: none !important; }
+      #navToggle {
+        display: inline-flex !important; align-items: center; justify-content: center;
+        width: 40px; height: 40px; border-radius: 10px;
+        border: 1px solid rgba(255,255,255,.14);
+        background: transparent; color: var(--text);
+        -webkit-tap-highlight-color: transparent; cursor: pointer;
+      }
+      #mobileMenu[hidden] { display: none !important; }
+      #mobileMenu {
+        position: fixed; inset: 64px 0 0 0; background: rgba(9,11,12,.98);
+        border-top: 1px solid rgba(255,255,255,.06); padding: 18px; z-index: 999;
+      }
+      #mobileMenu a {
+        display: block; padding: 14px 10px; border-radius: 10px; color: #aab3be; text-decoration: none;
+      }
+      #mobileMenu a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+    }
+    @media (min-width: 901px){
+      #navToggle { display: none !important; }
+      #mobileMenu { display: none !important; }
+    }
+    @media (max-width: 820px){
+      .mobile-menu{
+        position: fixed; inset: 64px 0 0 0; background: rgba(9,11,12,.98);
+        border-top: 1px solid rgba(255,255,255,.06); padding: 18px; display: none; z-index: 10000; pointer-events: auto;
+      }
+      .mobile-menu a{ display:block; padding:14px 10px; border-radius:10px; color:var(--muted); }
+      .mobile-menu a:hover{ background:rgba(255,255,255,.05); color:var(--text); }
+      header.site-header{ z-index: 10001; }
+      header .mobile-menu{ z-index: 10002; pointer-events: auto; }
+    }
+    @media (max-width: 900px){
+      .mobile-menu { display: block !important; }
+      .mobile-menu[hidden] { display: none !important; }
+      header.site-header { z-index: 10001; }
+      .mobile-menu { z-index: 10002; pointer-events: auto; }
+    }
 
-  #navToggle {
-    display: inline-flex !important;
-    align-items: center; justify-content: center;
-    width: 40px; height: 40px; border-radius: 10px;
-    border: 1px solid rgba(255,255,255,.14);
-    background: transparent; color: var(--text);
-    -webkit-tap-highlight-color: transparent;
-    cursor: pointer;
-  }
+    /* === Passwort-Auge: flush an der rechten Ecke === */
+    .pw-wrap { position: relative; overflow: hidden; }
+    .pw-wrap input { padding-right: 52px; }
+    .pw-toggle{
+      position: absolute; top: 0; right: 0; height: 100%; width: 46px;
+      display: grid; place-items: center; border: 0; border-left: 1px solid rgba(255,255,255,.12);
+      background: transparent; color: var(--muted); border-radius: 0 10px 10px 0; cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .pw-wrap:focus-within .pw-toggle{
+      color: var(--text); background: rgba(255,255,255,.04); border-left-color: rgba(255,255,255,.18);
+    }
+    .pw-toggle:hover{ background: rgba(255,255,255,.06); }
+    .pw-toggle svg{ width: 18px; height: 18px; }
+    .pw-toggle .eye-off{ display: none; }
+    .pw-toggle[data-visible="true"] .eye{ display: none; }
+    .pw-toggle[data-visible="true"] .eye-off{ display: block; }
 
-  #mobileMenu[hidden] { display: none !important; }
-  #mobileMenu {
-    position: fixed;
-    inset: 64px 0 0 0; /* direkt unter dem Header, wie index.html */
-    background: rgba(9,11,12,.98);
-    border-top: 1px solid rgba(255,255,255,.06);
-    padding: 18px;
-    z-index: 999;
-  }
-  #mobileMenu a {
-    display: block; padding: 14px 10px;
-    border-radius: 10px; color: #aab3be; text-decoration: none;
-  }
-  #mobileMenu a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+    /* native Reveal-Buttons ausblenden (Edge/Safari/Chrome) */
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear{ display:none; width:0; height:0; }
+    input[type="password"]::-webkit-credentials-auto-fill-button{ visibility:hidden; display:none; pointer-events:none; }
+    input[type="password"]::-webkit-textfield-decoration-container{ display:none; }
+    /* Passwortfeld mit Auge */
+.pw-wrap {
+  position: relative;
 }
-
-@media (min-width: 901px){
-  #navToggle { display: none !important; }
-  #mobileMenu { display: none !important; }
+.pw-wrap input {
+  width: 100%;
+  padding-right: 48px; /* Platz für das Auge schaffen */
+  box-sizing: border-box;
 }
-
-@media (max-width: 820px){
-  .mobile-menu{
-    position: fixed;
-    inset: 64px 0 0 0;
-    background: rgba(9,11,12,.98);
-    border-top: 1px solid rgba(255,255,255,.06);
-    padding: 18px;
-    display: none;
-    z-index: 10000;     /* <- über alles legen */
-    pointer-events: auto;
-  }
-  .mobile-menu a{ display:block; padding:14px 10px; border-radius:10px; color:var(--muted); }
-  .mobile-menu a:hover{ background:rgba(255,255,255,.05); color:var(--text); }
-}
-
-@media (max-width: 820px){
-  header.site-header{ z-index: 10001; }     /* Header über die Seite */
-  header .mobile-menu{
-    z-index: 10002;                          /* Mobile-Menü über Header-Inhalt */
-    pointer-events: auto;
-  }
-}
-
-/* --- Fix: mobile-menu sichtbar, wenn nicht [hidden] --- */
-@media (max-width: 900px){
-  .mobile-menu { display: block !important; }         /* überschreibt alte display:none-Regel */
-  .mobile-menu[hidden] { display: none !important; }  /* bleibt sauber versteckbar über [hidden] */
-  header.site-header { z-index: 10001; }              /* Header unter Menü */
-  .mobile-menu { z-index: 10002; pointer-events: auto; }
-}
-
-/* === Passwort-Auge: flush an der rechten Ecke === */
-.pw-wrap { position: relative; }
-.pw-wrap input { padding-right: 52px; } /* etwas mehr Platz für das Auge */
-
-.pw-toggle{
+.pw-toggle {
   position: absolute;
-  top: 0; right: 0;              /* an die Ecke */
-  height: 100%; width: 46px;     /* volle Input-Höhe */
-  display: grid; place-items: center;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%); /* mittig ausrichten */
+  height: 100%;
+  width: 46px;
   border: 0;
   border-left: 1px solid rgba(255,255,255,.12);
-  background: transparent;       /* wirkt wie im Feld */
+  background: transparent;
   color: var(--muted);
-  border-radius: 0 10px 10px 0;  /* gleiche Rundung wie Input rechts */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 10px 10px 0;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
 }
-.pw-wrap:focus-within .pw-toggle{
-  color: var(--text);
-  background: rgba(255,255,255,.04);
-  border-left-color: rgba(255,255,255,.18);
-}
-.pw-toggle:hover{
+.pw-toggle:hover {
   background: rgba(255,255,255,.06);
+  color: var(--text);
+}
+/* Eingabefelder über volle Breite */
+.field.full {
+  grid-column: 1 / -1; /* nimmt die gesamte Breite ein */
 }
 
-.pw-toggle svg{ width: 18px; height: 18px; }
-.pw-toggle .eye-off{ display: none; }
-.pw-toggle[data-visible="true"] .eye{ display: none; }
-.pw-toggle[data-visible="true"] .eye-off{ display: block; }
-
-
+/* Mobile Optimierung */
+@media (max-width: 680px) {
+  .grid-2 {
+    grid-template-columns: 1fr !important; /* alles einspaltig */
+  }
+}
 
   </style>
+<style>
+/* ===== FIX: Breiteres Konto-Layout + größere Sicherheit-Felder ===== */
+.account-page .container{ width: min(1320px, 96%); }
+
+@media (min-width: 980px){
+  .account-page .grid{
+    grid-template-columns: 1.35fr .65fr;
+    gap: 28px;
+  }
+}
+
+/* Karten & Typografie etwas größer für bessere Lesbarkeit */
+.account-page .card{ padding: 24px 26px; }
+.account-page .card h2{ font-size: clamp(22px,3.2vw,30px); }
+.account-page .field input{ min-height: 48px; font-size: 16px; }
+
+/* Sicherheit: Passwortfelder + Augen-Button */
+#pwForm .pw-wrap{ position: relative; }
+#pwForm .pw-wrap input{ padding-right: 52px; }
+#pwForm .pw-toggle{
+  position: absolute;
+  right: 6px; top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  border: 0; border-left: 1px solid rgba(255,255,255,.12);
+  background: transparent; color: var(--muted);
+  display: grid; place-items: center;
+  border-radius: 0 10px 10px 0;
+}
+#pwForm .pw-toggle:hover{ color: var(--text); background: rgba(255,255,255,.04); }
+#pwForm .pw-toggle svg{ width: 20px; height: 20px; }
+
+/* Mobile: 1 Spalte und volle Breite */
+@media (max-width: 980px){
+  .account-page .container{ width: 94%; }
+  .account-page .grid{ grid-template-columns: 1fr; }
+  #pwForm.grid-2{ grid-template-columns: 1fr; }
+  #pwForm .field{ grid-column: 1 / -1; }
+}
+</style>
+
+
+<style>
+/* FORCE: size security inputs */
+#pwForm .pw-wrap input,
+#pwForm input[type="password"]{
+  padding-block: 14px;
+  padding-right: 56px;
+  font-size: 16px;
+}
+#pwForm .pw-toggle{
+  width: 54px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  transform: none;
+  display: grid;
+  place-items: center;
+  border-left: 1px solid rgba(255,255,255,.12);
+}
+</style>
+
+
+    <style>
+    .section.sicherheit {
+      max-width: 700px !important; /* mehr Platz */
+      width: 100%;
+    }
+    .section.sicherheit input {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+    }
+    /* Sicherheit-Abschnitt breiter machen */
+.section.sicherheit {
+  max-width: 900px !important; /* vorher 700px */
+  width: 100%;
+}
+
+/* Eingabefelder größer darstellen */
+.section.sicherheit .field input {
+  width: 100%;
+  padding: 16px 18px; /* mehr Innenabstand */
+  font-size: 1.05rem;
+}
+/* Sicherheit-Form über volle Breite */
+#pwForm {
+  grid-column: 1 / -1; /* nimmt die gesamte Breite */
+}
+
+    </style>
+    
 </head>
-<body>
-<!-- ===== Global Header (neu) ===== -->
+<body class="account-page">
+<!-- ===== Global Header ===== -->
 <header class="dng-header" data-mobile>
   <div class="dng-container dng-nav">
     <a class="dng-brand" href="index.html" aria-label="DropNGo Startseite">
@@ -209,7 +305,6 @@
       <span class="dng-brand-text">DropNGo</span>
     </a>
 
-    <!-- Desktop-Links -->
     <nav class="dng-links" aria-label="Hauptnavigation">
       <a href="index.html">Home</a>
       <a href="products.html">Produkte</a>
@@ -218,7 +313,6 @@
       <a href="account.html" class="dng-account">Mein Konto</a>
     </nav>
 
-    <!-- Burger -->
     <button id="dngNavToggle" class="dng-burger" aria-expanded="false" aria-controls="dngMobileMenu" aria-label="Menü öffnen">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -227,9 +321,8 @@
   </div>
 </header>
 
-<!-- ===== Mobile Drawer + Overlay (neu) ===== -->
+<!-- Mobile Drawer -->
 <div id="dngOverlay" class="dng-overlay" hidden></div>
-
 <aside id="dngMobileMenu" class="dng-drawer" hidden aria-label="Mobile Navigation">
   <nav class="dng-drawer-nav">
     <a href="index.html">Home</a>
@@ -240,485 +333,494 @@
   </nav>
 </aside>
 
+<!-- Main -->
+<main>
+  <div class="container">
+    <h1 style="margin:0;font-size:clamp(26px,4.2vw,36px);">Mein Konto</h1>
+    <p class="lead">Verwalte Anmeldung, Passwort & Profildaten.</p>
 
-  <!-- Main -->
-  <main>
-    <div class="container">
-      <h1 style="margin:0;font-size:clamp(26px,4.2vw,36px);">Mein Konto</h1>
-      <p class="lead">Verwalte Anmeldung, Passwort & Profildaten.</p>
+    <div class="grid" style="margin-top:14px;">
+      <!-- Auth-Karte (wenn nicht eingeloggt) -->
+      <section class="card" id="authSection" hidden>
+        <div class="tabs" role="tablist" aria-label="Kontoaktionen">
+          <button id="t-login"  role="tab" aria-selected="true">Anmelden</button>
+          <button id="t-signup" role="tab" aria-selected="false">Registrieren</button>
+          <button id="t-forgot" role="tab" aria-selected="false">Passwort vergessen</button>
+        </div>
 
-      <div class="grid" style="margin-top:14px;">
-        <!-- Auth-Karte (wenn nicht eingeloggt) -->
-        <section class="card" id="authSection" hidden>
-          <div class="tabs" role="tablist" aria-label="Kontoaktionen">
-            <button id="t-login"  role="tab" aria-selected="true">Anmelden</button>
-            <button id="t-signup" role="tab" aria-selected="false">Registrieren</button>
-            <button id="t-forgot" role="tab" aria-selected="false">Passwort vergessen</button>
-          </div>
-
-          <!-- Login -->
-          <form id="p-login" class="panel" role="tabpanel" aria-labelledby="t-login">
-            <div class="grid-2">
-              <div class="field">
-                <label for="login-email">E-Mail</label>
-                <input id="login-email" type="email" autocomplete="email" required>
-              </div>
-             <div class="field">
-  <label for="login-pw">Passwort</label>
-  <div class="pw-wrap">
-    <input id="login-pw" type="password" autocomplete="current-password" required>
-    <button type="button" class="pw-toggle" data-target="#login-pw" aria-label="Passwort anzeigen" aria-pressed="false">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <!-- Auge -->
-        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
-        <!-- Auge durchgestrichen -->
-        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-      </svg>
-    </button>
-  </div>
-</div>
-            <div class="btn-row" style="margin-top:12px;">
-              <button class="btn" type="submit">Anmelden</button>
-              <a href="#" data-open="forgot" class="muted">Passwort vergessen?</a>
-            </div>
-            <div id="login-msg" class="alert"></div>
-          </form>
-
-          <!-- Signup -->
-          <form id="p-signup" class="panel" role="tabpanel" aria-labelledby="t-signup" hidden>
-            <div class="grid-2">
-              <div class="field">
-                <label for="su-name">Voller Name</label>
-                <input id="su-name" type="text" autocomplete="name" required>
-              </div>
-              <div class="field">
-                <label for="su-email">E-Mail</label>
-                <input id="su-email" type="email" autocomplete="email" required>
-              </div>
-            </div>
-          <div class="field" style="margin-top:8px;">
-  <label for="su-pw">Passwort</label>
-  <div class="pw-wrap">
-    <input id="su-pw" type="password" autocomplete="new-password" required>
-    <button type="button" class="pw-toggle" data-target="#su-pw" aria-label="Passwort anzeigen" aria-pressed="false">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
-        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-      </svg>
-    </button>
-  </div>
-  <div class="pw-meter"><span id="pw-bar" class="pw-bar"></span></div>
-  <div id="pw-hint" class="muted" style="margin-top:6px;">Stärke: –</div>
-</div>
-            <div class="btn-row" style="margin-top:12px;">
-              <button class="btn" type="submit">Konto erstellen</button>
-            </div>
-            <div id="signup-msg" class="alert"></div>
-            <p class="muted" style="margin-top:10px;">Du erhältst eine E-Mail zur Bestätigung.</p>
-          </form>
-
-          <!-- Forgot -->
-          <form id="p-forgot" class="panel" role="tabpanel" aria-labelledby="t-forgot" hidden>
+        <!-- Login -->
+        <form id="p-login" class="panel" role="tabpanel" aria-labelledby="t-login">
+          <div class="grid-2">
             <div class="field">
-              <label for="fg-email">E-Mail</label>
-              <input id="fg-email" type="email" autocomplete="email" required>
+              <label for="login-email">E-Mail</label>
+              <input id="login-email" type="email" autocomplete="email" required>
             </div>
-            <div class="btn-row" style="margin-top:12px;">
-              <button class="btn" type="submit">Zurücksetzen senden</button>
-            </div>
-            <div id="forgot-msg" class="alert"></div>
-          </form>
-        </section>
-
-        <!-- Profil-Karte (wenn eingeloggt) -->
-        <section class="card" id="profileSection" hidden>
-          <h2 style="margin:0 0 10px;">Mein Konto</h2>
-          <p class="muted" style="margin:0 0 14px;">Verwalte Profil, Adresse, Sicherheit & Einstellungen.</p>
-
-          <div class="grid">
-            <!-- Linke Spalte -->
-            <div class="stack">
-              <!-- Profil -->
-              <div class="card">
-                <h3 style="margin:0 0 10px;">Profil</h3>
-                <form id="profileForm" class="grid-2">
-                  <div class="field">
-                    <label for="pf-name">Voller Name</label>
-                    <input id="pf-name" type="text" autocomplete="name" required>
-                  </div>
-                  <div class="field">
-                    <label for="pf-phone">Telefon (optional)</label>
-                    <input id="pf-phone" type="tel" autocomplete="tel">
-                  </div>
-                  <div class="field">
-                    <label for="pf-bday">Geburtstag (optional)</label>
-                    <input id="pf-bday" type="date">
-                  </div>
-                  <div style="grid-column:1/-1" class="btn-row">
-                    <button class="btn" type="submit">Speichern</button>
-                    <span id="profileMsg" class="alert"></span>
-                  </div>
-                </form>
-              </div>
-
-              <!-- Adresse -->
-              <div class="card">
-                <h3 style="margin:0 0 10px;">Adresse</h3>
-                <form id="addressForm" class="grid-2">
-                  <div class="field">
-                    <label for="ad-street">Straße & Nr.</label>
-                    <input id="ad-street" type="text" autocomplete="address-line1">
-                  </div>
-                  <div class="field">
-                    <label for="ad-zip">PLZ</label>
-                    <input id="ad-zip" type="text" autocomplete="postal-code">
-                  </div>
-                  <div class="field">
-                    <label for="ad-city">Stadt</label>
-                    <input id="ad-city" type="text" autocomplete="address-level2">
-                  </div>
-                  <div class="field">
-                    <label for="ad-country">Land</label>
-                    <input id="ad-country" type="text" autocomplete="country-name" placeholder="Deutschland">
-                  </div>
-                  <div style="grid-column:1/-1" class="btn-row">
-                    <button class="btn" type="submit">Speichern</button>
-                    <span id="addressMsg" class="alert"></span>
-                  </div>
-                </form>
-              </div>
-
-              <!-- Kommunikation -->
-              <div class="card">
-                <h3 style="margin:0 0 10px;">Kommunikation</h3>
-                <label style="display:flex;align-items:center;gap:10px;">
-                  <input id="opt-news" type="checkbox">
-                  <span>Newsletter & Hinweise erhalten</span>
-                </label>
-                <div class="btn-row" style="margin-top:10px;">
-                  <button id="optSave" class="btn" type="button">Einstellungen speichern</button>
-                  <span id="optMsg" class="alert"></span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Rechte Spalte -->
-            <div class="stack">
-              <!-- E-Mail / Verifizierung -->
-              <div class="card">
-                <h3 style="margin:0 0 10px;">E-Mail & Verifizierung</h3>
-                <p class="muted" style="margin:0 0 6px;">Aktuelle E-Mail: <strong id="line-email">—</strong></p>
-                <p class="muted" id="veri-line" style="margin:0 0 12px;">Status: –</p>
-
-                <form id="emailForm" class="grid-2">
-                  <div class="field" style="grid-column:1/-1">
-                    <label for="em-new">E-Mail ändern</label>
-                    <input id="em-new" type="email" autocomplete="email" placeholder="neue@mail.de">
-                  </div>
-                  <div class="btn-row" style="grid-column:1/-1">
-                    <button class="btn" type="submit">Änderung starten</button>
-                    <button id="verifyResend" class="btn btn--ghost" type="button">Bestätigungs-Mail erneut senden</button>
-                  </div>
-                  <span id="emailMsg" class="alert" style="grid-column:1/-1"></span>
-                </form>
-              </div>
-
-              <!-- Passwort & Sitzungen -->
-              <div class="card">
-                <h3 style="margin:0 0 10px;">Sicherheit</h3>
-                <form id="pwForm" class="grid-2">
-                  <div class="field">
-  <label for="newPw">Neues Passwort</label>
-  <div class="pw-wrap">
-    <input id="newPw" type="password" autocomplete="new-password" required>
-    <button type="button" class="pw-toggle" data-target="#newPw" aria-label="Passwort anzeigen" aria-pressed="false">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
-        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-      </svg>
-    </button>
-  </div>
-</div>
-                 <div class="field">
-  <label for="newPw2">Bestätigen</label>
-  <div class="pw-wrap">
-    <input id="newPw2" type="password" autocomplete="new-password" required>
-    <button type="button" class="pw-toggle" data-target="#newPw2" aria-label="Passwort anzeigen" aria-pressed="false">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
-        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-      </svg>
-    </button>
-  </div>
-</div>
-
-                  <div class="btn-row" style="grid-column:1/-1">
-                    <button class="btn" type="submit">Passwort speichern</button>
-                    <button id="logoutAll" class="btn btn--ghost" type="button" title="Auf allen Geräten abmelden">Überall abmelden</button>
-                  </div>
-                  <span id="pwMsg" class="alert" style="grid-column:1/-1"></span>
-                </form>
-              </div>
-
-              <!-- Konto -->
-              <div class="card">
-                <h3 style="margin:0 0 10px;">Konto</h3>
-                <div class="btn-row">
-                  <button id="logoutBtn" class="btn btn--ghost" type="button">Abmelden</button>
-                  <button id="exportBtn" class="btn" type="button">Profildaten exportieren</button>
-                </div>
-                <p class="muted" style="margin-top:10px;">Konto löschen ist aus Sicherheitsgründen nur über den Support möglich.</p>
+            <div class="field">
+              <label for="login-pw">Passwort</label>
+              <div class="pw-wrap">
+                <input id="login-pw" type="password" autocomplete="current-password" required>
+                <button type="button" class="pw-toggle" data-target="#login-pw" aria-label="Passwort anzeigen" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
+                    <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
-        </section>
+          <div class="btn-row" style="margin-top:12px;">
+            <button class="btn" type="submit">Anmelden</button>
+            <a href="#" data-open="forgot" class="muted">Passwort vergessen?</a>
+          </div>
+          <div id="login-msg" class="alert"></div>
+        </form>
 
-      </div>
+        <!-- Signup -->
+        <form id="p-signup" class="panel" role="tabpanel" aria-labelledby="t-signup" hidden>
+          <div class="grid-2">
+            <div class="field">
+              <label for="su-name">Voller Name</label>
+              <input id="su-name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="su-email">E-Mail</label>
+              <input id="su-email" type="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="field" style="margin-top:8px;">
+            <label for="su-pw">Passwort</label>
+            <div class="pw-wrap">
+              <input id="su-pw" type="password" autocomplete="new-password" required>
+              <button type="button" class="pw-toggle" data-target="#su-pw" aria-label="Passwort anzeigen" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
+                  <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                </svg>
+              </button>
+            </div>
+            <div class="pw-meter"><span id="pw-bar" class="pw-bar"></span></div>
+            <div id="pw-hint" class="muted" style="margin-top:6px;">Stärke: –</div>
+          </div>
+          <div class="btn-row" style="margin-top:12px;">
+            <button class="btn" type="submit">Konto erstellen</button>
+          </div>
+          <div id="signup-msg" class="alert"></div>
+          <p class="muted" style="margin-top:10px;">Du erhältst eine E-Mail zur Bestätigung.</p>
+        </form>
+
+        <!-- Forgot -->
+        <form id="p-forgot" class="panel" role="tabpanel" aria-labelledby="t-forgot" hidden>
+          <div class="field">
+            <label for="fg-email">E-Mail</label>
+            <input id="fg-email" type="email" autocomplete="email" required>
+          </div>
+          <div class="btn-row" style="margin-top:12px;">
+            <button class="btn" type="submit">Zurücksetzen senden</button>
+          </div>
+          <div id="forgot-msg" class="alert"></div>
+        </form>
+      </section>
+
+      <!-- Profil-Karte (wenn eingeloggt) -->
+      <section class="card" id="profileSection" hidden>
+        <h2 style="margin:0 0 10px;">Mein Konto</h2>
+        <p class="muted" style="margin:0 0 14px;">Verwalte Profil, Adresse, Sicherheit & Einstellungen.</p>
+
+        <div class="grid">
+          <!-- Linke Spalte -->
+          <div class="stack">
+            <!-- Profil -->
+            <div class="card">
+              <h3 style="margin:0 0 10px;">Profil</h3>
+              <form id="profileForm" class="grid-2">
+                <div class="field">
+                  <label for="pf-name">Voller Name</label>
+                  <input id="pf-name" type="text" autocomplete="name" required>
+                </div>
+                <div class="field">
+                  <label for="pf-phone">Telefon (optional)</label>
+                  <input id="pf-phone" type="tel" autocomplete="tel">
+                </div>
+                <div class="field">
+                  <label for="pf-bday">Geburtstag (optional)</label>
+                  <input id="pf-bday" type="date">
+                </div>
+                <div style="grid-column:1/-1" class="btn-row">
+                  <button class="btn" type="submit">Speichern</button>
+                  <span id="profileMsg" class="alert"></span>
+                </div>
+              </form>
+            </div>
+
+            <!-- Adresse -->
+            <div class="card">
+              <h3 style="margin:0 0 10px;">Adresse</h3>
+              <form id="addressForm" class="grid-2">
+                <div class="field">
+                  <label for="ad-street">Straße & Nr.</label>
+                  <input id="ad-street" type="text" autocomplete="address-line1">
+                </div>
+                <div class="field">
+                  <label for="ad-zip">PLZ</label>
+                  <input id="ad-zip" type="text" autocomplete="postal-code">
+                </div>
+                <div class="field">
+                  <label for="ad-city">Stadt</label>
+                  <input id="ad-city" type="text" autocomplete="address-level2">
+                </div>
+                <div class="field">
+                  <label for="ad-country">Land</label>
+                  <input id="ad-country" type="text" autocomplete="country-name" placeholder="Deutschland">
+                </div>
+                <div style="grid-column:1/-1" class="btn-row">
+                  <button class="btn" type="submit">Speichern</button>
+                  <span id="addressMsg" class="alert"></span>
+                </div>
+              </form>
+            </div>
+
+            <!-- Kommunikation -->
+            <div class="card">
+              <h3 style="margin:0 0 10px;">Kommunikation</h3>
+              <label style="display:flex;align-items:center;gap:10px;">
+                <input id="opt-news" type="checkbox">
+                <span>Newsletter & Hinweise erhalten</span>
+              </label>
+              <div class="btn-row" style="margin-top:10px;">
+                <button id="optSave" class="btn" type="button">Einstellungen speichern</button>
+                <span id="optMsg" class="alert"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rechte Spalte -->
+          <div class="stack">
+            <!-- E-Mail / Verifizierung -->
+            <div class="card">
+              <h3 style="margin:0 0 10px;">E-Mail & Verifizierung</h3>
+              <p class="muted" style="margin:0 0 6px;">Aktuelle E-Mail: <strong id="line-email">—</strong></p>
+              <p class="muted" id="veri-line" style="margin:0 0 12px;">Status: –</p>
+
+              <form id="emailForm" class="grid-2">
+                <div class="field" style="grid-column:1/-1">
+                  <label for="em-new">E-Mail ändern</label>
+                  <input id="em-new" type="email" autocomplete="email" placeholder="neue@mail.de">
+                </div>
+                <div class="btn-row" style="grid-column:1/-1">
+                  <button class="btn" type="submit">Änderung starten</button>
+                  <button id="verifyResend" class="btn btn--ghost" type="button">Bestätigungs-Mail erneut senden</button>
+                </div>
+                <span id="emailMsg" class="alert" style="grid-column:1/-1"></span>
+              </form>
+            </div>
+
+            <!-- Passwort & Sitzungen -->
+            <section class="card card-sicherheit">
+  <h3>Sicherheit</h3>
+  <form id="pwForm" class="grid-2">
+    <!-- Felder hier -->
+  </form>
+
+
+                <div class="field">
+                  <label for="newPw">Neues Passwort</label>
+                  <div class="pw-wrap">
+                    <input id="newPw" type="password" autocomplete="new-password" required>
+                    <button type="button" class="pw-toggle" data-target="#newPw" aria-label="Passwort anzeigen" aria-pressed="false">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
+                        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="newPw2">Bestätigen</label>
+                  <div class="pw-wrap">
+                    <input id="newPw2" type="password" autocomplete="new-password" required>
+                    <button type="button" class="pw-toggle" data-target="#newPw2" aria-label="Passwort anzeigen" aria-pressed="false">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path class="eye" d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8Z" fill="currentColor"/>
+                        <path class="eye-off" d="M3 3l18 18m-3.5-4A12.6 12.6 0 0 1 12 19c-5 0-9-5-9-7a11.6 11.6 0 0 1 4.2-4.9M14.5 9.5A4 4 0 0 0 9.6 14.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="btn-row" style="grid-column:1/-1">
+                  <button class="btn" type="submit">Passwort speichern</button>
+                  <button id="logoutAll" class="btn btn--ghost" type="button" title="Auf allen Geräten abmelden">Überall abmelden</button>
+                </div>
+                <span id="pwMsg" class="alert" style="grid-column:1/-1"></span>
+              </form>
+            </div>
+
+            <!-- Konto -->
+            <div class="card">
+              <h3 style="margin:0 0 10px;">Konto</h3>
+              <div class="btn-row">
+                <button id="logoutBtn" class="btn btn--ghost" type="button">Abmelden</button>
+                <button id="exportBtn" class="btn" type="button">Profildaten exportieren</button>
+              </div>
+              <p class="muted" style="margin-top:10px;">Konto löschen ist aus Sicherheitsgründen nur über den Support möglich.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
-  </main>
+  </div>
+</main>
 
-  <footer class="site-footer">
-    <div class="container copy">© 2025 DropNGo – Alle Rechte vorbehalten.</div>
-  </footer>
+<footer class="site-footer">
+  <div class="container copy">© 2025 DropNGo – Alle Rechte vorbehalten.</div>
+</footer>
 
-  <!-- Keys -->
-  <script src="js/auth-config.js"></script>
+<!-- Keys -->
+<script src="js/auth-config.js"></script>
 
-  <!-- Seite: Logik -->
-  <script type="module">
-    const $ = s => document.querySelector(s);
-    const authSec = $('#authSection');
-    const profSec = $('#profileSection');
+<!-- Seite: Logik -->
+<script type="module">
+  const $ = s => document.querySelector(s);
+  const authSec = $('#authSection');
+  const profSec = $('#profileSection');
 
-    const tabs = {
-      login:  { btn: $('#t-login'),  panel: $('#p-login')  },
-      signup: { btn: $('#t-signup'), panel: $('#p-signup') },
-      forgot: { btn: $('#t-forgot'), panel: $('#p-forgot') }
-    };
-    function openTab(key){
-      Object.values(tabs).forEach(({btn,panel}) => { btn.setAttribute('aria-selected','false'); panel.hidden = true; });
-      const t = tabs[key]; t.btn.setAttribute('aria-selected','true'); t.panel.hidden = false;
-      authSec.hidden = false; profSec.hidden = true; history.replaceState(null,'','#'+key);
-    }
-    tabs.login.btn.addEventListener('click', ()=>openTab('login'));
-    tabs.signup.btn.addEventListener('click', ()=>openTab('signup'));
-    tabs.forgot.btn.addEventListener('click', ()=>openTab('forgot'));
-    document.querySelectorAll('[data-open="forgot"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openTab('forgot')}));
+  const tabs = {
+    login:  { btn: $('#t-login'),  panel: $('#p-login')  },
+    signup: { btn: $('#t-signup'), panel: $('#p-signup') },
+    forgot: { btn: $('#t-forgot'), panel: $('#p-forgot') }
+  };
+  function openTab(key){
+    Object.values(tabs).forEach(({btn,panel}) => { btn.setAttribute('aria-selected','false'); panel.hidden = true; });
+    const t = tabs[key]; t.btn.setAttribute('aria-selected','true'); t.panel.hidden = false;
+    authSec.hidden = false; profSec.hidden = true; history.replaceState(null,'','#'+key);
+  }
+  tabs.login.btn.addEventListener('click', ()=>openTab('login'));
+  tabs.signup.btn.addEventListener('click', ()=>openTab('signup'));
+  tabs.forgot.btn.addEventListener('click', ()=>openTab('forgot'));
+  document.querySelectorAll('[data-open="forgot"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openTab('forgot')}));
 
-    // Kein Key? => nur Login UI
-    if(!window.SUPABASE_URL || !window.SUPABASE_ANON){
-      console.warn('[account] auth-config fehlt – zeige Login');
-      openTab(location.hash.replace('#','') || 'login');
+  // Deep-links: #login / #signup / #forgot (auch bei hashchange)
+  const supportedTabs = new Set(['login','signup','forgot']);
+  function wantedTab(){
+    const k = (location.hash || '#login').slice(1);
+    return supportedTabs.has(k) ? k : 'login';
+  }
+  window.addEventListener('hashchange', () => {
+    if (!authSec.hidden) openTab(wantedTab());
+  });
+
+  // Kein Key? => nur Login/Signup/Forgot UI (mit Hash)
+  if(!window.SUPABASE_URL || !window.SUPABASE_ANON){
+    console.warn('[account] auth-config fehlt – zeige Auth-UI');
+    openTab(wantedTab());
+  }else{
+    const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+    const supabase = createClient(window.SUPABASE_URL, window.SUPABASE_ANON);
+
+    // ===== Session & Prefill =====
+    const { data:{ session } } = await supabase.auth.getSession();
+    if(session){
+      authSec.hidden = true; profSec.hidden = false;
+
+      const user = session.user;
+      const meta = user.user_metadata || {};
+      // Headerinfos
+      $('#line-email').textContent = user.email || '—';
+      const ver = user.email_confirmed_at ? 'Verifiziert' : 'Noch nicht verifiziert';
+      $('#veri-line').textContent = 'Status: ' + ver;
+
+      // Profil
+      $('#pf-name').value  = meta.full_name || '';
+      $('#pf-phone').value = meta.phone || '';
+      $('#pf-bday').value  = meta.bday || '';
+
+      // Adresse
+      $('#ad-street').value  = meta.ad_street  || '';
+      $('#ad-zip').value     = meta.ad_zip     || '';
+      $('#ad-city').value    = meta.ad_city    || '';
+      $('#ad-country').value = meta.ad_country || '';
+
+      // Kommunikation
+      $('#opt-news').checked = Boolean(meta.opt_news);
     }else{
-      const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
-      const supabase = createClient(window.SUPABASE_URL, window.SUPABASE_ANON);
-
-      // ===== Session & Prefill =====
-      const { data:{ session } } = await supabase.auth.getSession();
-      if(session){
-        authSec.hidden = true; profSec.hidden = false;
-
-        const user = session.user;
-        const meta = user.user_metadata || {};
-        // Headerinfos
-        $('#line-email').textContent = user.email || '—';
-        const ver = user.email_confirmed_at ? 'Verifiziert' : 'Noch nicht verifiziert';
-        $('#veri-line').textContent = 'Status: ' + ver;
-
-        // Profil
-        $('#pf-name').value  = meta.full_name || '';
-        $('#pf-phone').value = meta.phone || '';
-        $('#pf-bday').value  = meta.bday || '';
-
-        // Adresse
-        $('#ad-street').value  = meta.ad_street  || '';
-        $('#ad-zip').value     = meta.ad_zip     || '';
-        $('#ad-city').value    = meta.ad_city    || '';
-        $('#ad-country').value = meta.ad_country || '';
-
-        // Kommunikation
-        $('#opt-news').checked = Boolean(meta.opt_news);
-      }else{
-        openTab(location.hash.replace('#','') || 'login');
-      }
-
-      // ===== Auth: Login / Signup / Forgot =====
-      $('#p-login').addEventListener('submit', async e=>{
-        e.preventDefault();
-        const email=$('#login-email').value.trim();
-        const password=$('#login-pw').value;
-        const msg=$('#login-msg'); msg.style.display='none';
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
-        location.href='account.html';
-      });
-
-      // PW-Stärke
-      const pwInput=$('#su-pw'), pwBar=$('#pw-bar'), pwHint=$('#pw-hint');
-      function score(p){let s=0;if(!p)return 0; if(p.length>=8)s++; if(/[A-Z]/.test(p))s++; if(/[a-z]/.test(p))s++; if(/[0-9]/.test(p))s++; if(/[^A-Za-z0-9]/.test(p))s++; return Math.min(s,5)}
-      pwInput?.addEventListener('input',()=>{const s=score(pwInput.value); pwBar.style.width=(s*20)+'%'; pwHint.textContent='Stärke: '+(['sehr schwach','schwach','okay','gut','stark'][Math.max(s-1,0)])})
-
-      $('#p-signup').addEventListener('submit', async e=>{
-        e.preventDefault();
-        const full_name=$('#su-name').value.trim();
-        const email=$('#su-email').value.trim();
-        const password=$('#su-pw').value;
-        const msg=$('#signup-msg'); msg.style.display='none';
-        const { error } = await supabase.auth.signUp({
-          email, password,
-          options:{ data:{ full_name }, emailRedirectTo:`${location.origin}/login.html` }
-        });
-        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
-        location.href='danke.html?checkmail=1';
-      });
-
-      $('#p-forgot').addEventListener('submit', async e=>{
-        e.preventDefault();
-        const email=$('#fg-email').value.trim();
-        const msg=$('#forgot-msg'); msg.style.display='none';
-        const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo:`${location.origin}/reset.html` });
-        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
-        msg.textContent='Wir haben dir eine E-Mail zum Zurücksetzen gesendet.'; msg.className='alert alert--ok'; msg.style.display='block';
-      });
-
-      // ===== Profil speichern =====
-      async function mergeMeta(patch){
-        const { data:{ user } } = await supabase.auth.getUser();
-        const current = user?.user_metadata || {};
-        return supabase.auth.updateUser({ data:{ ...current, ...patch }});
-      }
-
-      $('#profileForm').addEventListener('submit', async e=>{
-        e.preventDefault();
-        const full_name=$('#pf-name').value.trim();
-        const phone=$('#pf-phone').value.trim();
-        const bday=$('#pf-bday').value || '';
-        const msg=$('#profileMsg'); msg.style.display='none';
-        const { error } = await mergeMeta({ full_name, phone, bday });
-        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
-        msg.textContent='Gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
-      });
-
-      $('#addressForm').addEventListener('submit', async e=>{
-        e.preventDefault();
-        const ad_street=$('#ad-street').value.trim();
-        const ad_zip=$('#ad-zip').value.trim();
-        const ad_city=$('#ad-city').value.trim();
-        const ad_country=$('#ad-country').value.trim();
-        const msg=$('#addressMsg'); msg.style.display='none';
-        const { error } = await mergeMeta({ ad_street, ad_zip, ad_city, ad_country });
-        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
-        msg.textContent='Gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
-      });
-
-      $('#optSave').addEventListener('click', async ()=>{
-        const opt_news = $('#opt-news').checked;
-        const msg=$('#optMsg'); msg.style.display='none';
-        const { error } = await mergeMeta({ opt_news });
-        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
-        msg.textContent='Einstellungen gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
-      });
-
-      // E-Mail ändern
-      $('#emailForm').addEventListener('submit', async e=>{
-        e.preventDefault();
-        const newEmail=$('#em-new').value.trim();
-        const msg=$('#emailMsg'); msg.style.display='none';
-        if(!newEmail){ msg.textContent='Bitte eine neue E-Mail eingeben.'; msg.className='alert alert--warn'; msg.style.display='block'; return; }
-        const { error } = await supabase.auth.updateUser({ email:newEmail });
-        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
-        msg.textContent='Wir haben Bestätigungs-Mails an alt & neu gesendet.'; msg.className='alert alert--ok'; msg.style.display='block';
-        $('#em-new').value='';
-      });
-
-      // Verifizierung erneut senden (für noch nicht bestätigte aktuelle Adresse)
-      $('#verifyResend').addEventListener('click', async ()=>{
-        const { data:{ user } } = await supabase.auth.getUser();
-        const email=user?.email; const span=$('#emailMsg'); span.style.display='none';
-        if(!email){ span.textContent='Keine E-Mail gefunden.'; span.className='alert alert--warn'; span.style.display='block'; return; }
-        // resend signup confirmation
-        const { error } = await supabase.auth.resend({ type:'signup', email });
-        if(error){ span.textContent='Fehler: '+error.message; span.className='alert alert--warn'; span.style.display='block'; return; }
-        span.textContent='Bestätigungs-Mail erneut gesendet.'; span.className='alert alert--ok'; span.style.display='block';
-      });
-
-      // Passwort ändern
-      $('#pwForm').addEventListener('submit', async e=>{
-        e.preventDefault();
-        const a=$('#newPw').value.trim(), b=$('#newPw2').value.trim();
-        const msg=$('#pwMsg'); msg.style.display='none';
-        if(a!==b){ msg.textContent='Passwörter stimmen nicht überein.'; msg.className='alert alert--warn'; msg.style.display='block'; return; }
-        const { error } = await supabase.auth.updateUser({ password:a });
-        if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
-        msg.textContent='Passwort gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
-        $('#newPw').value=''; $('#newPw2').value='';
-      });
-
-      // Logout
-      $('#logoutBtn').addEventListener('click', async ()=>{
-        await supabase.auth.signOut(); location.href='index.html';
-      });
-      $('#logoutAll').addEventListener('click', async ()=>{
-        await supabase.auth.signOut({ scope:'global' }); location.href='index.html';
-      });
-
-      // Export als JSON
-      $('#exportBtn').addEventListener('click', async ()=>{
-        const { data:{ user } } = await supabase.auth.getUser();
-        const payload = {
-          email: user?.email || null,
-          email_confirmed_at: user?.email_confirmed_at || null,
-          metadata: user?.user_metadata || {}
-        };
-        const blob = new Blob([JSON.stringify(payload,null,2)], { type:'application/json' });
-        const url  = URL.createObjectURL(blob);
-        const a = Object.assign(document.createElement('a'), { href:url, download:'dropngo-profile.json' });
-        document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-      });
+      openTab(wantedTab());
     }
-  </script>
 
-  <!-- Account-Icon -->
-  <script type="module" src="js/account-menu.js"></script>
-    <!-- ===== Scripts ===== -->
-  <script>
-
-    // Active link markieren
-    (function(){
-      const path = location.pathname.split('/').pop() || 'index.html';
-      document.querySelectorAll('.nav__links a, .mobile-menu a').forEach(a => {
-        if (a.getAttribute('href') === path) a.setAttribute('aria-current','page');
-      });
-    })();
-
-    // Thumbnails -> Hero wechseln
-    const heroImg = document.getElementById('heroImg');
-    document.querySelectorAll('.thumbs [data-src]').forEach(t => {
-      t.addEventListener('click', () => {
-        const src = t.getAttribute('data-src');
-        if (src && heroImg) heroImg.setAttribute('src', src);
-      });
+    // ===== Auth: Login / Signup / Forgot =====
+    $('#p-login').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const email=$('#login-email').value.trim();
+      const password=$('#login-pw').value;
+      const msg=$('#login-msg'); msg.style.display='none';
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+      location.href='account.html';
     });
 
-    // Tabs
-    const tabButtons = document.querySelectorAll('.tab-head button');
-    const panels = {
-      desc: document.getElementById('tab-desc'),
-      features: document.getElementById('tab-features'),
-      shipping: document.getElementById('tab-shipping')
-    };
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabButtons.forEach(b => b.setAttribute('aria-selected','false'));
-        Object.values(panels).forEach(p => p?.setAttribute('data-active','false'));
-        btn.setAttribute('aria-selected','true');
-        const key = btn.dataset.tab;
-        panels[key]?.setAttribute('data-active','true');
+    // PW-Stärke
+    const pwInput=$('#su-pw'), pwBar=$('#pw-bar'), pwHint=$('#pw-hint');
+    function score(p){let s=0;if(!p)return 0; if(p.length>=8)s++; if(/[A-Z]/.test(p))s++; if(/[a-z]/.test(p))s++; if(/[0-9]/.test(p))s++; if(/[^A-Za-z0-9]/.test(p))s++; return Math.min(s,5)}
+    pwInput?.addEventListener('input',()=>{const s=score(pwInput.value); pwBar.style.width=(s*20)+'%'; pwHint.textContent='Stärke: '+(['sehr schwach','schwach','okay','gut','stark'][Math.max(s-1,0)])})
+
+    $('#p-signup').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const full_name=$('#su-name').value.trim();
+      const email=$('#su-email').value.trim();
+      const password=$('#su-pw').value;
+      const msg=$('#signup-msg'); msg.style.display='none';
+      const { error } = await supabase.auth.signUp({
+        email, password,
+        options:{ data:{ full_name }, emailRedirectTo:`${location.origin}/account.html#login` }
       });
+      if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+      location.href='danke.html?checkmail=1';
     });
-  </script>
-  <link rel="stylesheet" href="css/mobile.css">
+
+    $('#p-forgot').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const email=$('#fg-email').value.trim();
+      const msg=$('#forgot-msg'); msg.style.display='none';
+      const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo:`${location.origin}/reset.html` });
+      if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+      msg.textContent='Wir haben dir eine E-Mail zum Zurücksetzen gesendet.'; msg.className='alert alert--ok'; msg.style.display='block';
+    });
+
+    // ===== Profil speichern =====
+    async function mergeMeta(patch){
+      const { data:{ user } } = await supabase.auth.getUser();
+      const current = user?.user_metadata || {};
+      return supabase.auth.updateUser({ data:{ ...current, ...patch }});
+    }
+
+    $('#profileForm').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const full_name=$('#pf-name').value.trim();
+      const phone=$('#pf-phone').value.trim();
+      const bday=$('#pf-bday').value || '';
+      const msg=$('#profileMsg'); msg.style.display='none';
+      const { error } = await mergeMeta({ full_name, phone, bday });
+      if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+      msg.textContent='Gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
+    });
+
+    $('#addressForm').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const ad_street=$('#ad-street').value.trim();
+      const ad_zip=$('#ad-zip').value.trim();
+      const ad_city=$('#ad-city').value.trim();
+      const ad_country=$('#ad-country').value.trim();
+      const msg=$('#addressMsg'); msg.style.display='none';
+      const { error } = await mergeMeta({ ad_street, ad_zip, ad_city, ad_country });
+      if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+      msg.textContent='Gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
+    });
+
+    $('#optSave').addEventListener('click', async ()=>{
+      const opt_news = $('#opt-news').checked;
+      const msg=$('#optMsg'); msg.style.display='none';
+      const { error } = await mergeMeta({ opt_news });
+      if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+      msg.textContent='Einstellungen gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
+    });
+
+    // E-Mail ändern
+    $('#emailForm').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const newEmail=$('#em-new').value.trim();
+      const msg=$('#emailMsg'); msg.style.display='none';
+      if(!newEmail){ msg.textContent='Bitte eine neue E-Mail eingeben.'; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+      const { error } = await supabase.auth.updateUser({ email:newEmail });
+      if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+      msg.textContent='Wir haben Bestätigungs-Mails an alt & neu gesendet.'; msg.className='alert alert--ok'; msg.style.display='block';
+      $('#em-new').value='';
+    });
+
+    // Verifizierung erneut senden
+    $('#verifyResend').addEventListener('click', async ()=>{
+      const { data:{ user } } = await supabase.auth.getUser();
+      const email=user?.email; const span=$('#emailMsg'); span.style.display='none';
+      if(!email){ span.textContent='Keine E-Mail gefunden.'; span.className='alert alert--warn'; span.style.display='block'; return; }
+      const { error } = await supabase.auth.resend({ type:'signup', email });
+      if(error){ span.textContent='Fehler: '+error.message; span.className='alert alert--warn'; span.style.display='block'; return; }
+      span.textContent='Bestätigungs-Mail erneut gesendet.'; span.className='alert alert--ok'; span.style.display='block';
+    });
+
+    // Passwort ändern
+    $('#pwForm').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const a=$('#newPw').value.trim(), b=$('#newPw2').value.trim();
+      const msg=$('#pwMsg'); msg.style.display='none';
+      if(a!==b){ msg.textContent='Passwörter stimmen nicht überein.'; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+      const { error } = await supabase.auth.updateUser({ password:a });
+      if(error){ msg.textContent='Fehler: '+error.message; msg.className='alert alert--warn'; msg.style.display='block'; return; }
+      msg.textContent='Passwort gespeichert.'; msg.className='alert alert--ok'; msg.style.display='block';
+      $('#newPw').value=''; $('#newPw2').value='';
+    });
+
+    // Logout
+    $('#logoutBtn').addEventListener('click', async ()=>{ await supabase.auth.signOut(); location.href='index.html'; });
+    $('#logoutAll').addEventListener('click', async ()=>{ await supabase.auth.signOut({ scope:'global' }); location.href='index.html'; });
+
+    // Export Profil
+    $('#exportBtn').addEventListener('click', async ()=>{
+      const { data:{ user } } = await supabase.auth.getUser();
+      const payload = {
+        email: user?.email || null,
+        email_confirmed_at: user?.email_confirmed_at || null,
+        metadata: user?.user_metadata || {}
+      };
+      const blob = new Blob([JSON.stringify(payload,null,2)], { type:'application/json' });
+      const url  = URL.createObjectURL(blob);
+      const a = Object.assign(document.createElement('a'), { href:url, download:'dropngo-profile.json' });
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+  }
+</script>
+
+<!-- Account-Icon -->
+<script type="module" src="js/account-menu.js"></script>
+
+<!-- Misc Scripts -->
+<script>
+  // Active link markieren
+  (function(){
+    const path = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav__links a, .mobile-menu a').forEach(a => {
+      if (a.getAttribute('href') === path) a.setAttribute('aria-current','page');
+    });
+  })();
+
+  // Dummy: Thumbnails -> Hero (falls vorhanden)
+  const heroImg = document.getElementById('heroImg');
+  document.querySelectorAll('.thumbs [data-src]').forEach(t => {
+    t.addEventListener('click', () => {
+      const src = t.getAttribute('data-src');
+      if (src && heroImg) heroImg.setAttribute('src', src);
+    });
+  });
+
+  // Dummy: Tabs (falls irgendwo genutzt)
+  const tabButtons = document.querySelectorAll('.tab-head button');
+  const panels = {
+    desc: document.getElementById('tab-desc'),
+    features: document.getElementById('tab-features'),
+    shipping: document.getElementById('tab-shipping')
+  };
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => b.setAttribute('aria-selected','false'));
+      Object.values(panels).forEach(p => p?.setAttribute('data-active','false'));
+      btn.setAttribute('aria-selected','true');
+      const key = btn.dataset.tab;
+      panels[key]?.setAttribute('data-active','true');
+    });
+  });
+</script>
+
+<link rel="stylesheet" href="css/mobile.css">
 <script src="js/mobile.js" defer></script>
+
 <script>
   // Passwort-Auge: generisch für alle .pw-toggle Buttons
   document.querySelectorAll('.pw-toggle').forEach(btn => {
@@ -732,8 +834,7 @@
       btn.dataset.visible = String(!isText);
       btn.setAttribute('aria-pressed', String(!isText));
       btn.setAttribute('aria-label', isText ? 'Passwort anzeigen' : 'Passwort verbergen');
-      // Cursor am Ende lassen
-      const v = input.value; input.value = ''; input.value = v;
+      const v = input.value; input.value = ''; input.value = v; // Cursor am Ende
       input.focus();
     });
   });
