@@ -1,0 +1,1 @@
+'use strict';mix_d("CustomerReviewsSummarizationCards__cr-ratings-histogram:cr-ratings-histogram__fZ2Ds4j8",["exports","tslib"],function(a,b){a._operationNames=[];a.card=function(){return b.__awaiter(void 0,void 0,void 0,function(){return b.__generator(this,function(c){return[2]})})}});
