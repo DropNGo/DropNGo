@@ -313,6 +313,47 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 12px 35px rgba(24,161,150,0.5);
 }
+/* Pseudo-Hintergrund für Cards bleibt dunkel */
+.card__img { 
+  background:#0f1114; 
+  position: relative;
+}
+
+/* Variante A: Bilder mit weißem/hellem Hintergrund */
+.thumb--cut { 
+  mix-blend-mode: multiply;   /* Weiß verschwindet auf dunklem BG */
+  filter: contrast(1.08) saturate(1.02);
+}
+
+/* Variante B: Bilder mit leicht grauem Hintergrund */
+.thumb--darken { 
+  mix-blend-mode: darken;
+  filter: contrast(1.06) saturate(1.02);
+}
+
+/* Optionale kleine „Schwebekante“, damit es wie freigestellt wirkt */
+.card__img img { 
+  padding: 10px;                 /* etwas Luft um’s Produkt */
+  background: transparent; 
+  border-radius: 12px;
+  transition: transform .2s ease, filter .2s ease;
+}
+.card:hover .card__img img { transform: translateY(-2px); }
+.card__img {
+  background: transparent;       /* kein Hintergrund */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;                 /* etwas Luft um das Bild */
+}
+
+.card__img img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;           /* Bild vollständig anzeigen */
+  background: transparent;
+  border-radius: 0;              /* kein runder Rahmen */
+}
 
   </style>
 </head>
@@ -376,7 +417,7 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
         style="max-width:380px; width:100%; height:auto; border-radius:12px; margin-bottom:12px;"
       >
       <h3 style="margin:0; font-size:1.2rem; color:#e6e9ee;">Beurer BR60 Insektenstichheiler</h3>
-      <p style="margin:6px 0 0; font-size:1.1rem; font-weight:700; color:#18a196;">19,99 €</p>
+      <p style="margin:6px 0 0; font-size:1.1rem; font-weight:700; color:#18a196;">19,99€</p>
     </a>
   </div>
 </section>
@@ -391,8 +432,8 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail1.html" aria-label="Zum Beurer BR 60 Insektenstichheiler">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt1/61frjp3cEpL._AC_SL1500_.jpg" alt="Beurer BR 60 Insektenstichheiler" loading="lazy">
-        <span class="label label--low">Nur 3 übrig</span>
+        <img src="/assets/images/products/Produkt1/71vBNHwEJmL._AC_SL1500_.jpg" alt="Beurer BR 60 Insektenstichheiler" loading="lazy">
+       <!-- <span class="label label--low">Nur 3 übrig</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -413,7 +454,7 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
     <a href="produkt-detail2.html" aria-label="Zum Sanotact Elektrolyte Plus (20 Beutel)">
       <div class="card__img">
         <img src="/assets/images/products/Produkt2/71Pge83U50L._AC_SL1500_.jpg" alt="Sanotact Elektrolyte Plus (20 Beutel)" loading="lazy">
-        <span class="label">Bestseller</span>
+       <!---- <span class="label">Bestseller</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -434,7 +475,7 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
     <a href="produkt-detail3.html" aria-label="Zum Bienengift Gelenkcreme">
       <div class="card__img">
         <img src="/assets/images/products/Produkt3/71+OE7bpPNL._AC_SL1500_.jpg" alt="Bienengift Gelenkcreme" loading="lazy">
-        <span class="label">Heute versandfertig</span>
+       <!-- <span class="label">Heute versandfertig</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -454,8 +495,8 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail4.html" aria-label="Zum Autan Multi Insect Pumpspray">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt4/61a05r0LxML._AC_SL1500_.jpg" alt="Autan Multi Insect Pumpspray" loading="lazy">
-        <span class="label label--low">Nur 2 übrig</span>
+        <img src="/assets/images/products/Produkt4/81M9QtN15ML._AC_SL1500_.jpg" alt="Autan Multi Insect Pumpspray" loading="lazy">
+       <!-- <span class="label label--low">Nur 2 übrig</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -476,7 +517,7 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
     <a href="produkt-detail5.html" aria-label="Zum Beurer EM 49 Digital TENSEMS">
       <div class="card__img">
         <img src="/assets/images/products/Produkt5/71G406JeakL._AC_SL1500_.jpg" alt="Beurer EM 49 Digital TENSEMS" loading="lazy">
-        <span class="label">Neu</span>
+      <!--  <span class="label">Neu</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -516,8 +557,8 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail7.html" aria-label="Zum Ashwagandha Kapseln hochdosiert 120x - 600 mg">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt7/714g-nkXivL._AC_SL1500_.jpg" alt="Ashwagandha Kapseln hochdosiert 120x - 600 mg" loading="lazy">
-        <span class="label label--low">Nur 1 übrig</span>
+        <img src="/assets/images/products/Produkt7/81e2msPRNtL._AC_SL1500_.jpg" alt="Ashwagandha Kapseln hochdosiert 120x - 600 mg" loading="lazy">
+       <!-- <span class="label label--low">Nur 1 übrig</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -537,12 +578,12 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail8.html" aria-label="Zum AUDISPRAY Ultra">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt8/61dw+4JnGBL._AC_SL1500_.jpg" alt="AUDISPRAY Ultra" loading="lazy">
-        <span class="label">Angebot</span>
+        <img src="/assets/images/products/Produkt8/71uQ6BabA+L._AC_SL1500_.jpg" alt="AUDISPRAY Ultra" loading="lazy">
+      <!--  <span class="label">Angebot</span> -->
       </div>
       <div class="card__body">
         <div class="row">
-          <h3>AUDISPRAY Ultra</h3>
+          <h3>Audispray Ultra - Ohrenschmalz (Schnelle Auflösung)</h3>
           <span class="price">9,99€</span>
         </div>
         <div class="stars" aria-label="4.4 von 5">
@@ -558,7 +599,7 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail9.html" aria-label="Zum Bauerfeind ViscoSpot Fersenkisse">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt9/31mP0jcLzzL._AC_.jpg" alt="Bauerfeind ViscoSpot Fersenkisse" loading="lazy">
+        <img src="/assets/images/products/Produkt9/612XAfp9Q8L._AC_SL1000_.jpg" alt="Bauerfeind ViscoSpot Fersenkisse" loading="lazy">
       </div>
       <div class="card__body">
         <div class="row">
@@ -578,8 +619,8 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail10.html" aria-label="Zum Behrend Warzenmittel für Hand & Fuß">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt10/videoframe_22737.png" alt="Behrend Warzenmittel für Hand & Fuß" loading="lazy">
-        <span class="label">Bestseller</span>
+        <img src="/assets/images/products/Produkt10/81c-20h+ZSL._SL1500_.jpg" alt="Behrend Warzenmittel für Hand & Fuß" loading="lazy">
+       <!-- <span class="label">Bestseller</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -599,8 +640,8 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail11.html" aria-label="Zum Fußmassagerolle für Plantarfasziitis">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt11/611TpwuiETL._AC_SL1500_.jpg" alt="Fußmassagerolle für Plantarfasziitis" loading="lazy">
-        <span class="label label--low">Nur wenige da</span>
+        <img src="/assets/images/products/Produkt11/71MMDTe-y4L._AC_SL1500_.jpg" alt="Fußmassagerolle für Plantarfasziitis" loading="lazy">
+       <!-- <span class="label label--low">Nur wenige da</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -620,8 +661,8 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail12.html" aria-label="Zum Glückstoff® Orthopädisches Kissen">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt12/818Xtkh3sfL._AC_SL1500_.jpg" alt="Glückstoff® Orthopädisches Kissen" loading="lazy">
-        <span class="label">Empfohlen</span>
+        <img src="/assets/images/products/Produkt12/81xQ9EiKV4L._AC_SL1500_.jpg" alt="Glückstoff® Orthopädisches Kissen" loading="lazy">
+       <!-- <span class="label">Empfohlen</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -641,12 +682,12 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail13.html" aria-label="Zum health Press">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt13/71JD56mugsL._AC_SL1500_.jpg" alt="health Press" loading="lazy">
-        <span class="label">Neu</span>
+        <img src="/assets/images/products/Produkt13/81XMwwgOfUL._AC_SL1500_.jpg" alt="health Press" loading="lazy">
+       <!-- <span class="label">Neu</span> -->
       </div>
       <div class="card__body">
         <div class="row">
-          <h3>health Press</h3>
+          <h3>Health Press - Gittertape für den ganzen Körper</h3>
           <span class="price">9,99€</span>
         </div>
         <div class="stars" aria-label="4.6 von 5">
@@ -662,12 +703,12 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail14.html" aria-label="Zum heat it - Insektenstichheiler für dein Smartphone">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt14/71TnNDQ6IjL._AC_SL1500_.jpg" alt="heat it - Insektenstichheiler für dein Smartphone" loading="lazy">
-        <span class="label">Bestseller</span>
+        <img src="/assets/images/products/Produkt14/71VbKBhmIfL._AC_SL1500_.jpg" alt="heat it - Insektenstichheiler für dein Smartphone" loading="lazy">
+       <!-- <span class="label">Bestseller</span> -->
       </div>
       <div class="card__body">
         <div class="row">
-          <h3>heat it - Insektenstichheiler für dein Smartphone</h3>
+          <h3>Heat it - Insektenstichheiler für dein Smartphone</h3>
           <span class="price">21,99€</span>
         </div>
         <div class="stars" aria-label="4.8 von 5">
@@ -683,8 +724,8 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail15.html" aria-label="Zum Letitwell Heizkissen">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt15/61v1DDxzytL._AC_SL1500_.jpg" alt="Letitwell Heizkissen" loading="lazy">
-        <span class="label label--low">Sale</span>
+        <img src="/assets/images/products/Produkt15/81xCHRV9+dL._AC_SL1500_.jpg" alt="Letitwell Heizkissen" loading="lazy">
+      <!--   <span class="label label--low">Sale</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -705,11 +746,11 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
     <a href="produkt-detail16.html" aria-label="Zum SANOHRA fly">
       <div class="card__img">
         <img src="/assets/images/products/Produkt16/71NdT-K23SL._AC_SL1500_.jpg" alt="SANOHRA fly" loading="lazy">
-        <span class="label">Beliebt</span>
+     <!--   <span class="label">Beliebt</span> -->
       </div>
       <div class="card__body">
         <div class="row">
-          <h3>SANOHRA fly</h3>
+          <h3>Sanohra Fly - Druckausgleich für die Ohren</h3>
           <span class="price">10,95€</span>
         </div>
         <div class="stars" aria-label="4.7 von 5">
@@ -725,8 +766,8 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail17.html" aria-label="Zum SOS Hämorrhoiden-Salbe">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt17/71-tHY3NtAL._AC_SL1500_.jpg" alt="SOS Hämorrhoiden-Salbe" loading="lazy">
-        <span class="label">Neu</span>
+        <img src="/assets/images/products/Produkt17/71vrkJMmSHL._AC_SL1500_.jpg" alt="SOS Hämorrhoiden-Salbe" loading="lazy">
+      <!--  <span class="label">Neu</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -746,8 +787,8 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail18.html" aria-label="Zum SOS Mund-Heil-Gel">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt18/614VDelgDZL._AC_SL1500_.jpg" alt="SOS Mund-Heil-Gel" loading="lazy">
-        <span class="label">Empfohlen</span>
+        <img src="/assets/images/products/Produkt18/71j7vFYKmBL._AC_SL1500_.jpg" alt="SOS Mund-Heil-Gel" loading="lazy">
+      <!--  <span class="label">Empfohlen</span> -->
       </div>
       <div class="card__body">
         <div class="row">
@@ -767,8 +808,8 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <article class="card col-3 card--product">
     <a href="produkt-detail19.html" aria-label="Zum TerraTherm Wärmepflaster Rücken">
       <div class="card__img">
-        <img src="/assets/images/products/Produkt19/7164E0QpeCL._AC_SL1500_.jpg" alt="TerraTherm Wärmepflaster Rücken" loading="lazy">
-        <span class="label">Top Wahl</span>
+        <img src="/assets/images/products/Produkt19/81k+npD4W3L._AC_SL1500_.jpg" alt="TerraTherm Wärmepflaster Rücken" loading="lazy">
+       <!-- <span class="label">Top Wahl</span> -->
       </div>
       <div class="card__body">
         <div class="row">
