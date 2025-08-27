@@ -258,6 +258,12 @@
 .sc-title{ display:flex; gap:10px; align-items:baseline }
 .sc-title .price{ color:var(--brand); font-weight:700 }
 
+      .gallery{ position:relative; }
+    .gallery-prev, .gallery-next{ position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.5); color:#fff; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; }
+    .gallery-prev{ left:8px; }
+    .gallery-next{ right:8px; }
+    .hero-media img{ max-width:100%; max-height:400px; object-fit:contain; }
+    .rel-card img{ width:90px; height:90px; object-fit:cover; }
   </style>
 </head>
 <body>
@@ -323,6 +329,7 @@
       <section class="product-wrap" id="produkt">
         <!-- Galerie / Medien -->
         <aside class="gallery">
+          <button class="gallery-prev" aria-label="Vorheriges Bild">&#10094;</button>
           <div class="hero-media" id="heroMedia">
             <img src="/assets/images/products/Produkt19/7164E0QpeCL._AC_SL1500_.jpg" alt="TerraTherm Wärmepflaster Rücken 19" id="heroImg">
           </div>
@@ -337,8 +344,8 @@
 
         <!-- Info -->
         <article class="info">
-          <h1 data-product-name>TerraTherm Wärmepflaster Rücken</h1>
-          <div class="price">13,99€</div>
+          <h1 data-product-name></h1>
+          <div class="price"></div>
           <p class="meta">Kostenloser Versand • Lieferzeit: 2–4 Werktage</p>
 
           <div class="cta-row" role="group" aria-label="Kaufoptionen">
@@ -396,35 +403,11 @@
       <section class="related" aria-labelledby="related-head">
         <h2 id="related-head">Ähnliche Produkte</h2>
         <div class="rel-grid">
-          <article class="rel-card">
-            <a href="produkt-detail1.html">
-              <img src="/assets/images/products/Produkt1/61frjp3cEpL._AC_SL1500_.jpg" alt="Beurer BR 60 Insektenstichheiler" />
-              <div class="body">
-                <strong>Beurer BR 60 Insektenstichheiler</strong>
-                <span class="price">129,00€</span>
-              </div>
-            </a>
-          </article>
+          
 
-          <article class="rel-card">
-            <a href="produkt-detail2.html">
-              <img src="/assets/images/products/Produkt2/71Pge83U50L._AC_SL1500_.jpg" alt="Sanotact Elektrolyte Plus (20 Beutel)" />
-              <div class="body">
-                <strong>Sanotact Elektrolyte Plus (20 Beutel)</strong>
-                <span class="price">149,00€</span>
-              </div>
-            </a>
-          </article>
+          
 
-          <article class="rel-card">
-            <a href="produkt-detail3.html">
-              <img src="/assets/images/products/Produkt3/71+OE7bpPNL._AC_SL1500_.jpg" alt="Bienengift Gelenkcreme" />
-              <div class="body">
-                <strong>Bienengift Gelenkcreme</strong>
-                <span class="price">119,00€</span>
-              </div>
-            </a>
-          </article>
+          
         </div>
       </section>
 
@@ -519,6 +502,7 @@
     });
     
   </script>
+  <script type="module" src="js/detail-page.js"></script>
   <script defer src="js/script.js"></script>
   <script src="js/auth-config.js"></script>               <!-- falls benötigt -->
 <script defer src="js/account-slot.js"></script>        <!-- Pfad anpassen -->

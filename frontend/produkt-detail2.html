@@ -259,6 +259,12 @@
 .sc-title{ display:flex; gap:10px; align-items:baseline }
 .sc-title .price{ color:var(--brand); font-weight:700 }
 
+      .gallery{ position:relative; }
+    .gallery-prev, .gallery-next{ position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.5); color:#fff; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; }
+    .gallery-prev{ left:8px; }
+    .gallery-next{ right:8px; }
+    .hero-media img{ max-width:100%; max-height:400px; object-fit:contain; }
+    .rel-card img{ width:90px; height:90px; object-fit:cover; }
   </style>
 </head>
 <body>
@@ -323,9 +329,11 @@
       <section class="product-wrap" id="produkt">
         <!-- Galerie / Medien -->
         <aside class="gallery">
+          <button class="gallery-prev" aria-label="Vorheriges Bild">&#10094;</button>
           <div class="hero-media" id="heroMedia">
             <img src="/assets/images/products/Produkt2/71Pge83U50L._AC_SL1500_.jpg" alt="Sanotact Elektrolyte Plus (20 Beutel)" id="heroImg">
           </div>
+          <button class="gallery-next" aria-label="Nächstes Bild">&#10095;</button>
           <div class="thumbs" aria-label="Weitere Ansichten">
             <img src="/assets/images/products/Produkt2/71QmTqY20UL._AC_SL1500_.jpg" alt="Sanotact Elektrolyte Plus (20 Beutel) – Ansicht 1" data-src="/assets/images/products/Produkt2/71QmTqY20UL._AC_SL1500_.jpg">
             <img src="/assets/images/products/Produkt2/71j6m+1FXIL._AC_SL1500_.jpg" alt="Sanotact Elektrolyte Plus (20 Beutel) – Ansicht 2" data-src="/assets/images/products/Produkt2/71j6m+1FXIL._AC_SL1500_.jpg">
@@ -336,8 +344,8 @@
 
         <!-- Info -->
         <article class="info">
-          <h1 data-product-name>Sanotact Elektrolyte Plus (20 Beutel)</h1>
-          <div class="price">3,95€</div>
+          <h1 data-product-name></h1>
+          <div class="price"></div>
           <p class="meta">Sofort verfügbar • Versandzeit: 2–4 Werktage</p>
 <div style="
   background: rgba(24,161,150,0.08);
@@ -394,36 +402,9 @@
       <section class="related" aria-labelledby="related-head">
         <h2 id="related-head">Ähnliche Produkte</h2>
         <div class="rel-grid">
-          <article class="rel-card">
-            <a href="produkt-detail3.html">
-              <img src="/assets/images/products/Produkt3/71+OE7bpPNL._AC_SL1500_.jpg" alt="Bienengift Gelenkcreme" />
-              <div class="body">
-                <strong>Bienengift Gelenkcreme</strong>
-                <span class="price">119,00€</span>
-              </div>
-            </a>
-          </article>
-
-          <article class="rel-card">
-            <a href="produkt-detail4.html">
-              <img src="/assets/images/products/Produkt4/61a05r0LxML._AC_SL1500_.jpg" alt="Autan Multi Insect Pumpspray" />
-              <div class="body">
-                <strong>Autan Multi Insect Pumpspray</strong>
-                <span class="price">139,00€</span>
-              </div>
-            </a>
-          </article>
-
-          <article class="rel-card">
-            <a href="produkt-detail5.html">
-              <img src="/assets/images/products/Produkt5/71G406JeakL._AC_SL1500_.jpg" alt="Beurer EM 49 Digital TENSEMS" />
-              <div class="body">
-                <strong>Beurer EM 49 Digital TENSEMS</strong>
-                <span class="price">89,00€</span>
-              </div>
-            </a>
-          </article>
-        </div>
+          
+          
+                  </div>
       </section>
 
 
@@ -516,6 +497,7 @@
       });
     });
   </script>
+  <script type="module" src="js/detail-page.js"></script>
   <script defer src="js/script.js"></script>
   <script src="js/auth-config.js"></script>               <!-- falls benötigt -->
 <script defer src="js/account-slot.js"></script>        <!-- Pfad anpassen -->
