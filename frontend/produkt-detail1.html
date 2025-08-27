@@ -257,6 +257,39 @@
 .sticky-cta__inner{ padding:12px 0; display:flex; gap:12px; align-items:center; justify-content:space-between }
 .sc-title{ display:flex; gap:10px; align-items:baseline }
 .sc-title .price{ color:var(--brand); font-weight:700 }
+/* Tabs: feste Mindesthöhe, damit das Layout nicht springt */
+.tabs .tab-panel {
+  min-height: 220px;           /* <- Höhe nach Bedarf anpassen */
+  padding: 14px;
+}
+
+/* Tab-Head optisch dezent, Buttons sind deaktiviert */
+.tab-head {
+  display: flex; gap: 8px; margin-bottom: 10px;
+}
+.tab-head button[disabled]{
+  opacity: .6; cursor: not-allowed;
+  background: rgba(255,255,255,.06);
+  color: var(--muted);
+  border: 1px solid rgba(255,255,255,.08);
+  padding: 8px 12px; border-radius: 8px;
+}
+
+/* Info-Note Karte */
+.partner-info-note{
+  display: flex; gap: 12px; align-items: flex-start;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  padding: 14px;
+  color: var(--muted);
+  box-shadow: var(--shadow);
+}
+.partner-info-note .pin-icon{
+  font-size: 20px; line-height: 1; margin-top: 2px;
+}
+.partner-info-note .pin-text strong{ color: var(--text); }
+.partner-info-note em{ font-style: normal; color: var(--text); opacity: .9; }
 
   </style>
 </head>
@@ -364,44 +397,30 @@
           <!----s   !<span>Kein Scam – seriöse Vermittlung</span> -->
           </div>
 
-          <div class="tabs" id="details">
-            <div class="tab-head" role="tablist" aria-label="Produktinfos">
-              <button type="button" role="tab" aria-selected="true" data-tab="desc">Beschreibung</button>
-              <button type="button" role="tab" aria-selected="false" data-tab="features">Merkmale</button>
-              <button type="button" role="tab" aria-selected="false" data-tab="shipping">Versand & Retouren</button>
-            </div>
+         <div class="tabs" id="details">
+  <div class="tab-head" role="tablist" aria-label="Produktinfos">
+<!--  <button type="button" role="tab" aria-selected="true" data-tab="desc" disabled>Beschreibung</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="features" disabled>Merkmale</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="shipping" disabled>Versand & Retouren</button> -->
+  </div>
 
-            <div id="tab-desc" class="tab-panel" data-active="true">
-              <p>
-                Kurze, ehrliche Beschreibung. Was macht das Produkt gut? Für wen ist es gedacht?
-                Keine Übertreibungen – seriöse Infos für Vertrauen.
-              </p>
-            </div>
+  <!-- EIN einziges sichtbares Panel mit Hinweis -->
+  <div id="tab-desc" class="tab-panel" data-active="true">
+    <div class="partner-info-note" role="note" aria-label="Hinweis zu Produktdetails">
+      <div class="pin-icon" aria-hidden="true">ℹ️</div>
+      <div class="pin-text">
+        <strong>Hinweis:</strong> Alle <em>Beschreibung</em>, <em>Merkmale</em> und <em>Versanddetails</em>
+        finden Sie direkt auf der Partner-Seite über den Button
+        <strong>„Bei Partner kaufen“</strong>.
+      </div>
+    </div>
+  </div>
 
-            <div id="tab-features" class="tab-panel">
-              <ul>
-                <li>Feature 1 – verständlich erklärt</li>
-                <li>Feature 2 – Nutzen statt Buzzwords</li>
-                <li>Feature 3 – echte Vorteile</li>
-              </ul>
-            </div>
+  <!-- Die anderen Panels bleiben leer/unsichtbar, damit nichts verrutscht -->
+  <div id="tab-features" class="tab-panel" hidden></div>
+  <div id="tab-shipping" class="tab-panel" hidden></div>
+</div>
 
-            <div id="tab-shipping" class="tab-panel">
-              <p>Versand über Partner • Lieferzeit: 2–4 Werktage • Rückgabe gemäß Bedingungen des Partners.</p>
-            </div>
-          </div>
-
-          <!-- Spezifikationen -->
-          <section class="specs" aria-labelledby="specs-head">
-            <h3 id="specs-head">Spezifikationen</h3>
-            <div class="specgrid">
-              <div><span>Material</span><span>Textil / Synthetik</span></div>
-              <div><span>Gewicht</span><span>~ 280 g</span></div>
-              <div><span>Größen</span><span>36–46</span></div>
-              <div><span>Farbe</span><span>Schwarz/Weiß</span></div>
-            </div>
-          </section>
-        </article>
       </section>
 
       <!-- Ähnliche Produkte -->

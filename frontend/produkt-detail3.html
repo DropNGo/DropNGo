@@ -361,44 +361,30 @@
    <!--   <span>Kein Scam – seriöse Vermittlung</span> -->
           </div>
 
-          <div class="tabs" id="details">
-            <div class="tab-head" role="tablist" aria-label="Produktinfos">
-              <button type="button" role="tab" aria-selected="true" data-tab="desc">Beschreibung</button>
-              <button type="button" role="tab" aria-selected="false" data-tab="features">Merkmale</button>
-              <button type="button" role="tab" aria-selected="false" data-tab="shipping">Versand & Retouren</button>
-            </div>
+         <div class="tabs" id="details">
+  <div class="tab-head" role="tablist" aria-label="Produktinfos">
+    <!--  <button type="button" role="tab" aria-selected="true" data-tab="desc" disabled>Beschreibung</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="features" disabled>Merkmale</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="shipping" disabled>Versand & Retouren</button> -->
+  </div>
 
-            <div id="tab-desc" class="tab-panel" data-active="true">
-              <p>
-                Kurze, ehrliche Beschreibung. Was macht das Produkt gut? Für wen ist es gedacht?
-                Keine Übertreibungen – seriöse Infos für Vertrauen.
-              </p>
-            </div>
+  <!-- EIN einziges sichtbares Panel mit Hinweis -->
+  <div id="tab-desc" class="tab-panel" data-active="true">
+    <div class="partner-info-note" role="note" aria-label="Hinweis zu Produktdetails">
+      <div class="pin-icon" aria-hidden="true">ℹ️</div>
+      <div class="pin-text">
+        <strong>Hinweis:</strong> Alle <em>Beschreibung</em>, <em>Merkmale</em> und <em>Versanddetails</em>
+        finden Sie direkt auf der Partner-Seite über den Button
+        <strong>„Bei Partner kaufen“</strong>.
+      </div>
+    </div>
+  </div>
 
-            <div id="tab-features" class="tab-panel">
-              <ul>
-                <li>Feature 1 – verständlich erklärt</li>
-                <li>Feature 2 – Nutzen statt Buzzwords</li>
-                <li>Feature 3 – echte Vorteile</li>
-              </ul>
-            </div>
+  <!-- Die anderen Panels bleiben leer/unsichtbar, damit nichts verrutscht -->
+  <div id="tab-features" class="tab-panel" hidden></div>
+  <div id="tab-shipping" class="tab-panel" hidden></div>
+</div>
 
-            <div id="tab-shipping" class="tab-panel">
-              <p>Versand über Partner • Lieferzeit: 2–4 Werktage • Rückgabe gemäß Bedingungen des Partners.</p>
-            </div>
-          </div>
-
-          <!-- Spezifikationen -->
-          <section class="specs" aria-labelledby="specs-head">
-            <h3 id="specs-head">Spezifikationen</h3>
-            <div class="specgrid">
-              <div><span>Material</span><span>Textil / Synthetik</span></div>
-              <div><span>Gewicht</span><span>~ 280 g</span></div>
-              <div><span>Größen</span><span>36–46</span></div>
-              <div><span>Farbe</span><span>Schwarz/Weiß</span></div>
-            </div>
-          </section>
-        </article>
       </section>
 
       <!-- Ähnliche Produkte -->
