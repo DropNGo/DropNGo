@@ -2,15 +2,44 @@ import { getProducts } from './product-data.js';
 
 async function init() {
   const products = await getProducts();
-  const idMatch = location.pathname.match(/produkt-detail(\d+)\.html/);
+  const path = location.pathname;
+  let idMatch = path.match(/produkt-detail(\d+)\.html/);
+  if (!idMatch) idMatch = path.match(/(?:^|\/)(\d+)-[^/]*\.html$/);
   const currentId = idMatch ? idMatch[1] : null;
   const product = products.find(p => p.id === currentId);
 
   if (product) {
+    const displayTitle = `${product.id}. ${product.title}`;
+
+    // Title / OG title
+    document.title = `${displayTitle} | DropNGo`;
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', `${displayTitle} | DropNGo`);
+
+    // H1 and breadcrumb
     const nameEl = document.querySelector('[data-product-name]');
-    const priceEl = document.querySelector('.price');
-    if (nameEl) nameEl.textContent = product.title;
-    if (priceEl) priceEl.textContent = product.price;
+    if (nameEl) nameEl.textContent = displayTitle;
+    const bcCurrent = document.querySelector('.breadcrumbs [aria-current="page"]');
+    if (bcCurrent) bcCurrent.textContent = displayTitle;
+
+    // Prices: sticky and main
+    const stickyName = document.getElementById('scName');
+    if (stickyName) stickyName.textContent = displayTitle;
+    const stickyPrice = document.querySelector('.sticky-cta .price');
+    if (stickyPrice) stickyPrice.textContent = product.price;
+    const infoPrice = document.querySelector('.info .price');
+    if (infoPrice) infoPrice.textContent = product.price;
+
+    // Unify partner link across all primary CTAs
+    const primaryLinks = Array.from(document.querySelectorAll('a.cta-primary'));
+    const firstHref = primaryLinks.find(a => a.getAttribute('href'))?.getAttribute('href');
+    if (firstHref) {
+      primaryLinks.forEach(a => {
+        a.setAttribute('href', firstHref);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'nofollow noopener');
+      });
+    }
   }
 
   // fill related products
