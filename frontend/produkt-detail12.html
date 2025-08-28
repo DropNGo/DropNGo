@@ -258,6 +258,12 @@
 .sc-title{ display:flex; gap:10px; align-items:baseline }
 .sc-title .price{ color:var(--brand); font-weight:700 }
 
+      .gallery{ position:relative; }
+    .gallery-prev, .gallery-next{ position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.5); color:#fff; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; }
+    .gallery-prev{ left:8px; }
+    .gallery-next{ right:8px; }
+    .hero-media img{ max-width:100%; max-height:400px; object-fit:contain; }
+    .rel-card img{ width:90px; height:90px; object-fit:cover; }
   </style>
 </head>
 <body>
@@ -300,7 +306,7 @@
   </nav>
 </aside>
 
-#
+
 
 <div class="sticky-cta" role="region" aria-label="Kaufaktion">
   <div class="container sticky-cta__inner">
@@ -323,9 +329,11 @@
       <section class="product-wrap" id="produkt">
         <!-- Galerie / Medien -->
         <aside class="gallery">
+          <button class="gallery-prev" aria-label="Vorheriges Bild">&#10094;</button>
           <div class="hero-media" id="heroMedia">
             <img src="/assets/images/products/produkt12/81ukq1y0CML._AC_SL1500_.jpg" alt="Glückstoff® Orthopädisches Kissen" id="heroImg">
           </div>
+          <button class="gallery-next" aria-label="Nächstes Bild">&#10095;</button>
           <div class="thumbs" aria-label="Weitere Ansichten">
             <img src="/assets/images/products/produkt12/81ukq1y0CML._AC_SL1500_.jpg" alt="Ansicht 1" data-src="/assets/images/products/produkt12/81ukq1y0CML._AC_SL1500_.jpg">
             <img src="/assets/images/products/produkt12/81V+BKcspnL._AC_SL1500_.jpg" alt="Ansicht 2" data-src="/assets/images/products/produkt12/81V+BKcspnL._AC_SL1500_.jpg">
@@ -338,8 +346,8 @@
 
         <!-- Info -->
         <article class="info">
-          <h1 data-product-name>Glückstoff® Orthopädisches Kissen</h1>
-          <div class="price">74,90€</div>
+          <h1 data-product-name></h1>
+          <div class="price"></div>
           <p class="meta">Sofort verfügbar • Versandzeit: 2–4 Werktage</p>
 
           <div class="cta-row" role="group" aria-label="Kaufoptionen">
@@ -397,36 +405,9 @@
       <section class="related" aria-labelledby="related-head">
         <h2 id="related-head">Ähnliche Produkte</h2>
         <div class="rel-grid">
-          <article class="rel-card">
-            <a href="produkt-detail13.html">
-              <img src="/assets/images/products/Produkt13/71JD56mugsL._AC_SL1500_.jpg" alt="health Press" />
-              <div class="body">
-                <strong>health Press</strong>
-                <span class="price">89,00€</span>
-              </div>
-            </a>
-          </article>
-
-          <article class="rel-card">
-            <a href="produkt-detail14.html">
-              <img src="/assets/images/products/Produkt14/71TnNDQ6IjL._AC_SL1500_.jpg" alt="heat it - Insektenstichheiler für dein Smartphone" />
-              <div class="body">
-                <strong>heat it - Insektenstichheiler für dein Smartphone</strong>
-                <span class="price">79,00€</span>
-              </div>
-            </a>
-          </article>
-
-          <article class="rel-card">
-            <a href="produkt-detail15.html">
-              <img src="/assets/images/products/Produkt15/61v1DDxzytL._AC_SL1500_.jpg" alt="Letitwell Heizkissen" />
-              <div class="body">
-                <strong>Letitwell Heizkissen</strong>
-                <span class="price">99,00€</span>
-              </div>
-            </a>
-          </article>
-        </div>
+          
+          
+                  </div>
       </section>
 
 
@@ -520,6 +501,7 @@
     });
     
   </script>
+  <script type="module" src="js/detail-page.js"></script>
   <script defer src="js/script.js"></script>
   <script src="js/auth-config.js"></script>               <!-- falls benötigt -->
 <script defer src="js/account-slot.js"></script>        <!-- Pfad anpassen -->

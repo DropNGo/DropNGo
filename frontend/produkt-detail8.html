@@ -258,6 +258,12 @@
 .sc-title{ display:flex; gap:10px; align-items:baseline }
 .sc-title .price{ color:var(--brand); font-weight:700 }
 
+      .gallery{ position:relative; }
+    .gallery-prev, .gallery-next{ position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.5); color:#fff; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; }
+    .gallery-prev{ left:8px; }
+    .gallery-next{ right:8px; }
+    .hero-media img{ max-width:100%; max-height:400px; object-fit:contain; }
+    .rel-card img{ width:90px; height:90px; object-fit:cover; }
   </style>
 </head>
 <body>
@@ -300,7 +306,7 @@
   </nav>
 </aside>
 
-#
+
 
 <div class="sticky-cta" role="region" aria-label="Kaufaktion">
   <div class="container sticky-cta__inner">
@@ -323,9 +329,11 @@
       <section class="product-wrap" id="produkt">
         <!-- Galerie / Medien -->
         <aside class="gallery">
+          <button class="gallery-prev" aria-label="Vorheriges Bild">&#10094;</button>
           <div class="hero-media" id="heroMedia">
             <img src="/assets/images/products/Produkt8/61dw+4JnGBL._AC_SL1500_.jpg" alt="AUDISPRAY Ultra" id="heroImg">
           </div>
+          <button class="gallery-next" aria-label="Nächstes Bild">&#10095;</button>
           <div class="thumbs" aria-label="Weitere Ansichten">
             <img src="/assets/images/products/Produkt8/711Dct9-wNL._AC_SL1500_.jpg" alt="AUDISPRAY Ultra – Ansicht 1" data-src="/assets/images/products/Produkt8/711Dct9-wNL._AC_SL1500_.jpg">
             <img src="/assets/images/products/Produkt8/719fgcIWMcL._AC_SL1500_.jpg" alt="AUDISPRAY Ultra – Ansicht 2" data-src="/assets/images/products/Produkt8/719fgcIWMcL._AC_SL1500_.jpg">
@@ -336,8 +344,8 @@
 
         <!-- Info -->
         <article class="info">
-          <h1 data-product-name>AUDISPRAY Ultra</h1>
-          <div class="price">9,99€</div>
+          <h1 data-product-name></h1>
+          <div class="price"></div>
           <p class="meta">Sofort verfügbar • Versandzeit: 2–4 Werktage</p>
 
           <div class="cta-row" role="group" aria-label="Kaufoptionen">
@@ -395,36 +403,9 @@
       <section class="related" aria-labelledby="related-head">
         <h2 id="related-head">Ähnliche Produkte</h2>
         <div class="rel-grid">
-          <article class="rel-card">
-            <a href="produkt-detail9.html">
-              <img src="/assets/images/products/Produkt9/31mP0jcLzzL._AC_.jpg" alt="Bauerfeind ViscoSpot Fersenkisse" />
-              <div class="body">
-                <strong>Bauerfeind ViscoSpot Fersenkisse</strong>
-                <span class="price">179,00€</span>
-              </div>
-            </a>
-          </article>
-
-          <article class="rel-card">
-            <a href="produkt-detail10.html">
-              <img src="/assets/images/products/Produkt10/videoframe_22737.png" alt="Behrend Warzenmittel für Hand & Fuß" />
-              <div class="body">
-                <strong>Behrend Warzenmittel für Hand & Fuß</strong>
-                <span class="price">109,00€</span>
-              </div>
-            </a>
-          </article>
-
-          <article class="rel-card">
-            <a href="produkt-detail11.html">
-              <img src="/assets/images/products/Produkt11/611TpwuiETL._AC_SL1500_.jpg" alt="Fußmassagerolle für Plantarfasziitis" />
-              <div class="body">
-                <strong>Fußmassagerolle für Plantarfasziitis</strong>
-                <span class="price">149,00€</span>
-              </div>
-            </a>
-          </article>
-        </div>
+          
+          
+                  </div>
       </section>
 
 
@@ -518,6 +499,7 @@
     });
     
   </script>
+  <script type="module" src="js/detail-page.js"></script>
   <script defer src="js/script.js"></script>
   <script src="js/auth-config.js"></script>               <!-- falls benötigt -->
 <script defer src="js/account-slot.js"></script>        <!-- Pfad anpassen -->
