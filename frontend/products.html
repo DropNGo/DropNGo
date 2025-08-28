@@ -153,8 +153,12 @@
 }
 @media (max-width: 640px){
   .products.container .grid{
-    grid-template-columns: 1fr; /* Mobile: 1 */
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Mobile: 2 */
+    gap: 12px; /* etwas kompakter auf Handy */
   }
+  .card-body{ padding: 12px; }
+  .card-body h3{ font-size: 0.9rem; }
+  .price{ font-size: 0.9rem; }
 }
 
 /* Falls noch .col-3 aus altem Layout existiert: neutralisieren */
@@ -367,36 +371,39 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
       <span class="dng-brand-text">DropNGo</span>
     </a>
 
-    <!-- Desktop-Links -->
-    <nav class="dng-links" aria-label="Hauptnavigation">
-      <a href="index.html">Home</a>
-      <a href="products.html">Produkte</a>
-      <a href="info.html">Über uns</a>
-      <a href="support-formular.html">Support</a>
-     <!-- <a href="account.html" class="dng-account">Mein Konto</a> -->
-    </nav>
+   <!-- Desktop-Links -->
+<nav class="dng-links" aria-label="Hauptnavigation">
+  <a href="index.html">Home</a>
+  <a href="products.html" aria-current="page">Produkte</a>
+  <a href="blog/blog.html">Blog</a>
+  <a href="info.html">Über uns</a>
+  <a href="support-formular.html">Support</a>
+  <!-- <a href="account.html" class="dng-account">Mein Konto</a> -->
+</nav>
 
-    <!-- Burger -->
-    <button id="dngNavToggle" class="dng-burger" aria-expanded="false" aria-controls="dngMobileMenu" aria-label="Menü öffnen">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-  </div>
+<!-- Burger -->
+<button id="dngNavToggle" class="dng-burger" aria-expanded="false" aria-controls="dngMobileMenu" aria-label="Menü öffnen">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</button>
+</div>
 </header>
 
-<!-- ===== Mobile Drawer + Overlay (neu) ===== -->
+<!-- ===== Mobile Drawer + Overlay ===== -->
 <div id="dngOverlay" class="dng-overlay" hidden></div>
 
 <aside id="dngMobileMenu" class="dng-drawer" hidden aria-label="Mobile Navigation">
   <nav class="dng-drawer-nav">
     <a href="index.html">Home</a>
-    <a href="products.html">Produkte</a>
+    <a href="products.html" aria-current="page">Produkte</a>
+    <a href="blog/blog.html">Blog</a>
     <a href="info.html">Über uns</a>
     <a href="support-formular.html">Support</a>
-   <!-- <a href="account.html">Mein Konto</a> -->
+    <!-- <a href="account.html">Mein Konto</a> -->
   </nav>
 </aside>
+
 
 
 
@@ -879,17 +886,36 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
 
 
 
-<script defer src="js/script.js"></script>
-<script src="js/auth-config.js"></script>
-<script defer src="js/account-slot.js"></script>
+<script>
+  (function(){
+    const btn = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    if(!btn || !menu) return;
 
-<link rel="stylesheet" href="css/mobile.css">
-<script src="js/mobile.js" defer></script>
+    function openMenu(){
+      menu.removeAttribute('hidden');
+      btn.setAttribute('aria-expanded','true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      menu.setAttribute('hidden','');
+      btn.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    }
 
+    // Falls ein altes display:none vom CSS noch greift, hier hart öffnen.
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
 
-  
-  
-</style>
+    // ESC schließt
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
+
+    // Link-Klick schließt
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  })();
+</script>
 <link rel="stylesheet" href="css/mobile.css">
 <script src="js/mobile.js" defer></script>
 

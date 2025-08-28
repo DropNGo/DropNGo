@@ -1,0 +1,102 @@
+/* --- Blog Übersicht (blog.html) --- */
+.blog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.blog-preview {
+  background: #111; /* dunkler Hintergrund */
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding-bottom: 1rem;
+}
+
+.blog-preview img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #222;
+}
+
+.blog-preview h2 {
+  font-size: 1.2rem;
+  margin: 1rem;
+  color: #fff;
+}
+
+.blog-preview p {
+  font-size: 0.95rem;
+  color: #bbb;
+  margin: 0 1rem 1rem;
+}
+
+.blog-preview:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+}
+
+/* --- Artikel-Seiten (z. B. ashwagandha.html) --- */
+.blog-article {
+  background: #111;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.blog-article h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.blog-article h2 {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  color: #00bfff; /* Akzentfarbe */
+}
+
+.blog-article p,
+.blog-article li {
+  color: #ccc;
+  font-size: 1rem;
+}
+
+.blog-article ul, 
+.blog-article ol {
+  margin: 1rem 0 1rem 1.5rem;
+}
+
+.blog-article figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.blog-article figcaption {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+/* --- Call-to-Action Links --- */
+.btn, 
+.blog-article .cta a {
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  background: #00bfff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn:hover,
+.blog-article .cta a:hover {
+  background: #0088cc;
+}
