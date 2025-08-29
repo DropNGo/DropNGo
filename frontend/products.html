@@ -368,24 +368,33 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   font-feature-settings: "tnum" 1, "lnum" 1;
   letter-spacing: .01em;
 }
-.card--product .row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 6px; /* etwas Abstand zwischen Titel und Preis */
-}
+@media (max-width: 600px) {
+  .card--product .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+  }
 
-.card--product h3 {
-  flex: 1;
-  font-size: 0.95rem; /* falls Titel zu lang wird */
-  line-height: 1.3;
-  margin: 0;
-}
+  .card--product .product-title {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.3;
 
-.card--product .price {
-  white-space: nowrap; /* verhindert Zeilenumbruch beim Preis */
-  font-weight: 600;
-  color: #18a196; /* deine Brand-Farbe */
+    /* Einfache Lösung: Wenn Titel zu lang → wird abgeschnitten mit "…" */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .card--product .price {
+    margin-left: auto;
+    white-space: nowrap; /* Preis bleibt in einer Zeile */
+    font-weight: 700;
+    color: var(--brand, #18a196);
+  }
 }
 
   </style>
@@ -467,25 +476,31 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   <h2>Unsere Highlights</h2>
 <div class="grid" style="margin-top:14px">
   <!-- Produkt 1 -->
-  <article class="card col-3 card--product">
-    <a href="01-beurer-br-60-insektenstichheiler.html" aria-label="Zum Beurer BR 60 Insektenstichheiler">
-      <div class="card__img">
-        <img src="/assets/images/products/Produkt1/71vBNHwEJmL._AC_SL1500_.jpg" alt="Beurer BR 60 Insektenstichheiler" loading="lazy">
-       <!-- <span class="label label--low">Nur 3 übrig</span> -->
+  <!-- Produkt 1 (FIXED) -->
+<article class="card col-3 card--product">
+  <a href="01-beurer-br-60-insektenstichheiler.html" aria-label="Zum Beurer BR 60 Insektenstichheiler">
+    <div class="card__img">
+      <img src="/assets/images/products/Produkt1/71vBNHwEJmL._AC_SL1500_.jpg"
+           alt="Beurer BR 60 Insektenstichheiler" loading="lazy">
+      <!-- <span class="label label--low">Nur 3 übrig</span> -->
+    </div>
+
+    <div class="card__body">
+      <div class="row">
+        <h3 class="product-title">Beurer BR 60 Insektenstichheiler</h3>
+        <span class="price">19,99€</span>
       </div>
-      <div class="card__body">
-        <div class="row">
-          <h3>Beurer BR 60 Insektenstichheiler</h3>
-          <span class="price">19,99€</span>
-        </div>
-        <div class="stars" aria-label="4.7 von 5">
-          <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
-          <span class="count">4.7</span>
-        </div>
-        <div class="meta">Versand aus DE</div>
+
+      <div class="stars" aria-label="4.7 von 5">
+        <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
+        <span class="count">4.7</span>
       </div>
-    </a>
-  </article>
+
+      <div class="meta">Versand aus DE</div>
+    </div>
+  </a>
+</article>
+
 
   <!-- Produkt 2 -->
   <article class="card col-3 card--product">
