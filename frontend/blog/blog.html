@@ -47,6 +47,16 @@
     .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:18px;padding:26px 0}
     @media(max-width:760px){.footer-grid{grid-template-columns:1fr}}
     .copyright{color:#8f98a3;font-size:14px;padding:12px 0 32px}
+    /* Mobile-Feintuning für Blog-Grid-Bilder */
+@media (max-width: 760px){
+  .card__img{ height:180px; }   /* vorher 220px */
+}
+@media (max-width: 520px){
+  .card__img{ height:150px; }
+  .card__body{ padding:12px; }
+  .card__body h3{ font-size:0.98rem; }
+}
+
   </style>
 </head>
 <body>

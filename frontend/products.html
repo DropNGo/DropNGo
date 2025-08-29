@@ -358,9 +358,18 @@ footer.site-footer{ margin-top: 42px; border-top:1px solid rgba(255,255,255,.06)
   background: transparent;
   border-radius: 0;              /* kein runder Rahmen */
 }
+/* gleiche Ziffernbreite + kein Umbruch + leichtes Tracking */
+.price{
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;      /* gleiche Breite */
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  letter-spacing: .01em;
+}
 
   </style>
 </head>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <body>
 
 <!-- ===== Global Header (neu) ===== -->

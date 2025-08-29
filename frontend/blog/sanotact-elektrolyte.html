@@ -71,6 +71,26 @@
 .related .card__body {
   padding: 14px;
 }
+/* Mobile-Feintuning für Artikelbilder & Related-Cards */
+@media (max-width: 520px){
+  .article{ padding:16px; }
+  .article figure{ display:flex; justify-content:center; }
+  .article img{
+    width:88%;
+    max-width:330px;   /* vorher ~100% */
+    height:auto;
+  }
+  .article figcaption{ font-size:13px; }
+
+  .related .grid{ gap:12px; }
+  .related .card__img{ height:130px; } /* vorher 160px */
+  .related .card__body{ padding:12px; }
+  .related .card__body h3{ font-size:0.95rem; }
+}
+@media (max-width: 380px){
+  .related .card__img{ height:120px; }
+  .article img{ max-width:300px; }
+}
 
   </style>
 </head>
@@ -111,7 +131,7 @@
       <p>Beutel in Wasser auflösen, trinken – je nach Bedarf rund um Training, bei Hitze oder erhöhtem Flüssigkeitsverlust.</p>
 
      <div class="cta">
-         <a href="../produkt-detail2.html">Zur Produktseite</a>
+         <a href="../02-sanotact-elektrolyte-plus-20-beutel.html">Zur Produktseite</a>
         &nbsp;|&nbsp;
         <a href="https://amzn.to/4mWUNH9" target="_blank" rel="nofollow sponsored">Bei Partner kaufen</a>
       </div>
