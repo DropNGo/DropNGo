@@ -1589,29 +1589,17 @@ html[data-theme="dark"]  #themeToggle .moon { opacity: 1; }
 <!-- ===== Global Header (neu) ===== -->
 <header class="dng-header" data-mobile>
   <div class="dng-container dng-nav">
-    <a class="dng-brand" href="index.html" aria-label="DropNGo Startseite">
-      <img src="favicon.ico" alt="" class="dng-logo">
-      <span class="dng-brand-text">DropNGo</span>
-    </a>
+   <a class="dng-brand" href="index.html" aria-label="DropNGo Startseite">
+  <img src="favicon.ico" alt="" class="dng-logo">
+  <span class="dng-brand-text">DropNGo</span>
+</a>
 
-
-
-
-
-
-   <!-- Desktop-Links -->
-<nav class="dng-links" aria-label="Hauptnavigation">
-  <a href="index.html">Home</a>
-  <a href="products.html" aria-current="page">Produkte</a>
-  <a href="blog/bloguebersicht.html">Blog</a>
-  <a href="info.html">Über uns</a>
-  <!-- im Header -->
-<button id="themeToggle" class="theme-toggle" aria-label="Theme umschalten">
-  <!-- Sonne (outline) -->
+<!-- BUTTON HIERHIN (außerhalb der dng-links) -->
+<button id="themeToggle" class="theme-toggle" aria-label="Theme umschalten" style="margin-left:6px">
+  <!-- deine beiden SVGs unverändert -->
   <svg class="icon sun" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
   </svg>
-<!-- Mond Outline -->
 <svg class="icon moon" xmlns="http://www.w3.org/2000/svg" 
      viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" 
      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1619,9 +1607,15 @@ html[data-theme="dark"]  #themeToggle .moon { opacity: 1; }
            7 7 0 0 0 21 12.79z"/>
 </svg>
 </button>
-  <!-- <a href="support-formular.html">Support</a> -->
-  <!-- <a href="account.html" class="dng-account">Mein Konto</a> -->
+
+<nav class="dng-links" aria-label="Hauptnavigation">
+  <a href="index.html">Home</a>
+  <a href="products.html" aria-current="page">Produkte</a>
+  <a href="blog/bloguebersicht.html">Blog</a>
+  <a href="info.html">Über uns</a>
 </nav>
+
+
 
 <!-- Burger -->
 <button id="dngNavToggle" class="dng-burger" aria-expanded="false" aria-controls="dngMobileMenu" aria-label="Menü öffnen">
