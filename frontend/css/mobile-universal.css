@@ -231,3 +231,35 @@
 @media (max-width: 820px) {
   #themeToggle { display: inline-grid !important; }
 }
+/* Button bleibt immer pillenförmig */
+.theme-toggle,
+.theme-toggle:hover,
+.theme-toggle:active { border-radius: 9999px !important; }
+
+/* MOBILE: Toggle direkt rechts vom Brand in derselben Zeile */
+@media (max-width: 820px) {
+  .dng-nav { display:flex; align-items:center; gap:10px; }
+  .dng-brand { display:flex; align-items:center; gap:8px; }
+
+  /* Der echte Button, der via JS neben das Brand gesetzt wird */
+  #themeToggle.is-mobile-inline {
+    position: static !important;
+    margin-left: 6px !important;     /* kleiner Abstand zum "DropNGo"-Text */
+    display: inline-grid !important;
+  }
+
+  /* Falls irgendwo noch weitere .theme-toggle auftauchen: ausblenden */
+  .theme-toggle:not(#themeToggle) { display: none !important; }
+}
+
+/* TOUCH: Hover nicht festkleben lassen */
+@media (hover: none), (any-hover: none) {
+  html[data-theme="light"] .theme-toggle:hover,
+  html[data-theme="dark"]  .theme-toggle:hover {
+    background: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  }
+  .theme-toggle:active { transform: translateY(1px); }
+}
