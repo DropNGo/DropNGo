@@ -1446,6 +1446,28 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
     box-shadow: none !important;
   }
 }
+.theme-toggle .icon {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  position: absolute;
+}
+
+.theme-toggle .sun,
+.theme-toggle .moon {
+  width: 22px;
+  height: 22px;
+}
+
+[data-theme="light"] .theme-toggle .sun { opacity: 1; }
+[data-theme="dark"]  .theme-toggle .moon { opacity: 1; }
+#themeToggle {
+  margin-left: 8px;   /* vorher 4px → minimal mehr Abstand */
+}
+@media (max-width: 820px) {
+  #themeToggle {
+    margin-left: 12px !important;  /* etwas weiter rechts */
+  }
+}
 
   </style>
 </head>
