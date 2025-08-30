@@ -1468,6 +1468,38 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
     margin-left: 12px !important;  /* etwas weiter rechts */
   }
 }
+/* --- Theme-Toggle: stabile Anzeige auf Mobile --- */
+/* vorherige display:none-Regeln übersteuern */
+.theme-toggle .icon { display: block !important; }
+
+/* Icons übereinander legen und mit Opacity blenden */
+.theme-toggle { position: relative; width: 52px; height: 36px; }
+.theme-toggle .sun,
+.theme-toggle .moon {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 22px; height: 22px;
+  opacity: 0;
+  transition: opacity .22s ease;
+}
+
+/* Sichtbarkeit per Opacity statt Display */
+html[data-theme="light"] .theme-toggle .sun { opacity: 1; }
+html[data-theme="dark"]  .theme-toggle .moon { opacity: 1; }
+
+/* iOS Tap-Feedback ohne Hover-Sticky */
+@media (hover:none), (any-hover:none){
+  .theme-toggle:hover { background: inherit !important; box-shadow:none !important; }
+  .theme-toggle:active { transform: translateY(1px); }
+}
+
+/* Minimal weiter nach rechts (Mobile) — Feintuning */
+@media (max-width: 820px){
+  #themeToggle {
+    margin-left: 6px !important; /* leicht nach rechts rücken */
+  }
+}
 
   </style>
 </head>
