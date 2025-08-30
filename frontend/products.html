@@ -2215,67 +2215,32 @@ html[data-theme="dark"]  #themeToggle .moon { opacity: 1; }
 
 <script>
 (() => {
-  const KEY  = 'dng:theme';
-  const root = document.documentElement;
-
-  // Deinen vorhandenen Button & Icons (NICHT verschieben, NICHT neu erstellen)
-  const btn  = document.getElementById('themeToggle') || document.querySelector('.theme-toggle');
+  const KEY = 'theme';
+  const btn = document.getElementById('themeToggle');
   if (!btn) return;
 
-  const sun  = btn.querySelector('.icon.sun');
-  const moon = btn.querySelector('.icon.moon');
-
-  // 1) Sichtbarkeit der Icons HART schalten (übersteht widersprüchliche CSS-Regeln)
-  function setIcon(theme){
-    if (!sun || !moon) return;
-    if (theme === 'dark') {
-      sun .style.setProperty('display','none','important');
-      moon.style.setProperty('display','inline-block','important');
-    } else {
-      sun .style.setProperty('display','inline-block','important');
-      moon.style.setProperty('display','none','important');
-    }
-  }
-
-  // 2) Theme anwenden
-  function apply(theme){
-    const val = theme === 'dark' ? 'dark' : 'light';
-    root.setAttribute('data-theme', val);
-    localStorage.setItem(KEY, val);
-    btn.setAttribute('aria-pressed', String(val === 'dark'));
-    setIcon(val);
-  }
-
-  // 3) Startzustand (Default: light)
+  // Start
   const saved = localStorage.getItem(KEY);
-  apply((saved === 'dark' || saved === 'light') ? saved : 'light');
+  const start = (saved === 'dark' || saved === 'light') ? saved : 'light';
+  document.documentElement.setAttribute('data-theme', start);
+  btn.setAttribute('aria-pressed', String(start === 'dark'));
 
-  // 4) Umschalten – nur data-theme + Icons, KEIN innerHTML/Textcontent anfassen
-  function toggle(){
-    const cur  = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  // Umschalten
+  const toggle = () => {
+    const cur  = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
     const next = (cur === 'dark') ? 'light' : 'dark';
-    apply(next);
-    btn.blur(); // iOS: Fokus/Hover lösen
-  }
-
-  // 5) Events robust binden (ohne Optik/Position zu ändern)
-  let lastTouch = 0;
-  btn.addEventListener('touchend', (e) => { lastTouch = Date.now(); toggle(); }, { passive:true });
-  btn.addEventListener('click',    (e) => { if (Date.now() - lastTouch < 350) return; toggle(); }, { passive:true });
-
-  // 6) Falls irgendein CSS den Button auf Mobile versteckt, Sichtbarkeit hart erzwingen
-  const makeVisible = () => {
-    const cs = getComputedStyle(btn);
-    if (cs.display === 'none') {
-      btn.style.setProperty('display','inline-grid','important'); // nur Sichtbarkeit, keine Optik ändern
-    }
-    btn.style.pointerEvents = 'auto';
-    btn.style.touchAction   = 'manipulation';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem(KEY, next);
+    btn.setAttribute('aria-pressed', String(next === 'dark'));
   };
-  makeVisible();
-  window.addEventListener('resize', makeVisible);
+
+  // Click + Touch (ohne Doppel-Trigger)
+  let t = 0;
+  btn.addEventListener('touchend', () => { t = Date.now(); toggle(); }, {passive:true});
+  btn.addEventListener('click',    () => { if (Date.now() - t < 300) return; toggle(); }, {passive:true});
 })();
 </script>
+
 
 </body>
 </html>
