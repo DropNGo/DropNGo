@@ -2200,118 +2200,65 @@ html[data-theme="dark"]  .theme-toggle .moon{ opacity:1; transform:scale(1); }
 <link rel="stylesheet" href="css/mobile.css">
 <script src="js/mobile.js" defer></script>
 <script>
-  (function(){
-    const STORAGE_KEY = 'theme';
-    const toggleBtn = document.getElementById('themeToggle');
-    const icon = document.getElementById('themeIcon');
-    const label = document.getElementById('themeLabel');
+(() => {
+  const KEY  = 'dng:theme';
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  if (!btn) return;
 
-    // Wunsch: HELL als Primär
-    // 1) Aus localStorage holen
-    let saved = localStorage.getItem(STORAGE_KEY);
+  // Deine zwei Icons IM Button (SVGs oder Spans)
+  const sun  = btn.querySelector('.sun');
+  const moon = btn.querySelector('.moon');
 
-    // 2) Wenn nichts gespeichert: standardmäßig light
-    let theme = (saved === 'dark' || saved === 'light') ? saved : 'light';
-    applyTheme(theme);
-
-    function applyTheme(next){
-      document.documentElement.setAttribute('data-theme', next === 'dark' ? 'dark' : 'light');
-      localStorage.setItem(STORAGE_KEY, next);
-
-      const isDark = next === 'dark';
-      // Button-Zustand für A11y
-      if (toggleBtn) toggleBtn.setAttribute('aria-pressed', String(isDark));
-
-      // Icon + Label
-      if (icon) icon.textContent = isDark ? '🌙' : '🌞';
-      if (label) label.textContent = isDark ? 'Dunkel' : 'Hell';
+  // Sicherheitsnetz: Darstellung nie komplett verstecken
+  function setIcon(theme){
+    if (!sun || !moon) return;
+    if (theme === 'dark') {
+      // dunkel = Mond zeigen, Sonne verstecken
+      moon.style.display = 'inline-block';
+      sun.style.display  = 'none';
+    } else {
+      // hell = Sonne zeigen, Mond verstecken
+      sun.style.display  = 'inline-block';
+      moon.style.display = 'none';
     }
+  }
 
-    if (toggleBtn){
-      toggleBtn.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-      });
-    }
-  })();
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const t = document.getElementById('themeToggle');
-  if (!t) return;
-  let timer;
-  t.addEventListener('touchstart', () => {
-    t.classList.add('pressed');
-    clearTimeout(timer);
-    timer = setTimeout(() => t.classList.remove('pressed'), 180);
-  }, {passive:true});
-});
-document.addEventListener('DOMContentLoaded', () => {
-  const btn   = document.getElementById('themeToggle');
-  const links = document.querySelector('.dng-links');
-  const brand = document.querySelector('.dng-brand'); // Logo-Link
+  function apply(theme){
+    const val = theme === 'dark' ? 'dark' : 'light';
+    root.setAttribute('data-theme', val);
+    localStorage.setItem(KEY, val);
+    btn.setAttribute('aria-pressed', String(val === 'dark'));
+    setIcon(val); // <- HIER schalten wir die Icons hart
+  }
 
-  if (!btn || !links || !brand) return;
+  // Startzustand (Default: light)
+  const saved = localStorage.getItem(KEY);
+  apply((saved === 'dark' || saved === 'light') ? saved : 'light');
 
-  const mq = window.matchMedia('(max-width: 820px)');
+  // Umschalten
+  function toggle(){
+    const cur = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    apply(cur === 'dark' ? 'light' : 'dark');
+    btn.blur(); // iOS Hover/Fokus lösen
+  }
 
-  const placeForMobile = () => {
-    // unter das Logo verschieben (direkt nach .dng-brand)
-    brand.insertAdjacentElement('afterend', btn);
-    btn.classList.add('is-mobile-pos');
-  };
+  // Events robust binden
+  btn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); }, { passive: true });
 
-  const placeForDesktop = () => {
-    // zurück ins Nav neben "Über uns"
-    links.appendChild(btn);
-    btn.classList.remove('is-mobile-pos');
-  };
+  // iOS: Falls irgendein :hover/:active Mist macht, nehmen wir Touch selbst in die Hand
+  btn.addEventListener('touchstart', (e) => {
+    e.preventDefault(); // verhindert Ghost-Click/300ms Delay
+    e.stopPropagation();
+    toggle();
+  }, { passive: false });
 
-  const updatePlacement = () => (mq.matches ? placeForMobile() : placeForDesktop());
-
-  mq.addEventListener ? mq.addEventListener('change', updatePlacement)
-                      : mq.addListener(updatePlacement); // ältere iOS
-
-  updatePlacement(); // initial
-});
-document.addEventListener('DOMContentLoaded', () => {
-  const btn   = document.getElementById('themeToggle');
-  const brand = document.querySelector('.dng-brand');   // Logo + Text
-  const links = document.querySelector('.dng-links');   // Desktop-Navigation
-  if (!btn || !brand || !links) return;
-
-  const mq = window.matchMedia('(max-width: 820px)');
-
-  const toMobile = () => {
-    // direkt RECHTS neben dem "DropNGo"-Titel
-    brand.insertAdjacentElement('afterend', btn);
-    btn.classList.add('is-mobile-inline');
-  };
-
-  const toDesktop = () => {
-    // zurück in die Desktop-Linkleiste (neben "Über uns")
-    links.appendChild(btn);
-    btn.classList.remove('is-mobile-inline');
-  };
-
-  const place = () => (mq.matches ? toMobile() : toDesktop());
-  mq.addEventListener ? mq.addEventListener('change', place) : mq.addListener(place);
-  place();
-  
-    // verhindert festhängenden :hover/:focus auf iOS
-    btn.blur();
- // Auf Touch: auch sicher den Fokus lösen
-  btn.addEventListener('touchend',   () => btn.blur(), { passive: true });
-  btn.addEventListener('touchcancel',() => btn.blur(), { passive: true });
-  /* ---------- 3) KLICKBARKEIT absichern (falls CSS woanders hakt) ---------- */
-  btn.type = 'button';
-  btn.style.pointerEvents = 'auto';
-  btn.style.position = btn.style.position || 'relative';
-  btn.style.zIndex = btn.style.zIndex || '5';
+  // Falls irgendwo Code eine 'pressed'-Klasse setzt → neutralisieren
+  btn.addEventListener('touchend',   () => btn.classList.remove('pressed'), { passive:true });
+  btn.addEventListener('touchcancel',() => btn.classList.remove('pressed'), { passive:true });
 })();
-
 </script>
+
 <script>
 (() => {
   const KEY = 'dng:theme';
