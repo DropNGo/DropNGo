@@ -1295,6 +1295,19 @@ html[data-theme="dark"] .dng-drawer a:hover { background: rgba(255,255,255,.06);
 /* Sicherheit: niemals ausgeblendet auf Mobile */
 @media (max-width: 820px) { #themeToggle { display: inline-grid !important; } }
 .theme-toggle:focus { outline: none; }
+.dng-header .theme-toggle {
+  margin-left: 12px;
+  margin-top: 2px;   /* minimal höher */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+.theme-toggle:not(:active) {
+  transform: scale(1);
+}
 
   </style>
 </head>
