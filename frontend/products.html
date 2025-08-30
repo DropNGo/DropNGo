@@ -1308,6 +1308,73 @@ html[data-theme="dark"] .dng-drawer a:hover { background: rgba(255,255,255,.06);
 .theme-toggle:not(:active) {
   transform: scale(1);
 }
+#themeToggle {
+  margin-left: 2px !important; /* kleiner Abstand, fast direkt am Text */
+  margin-top: 2px;             /* leicht höher */
+}
+@media (hover: none), (any-hover: none) {
+  #themeToggle:hover {
+    background: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    box-shadow: none !important;
+  }
+}
+/* Button soll nie von anderen Layern verdeckt werden */
+#themeToggle { position: relative; z-index: 5; }
+
+/* Mobile: Header-Reihe + Feintuning */
+@media (max-width: 820px) {
+  .dng-nav { display:flex; align-items:center; gap:10px; }
+  .dng-brand { display:flex; align-items:center; gap:8px; }
+  #themeToggle.is-mobile-inline { margin-top: 2px; margin-left: 2px; }
+}
+
+/* Hover auf Touch deaktivieren (gegen „Hängenbleiben“) */
+@media (hover: none), (any-hover: none) {
+  #themeToggle:hover {
+    background: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    box-shadow: none !important;
+  }
+}
+/* Button darf nie überdeckt werden */
+#themeToggle {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* Falls er im Nav neben "Über uns" sitzt: minimal weiter links & höher */
+.dng-links #themeToggle {
+  margin-left: 2px;  /* wenn noch zu weit rechts: 0px oder -2px versuchen */
+  margin-top:  2px;  /* minimal höher */
+}
+
+/* Eltern auf stacking-context vorbereiten (keine Overlays darüber) */
+.dng-header, .dng-nav, .dng-links, .dng-brand { position: relative; }
+
+/* Links sollen den Button nicht überdecken */
+.dng-links a { position: relative; z-index: 1; }
+
+/* Hover auf Touch-Geräten NICHT festhalten */
+@media (hover: none), (any-hover: none) {
+  #themeToggle:hover {
+    background: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    box-shadow: none !important;
+  }
+}
+/* Burger/Overlay soll den Button nicht blockieren, wenn es unsichtbar ist */
+.dng-overlay[hidden] { display: none !important; }
+
+/* Falls dein Brand-Link zu breit ist, zieh ihn zusammen */
+.dng-brand { display: inline-flex; }
+
+/* Wenn wirklich gar nichts hilft: Button ganz nach vorn holen */
+#themeToggle { z-index: 9999; }
 
   </style>
 </head>
@@ -2043,7 +2110,15 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // verhindert festhängenden :hover/:focus auf iOS
     btn.blur();
-});
+ // Auf Touch: auch sicher den Fokus lösen
+  btn.addEventListener('touchend',   () => btn.blur(), { passive: true });
+  btn.addEventListener('touchcancel',() => btn.blur(), { passive: true });
+  /* ---------- 3) KLICKBARKEIT absichern (falls CSS woanders hakt) ---------- */
+  btn.type = 'button';
+  btn.style.pointerEvents = 'auto';
+  btn.style.position = btn.style.position || 'relative';
+  btn.style.zIndex = btn.style.zIndex || '5';
+})();
 
 </script>
 
