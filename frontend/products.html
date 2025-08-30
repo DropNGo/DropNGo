@@ -2134,115 +2134,31 @@ html[data-theme="dark"]  .theme-toggle .moon { opacity: 1; }
 <link rel="stylesheet" href="css/mobile.css">
 <script src="js/mobile.js" defer></script>
 <script>
-  (function(){
-    const STORAGE_KEY = 'theme';
-    const toggleBtn = document.getElementById('themeToggle');
-    const icon = document.getElementById('themeIcon');
-    const label = document.getElementById('themeLabel');
+  (() => {
+  const STORAGE_KEY = 'theme';
+  const root = document.documentElement;
+  const toggleBtn = document.getElementById('themeToggle');
 
-    // Wunsch: HELL als Primär
-    // 1) Aus localStorage holen
-    let saved = localStorage.getItem(STORAGE_KEY);
+  // gespeichertes Theme oder default: light
+  const saved = localStorage.getItem(STORAGE_KEY);
+  const initial = (saved === 'dark' || saved === 'light') ? saved : 'light';
+  apply(initial);
 
-    // 2) Wenn nichts gespeichert: standardmäßig light
-    let theme = (saved === 'dark' || saved === 'light') ? saved : 'light';
-    applyTheme(theme);
+  function apply(next){
+    root.setAttribute('data-theme', next === 'dark' ? 'dark' : 'light');
+    localStorage.setItem(STORAGE_KEY, next);
+    // nur A11y-Status, KEIN Icon-Inhalt anfassen!
+    if (toggleBtn) toggleBtn.setAttribute('aria-pressed', String(next === 'dark'));
+  }
 
-    function applyTheme(next){
-      document.documentElement.setAttribute('data-theme', next === 'dark' ? 'dark' : 'light');
-      localStorage.setItem(STORAGE_KEY, next);
-
-      const isDark = next === 'dark';
-      // Button-Zustand für A11y
-      if (toggleBtn) toggleBtn.setAttribute('aria-pressed', String(isDark));
-
-      // Icon + Label
-      if (icon) icon.textContent = isDark ? '🌙' : '🌞';
-      if (label) label.textContent = isDark ? 'Dunkel' : 'Hell';
-    }
-
-    if (toggleBtn){
-      toggleBtn.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-      });
-    }
-  })();
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const t = document.getElementById('themeToggle');
-  if (!t) return;
-  let timer;
-  t.addEventListener('touchstart', () => {
-    t.classList.add('pressed');
-    clearTimeout(timer);
-    timer = setTimeout(() => t.classList.remove('pressed'), 180);
-  }, {passive:true});
-});
-document.addEventListener('DOMContentLoaded', () => {
-  const btn   = document.getElementById('themeToggle');
-  const links = document.querySelector('.dng-links');
-  const brand = document.querySelector('.dng-brand'); // Logo-Link
-
-  if (!btn || !links || !brand) return;
-
-  const mq = window.matchMedia('(max-width: 820px)');
-
-  const placeForMobile = () => {
-    // unter das Logo verschieben (direkt nach .dng-brand)
-    brand.insertAdjacentElement('afterend', btn);
-    btn.classList.add('is-mobile-pos');
-  };
-
-  const placeForDesktop = () => {
-    // zurück ins Nav neben "Über uns"
-    links.appendChild(btn);
-    btn.classList.remove('is-mobile-pos');
-  };
-
-  const updatePlacement = () => (mq.matches ? placeForMobile() : placeForDesktop());
-
-  mq.addEventListener ? mq.addEventListener('change', updatePlacement)
-                      : mq.addListener(updatePlacement); // ältere iOS
-
-  updatePlacement(); // initial
-});
-document.addEventListener('DOMContentLoaded', () => {
-  const btn   = document.getElementById('themeToggle');
-  const brand = document.querySelector('.dng-brand');   // Logo + Text
-  const links = document.querySelector('.dng-links');   // Desktop-Navigation
-  if (!btn || !brand || !links) return;
-
-  const mq = window.matchMedia('(max-width: 820px)');
-
-  const toMobile = () => {
-    // direkt RECHTS neben dem "DropNGo"-Titel
-    brand.insertAdjacentElement('afterend', btn);
-    btn.classList.add('is-mobile-inline');
-  };
-
-  const toDesktop = () => {
-    // zurück in die Desktop-Linkleiste (neben "Über uns")
-    links.appendChild(btn);
-    btn.classList.remove('is-mobile-inline');
-  };
-
-  const place = () => (mq.matches ? toMobile() : toDesktop());
-  mq.addEventListener ? mq.addEventListener('change', place) : mq.addListener(place);
-  place();
-  
-    // verhindert festhängenden :hover/:focus auf iOS
-    btn.blur();
- // Auf Touch: auch sicher den Fokus lösen
-  btn.addEventListener('touchend',   () => btn.blur(), { passive: true });
-  btn.addEventListener('touchcancel',() => btn.blur(), { passive: true });
-  /* ---------- 3) KLICKBARKEIT absichern (falls CSS woanders hakt) ---------- */
-  btn.type = 'button';
-  btn.style.pointerEvents = 'auto';
-  btn.style.position = btn.style.position || 'relative';
-  btn.style.zIndex = btn.style.zIndex || '5';
+  if (toggleBtn){
+    toggleBtn.addEventListener('click', () => {
+      const cur  = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      apply(cur === 'dark' ? 'light' : 'dark');
+      // iOS: Hover/Fokus nicht “kleben” lassen
+      toggleBtn.blur();
+    }, { passive: true });
+  }
 })();
 
 </script>
