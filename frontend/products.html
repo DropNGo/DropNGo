@@ -1422,6 +1422,30 @@ html[data-theme="dark"] .dng-drawer a:hover { background: rgba(255,255,255,.06);
   margin-left: 0px;   /* vorher evtl. 2px – hier minimal weiter nach links */
   margin-top:  2px;   /* leicht höher */
 }
+/* Baseline: beide Icons erstmal aus */
+.theme-toggle .icon { display: none; }
+
+/* Hell: Sonne AN, Mond AUS */
+html[data-theme="light"] .theme-toggle .sun { display: block !important; }
+html[data-theme="light"] .theme-toggle .moon { display: none  !important; }
+
+/* Dunkel: Mond AN, Sonne AUS */
+html[data-theme="dark"] .theme-toggle .moon { display: block !important; }
+html[data-theme="dark"] .theme-toggle .sun  { display: none  !important; }
+
+/* Farben sicher setzen, damit Outline sichtbar bleibt */
+html[data-theme="light"] .theme-toggle { color: #111; }      /* stroke="currentColor" */
+html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
+
+/* Touch-Geräte: Hover neutralisieren (verhindert „Hängenbleiben“) */
+@media (hover: none), (any-hover: none) {
+  .theme-toggle:hover {
+    background: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    box-shadow: none !important;
+  }
+}
 
   </style>
 </head>
