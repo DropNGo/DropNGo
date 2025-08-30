@@ -1515,6 +1515,57 @@ html[data-theme="dark"]  .theme-toggle .moon { opacity: 1; }
 /* was sichtbar sein soll */
 html[data-theme="light"] #themeToggle .sun  { opacity: 1; transform: scale(1); }
 html[data-theme="dark"]  #themeToggle .moon { opacity: 1; transform: scale(1); }
+/* Toggle-Button sichtbar & kompakt */
+.theme-toggle{
+  display:inline-flex !important;
+  align-items:center; justify-content:center;
+  width:44px; height:32px;
+  border-radius:999px; border:1px solid #d0d5dd;
+  background:#fff; padding:0; margin-left:8px;
+  position:relative; z-index:5;
+}
+
+/* Icons übereinander, per Opacity blenden */
+.theme-toggle .icon{
+  position:absolute; inset:0; margin:auto;
+  width:20px; height:20px;
+  opacity:0; transform:scale(.92);
+  transition:opacity .18s ease, transform .18s ease;
+  display:block !important;
+}
+
+html[data-theme="light"] .theme-toggle .sun { opacity:1; transform:scale(1); }
+html[data-theme="dark"]  .theme-toggle .moon{ opacity:1; transform:scale(1); }
+
+/* Falls irgendein Mobile-CSS was versteckt: */
+@media (max-width: 820px){
+  header .theme-toggle{ display:inline-flex !important; }
+}
+/* ========== Theme Toggle – stabil & mobil-sicher ========== */
+.theme-toggle{
+  display:inline-flex !important;
+  align-items:center; justify-content:center;
+  width:44px; height:32px;
+  border-radius:999px; border:1px solid #d0d5dd;
+  background:#fff; color:#111; padding:0; margin-left:8px;
+  position:relative; z-index:5; cursor:pointer;
+}
+
+.theme-toggle .icon{
+  position:absolute; inset:0; margin:auto;
+  width:20px; height:20px;
+  opacity:0; transform:scale(.92);
+  transition:opacity .18s ease, transform .18s ease;
+  display:block !important; /* nie wegstylen */
+}
+
+html[data-theme="light"] .theme-toggle .sun { opacity:1; transform:scale(1); }
+html[data-theme="dark"]  .theme-toggle .moon{ opacity:1; transform:scale(1); }
+
+/* Falls irgendein mobiles CSS Buttons versteckt: sichtbar erzwingen */
+@media (max-width: 820px){
+  header .theme-toggle{ display:inline-flex !important; }
+}
 
   </style>
 </head>
@@ -2260,6 +2311,91 @@ document.addEventListener('DOMContentLoaded', () => {
   btn.style.zIndex = btn.style.zIndex || '5';
 })();
 
+</script>
+<script>
+(() => {
+  const KEY = 'dng:theme';
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+
+  const saved = localStorage.getItem(KEY);
+  const start = (saved === 'dark' || saved === 'light') ? saved : 'light';
+  root.setAttribute('data-theme', start);
+  if (btn) btn.setAttribute('aria-pressed', String(start === 'dark'));
+
+  if (btn){
+    btn.type = 'button';
+    btn.addEventListener('click', () => {
+      const cur  = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const next = cur === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem(KEY, next);
+      btn.setAttribute('aria-pressed', String(next === 'dark'));
+      btn.blur(); // iOS: Fokus lösen
+    }, { passive: true });
+  }
+})();
+</script>
+<script>
+(() => {
+  const KEY  = 'dng:theme';
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+
+  if (!btn) return;
+
+  // ---- 0) Button sicher klickbar machen (OHNE CSS-Dateien zu ändern)
+  btn.style.pointerEvents = 'auto';
+  btn.style.touchAction   = 'manipulation'; // verhindert 300ms-Delay / Doppeltap-Zoom
+  if (!btn.style.position) btn.style.position = 'relative';
+  if (!btn.style.zIndex)   btn.style.zIndex   = '5';
+
+  // ---- 1) Start-Theme setzen
+  const saved = localStorage.getItem(KEY);
+  const start = (saved === 'dark' || saved === 'light') ? saved : 'light';
+  apply(start);
+
+  function apply(next){
+    const val = next === 'dark' ? 'dark' : 'light';
+    root.setAttribute('data-theme', val);
+    localStorage.setItem(KEY, val);
+    btn.setAttribute('aria-pressed', String(val === 'dark'));
+  }
+
+  function toggleTheme(){
+    const cur  = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const next = (cur === 'dark') ? 'light' : 'dark';
+    apply(next);
+    // iOS: festhängenden Fokus/hover verhindern
+    btn.blur();
+    // WICHTIG: NICHTS am Icon/innerHTML ändern – nur data-theme
+  }
+
+  // ---- 2) Events robust binden
+  // Desktop & moderne Mobile-Browser
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleTheme();
+  }, { passive: true });
+
+  // iOS/Safari: Tap zuverlässig abfangen (click kann manchmal nicht feuern)
+  btn.addEventListener('touchstart', (e) => {
+    e.preventDefault();   // wir übernehmen das Event selbst
+    e.stopPropagation();
+    toggleTheme();
+  }, { passive: false });
+
+  // Aufräumen von „klebenden“ Zuständen
+  btn.addEventListener('touchend',    () => btn.blur(), { passive: true });
+  btn.addEventListener('touchcancel', () => btn.blur(), { passive: true });
+
+  // Optional: Falls irgend ein Overlay darüber liegt, klickevents dorthin stoppen
+  // (nur wenn du merkst, dass der Button in einem Link steckt)
+  const parentLink = btn.closest('a');
+  if (parentLink){
+    parentLink.addEventListener('click', (e) => e.preventDefault(), { passive: true });
+  }
+})();
 </script>
 
 </body>
