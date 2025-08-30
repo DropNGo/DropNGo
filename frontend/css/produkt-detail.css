@@ -734,3 +734,4 @@ main > section:first-of-type::after,
 }
 .partner-info-note .pin-text strong{ color: var(--text); }
 .partner-info-note em{ font-style: normal; color: var(--text); opacity: .9; }
+

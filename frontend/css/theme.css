@@ -1,0 +1,322 @@
+/* Global theme toggling styles */
+@media (min-width:821px){#themeToggleMobile{display:none!important;}#themeToggleDesktop{display:inline-grid!important;margin-left:8px;}}
+@media (max-width:820px){#themeToggleDesktop{display:none!important;}#themeToggleMobile{display:inline-grid!important;margin-left:6px!important;margin-top:0!important;}}
+.theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;background:var(--surface);color:var(--text);transition:background .3s,color .3s,transform .2s;box-shadow:0 4px 12px rgba(0,0,0,.15);}
+.theme-toggle-btn:hover{transform:scale(1.1);background:var(--brand);color:#fff;}
+.theme-toggle-btn .icon{display:none;}
+html[data-theme="light"] .theme-toggle-btn .sun{display:block;}
+html[data-theme="dark"] .theme-toggle-btn .moon{display:block;}
+:root[data-theme="light"],html[data-theme="light"],body.light-mode{--bg:#ffffff;--surface:#ffffff;--elev:#f7f7f7;--text:#0f172a;--muted:#0f172a;--border:#e5e7eb;--surface-alt:#f7f7f7;}
+:root[data-theme="light"] header,html[data-theme="light"] header,body.light-mode header,:root[data-theme="light"] .site-header,html[data-theme="light"] .site-header,body.light-mode .site-header{background:#ffffff!important;border-bottom:1px solid #e5e7eb!important;}
+:root[data-theme="light"] header .nav__links a,:root[data-theme="light"] header .nav-links a,:root[data-theme="light"] header nav a,html[data-theme="light"] header .nav__links a,html[data-theme="light"] header .nav-links a,html[data-theme="light"] header nav a,body.light-mode header .nav__links a,body.light-mode header .nav-links a,body.light-mode header nav a,:root[data-theme="light"] .brand,:root[data-theme="light"] .brand span,html[data-theme="light"] .brand,html[data-theme="light"] .brand span,body.light-mode .brand,body.light-mode .brand span{color:#0f172a!important;opacity:1!important;-webkit-text-fill-color:#0f172a;}
+:root[data-theme="light"] header .nav__links a:hover,html[data-theme="light"] header .nav__links a:hover,body.light-mode header .nav__links a:hover{color:#0b65d6!important;background:rgba(2,6,23,.04)!important;}
+html[data-theme="light"] .btn{background:#000!important;color:#fff!important;border-color:#fff!important;}
+html[data-theme="light"] .btn:hover{background:#000!important;}
+:root[data-theme="light"] header h1,
+:root[data-theme="light"] header h2,
+:root[data-theme="light"] header h3,
+:root[data-theme="light"] header span,
+:root[data-theme="light"] header a {
+  color: #000 !important;
+}
+html[data-theme="light"] .theme-toggle-btn:hover {
+  background: #000 !important;  /* Schwarz statt Türkis */
+  color: #fff !important;       /* Icon bleibt weiß sichtbar */
+}
+/* Überschriften auf den Info/Legal-Seiten im Light-Theme schwarz */
+html[data-theme="light"] .legal-card h2,
+html[data-theme="light"] .hero h1,
+html[data-theme="light"] .about-section h2 {
+  color: #000 !important;
+}
+/* Footer im Light-Theme über die ganze Breite als Box */
+html[data-theme="light"] footer {
+  background: #f9f9f9 !important;        /* heller Hintergrund */
+  border-top: 1px solid #e5e7eb !important; /* dezente Linie oben */
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);  /* leichter Schatten nach oben */
+  padding: 40px 20px !important;         /* mehr Innenabstand */
+  width: 100% !important;                /* volle Breite */
+  border-radius: 0 !important;           /* keine Rundungen (wie Balken) */
+}
+/* Trustpilot Widget im Light-Theme */
+html[data-theme="light"] .trustpilot-dark {
+  background-color: #fff !important;   /* Weiß statt Schwarz */
+  border: 1px solid #e5e7eb !important;/* dezente graue Linie */
+  box-shadow: 0 4px 12px rgba(0,0,0,.06); /* leichter Schatten */
+}
+
+html[data-theme="light"] .trustpilot-dark a {
+  color: #000 !important;  /* Linktext schwarz */
+}
+/* Preise im Light-Theme schwarz */
+html[data-theme="light"] .price,
+html[data-theme="light"] .product-info .price,
+html[data-theme="light"] .product-detail-price {
+  color: #000 !important;
+}
+
+/* Titel im Produkt-Balken: weiße Umrandung (nur Light-Theme) */
+html[data-theme="light"] .sticky-cta .sc-title #scName,
+html[data-theme="light"] .sticky-cta .sc-title strong {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 2px solid #fff !important;
+  border-radius: 6px;
+  color: #fff !important;
+  background: transparent !important;
+}
+html[data-theme="light"] .sticky-cta {
+  background: #000 !important;
+  border-top: none !important;
+}
+/* === Preise im Header nur im Dark Theme ausblenden === */
+html[data-theme="dark"] .product-info .price,
+html[data-theme="dark"] .sticky-cta .price,
+html[data-theme="dark"] .hero .price {
+  display: none !important;
+}
+/* ===========================
+   Dark Theme – Header Box
+   =========================== */
+
+/* Produkt-Header-Bar im Dark Theme gleiche Farbe wie Haupt-Header */
+html[data-theme="dark"] .sticky-cta,
+html[data-theme="dark"] .product-hero,
+html[data-theme="dark"] .product-top,
+html[data-theme="dark"] .product-header,
+html[data-theme="dark"] .hero-bar {
+  background: rgba(11, 13, 15, 0.85) !important;  /* gleiche Farbe wie site-header */
+  border: 1px solid rgba(255,255,255,0.06);       /* dezente Linie */
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.4);
+  padding: 12px 20px;
+  color: #fff !important;
+  box-sizing: border-box;
+}
+/* Dark Theme: Türkise Umrandung nur um den Produkt-Titel oben */
+html[data-theme="dark"] .sticky-cta .sc-title #scName,
+html[data-theme="dark"] .sticky-cta .sc-title strong,
+html[data-theme="dark"] .hero-bar .sc-title #scName,
+html[data-theme="dark"] .hero-bar .sc-title strong {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 2px solid var(--brand, #18a196) !important; /* türkis */
+  border-radius: 8px;
+  background: transparent !important;
+  color: #fff !important;
+  line-height: 1.2;
+}
+
+/* Optional: leichter Glow in Markenfarbe */
+html[data-theme="dark"] .sticky-cta .sc-title #scName,
+html[data-theme="dark"] .sticky-cta .sc-title strong {
+  box-shadow: 0 0 0 2px rgba(24,161,150,0.08);
+}
+/* -- Footer adjustments for light theme -- */
+/* Make footer column titles black for improved readability */
+html[data-theme="light"] .footer-col h4{
+  color: #000 !important;
+}
+/* -- Trust row dot removal in dark theme as well (keep consistent across themes) -- */
+html[data-theme="dark"] .trust .dot:last-of-type{
+  display: none !important;
+}
+/* Add a black separator line above the health notice box to clearly separate it from the footer */
+html[data-theme="light"] footer.site-footer > div:last-of-type{
+  border-top: 1px solid #000 !important;
+  margin-top: 24px;
+  padding-top: 16px;
+}
+
+/* -- Trust indicators: adjust dot color and remove extra dot -- */
+/* Always hide the last dot to remove the separator after SSL-verschlüsselt */
+.trust .dot:last-of-type{
+  display: none !important;
+}
+/* In the light theme, make the separator dot black for better contrast */
+html[data-theme="light"] .trust .dot{
+  background: #000 !important;
+  opacity: 1 !important;
+}
+
+/* -- Light Theme: product gallery and images backgrounds -- */
+html[data-theme="light"] .gallery{
+  background: #fff !important;         /* white card background */
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+}
+html[data-theme="light"] .gallery .hero-media{
+  background: #fff !important;         /* white backdrop behind main image */
+}
+html[data-theme="light"] .thumbs img,
+html[data-theme="light"] .thumbs video{
+  background: #fff !important;         /* white background for thumbnails */
+}
+
+/* -- Light Theme: product buy & details buttons -- */
+html[data-theme="light"] .cta-primary{
+  background: #000 !important;    /* black background for buy button */
+  color: #fff !important;         /* white text */
+  border: 2px solid #000 !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] .cta-ghost{
+  background: transparent !important;
+  border: 2px solid #fff !important;  /* white border instead of turquoise */
+  color: #000 !important;             /* black text for contrast */
+}
+
+/* Titel im Produkt-Balken: weiße Umrandung (nur Light-Theme) */
+html[data-theme="light"] .sticky-cta .sc-title #scName,
+html[data-theme="light"] .sticky-cta .sc-title strong {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 2px solid #fff !important;
+  border-radius: 6px;
+  color: #fff !important;
+  background: transparent !important;
+}
+html[data-theme="light"] .sticky-cta {
+  background: #000 !important;
+  border-top: none !important;
+}
+
+/* -- Light Theme: product buy & details buttons -- */
+html[data-theme="light"] .cta-primary{
+  background: #000 !important;    /* black background for buy button */
+  color: #fff !important;         /* white text */
+  border: 2px solid #000 !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] .cta-ghost{
+  background: transparent !important;
+  border: 2px solid #fff !important;  /* white border instead of turquoise */
+  color: #000 !important;             /* black text for contrast */
+}
+
+/* -- Light Theme: product buy & details buttons -- */
+html[data-theme="light"] .cta-primary{
+  /* In the light theme we want the primary call‑to‑action to appear as a simple outlined box. */
+  background: transparent !important;
+  color: #000000 !important;       /* match dark text for contrast on light backgrounds */
+  border: 2px solid #000000 !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] .cta-ghost{
+  /* Secondary call‑to‑action adopts the same outlined style in the light theme. */
+  background: transparent !important;
+  border: 2px solid #000000 !important;
+  color: #000000 !important;
+}
+
+/* Lighten the product header/hero bars and the sticky CTA in the light theme */
+html[data-theme="light"] .sticky-cta,
+html[data-theme="light"] .product-header,
+html[data-theme="light"] .product-hero,
+html[data-theme="light"] .product-top,
+html[data-theme="light"] .hero-bar {
+  background: #f7f7f7 !important;         /* light card background */
+  border: 1px solid #e5e7eb !important;    /* subtle border */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+  color: #000000 !important;
+}
+
+/* Remove the dark override applied to the product title inside the sticky CTA */
+html[data-theme="light"] .sticky-cta .sc-title #scName,
+html[data-theme="light"] .sticky-cta .sc-title strong,
+html[data-theme="light"] .hero-bar .sc-title #scName,
+html[data-theme="light"] .hero-bar .sc-title strong {
+  /* Display the product name with a subtle outline and dark text */
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #000000 !important;
+  border-radius: 6px;
+  background: transparent !important;
+  color: #000000 !important;
+  line-height: 1.2;
+  box-shadow: none !important;
+}
+
+/* Ensure the separator dots in the trust row have sufficient contrast */
+html[data-theme="light"] .trust .dot {
+  background: #0f172a !important;
+  opacity: 1 !important;
+}
+
+/* Style header buttons (within product header or hero bar) like the product CTA buttons */
+html[data-theme="light"] .product-header .btn,
+html[data-theme="light"] .product-hero .btn,
+html[data-theme="light"] .product-top .btn,
+html[data-theme="light"] .hero-bar .btn,
+html[data-theme="light"] .sticky-cta .btn {
+  background: transparent !important;
+  border: 2px solid #0f172a !important;
+  color: #0f172a !important;
+  box-shadow: none !important;
+}
+
+/* Trust indicators: wrap each label in a subtle outlined pill */
+html[data-theme="light"] .trust {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 12px 0 !important;
+}
+html[data-theme="light"] .trust span:not(.dot) {
+  padding: 4px 8px;
+  margin-right: 6px;
+  border: 1px solid #0f172a;
+  border-radius: 6px;
+  background: transparent;
+  color: #0f172a;
+  font-weight: 500;
+}
+
+/* Partner offer notification box styling (replacing previous inline styles) */
+.partner-offer-box {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  margin: 18px 0;
+  line-height: 1.5;
+}
+html[data-theme="light"] .partner-offer-box {
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.12);
+  color: #444;
+}
+html[data-theme="dark"] .partner-offer-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #aab3be;
+}
+
+/* Nur den Preis oben im Header (sticky-cta) im Light-Theme ausblenden */
+html[data-theme="light"] .sticky-cta .sc-title .price {
+  display: none !important;
+}
+
+/* Light-Theme: Trust-Row als gemeinsame Box (wie im Dark-Theme) */
+html[data-theme="light"] .trust{
+  background: #fff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04) !important;
+}
+
+/* Pills zurücksetzen: keine Einzelrahmen mehr um die Labels */
+html[data-theme="light"] .trust span:not(.dot){
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: #0f172a !important;
+}
+
+/* Punkt bleibt schwarz (du hast das schon, hier zur Vollständigkeit) */
+html[data-theme="light"] .trust .dot{
+  background: #0f172a !important;
+  opacity: 1 !important;
+}
+
