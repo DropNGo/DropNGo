@@ -1500,15 +1500,21 @@ html[data-theme="dark"]  .theme-toggle .moon { opacity: 1; }
     margin-left: 6px !important; /* leicht nach rechts rücken */
   }
 }
-.theme-toggle { position: relative; width: 52px; height: 36px; border: 1px solid #d0d5dd; border-radius: 999px; background:#fff; display:inline-flex; align-items:center; justify-content:center; }
-.theme-toggle .icon { position:absolute; inset:0; margin:auto; width:22px; height:22px; opacity:0; transition:opacity .22s ease; }
-html[data-theme="light"] .theme-toggle .sun { opacity:1; }
-html[data-theme="dark"]  .theme-toggle .moon { opacity:1; }
-
-/* leichte Rechtsverschiebung auf Mobile */
-@media (max-width: 820px){
-  #themeToggle { margin-left: 8px !important; }
+/* Theme-Toggle: Icons sauber ein-/ausblenden (ohne DOM zu ändern) */
+#themeToggle { position: relative; }
+#themeToggle .icon {
+  position: absolute;        /* beide liegen übereinander */
+  inset: 0;
+  margin: auto;
+  opacity: 0;
+  transform: scale(.9);
+  transition: opacity .18s ease, transform .18s ease;
+  display: block !important; /* niemals per anderen Regeln verstecken */
 }
+
+/* was sichtbar sein soll */
+html[data-theme="light"] #themeToggle .sun  { opacity: 1; transform: scale(1); }
+html[data-theme="dark"]  #themeToggle .moon { opacity: 1; transform: scale(1); }
 
   </style>
 </head>
@@ -2143,65 +2149,26 @@ html[data-theme="dark"]  .theme-toggle .moon { opacity:1; }
 <link rel="stylesheet" href="css/mobile.css">
 <script src="js/mobile.js" defer></script>
 <script>
-  (() => {
-  const STORAGE_KEY = 'theme';
+(() => {
+  const STORAGE_KEY = 'dng:theme';
+  const btn  = document.getElementById('themeToggle');
   const root = document.documentElement;
 
-  function ensureToggleExists() {
-    let btn = document.getElementById('themeToggle');
-    if (!btn) {
-      btn = document.createElement('button');
-      btn.id = 'themeToggle';
-      btn.className = 'theme-toggle';
-      btn.setAttribute('aria-pressed', 'false');
-      btn.setAttribute('aria-label', 'Theme umschalten');
-      btn.innerHTML = '<span class="icon sun" aria-hidden="true">☀️</span><span class="icon moon" aria-hidden="true">🌙</span>';
-    }
-    return btn;
-  }
-
-  function placeToggle(btn) {
-    // Wähle die tatsächlich vorhandenen Klassen – mit Fallbacks
-    const brand = document.querySelector('.brand, .dng-brand');
-    const links = document.querySelector('.nav__links, .nav-links');
-
-    if (!brand) return; // Ohne Logo kein Platzieren
-
-    const mq = window.matchMedia('(max-width: 820px)');
-    const toMobile  = () => { brand.insertAdjacentElement('afterend', btn); btn.classList.add('is-mobile'); };
-    const toDesktop = () => { if (links) { links.appendChild(btn); } else { brand.insertAdjacentElement('afterend', btn); } btn.classList.remove('is-mobile'); };
-
-    const apply = () => (mq.matches ? toMobile() : toDesktop());
-    mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply);
-    apply();
-  }
-
-  function applyTheme(next){
-    const isDark = (next === 'dark');
-    root.setAttribute('data-theme', isDark ? 'dark' : 'light');
-    localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
-    const btn = document.getElementById('themeToggle');
-    if (btn) btn.setAttribute('aria-pressed', String(isDark));
-  }
-
-  // Init Theme (default light)
   const saved = localStorage.getItem(STORAGE_KEY);
-  applyTheme((saved === 'dark' || saved === 'light') ? saved : 'light');
+  const start = (saved === 'dark' || saved === 'light') ? saved : 'light';
+  root.setAttribute('data-theme', start);
+  if (btn) btn.setAttribute('aria-pressed', String(start === 'dark'));
 
-  // Ensure button exists + place it visibly
-  const toggleBtn = ensureToggleExists();
-  placeToggle(toggleBtn);
-
-  // Attach handler (no icon text mutation!)
-  toggleBtn.addEventListener('click', () => {
-    const cur = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-    applyTheme(cur === 'dark' ? 'light' : 'dark');
-    toggleBtn.blur(); // iOS: Hover/Fokus lösen
-  }, { passive: true });
-
-  // Touch: Hover-Sticky vermeiden
-  toggleBtn.addEventListener('touchend', () => toggleBtn.blur(), { passive: true });
-  toggleBtn.addEventListener('touchcancel', () => toggleBtn.blur(), { passive: true });
+  if (btn){
+    btn.type = 'button';
+    btn.addEventListener('click', () => {
+      const now  = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const next = now === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem(STORAGE_KEY, next);
+      btn.setAttribute('aria-pressed', String(next === 'dark'));
+    }, {passive:true});
+  }
 })();
 
 </script>
