@@ -1214,6 +1214,87 @@ html[data-theme="dark"] .dng-drawer {
 }
 html[data-theme="dark"] .dng-drawer a { color: #e6e9ee; }
 html[data-theme="dark"] .dng-drawer a:hover { background: rgba(255,255,255,.06); }
+/* ===== Header Layout Mobile ===== */
+@media (max-width: 820px) {
+  /* Header-Zeile: links Brand + Toggle | rechts Burger */
+  .dng-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .dng-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 8px;
+  }
+
+  /* Toggle direkt NACH dem Brand und LINKS bleiben */
+  #themeToggle {
+    position: static !important;
+    display: inline-grid !important;
+    margin-left: 4px !important;   /* dichter an "DropNGo" ran */
+    margin-right: 0 !important;
+  }
+
+  /* Burger ganz nach rechts schieben */
+  .dng-burger { margin-left: auto; }
+}
+
+/* ===== Touch: Hover nicht festhalten & Form bleibt ===== */
+@media (hover: none), (any-hover: none) {
+  .theme-toggle,
+  .theme-toggle:hover,
+  .theme-toggle:active {
+    border-radius: 9999px !important;    /* Form bleibt pillenförmig */
+  }
+  html[data-theme="light"] .theme-toggle:hover,
+  html[data-theme="dark"]  .theme-toggle:hover {
+    background: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  }
+}
+
+/* ===== Burger-Farbe ===== */
+/* hell: Linien schwarz, sichtbar */
+html[data-theme="light"] .dng-burger svg,
+html[data-theme="light"] .dng-burger svg path {
+  stroke: #000 !important;
+}
+
+/* dunkel: Linien hell */
+html[data-theme="dark"] .dng-burger svg,
+html[data-theme="dark"] .dng-burger svg path {
+  stroke: #e6e9ee !important;
+}
+
+/* ===== Drawer/Offcanvas ===== */
+/* helles Layout: echtes Weiß */
+html[data-theme="light"] .dng-drawer {
+  background: #ffffff;
+  color: #111111;
+  border-left: 1px solid #e5e7eb;
+}
+html[data-theme="light"] .dng-drawer a { color: #111111; }
+html[data-theme="light"] .dng-drawer a:hover { background: #f5f6f7; }
+
+/* dunkles Layout: fast schwarz, nicht blau */
+html[data-theme="dark"] .dng-drawer {
+  background: #0b0d0f;                 /* tiefes Schwarzgrau */
+  color: #e6e9ee;
+  border-left: 1px solid rgba(255,255,255,.12);
+}
+html[data-theme="dark"] .dng-drawer a { color: #e6e9ee; }
+html[data-theme="dark"] .dng-drawer a:hover { background: rgba(255,255,255,.06); }
+
+/* optional: Overlay bleibt neutral */
+.dng-overlay { background: rgba(0,0,0,.4); }
+
+/* Sicherheit: niemals ausgeblendet auf Mobile */
+@media (max-width: 820px) { #themeToggle { display: inline-grid !important; } }
+.theme-toggle:focus { outline: none; }
 
   </style>
 </head>
@@ -1946,6 +2027,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const place = () => (mq.matches ? toMobile() : toDesktop());
   mq.addEventListener ? mq.addEventListener('change', place) : mq.addListener(place);
   place();
+  
+    // verhindert festhängenden :hover/:focus auf iOS
+    btn.blur();
 });
 
 </script>

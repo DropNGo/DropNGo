@@ -1,0 +1,4 @@
+git status
+git add -A
+git commit -m "Mobile Test 6" 
+git push origin main
