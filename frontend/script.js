@@ -627,3 +627,5 @@ document.addEventListener('DOMContentLoaded', () => {
     cart.style.display = 'none';
   }
 });
+
+
