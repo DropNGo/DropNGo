@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="light">
 <head><!-- TrustBox script -->
 <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
 <!-- End TrustBox script -->
@@ -1381,117 +1381,6 @@ html[data-theme="light"] .trustpilot-dark a {
       menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     })();
   </script>
-  <script>
-  (function(){
-    const STORAGE_KEY = 'theme';
-    // Der Theme-Button existiert nun in Desktop- und Mobile-Version. Wir sammeln beide.
-    const toggleBtns = document.querySelectorAll('#themeToggleDesktop, #themeToggleMobile');
-
-    // Wunsch: HELL als Primär
-    // 1) Aus localStorage holen
-    let saved = localStorage.getItem(STORAGE_KEY);
-
-    // 2) Wenn nichts gespeichert: standardmäßig light
-    let theme = (saved === 'dark' || saved === 'light') ? saved : 'light';
-    applyTheme(theme);
-
-    function applyTheme(next){
-      const themeVal = next === 'dark' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', themeVal);
-      localStorage.setItem(STORAGE_KEY, themeVal);
-      const isDark = themeVal === 'dark';
-      // A11y: für alle Buttons den aria-pressed Zustand synchronisieren
-      toggleBtns.forEach(btn => btn.setAttribute('aria-pressed', String(isDark)));
-    }
-
-    // Klick-Handler für alle Theme-Toggles
-    toggleBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-      });
-    });
-  })();
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  return; // deaktiviert das alte pressed-Script
-  const t = document.getElementById('themeToggle');
-  if (!t) return;
-  let timer;
-  t.addEventListener('touchstart', () => {
-    t.classList.add('pressed');
-    clearTimeout(timer);
-    timer = setTimeout(() => t.classList.remove('pressed'), 180);
-  }, {passive:true});
-});
-document.addEventListener('DOMContentLoaded', () => {
-  return; // deaktiviert das alte Placement-Script (Brand/Nav)
-  return; // deaktiviert das alte Placement-Script (toMobile/toDesktop)
-  return; // deaktiviert das alte toMobile/toDesktop Placement-Script
-  const btn   = document.getElementById('themeToggle');
-  const links = document.querySelector('.dng-links');
-  const brand = document.querySelector('.dng-brand'); // Logo-Link
-
-  if (!btn || !links || !brand) return;
-
-  const mq = window.matchMedia('(max-width: 820px)');
-
-  const placeForMobile = () => {
-    // unter das Logo verschieben (direkt nach .dng-brand)
-    brand.insertAdjacentElement('afterend', btn);
-    btn.classList.add('is-mobile-pos');
-  };
-
-  const placeForDesktop = () => {
-    // zurück ins Nav neben "Über uns"
-    links.appendChild(btn);
-    btn.classList.remove('is-mobile-pos');
-  };
-
-  const updatePlacement = () => (mq.matches ? placeForMobile() : placeForDesktop());
-
-  mq.addEventListener ? mq.addEventListener('change', updatePlacement)
-                      : mq.addListener(updatePlacement); // ältere iOS
-
-  updatePlacement(); // initial
-});
-document.addEventListener('DOMContentLoaded', () => {
-  const btn   = document.getElementById('themeToggle');
-  const brand = document.querySelector('.dng-brand');   // Logo + Text
-  const links = document.querySelector('.dng-links');   // Desktop-Navigation
-  if (!btn || !brand || !links) return;
-
-  const mq = window.matchMedia('(max-width: 820px)');
-
-  const toMobile = () => {
-    // direkt RECHTS neben dem "DropNGo"-Titel
-    brand.insertAdjacentElement('afterend', btn);
-    btn.classList.add('is-mobile-inline');
-  };
-
-  const toDesktop = () => {
-    // zurück in die Desktop-Linkleiste (neben "Über uns")
-    links.appendChild(btn);
-    btn.classList.remove('is-mobile-inline');
-  };
-
-  const place = () => (mq.matches ? toMobile() : toDesktop());
-  mq.addEventListener ? mq.addEventListener('change', place) : mq.addListener(place);
-  place();
-  
-    // verhindert festhängenden :hover/:focus auf iOS
-    btn.blur();
- // Auf Touch: auch sicher den Fokus lösen
-  btn.addEventListener('touchend',   () => btn.blur(), { passive: true });
-  btn.addEventListener('touchcancel',() => btn.blur(), { passive: true });
-  /* ---------- 3) KLICKBARKEIT absichern (falls CSS woanders hakt) ---------- */
-  btn.type = 'button';
-  btn.style.pointerEvents = 'auto';
-  btn.style.position = btn.style.position || 'relative';
-  btn.style.zIndex = btn.style.zIndex || '5';
-});
-</script>
+  <script src="../js/theme-toggle.js"></script>
 </body>
 </html>
