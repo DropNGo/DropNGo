@@ -1375,6 +1375,53 @@ html[data-theme="dark"] .dng-drawer a:hover { background: rgba(255,255,255,.06);
 
 /* Wenn wirklich gar nichts hilft: Button ganz nach vorn holen */
 #themeToggle { z-index: 9999; }
+/* ===== Nur Desktop/Laptop: Hover erlauben ===== */
+@media (hover: hover) and (pointer: fine) {
+  /* Light -> Hover: schwarz/weiß */
+  html[data-theme="light"] .theme-toggle:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  }
+  html[data-theme="light"] .theme-toggle:hover .sun { fill:#fff; color:#fff; }
+
+  /* Dark -> Hover: türkis */
+  html[data-theme="dark"] .theme-toggle:hover {
+    background: #18a196;
+    border-color: #18a196;
+    color: #041413;
+    box-shadow: 0 4px 14px rgba(24,161,150,.4);
+  }
+  html[data-theme="dark"] .theme-toggle:hover .moon { fill:#041413; color:#041413; }
+}
+
+/* ===== Touch-Geräte: KEIN Hover (Bugfix gegen "Hängen") ===== */
+@media (hover: none), (any-hover: none) {
+  .theme-toggle { -webkit-tap-highlight-color: transparent; }
+  html[data-theme="light"] .theme-toggle:hover,
+  html[data-theme="dark"]  .theme-toggle:hover {
+    background: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    box-shadow: none !important;
+  }
+  .theme-toggle:focus,
+  .theme-toggle:focus-visible { outline: none; }
+  /* optional: kurzes Tap-Feedback, fällt sofort zurück */
+  .theme-toggle:active { transform: translateY(1px); }
+}
+
+/* ===== Sicherheit: Button immer klickbar & ganz leicht weiter links/oben ===== */
+#themeToggle{
+  position: relative; z-index: 10; pointer-events: auto;
+}
+
+/* Falls du ihn mobil rechts neben "DropNGo" setzt: minimal links/höher feinjustieren */
+#themeToggle.is-mobile-inline{
+  margin-left: 0px;   /* vorher evtl. 2px – hier minimal weiter nach links */
+  margin-top:  2px;   /* leicht höher */
+}
 
   </style>
 </head>
