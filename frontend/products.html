@@ -1127,6 +1127,24 @@ html[data-theme="dark"]  .theme-toggle:hover {
   transform: translateY(1px);
   box-shadow: 0 1px 3px rgba(0,0,0,.18);
 }
+/* Basis: runde Pille, wie gehabt */
+.theme-toggle { display:inline-grid; place-items:center; }
+
+/* Mobile-Layout: Button unter dem Logo hübsch ausrichten */
+@media (max-width: 820px) {
+  .dng-nav { position: relative; }
+  .theme-toggle.is-mobile-pos {
+    margin-top: 8px;       /* Abstand unter dem Logo */
+    margin-left: 2px;      /* links ausgerichtet */
+    position: static;      /* nicht absolut -> kein Überlappen */
+  }
+}
+
+/* Falls du irgendwo mal .theme-toggle auf mobile ausgeblendet hattest,
+   erzwingen wir Sichtbarkeit für den echten Button */
+@media (max-width: 820px) {
+  #themeToggle { display: inline-grid !important; }
+}
 
   </style>
 </head>
@@ -1808,6 +1826,35 @@ document.addEventListener('DOMContentLoaded', () => {
     timer = setTimeout(() => t.classList.remove('pressed'), 180);
   }, {passive:true});
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const btn   = document.getElementById('themeToggle');
+  const links = document.querySelector('.dng-links');
+  const brand = document.querySelector('.dng-brand'); // Logo-Link
+
+  if (!btn || !links || !brand) return;
+
+  const mq = window.matchMedia('(max-width: 820px)');
+
+  const placeForMobile = () => {
+    // unter das Logo verschieben (direkt nach .dng-brand)
+    brand.insertAdjacentElement('afterend', btn);
+    btn.classList.add('is-mobile-pos');
+  };
+
+  const placeForDesktop = () => {
+    // zurück ins Nav neben "Über uns"
+    links.appendChild(btn);
+    btn.classList.remove('is-mobile-pos');
+  };
+
+  const updatePlacement = () => (mq.matches ? placeForMobile() : placeForDesktop());
+
+  mq.addEventListener ? mq.addEventListener('change', updatePlacement)
+                      : mq.addListener(updatePlacement); // ältere iOS
+
+  updatePlacement(); // initial
+});
+
 </script>
 
 </body>

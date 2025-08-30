@@ -213,3 +213,21 @@
 @media (max-width:900px) and (prefers-reduced-motion:reduce){
   *{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
 }
+/* Basis: runde Pille, wie gehabt */
+.theme-toggle { display:inline-grid; place-items:center; }
+
+/* Mobile-Layout: Button unter dem Logo hübsch ausrichten */
+@media (max-width: 820px) {
+  .dng-nav { position: relative; }
+  .theme-toggle.is-mobile-pos {
+    margin-top: 8px;       /* Abstand unter dem Logo */
+    margin-left: 2px;      /* links ausgerichtet */
+    position: static;      /* nicht absolut -> kein Überlappen */
+  }
+}
+
+/* Falls du irgendwo mal .theme-toggle auf mobile ausgeblendet hattest,
+   erzwingen wir Sichtbarkeit für den echten Button */
+@media (max-width: 820px) {
+  #themeToggle { display: inline-grid !important; }
+}
