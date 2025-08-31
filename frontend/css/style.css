@@ -2150,3 +2150,62 @@ body.no-scroll{ overflow:hidden; }
 .pw-toggle .eye-off{ display:none; }
 .pw-toggle[data-visible="true"] .eye{ display:none; }
 .pw-toggle[data-visible="true"] .eye-off{ display:block; }
+
+/* Basis-Design (Dark-optimiert) */
+.health-warning{
+  margin: 24px 0 0;
+  padding: 14px 18px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  border-radius: 12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  color: #aab3be;            /* dein muted Text im Dark-Theme */
+  line-height: 1.6;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  font-size: .95rem;
+}
+
+.health-warning::before{
+  content:"⚠️";
+  font-size: 1.05rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.health-warning strong{
+  color: inherit;
+  margin-right: 6px;
+  font-weight: 700;
+}
+
+/* Full-Width Variante (optional) */
+.health-warning--full{
+  /* „Full bleed“ über den Container hinaus */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+/* Light-Theme Overrides – mehrere mögliche Theme-Schalter abgedeckt */
+html[data-theme="light"] .health-warning,
+body.light .health-warning,
+.light-theme .health-warning{
+  background: #f9fafb;
+  border-color: #e5e7eb;
+  color: #374151;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+html[data-theme="light"] .health-warning strong,
+body.light .health-warning strong,
+.light-theme .health-warning strong{
+  color: #111827;
+}

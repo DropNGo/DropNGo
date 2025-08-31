@@ -1,4 +1,4 @@
 git status
 git add -A
-git commit -m "Mobile Test 6" 
+git commit -m "Home" 
 git push origin main
