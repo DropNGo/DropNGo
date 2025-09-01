@@ -127,3 +127,43 @@ a.btn, .btn{ min-height:44px; min-width:44px; }
   .price{ font-size: 14.5px; }
   .quote{ padding:12px; }
 }
+
+/* Danke page */
+.danke-page {
+  font-family: 'Inter', sans-serif;
+  background-color: #0b0d0f;
+  color: #e6e9ee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  flex-direction: column;
+  text-align: center;
+}
+
+.danke-page h1 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  margin-bottom: 12px;
+  color: #18a196;
+}
+
+.danke-page p {
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  color: #aab3be;
+}
+
+.danke-page a {
+  margin-top: 30px;
+  padding: clamp(8px, 2vh, 10px) clamp(16px, 5vw, 24px);
+  background-color: #18a196;
+  color: #041413;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.danke-page a:hover {
+  background-color: #0e9d90;
+}
