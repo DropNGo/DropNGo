@@ -70,10 +70,13 @@
     .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
 
     /* Footer */
-    footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,.06); color: var(--muted); font-size: 14px; margin-top: 80px; }
-    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
-    .footer-links a { color: var(--muted); transition: var(--transition); }
-    .footer-links a:hover { color: var(--text); }
+    footer.site-footer{ margin-top: 80px; border-top:1px solid rgba(255,255,255,.06); background:#0a0c0e; }
+    .footer-grid{ display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap:18px; padding: 26px 0; }
+    .footer-col h4{ margin:0 0 8px; font-size: 16px; color:#d7dde6; }
+    .footer-col a{ color:var(--muted); display:inline-block; padding:6px 0; }
+    .footer-col a:hover{ color:var(--text); }
+    .copyright{ color:#8f98a3; font-size: 14px; padding: 12px 0 32px; }
+    @media (max-width: 760px){ .footer-grid{ grid-template-columns: 1fr; } }
 
     @media(max-width:600px){
       .nav-links, .brand { width: 100%; text-align: center; margin-top: 10px; }
@@ -145,36 +148,30 @@
   header.site-header { z-index: 10001; }              /* Header unter Menü */
   .mobile-menu { z-index: 10002; pointer-events: auto; }
 }
-.footer-social svg {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
 }
-.footer-social a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   color: var(--muted);
   transition: color .2s;
 }
-.footer-social a:hover {
   color: var(--text);
 }
-.footer-links {
   display: flex;
   gap: 20px;
   justify-content: center;
   margin-bottom: 14px;
 }
 
-.footer-social {
   display: flex;
   gap: 20px;
   justify-content: center;
   margin-bottom: 14px;
 }
 
-.footer-social a {
   color: var(--muted);
   display: inline-flex;
   align-items: center;
@@ -182,11 +179,9 @@
   transition: color 0.2s ease;
 }
 
-.footer-social a:hover {
   color: var(--text);
 }
 
-.footer-social svg {
   width: 18px;
   height: 18px;
 }
@@ -1223,11 +1218,9 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
   box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
 }
 
-[data-theme="light"] .footer-links a {
   color: #333;
 }
 
-[data-theme="light"] .footer-links a:hover {
   color: #18a196; /* deine Akzentfarbe */
 }
 /* Titel "DropNGo" im hellen Layout komplett schwarz */
@@ -1381,27 +1374,39 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
   </section>
 
   <!-- Footer -->
-<footer>
-  <div class="container">
-    <!-- Footer-Links -->
-    <div class="footer-links">
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>DropNGo</h4>
+      <p class="meta">Hinweis: DropNGo vermittelt Produkte externer Anbieter. Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen Händler.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Rechtliches</h4>
+      <a href="impressum.html">Impressum</a><br/>
+      <a href="datenschutz.html">Datenschutz</a><br/>
       <a href="agb.html">AGB</a>
     </div>
 
-    <!-- Social Media mittig -->
-    <div class="footer-social">
-      <a href="https://www.instagram.com/dropngo.shop" target="_blank" aria-label="Instagram">Instagram</a>
-      <a href="https://www.tiktok.com/@dropngo.shop" target="_blank" aria-label="TikTok">TikTok</a>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <a href="mailto:kontakt@dropngo.shop">kontakt@dropngo.shop</a><br/>
+      <!-- <a href="support-formular.html">Support</a> -->
     </div>
+
+    <div class="footer-col">
+      <h4>Folge uns</h4>
+      <a href="https://www.instagram.com/dropngo.shop" target="_blank" rel="noopener">Instagram</a><br/>
+      <a href="https://www.tiktok.com/@dropngo.shop" target="_blank" rel="noopener">TikTok</a>
+    </div>
+  </div>
 <!-- TrustBox widget - Review Collector -->
-<div class="trustpilot-widget trustpilot-dark" 
-     data-locale="de-DE" 
-     data-template-id="56278e9abfbbba0bdcd568bc" 
-     data-businessunit-id="68b1c25fbc94b86a86ac2baa" 
-     data-style-height="52px" 
-     data-style-width="100%" 
+<div class="trustpilot-widget trustpilot-dark"
+     data-locale="de-DE"
+     data-template-id="56278e9abfbbba0bdcd568bc"
+     data-businessunit-id="68b1c25fbc94b86a86ac2baa"
+     data-style-height="52px"
+     data-style-width="100%"
      data-token="134582dc-89e6-4eaa-9938-6d937d8901bc">
   <a href="https://de.trustpilot.com/review/www.dropngo.shop" target="_blank" rel="noopener">Trustpilot</a>
 </div>
@@ -1439,13 +1444,8 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
   }
 </style>
 
-
-    <!-- Copyright -->
-    <p class="copyright">
-      &copy; 2025 DropNGo – Alle Rechte vorbehalten. 
-      Hinweis: DropNGo vermittelt Produkte externer Anbieter. 
-      Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen Händler.
-    </p>
+  <div class="container">
+    <p class="copyright">© 2025 DropNGo – Alle Rechte vorbehalten. | Hinweis: DropNGo vermittelt Produkte externer Anbieter. Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen Händler.</p>
   </div>
 </footer>
 

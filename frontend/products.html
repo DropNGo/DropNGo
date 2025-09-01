@@ -88,9 +88,6 @@
     footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,.06); color: var(--muted); font-size: 14px; }
 
     /* Footer Links */
-    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
-    .footer-links a { color: var(--muted); transition: var(--transition); }
-    .footer-links a:hover { color: var(--text); }
 
     /* Responsive Mobile */
     @media(max-width:600px){
@@ -221,20 +218,6 @@ footer{
   background:#0a0c0e;
   color:var(--muted);
   font-size:14px;
-}
-.footer-links{
-  display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:10px;
-}
-.footer-links a{
-  color:var(--muted);
-  padding:6px 10px; border-radius:8px;
-  transition:color .2s ease, background .2s ease;
-  position:relative;
-}
-.footer-links a:hover{ color:var(--text); background:rgba(255,255,255,.06); }
-.footer-links a + a::before{
-  content:""; position:absolute; left:-8px; top:50%; transform:translate(-50%,-50%);
-  width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.25);
 }
 footer p{ max-width:900px; margin:8px auto 0; line-height:1.6; }
 /* Footer – identisch zur Startseite */
