@@ -1,3 +1,48 @@
+/* === DARK MODE HARD LOCK (Launch) === */
+:root{ color-scheme: dark; } /* nativer Dark-UI für Browser/Forms */
+
+html,
+html[data-theme],
+html[data-theme="light"],
+body,
+#launch-overlay {
+  /* Deine Dark-Variablen */
+  --bg: #0b0d0f;
+  --surface: #121417;
+  --elev: #191c20;
+  --text: #e6e9ee;
+  --muted: #aab3be;
+  --brand: #18a196;
+  --brand-hover: #0e9d90;
+  --radius: 14px;
+
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* Nur falls du Klassen für Light hast – neutralisieren */
+.light, .light-theme, .theme-light, [data-theme="light"] #launch-overlay,
+[data-theme="light"] .launch-inner {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* Launch-spezifisch: Oberfläche immer dunkel */
+#launch-overlay { background: var(--bg) !important; }
+#launch-overlay .launch-inner { background: var(--surface); }
+#launch-overlay .sub { color: var(--muted); }
+
+/* Theme-Toggle auf Launch verstecken (falls vorhanden) */
+#theme-toggle, .theme-toggle, [data-action="toggle-theme"] {
+  display: none !important;
+}
+
+/* Falls jemand auf Light schaltet → trotzdem dunkel lassen */
+@media (prefers-color-scheme: light) {
+  :root { color-scheme: dark; }
+}
+
+
 /* =========================================================
    DropNGo — Launch Overlay (scoped + tidy)
    Greift nur innerhalb von #launch-overlay

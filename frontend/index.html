@@ -402,6 +402,21 @@ html[data-theme="light"] .meta{
   <link rel="stylesheet" href="../css/theme.css">
   <!-- im <head> deiner index.html -->
 <link rel="stylesheet" href="css/launch.css">
+<meta name="color-scheme" content="dark">
+
+<style>
+  /* Mini-Fallback, damit es schon vor CSS-Dateien dunkel ist */
+  html { background:#0b0d0f; color:#e6e9ee; }
+</style>
+
+<script>
+  // Früh den Dark-Status setzen, bevor anderer Code lädt
+  document.documentElement.setAttribute('data-theme','dark');
+  try { localStorage.setItem('theme','dark'); } catch (e) {}
+</script>
+
+<!-- launch.css am Ende der CSS-Liste laden, damit es gewinnt -->
+<link rel="stylesheet" href="/launch.css">
 
 </head>
 <body>
