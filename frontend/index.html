@@ -397,210 +397,17 @@ html[data-theme="light"] .hero__card{
 html[data-theme="light"] .meta{
   color: #475569 !important; /* slate-600 */
 }
-/* =========================================================
-   DropNGo — Launch Overlay (tidy)
-   Struktur:
-   1) Tokens  2) Page Lock  3) Overlay  3a/b) Layers
-   4) Content 4a) Brand 4b) Typo 4c) Countdown 4d) Note
-   5) Motion  6) Mobile     7) Animation
-   ========================================================= */
-
-/* 1) Design Tokens */
-:root{
-  --bg:#0b0d0f; --surface:#121417; --text:#e6e9ee; --muted:#aab3be;
-  --brand:#18a196; --brand-700:#0e9d90; --ring:rgba(24,161,150,.25);
-
-  --radius:16px;
-  --border:1px solid rgba(255,255,255,.08);
-  --shadow-lg:0 18px 60px rgba(0,0,0,.45);
-}
-
-/* 2) Body scroll sperren, solange Overlay aktiv ist */
-body.launch-lock{ overflow:hidden; }
-
-/* 3) Overlay Container */
-#launch-overlay{
-  position: fixed; inset: 0; z-index: 99999;
-  display: grid; place-items: center;
-  background: var(--bg);            /* Fallback-Farbe */
-  color: var(--text);
-  overflow: hidden;
-}
-
-/* 3a) Bewegtes Bild (unterste Ebene) */
-#launch-overlay::before{
-  content:""; position:absolute; inset:0; z-index:0;
-  background: url('/assets/images/dropngo-hero.png') repeat-x center top / 1400px auto;
-  opacity: .15;
-  animation: slideBg 30s linear infinite;
-}
-
-/* 3b) Radial-Glows (separate Ebene für sauberes Blending) */
-#launch-overlay::after{
-  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-  background:
-    radial-gradient(900px 600px at 10% 90%, rgba(24,161,150,.08), transparent 60%),
-    radial-gradient(900px 600px at 90% 10%, rgba(24,161,150,.06), transparent 60%);
-}
-
-/* 4) Overlay-Inhalt */
-.launch-inner{
-  position: relative; z-index: 1;
-  width: min(720px, 92%);
-  text-align: center;
-  padding: 28px 22px;
-  border-radius: var(--radius);
-  border: var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
-  box-shadow: var(--shadow-lg);
-}
-
-/* 4a) Brand */
-.brand{
-  display:flex; align-items:center; justify-content:center; gap:10px;
-  margin-bottom:8px; color:#dfe6ee;
-}
-.brand .logo{
-  width:36px; height:36px; border-radius:10px;
-  display:grid; place-items:center;
-  background: linear-gradient(135deg, var(--brand), var(--brand-700));
-  color:#041413; font-weight:800;
-}
-
-/* 4b) Typografie */
-h1{ margin:.2rem 0 .4rem; font-size: clamp(22px, 4.5vw, 36px); }
-.sub{ color: var(--muted); margin: 0 0 16px; }
-
-/* 4c) Countdown */
-.countdown{
-  display:flex; justify-content:center; gap:14px;
-  margin:10px 0 6px;
-}
-.countdown div{
-  min-width:88px; padding:10px 14px;
-  border-radius:12px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.09);
-}
-.countdown span{
-  display:block; font-size: clamp(20px, 5vw, 34px);
-  font-weight:800; color:#fff;
-}
-.countdown label{
-  display:block; font-size:12px; color:var(--muted); letter-spacing:.4px;
-}
-
-/* 4d) Hinweis/Links */
-.note{ margin-top:10px; color:var(--muted); }
-.note a{ color:#cfe9e6; text-decoration:underline; }
-
-/* 5) Barrierefreiheit: weniger Bewegung respektieren */
-@media (prefers-reduced-motion: reduce){
-  #launch-overlay::before{ animation: none; }
-}
-
-/* 6) Mobile Tuning */
-@media (max-width: 768px){
-  #launch-overlay::before{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-  }
-  .launch-inner{ width: 90%; padding: 20px 14px; }
-  .countdown div{ min-width: 70px; padding: 8px 10px; }
-}
-
-/* 7) Animation */
-@keyframes slideBg{
-  from { background-position: 0 0; }
-  to   { background-position: -2000px 0; }
-}
-/* ===== Brand (sauber, ohne Inline-Styles) ===== */
-.brand-link{
-  display:inline-flex; align-items:center; gap:10px;
-  text-decoration:none; color:#dfe6ee;
-  padding:6px 10px; border-radius:12px;
-  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
-  border: var(--border);
-  box-shadow: 0 8px 24px rgba(0,0,0,.25);
-  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
-}
-.brand-link:hover{ transform: translateY(-1px); box-shadow: 0 12px 30px rgba(0,0,0,.35); }
-.brand-logo{
-  width:34px; height:34px; border-radius:10px; display:block;
-  box-shadow: 0 6px 18px rgba(24,161,150,.30);
-}
-.brand-name{ font-weight:800; letter-spacing:.2px; }
-
-/* ===== Social Buttons ===== */
-.social{
-  display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:14px;
-}
-.btn-social{
-  --glass-bg: rgba(255,255,255,.06);
-  --glass-br: rgba(255,255,255,.12);
-  display:inline-flex; align-items:center; gap:10px;
-  padding:10px 14px; min-height:44px;
-  border-radius:9999px; border:1px solid var(--glass-br);
-  background: var(--glass-bg);
-  color: var(--text); text-decoration:none; font-weight:600;
-  backdrop-filter: blur(6px);
-  transition: transform .15s ease, box-shadow .25s ease, background .25s ease, color .2s ease, border-color .25s ease;
-}
-.btn-social svg{ width:18px; height:18px; display:block; color: currentColor; }
-.btn-social:focus-visible{
-  outline:none; box-shadow: 0 0 0 3px var(--ring);
-}
-
-/* Instagram: ruhige Base → farbiger Hover */
-.btn-social.ig:hover{
-  background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
-  color:#fff; border-color: transparent;
-  box-shadow: 0 12px 28px rgba(221,42,123,.35), 0 4px 12px rgba(81,91,212,.25);
-}
-
-/* TikTok: dunkler Hover mit Cyan/Pink Glow */
-.btn-social.tt:hover{
-  background:#0b0d0f; color:#fff; border-color: rgba(255,255,255,.14);
-  box-shadow: 0 12px 28px rgba(255,0,85,.35), 0 4px 12px rgba(0,242,234,.25);
-}
-
-/* Light-Theme Gläser etwas heller */
-html[data-theme="light"] .btn-social{
-  --glass-bg: rgba(255,255,255,.9);
-  --glass-br: #e6eaf0;
-  color:#0b0d0f;
-  box-shadow: 0 6px 18px rgba(15,23,42,.08);
-}
-html[data-theme="light"] .brand-link{
-  color:#0b0d0f;
-  background: #fff; border:1px solid #e6eaf0;
-  box-shadow: 0 8px 24px rgba(15,23,42,.08);
-}
-html[data-theme="light"] .brand-link:hover{
-  box-shadow: 0 12px 32px rgba(15,23,42,.12);
-}
-
-/* Micro-Interaction */
-.btn-social:active{ transform: translateY(1px) scale(.98); }
-
-/* Mobile: Buttons füllen die Zeile hübsch aus */
-@media (max-width: 480px){
-  .btn-social{ flex:1 1 calc(50% - 5px); justify-content:center; }
-}
-
-/* Noscript Hinweis */
-.noscript{ margin-top:12px; color:#c9d2dc; }
-html[data-theme="light"] .noscript{ color:#475569; }
 
   </style>
   <link rel="stylesheet" href="../css/theme.css">
+  <!-- im <head> deiner index.html -->
+<link rel="stylesheet" href="css/launch.css">
+
 </head>
 <body>
-  <!-- LAUNCH OVERLAY -->
+ <!-- LAUNCH OVERLAY -->
 <div id="launch-overlay" aria-hidden="true">
   <div class="launch-inner">
-    <!-- Brand -->
     <div class="brand">
       <a class="brand-link" href="index.html" aria-label="DropNGo Startseite">
         <img class="brand-logo" src="favicon.ico" alt="DropNGo Logo" />
@@ -611,7 +418,6 @@ html[data-theme="light"] .noscript{ color:#475569; }
     <h1>Wir starten bald! 🚀</h1>
     <p class="sub">Offizieller Launch am <strong>11.09.25 · 18:00 Uhr</strong></p>
 
-    <!-- Countdown -->
     <div class="countdown" role="timer" aria-live="polite">
       <div><span id="dd">00</span><label>Tage</label></div>
       <div><span id="hh">00</span><label>Stunden</label></div>
@@ -619,11 +425,8 @@ html[data-theme="light"] .noscript{ color:#475569; }
       <div><span id="ss">00</span><label>Sekunden</label></div>
     </div>
 
-    <!-- Social Buttons -->
     <div class="social">
-      <a class="btn-social ig" href="https://www.instagram.com/dropngo.shop"
-         target="_blank" rel="noopener" aria-label="Instagram: @dropngo.shop">
-        <!-- Instagram Icon -->
+      <a class="btn-social ig" href="https://www.instagram.com/dropngo.shop" target="_blank" rel="noopener" aria-label="Instagram: @dropngo.shop">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <rect x="2.8" y="2.8" width="18.4" height="18.4" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
           <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -632,9 +435,7 @@ html[data-theme="light"] .noscript{ color:#475569; }
         <span>Instagram</span>
       </a>
 
-      <a class="btn-social tt" href="https://www.tiktok.com/@dropngo.shop"
-         target="_blank" rel="noopener" aria-label="TikTok: @dropngo.shop">
-        <!-- TikTok Icon (Note + Stem) -->
+      <a class="btn-social tt" href="https://www.tiktok.com/@dropngo.shop" target="_blank" rel="noopener" aria-label="TikTok: @dropngo.shop">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M14 3v9.2a4.2 4.2 0 1 1-2.5-3.9V5.2c1.5 1.8 3.5 2.9 6 3.1v2.2c-2.3-.1-4.2-1-6-2.5V17a5.8 5.8 0 1 1-3.5-5.4"
                 fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -646,6 +447,7 @@ html[data-theme="light"] .noscript{ color:#475569; }
     <noscript><p class="noscript">Bitte JavaScript aktivieren, um den Launch zu sehen.</p></noscript>
   </div>
 </div>
+
 
 <!-- ===== Global Header (neu) ===== -->
 <header class="dng-header" data-mobile>

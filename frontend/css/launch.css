@@ -1,0 +1,173 @@
+/* =========================================================
+   DropNGo — Launch Overlay (scoped + tidy)
+   Greift nur innerhalb von #launch-overlay
+   ========================================================= */
+
+/* 1) Tokens (nur für das Overlay) */
+:root{
+  --bg:#0b0d0f; --surface:#121417; --text:#e6e9ee; --muted:#aab3be;
+  --brand:#18a196; --brand-700:#0e9d90; --ring:rgba(24,161,150,.25);
+  --radius:16px;
+  --border:1px solid rgba(255,255,255,.08);
+  --shadow-lg:0 18px 60px rgba(0,0,0,.45);
+}
+
+/* 2) Body lock, solange Overlay aktiv */
+body.launch-lock{ overflow:hidden; }
+
+/* 3) Overlay Shell */
+#launch-overlay{
+  position: fixed; inset: 0; z-index: 99999;
+  display: grid; place-items: center;
+  background: var(--bg);              /* Fallback */
+  color: var(--text);
+  overflow: hidden;
+}
+
+/* 3a) Unterste Ebene: bewegtes Bild */
+#launch-overlay::before{
+  content:""; position:absolute; inset:0; z-index:0;
+  background: url('/assets/images/dropngo-hero.png') repeat-x center top / 1400px auto;
+  opacity: .15;
+  animation: slideBg 30s linear infinite;
+}
+
+/* 3a' Light-Theme: anderes Bild */
+html[data-theme="light"] #launch-overlay::before{
+  background-image: url('/assets/images/dropngo-herolight.png');
+}
+
+/* 3b) Radial Glows (leise) */
+#launch-overlay::after{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(900px 600px at 10% 90%, rgba(24,161,150,.08), transparent 60%),
+    radial-gradient(900px 600px at 90% 10%, rgba(24,161,150,.06), transparent 60%);
+}
+
+/* 4) Content Card */
+#launch-overlay .launch-inner{
+  position: relative; z-index: 1;
+  width: min(720px, 92%);
+  text-align: center;
+  padding: 28px 22px;
+  border-radius: var(--radius);
+  border: var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+  box-shadow: var(--shadow-lg);
+}
+
+/* 4a) Brand */
+#launch-overlay .brand{ display:flex; justify-content:center; }
+#launch-overlay .brand-link{
+  display:inline-flex; align-items:center; gap:10px;
+  text-decoration:none; color:#dfe6ee;
+  padding:6px 10px; border-radius:12px;
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+  border: var(--border);
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+#launch-overlay .brand-link:hover{ transform: translateY(-1px); box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+#launch-overlay .brand-logo{
+  width:34px; height:34px; border-radius:10px; display:block;
+  box-shadow: 0 6px 18px rgba(24,161,150,.30);
+}
+#launch-overlay .brand-name{ font-weight:800; letter-spacing:.2px; }
+
+/* 4b) Typo */
+#launch-overlay h1{ margin:.2rem 0 .4rem; font-size: clamp(22px, 4.5vw, 36px); }
+#launch-overlay .sub{ color: var(--muted); margin: 0 0 16px; }
+#launch-overlay .noscript{ margin-top:12px; color:#c9d2dc; }
+html[data-theme="light"] #launch-overlay .noscript{ color:#475569; }
+
+/* 4c) Countdown */
+#launch-overlay .countdown{
+  display:flex; justify-content:center; gap:14px;
+  margin:10px 0 6px;
+}
+#launch-overlay .countdown div{
+  min-width:88px; padding:10px 14px;
+  border-radius:12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.09);
+}
+#launch-overlay .countdown span{
+  display:block; font-size: clamp(20px, 5vw, 34px);
+  font-weight:800; color:#fff;
+}
+#launch-overlay .countdown label{
+  display:block; font-size:12px; color:var(--muted); letter-spacing:.4px;
+}
+
+/* 5) Social Buttons */
+#launch-overlay .social{
+  display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:14px;
+}
+#launch-overlay .btn-social{
+  --glass-bg: rgba(255,255,255,.06);
+  --glass-br: rgba(255,255,255,.12);
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 14px; min-height:44px;
+  border-radius:9999px; border:1px solid var(--glass-br);
+  background: var(--glass-bg);
+  color: var(--text); text-decoration:none; font-weight:600;
+  backdrop-filter: blur(6px);
+  transition: transform .15s ease, box-shadow .25s ease, background .25s ease, color .2s ease, border-color .25s ease;
+}
+#launch-overlay .btn-social svg{ width:18px; height:18px; display:block; color: currentColor; }
+#launch-overlay .btn-social:focus-visible{
+  outline:none; box-shadow: 0 0 0 3px var(--ring);
+}
+#launch-overlay .btn-social:active{ transform: translateY(1px) scale(.98); }
+
+/* Instagram Hover */
+#launch-overlay .btn-social.ig:hover{
+  background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
+  color:#fff; border-color: transparent;
+  box-shadow: 0 12px 28px rgba(221,42,123,.35), 0 4px 12px rgba(81,91,212,.25);
+}
+/* TikTok Hover */
+#launch-overlay .btn-social.tt:hover{
+  background:#0b0d0f; color:#fff; border-color: rgba(255,255,255,.14);
+  box-shadow: 0 12px 28px rgba(255,0,85,.35), 0 4px 12px rgba(0,242,234,.25);
+}
+
+/* 6) Light-Theme Anpassungen (glassy hell) */
+html[data-theme="light"] #launch-overlay .btn-social{
+  --glass-bg: rgba(255,255,255,.9);
+  --glass-br: #e6eaf0;
+  color:#0b0d0f;
+  box-shadow: 0 6px 18px rgba(15,23,42,.08);
+}
+html[data-theme="light"] #launch-overlay .brand-link{
+  color:#0b0d0f;
+  background: #fff; border:1px solid #e6eaf0;
+  box-shadow: 0 8px 24px rgba(15,23,42,.08);
+}
+html[data-theme="light"] #launch-overlay .brand-link:hover{
+  box-shadow: 0 12px 32px rgba(15,23,42,.12);
+}
+
+/* 7) A11y: weniger Bewegung respektieren */
+@media (prefers-reduced-motion: reduce){
+  #launch-overlay::before{ animation: none; }
+}
+
+/* 8) Mobile Tuning */
+@media (max-width: 768px){
+  #launch-overlay::before{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+  }
+  #launch-overlay .launch-inner{ width: 90%; padding: 20px 14px; }
+  #launch-overlay .countdown div{ min-width: 70px; padding: 8px 10px; }
+  #launch-overlay .btn-social{ flex:1 1 calc(50% - 5px); justify-content:center; }
+}
+
+/* 9) Animation */
+@keyframes slideBg{
+  from { background-position: 0 0; }
+  to   { background-position: -2000px 0; }
+}
