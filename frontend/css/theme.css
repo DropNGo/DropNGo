@@ -4,6 +4,26 @@
 .theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;background:var(--surface);color:var(--text);transition:background .3s,color .3s,transform .2s;box-shadow:0 4px 12px rgba(0,0,0,.15);}
 .theme-toggle-btn:hover{transform:scale(1.1);background:var(--brand);color:#fff;}
 .theme-toggle-btn .icon{display:none;}
+/* Ensure toggles sit above other elements and remain clickable */
+#themeToggleDesktop,#themeToggleMobile{position:relative;z-index:10;pointer-events:auto;}
+/* Burger icon colors for light/dark themes */
+html[data-theme="light"] .dng-burger svg,
+html[data-theme="light"] .dng-burger svg path{stroke:#000!important;}
+html[data-theme="dark"] .dng-burger svg,
+html[data-theme="dark"] .dng-burger svg path{stroke:#e6e9ee!important;}
+/* Mobile menu background and link colors */
+html[data-theme="light"] .dng-drawer,
+html[data-theme="light"] #mobileMenu{background:#fff;color:#111;border-left:1px solid #e5e7eb;}
+html[data-theme="light"] .dng-drawer a,
+html[data-theme="light"] #mobileMenu a{color:#111;}
+html[data-theme="light"] .dng-drawer a:hover,
+html[data-theme="light"] #mobileMenu a:hover{background:#f5f6f7;}
+html[data-theme="dark"] .dng-drawer,
+html[data-theme="dark"] #mobileMenu{background:rgba(9,11,12,.98);color:#e6e9ee;border-left:1px solid rgba(255,255,255,.12);}
+html[data-theme="dark"] .dng-drawer a,
+html[data-theme="dark"] #mobileMenu a{color:#e6e9ee;}
+html[data-theme="dark"] .dng-drawer a:hover,
+html[data-theme="dark"] #mobileMenu a:hover{background:rgba(255,255,255,.06);}
 html[data-theme="light"] .theme-toggle-btn .sun{display:block;}
 html[data-theme="dark"] .theme-toggle-btn .moon{display:block;}
 :root[data-theme="light"],html[data-theme="light"],body.light-mode{--bg:#ffffff;--surface:#ffffff;--elev:#f7f7f7;--text:#0f172a;--muted:#0f172a;--border:#e5e7eb;--surface-alt:#f7f7f7;}
