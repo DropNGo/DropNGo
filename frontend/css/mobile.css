@@ -17,7 +17,7 @@
   backdrop-filter:saturate(140%) blur(10px);
   background:rgba(12,15,19,.7); border-bottom:1px solid var(--dng-border);
 }
-.dng-nav{display:flex;align-items:center;justify-content:space-between;height:var(--dng-header-h);gap:12px}
+.dng-nav{display:flex;align-items:center;gap:12px;height:var(--dng-header-h);justify-content:flex-start}
 .dng-brand{display:flex;align-items:center;gap:10px;color:var(--dng-text);text-decoration:none}
 .dng-logo{width:34px;height:34px;border-radius:10px;box-shadow:0 6px 18px rgba(24,161,150,.25)}
 .dng-brand-text{font-weight:800}
@@ -29,10 +29,12 @@
 .dng-burger{
   display:none; width:40px;height:40px;border-radius:10px;
   border:1px solid var(--dng-border); background:transparent; color:var(--dng-text);
-  cursor:pointer; -webkit-tap-highlight-color:transparent;
+  cursor:pointer; -webkit-tap-highlight-color:transparent; margin-left:auto;
 }
 .dng-burger svg{width:22px;height:22px;display:block}
 .dng-burger svg path{stroke:currentColor}
+
+#navToggle{margin-left:auto}
 
 /* Overlay */
 .dng-overlay{
