@@ -21,10 +21,11 @@
 
   <!-- Inter -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/cookie-banner.css" />
 
   <style>
-    :root{
+      :root{
       --bg: #0b0d0f;            /* Haupt‑Hintergrund */
       --surface: #121417;       /* Karten/Flächen */
       --elev: #191c20;          /* leichte Erhöhung */
@@ -186,8 +187,7 @@
     .footer-col a:hover{ color:var(--text); }
     .copyright{ color:#8f98a3; font-size: 14px; padding: 12px 0 32px; }
     @media (max-width: 760px){ .footer-grid{ grid-template-columns: 1fr; } }
-
-        
+    
        /* --- Mobile-Menü Fix products.html --- */
 @media (max-width: 900px){
   header .nav__links { display: none !important; }
@@ -258,6 +258,39 @@
 .sticky-cta__inner{ padding:12px 0; display:flex; gap:12px; align-items:center; justify-content:space-between }
 .sc-title{ display:flex; gap:10px; align-items:baseline }
 .sc-title .price{ color:var(--brand); font-weight:700 }
+/* Tabs: feste Mindesthöhe, damit das Layout nicht springt */
+.tabs .tab-panel {
+  min-height: 220px;           /* <- Höhe nach Bedarf anpassen */
+  padding: 14px;
+}
+
+/* Tab-Head optisch dezent, Buttons sind deaktiviert */
+.tab-head {
+  display: flex; gap: 8px; margin-bottom: 10px;
+}
+.tab-head button[disabled]{
+  opacity: .6; cursor: not-allowed;
+  background: rgba(255,255,255,.06);
+  color: var(--muted);
+  border: 1px solid rgba(255,255,255,.08);
+  padding: 8px 12px; border-radius: 8px;
+}
+
+/* Info-Note Karte */
+.partner-info-note{
+  display: flex; gap: 12px; align-items: flex-start;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  padding: 14px;
+  color: var(--muted);
+  box-shadow: var(--shadow);
+}
+.partner-info-note .pin-icon{
+  font-size: 20px; line-height: 1; margin-top: 2px;
+}
+.partner-info-note .pin-text strong{ color: var(--text); }
+.partner-info-note em{ font-style: normal; color: var(--text); opacity: .9; }
 
       .gallery{ position:relative; }
     .gallery-prev, .gallery-next{ position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.5); color:#fff; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; }
@@ -377,7 +410,7 @@
           <div class="price"></div>
           <p class="meta">Sofort verfügbar • Versandzeit: 2–4 Werktage</p>
 <div class="partner-offer-box">
-  🤝 <strong>Partnerangebot:</strong> Dieses Produkt wird von einem unserer geprüften Partner angeboten.<br>
+  🤝 <strong>Partnerangebot:</strong> Dieses Produkt wird von einem unserer geprüften Partner angeboten.  
   Bei Kauf über den Link erhalten wir ggf. eine Provision – <em>ohne Aufpreis für dich</em>.
 </div>
 
@@ -558,6 +591,7 @@
 <link rel="stylesheet" href="css/mobile.css">
 <script src="js/mobile.js" defer></script>
   <script src="js/theme.js" defer></script>
-
+    <div id="cookieBanner"></div>
+  <script src="js/cookie-banner.js" defer></script>
 </body>
 </html>

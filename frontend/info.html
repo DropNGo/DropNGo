@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
-<head> <!-- TrustBox script -->
+<head>
+
+<!-- TrustBox script -->
 <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
 <!-- End TrustBox script -->
   <meta charset="UTF-8" />
@@ -23,6 +25,8 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!-- Cookie banner CSS: externalised for reuse across pages -->
+<link rel="stylesheet" href="css/cookie-banner.css">
 
   <style>
     :root {
@@ -1326,8 +1330,8 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
     <div class="container">
       <h1>Über DropNGo</h1>
       <p>
-        DropNGo ist dein kuratierter Marktplatz für Fitness‑ und Gesundheitsprodukte. Wir suchen die
-        besten Produkte am Markt, damit du dich ganz auf dein Training und dein Wohlbefinden
+        DropNGo ist dein kuratierter Marktplatz für Gesundheits‑ und Wohlfühlprodukte. Wir suchen die
+        besten Produkte am Markt, damit du dich ganz auf dein Wohlbefinden
         konzentrieren kannst. Als Affiliate‑Plattform vermitteln wir ausschließlich Produkte
         vertrauenswürdiger Partner und sorgen für transparente Informationen.
       </p>
@@ -1340,8 +1344,9 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
       <div>
         <h2>Wer wir sind</h2>
         <p>
-          Wir sind ein Team aus Sportbegeisterten, die es sich zur Aufgabe gemacht haben,
-          hochwertige Fitness‑ und Gesundheitsprodukte auf einfache Weise zugänglich zu machen.
+          Wir sind ein Team, das sich der Gesundheit und dem Wohlbefinden verschrieben hat, 
+          und es sich zur Aufgabe gemacht hat, hochwertige Gesundheits‑ und Wohlfühlprodukte 
+          auf einfache Weise zugänglich zu machen.
           Unser Fokus liegt auf Qualität, Transparenz und einem seriösen Auftritt – fernab
           von dubiosen Online‑Shops.
         </p>
@@ -1350,7 +1355,7 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
         <h2>Unsere Mission</h2>
         <p>
           DropNGo will mehr sein als nur ein Affiliate‑Portal: Wir möchten Menschen unterstützen,
-          die sich fit halten oder ihre Gesundheit verbessern möchten. Deshalb arbeiten wir nur
+          die ihre Gesundheit verbessern und ihr Wohlbefinden steigern möchten. Deshalb arbeiten wir nur
           mit geprüften Anbietern zusammen und stellen detaillierte Informationen bereit, damit du
           fundierte Entscheidungen treffen kannst.
         </p>
@@ -1369,7 +1374,7 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
   <!-- Call‑to‑Action Section -->
   <section class="container" style="text-align: center; padding-bottom: 60px;">
     <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--muted);">
-      Bereit, dein Training auf das nächste Level zu bringen? Schau dir unsere aktuellen
+      Bereit, dein Wohlbefinden zu steigern? Schau dir unsere aktuellen
       <a href="products.html" style="color: var(--brand); text-decoration: underline;">Produkt‑Highlights</a>
       an.
     </p>
@@ -1403,26 +1408,37 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
 <!-- End TrustBox widget -->
 
 <style>
-  /* Dunkles Design für Trustpilot Widget */
-  .trustpilot-dark {
-    background-color: #121212; /* tiefes Schwarz */
-    border: 1px solid #2a2a2a; /* dezenter Rand */
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
+  /* Dark-Theme: schwarz wie bisher */
+  html[data-theme="dark"] .trustpilot-dark {
+    background-color: #121212 !important;
+    border: 1px solid #2a2a2a !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+    text-align: center !important;
   }
-
-  .trustpilot-dark a {
-    color: #00b67a !important; /* Trustpilot Grün */
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 14px;
+  html[data-theme="dark"] .trustpilot-dark a {
+    color: #00b67a !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
   }
+  html[data-theme="dark"] .trustpilot-dark a:hover { color: #1ed760 !important; }
 
-  .trustpilot-dark a:hover {
-    color: #1ed760 !important; /* helleres Grün beim Hover */
+  /* Light-Theme: weiße Box */
+  html[data-theme="light"] .trustpilot-dark {
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+    text-align: center !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08) !important;
+  }
+  html[data-theme="light"] .trustpilot-dark a {
+    color: #000 !important;
+    font-weight: 600 !important;
   }
 </style>
+
 
     <!-- Copyright -->
     <p class="copyright">
@@ -1554,6 +1570,7 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
       });
     })();
   </script>
-
+<div id="cookieBanner"></div>
+<script src="js/cookie-banner.js" defer></script>
   </body>
 </html>

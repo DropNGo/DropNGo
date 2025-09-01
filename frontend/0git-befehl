@@ -1,4 +1,4 @@
 git status
 git add -A
-git commit -m "Home" 
+git commit -m "Update" 
 git push origin main

@@ -74,3 +74,56 @@ a.btn, .btn{ min-height:44px; min-width:44px; }
   .section, .hero{ padding-top:44px; padding-bottom:28px; }
   .grid{ gap:14px }
 }
+/* ========= DropNGo – Mobile Polish für die Startseite ========= */
+/* Zielgeräte: Phones & kleine Tablets */
+@media (max-width: 820px){
+
+  /* Container + Defaults */
+  .container{ width:100%; max-width:100%; padding:0 14px; }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:28px 0 10px; }
+  .hero__inner{ grid-template-columns: 1fr !important; gap:16px; }
+  .hero h1{ font-size: clamp(22px, 7vw, 28px) !important; line-height: 1.15; margin-bottom: 8px; }
+  .hero .lead{ font-size: .95rem; margin: 4px 0 14px; color: var(--muted); }
+  .hero__card{ border-radius: 12px; }
+  .hero__img{ aspect-ratio: 16/10; display:grid; place-items:center; background:#0f1114; }
+  .hero__img img{ max-height: 40vh; width:auto; object-fit: contain; }
+  .hero__points{ gap:10px; margin-top: 10px; }
+  .hero__points li{ font-size: 13px; padding: 6px 10px; }
+
+  /* Hero-Buttons: nebeneinander, aber kompakt */
+  .hero__actions{ gap:8px !important; }
+  .hero__actions .btn{ flex:1 1 48%; min-width: calc(50% - 4px); padding: 10px 12px; border-radius: 10px; }
+
+  /* ---------- TRUST ROW ---------- */
+  .trust{ padding:12px; gap:10px; border-radius: 12px; }
+  .trust span{ font-size: 13px; }
+  .trust img{ height: 16px; }
+  .dot{ width:6px; height:6px; margin:0 6px; }
+
+  /* ---------- PRODUKT-GRID ---------- */
+  .grid{ gap:12px !important; }
+  /* 2 Spalten auf Handy (dann 1 Spalte ganz klein) */
+  .col-3{ grid-column: span 6 !important; }
+  .card{ border-radius: 12px; box-shadow: 0 10px 24px rgba(0,0,0,.28); }
+  .card__img{ padding:8px; background: transparent; display:flex; align-items:center; justify-content:center; }
+  .card__img img{ width:100%; height:auto; object-fit: contain; }
+  .card__body{ padding:12px; }
+  .price{ font-size: 15px; }
+  .meta{ font-size: 12px; color: var(--muted); }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{ grid-template-columns: 1fr !important; gap:12px; }
+  .quote{ padding:14px; border-radius: 12px; color: var(--muted); }
+  .quote strong{ display:block; font-size:1rem; color: var(--text); margin-bottom: 6px; }
+}
+
+/* Minis (unter 480px): 1 Spalte Produkte & größere Touch-Ziele */
+@media (max-width: 480px){
+  .container{ padding:0 12px; }
+  .col-3{ grid-column: span 12 !important; }
+  .hero__actions .btn{ flex: 1 1 100%; min-width: 100%; }
+  .price{ font-size: 14.5px; }
+  .quote{ padding:12px; }
+}

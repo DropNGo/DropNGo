@@ -7,11 +7,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Produkte | DropNGo</title>
-  <meta name="description" content="Entdecke sorgfältig ausgewählte Fitness‑ und Gesundheitsprodukte bei DropNGo – fair, modern und seriös.">
+  <meta name="description" content="Entdecke sorgfältig ausgewählte Gesundheits‑ und Wohlfühlprodukte bei DropNGo – fair, modern und seriös.">
   <link rel="icon" href="assets/favicon.ico">
 
   <meta property="og:title" content="Produkte | DropNGo" />
-<meta property="og:description" content="Entdecke sorgfältig ausgewählte Fitness- und Gesundheitsprodukte bei DropNGo – fair, modern und seriös." />
+<meta property="og:description" content="Entdecke sorgfältig ausgewählte Gesundheits- und Wohlfühlprodukte bei DropNGo – fair, modern und seriös." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.dropngo.shop/products.html" />
 <meta property="og:image" content="https://www.dropngo.shop/assets/images/dropngo-preview.png" />
@@ -24,7 +24,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="css/cookie-banner.css">
   <style>
     :root {
       --bg: #0b0d0f;
@@ -1596,7 +1596,7 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
 <section class="hero container" style="display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
   <div class="hero-text" style="flex:1; min-width:260px;">
     <h1>Unsere Produkt-Highlights</h1>
-    <p>Entdecke sorgfältig ausgewählte Fitness- und Gesundheitsprodukte von vertrauenswürdigen Partnern.</p>
+    <p>Entdecke sorgfältig ausgewählte Gesundheits- und Wohlfühlprodukte von vertrauenswürdigen Partnern.</p>
     <button class="btn" onclick="window.location.href='#products'">Jetzt entdecken</button>
   </div>
 
@@ -1726,7 +1726,7 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
           <i>★</i><i>★</i><i>★</i><i>★</i><i class="muted">★</i>
           <span class="count">4.5</span>
         </div>
-        <div class="meta">Beliebt bei Athleten</div>
+        <div class="meta">Beliebt bei vielen Anwender:innen</div>
       </div>
     </a>
   </article>
@@ -1982,11 +1982,11 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
   </article>
 
   <!-- Produkt 18 -->
-  <article class="card col-3 card--product">
+  <!-- <article class="card col-3 card--product">
     <a href="18-sos-mund-heil-gel.html" aria-label="Zum SOS Mund-Heil-Gel">
       <div class="card__img">
         <img src="/assets/images/products/Produkt18/71j7vFYKmBL._AC_SL1500_.jpg" alt="SOS Mund-Heil-Gel" loading="lazy">
-      <!--  <span class="label">Empfohlen</span> -->
+      !--  <span class="label">Empfohlen</span> --
       </div>
       <div class="card__body">
         <div class="row">
@@ -2000,11 +2000,11 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
         <div class="meta">Versand aus DE</div>
       </div>
     </a>
-  </article>
+  </article> -->
 
-  <!-- Produkt 19 -->
+  <!-- Produkt 19--18 -->
   <article class="card col-3 card--product">
-    <a href="19-terratherm-waermepflaster-ruecken.html" aria-label="Zum TerraTherm Wärmepflaster Rücken">
+    <a href="18-terratherm-waermepflaster-ruecken.html" aria-label="Zum TerraTherm Wärmepflaster Rücken">
       <div class="card__img">
         <img src="/assets/images/products/Produkt19/81k+npD4W3L._AC_SL1500_.jpg" alt="TerraTherm Wärmepflaster Rücken" loading="lazy">
        <!-- <span class="label">Top Wahl</span> -->
@@ -2039,8 +2039,8 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
     <div class="footer-col">
       <h4>DropNGo</h4>
       <p class="meta">
-       Entdecke unsere kuratierte Auswahl an Fitness- und Gesundheitsprodukten – für weniger Schmerzen,
-        mehr Beweglichkeit und nachhaltiges Wohlbefinden. Wir listen nur Angebote verifizierter 
+       Entdecke unsere kuratierte Auswahl an Gesundheits- und Wohlfühlprodukten – für weniger Schmerzen
+        und nachhaltiges Wohlbefinden. Wir listen nur Angebote verifizierter 
         Partner und achten auf Qualität, Wirksamkeit und faire Konditionen. Klare Angaben zu Preis, 
         Lieferung und Service helfen dir, schnell das passende Produkt zu finden.
       </p>
@@ -2264,6 +2264,7 @@ document.addEventListener('DOMContentLoaded', () => {
   btn.style.zIndex = btn.style.zIndex || '5';
 });
 </script>
-
+<div id="cookieBanner"></div>
+<script src="js/cookie-banner.js" defer></script>
 </body>
 </html>

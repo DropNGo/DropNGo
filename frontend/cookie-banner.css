@@ -1,0 +1,265 @@
+/*
+ * Cookie-Banner Styling
+ *
+ * Alle Regeln verwenden wo sinnvoll !important, um sicherzustellen, dass sie
+ * globale oder seitenweite Styles überschreiben. Durch das Weglassen von
+ * !important bei der display-Eigenschaft kann das Script den Banner
+ * weiterhin ein- und ausblenden.
+ */
+
+/* Grundlayout des Banners */
+.cookie {
+  position: fixed !important;
+  /* Banner unten rechts auf Desktops, unten links auf kleinen Screens */
+  inset: auto 16px 16px 16px !important;
+  max-width: 520px !important;
+  margin-left: auto !important;
+  background: var(--surface) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35) !important;
+  padding: 14px !important;
+  /* display bleibt ohne !important, sonst kann das Script den Banner nicht zeigen */
+  display: none;
+  z-index: 9999 !important;
+}
+
+/* Layout-Elemente */
+.cookie__row {
+  display: flex !important;
+  gap: 14px !important;
+  align-items: flex-start !important;
+}
+.cookie__text {
+  color: var(--muted) !important;
+  font-size: 14px !important;
+}
+.cookie__actions {
+  display: flex !important;
+  gap: 10px !important;
+  margin-left: auto !important;
+}
+
+/* Buttons */
+.cookie .btn {
+  padding: 9px 12px !important;
+  border-radius: 8px !important;
+  border: 1px solid transparent !important;
+  /* Fallback auf Türkis (#18a196), falls --brand nicht definiert ist.
+   * Zusätzlich setzen wir sowohl background als auch background-color explizit
+   * mit !important, um zu verhindern, dass andere Styles den Button überschreiben.
+   */
+  background: var(--brand, #18a196) !important;
+  background-color: var(--brand, #18a196) !important;
+  color: #041413 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 18px rgba(24,161,150,.25) !important;
+  cursor: pointer !important;
+  transition: transform .08s ease, box-shadow .2s ease, background .2s ease !important;
+}
+.cookie .btn:hover {
+  /* Bei Hover sowohl background als auch background-color setzen */
+  background: var(--brand-700, #0e9d90) !important;
+  background-color: var(--brand-700, #0e9d90) !important;
+  box-shadow: 0 12px 26px rgba(24,161,150,.35) !important;
+}
+.cookie .btn:active {
+  transform: translateY(1px) !important;
+}
+
+/* Ghost-Button */
+.cookie .btn--ghost {
+  background: transparent !important;
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  box-shadow: none !important;
+}
+.cookie .btn--ghost:hover {
+  background: rgba(255,255,255,.06) !important;
+}
+
+/* Light Theme Variante */
+html[data-theme="light"] .cookie {
+  background: #fff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08) !important;
+  color: #111 !important;
+}
+html[data-theme="light"] .cookie__text {
+  color: #374151 !important;
+}
+html[data-theme="light"] .cookie .btn--ghost {
+  color: #111 !important;
+  border-color: #e5e7eb !important;
+}
+html[data-theme="light"] .cookie .btn--ghost:hover {
+  background: #f3f4f6 !important;
+}
+
+/*
+ * Light-Theme: Akzeptieren-Button muss ebenfalls den Markenfarbton verwenden.
+ * Ohne diese Regel kann es vorkommen, dass globale .btn-Regeln den Button
+ * schwarz einfärben.
+ */
+html[data-theme="light"] .cookie .btn {
+  /* Explizit background und background-color im Light-Theme setzen */
+  background: var(--brand, #18a196) !important;
+  background-color: var(--brand, #18a196) !important;
+  color: #041413 !important;
+}
+html[data-theme="light"] .cookie .btn:hover {
+  background: var(--brand-700, #0e9d90) !important;
+  background-color: var(--brand-700, #0e9d90) !important;
+}
+
+/*
+ * Zusätzliche Selektoren mit ID #cookieBanner, um eine höhere
+ * Spezifität gegenüber generischen .btn-Regeln zu erreichen.
+ * Dadurch wird der Cookie-Akzeptieren-Button zuverlässig in
+ * der Markenfarbe angezeigt, selbst wenn andere Stylesheets
+ * später im DOM .btn mit !important definieren.
+ */
+#cookieBanner .btn {
+  /* Nutze harte Farbwerte für den Akzeptieren-Button. So wird er
+   * unabhängig von fehlenden CSS‑Variablen oder globalen Overrides
+   * immer in Türkis (#18a196) angezeigt. Der Text bleibt dunkel.
+   */
+  background: #18a196 !important;
+  background-color: #18a196 !important;
+  color: #041413 !important;
+}
+#cookieBanner .btn:hover {
+  background: #0e9d90 !important;
+  background-color: #0e9d90 !important;
+}
+
+/* Einheitliche Größe für alle Banner */
+#cookieBanner.cookie {
+  max-width: 520px !important;
+  width: 100% !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+}
+
+/* Text und Buttons anpassen */
+#cookieBanner .cookie__text {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+#cookieBanner .btn {
+  min-width: 120px !important;
+  padding: 10px 16px !important;
+}
+/* Nur Buttons im Cookie-Banner bei Light Theme */
+html[data-theme="light"] #cookieBanner .btn,
+html[data-theme="light"] #cookieBanner .btn--ghost {
+  color: #ffffff !important;
+}
+/* Einheitliche Größe + größere Schrift für Buttons im Cookie-Banner */
+#cookieBanner .btn,
+#cookieBanner .btn--ghost {
+  min-width: 150px;      /* gleiche Breite */
+  min-height: 48px;      /* gleiche Höhe */
+  padding: 12px 18px;    /* gleichmäßiges Innenpadding */
+  font-size: 15px;       /* minimal größer als Standard */
+  font-weight: 600;      /* etwas kräftiger für bessere Lesbarkeit */
+  text-align: center;    /* Text schön mittig */
+  box-sizing: border-box;
+}
+/* Light-Theme: Buttons schwarz + weiße Schrift (beide Buttons einheitlich) */
+html[data-theme="light"] #cookieBanner .btn,
+html[data-theme="light"] #cookieBanner .btn--ghost {
+  background: #000 !important;
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+}
+
+/* Hover im Light-Theme: leicht aufgehelltes Schwarz */
+html[data-theme="light"] #cookieBanner .btn:hover,
+html[data-theme="light"] #cookieBanner .btn--ghost:hover {
+  background: #111 !important;
+  background-color: #111 !important;
+  color: #fff !important;
+  border-color: #111 !important;
+}
+/* Light-Theme: Datenschutz-Link im Cookie-Banner schwarz */
+html[data-theme="light"] #cookieBanner a {
+  color: #000 !important;
+  text-decoration: underline;            /* optional – wirkt seriös */
+  text-underline-offset: 2px;            /* hübscher Unterstrich */
+}
+
+html[data-theme="light"] #cookieBanner a:hover,
+html[data-theme="light"] #cookieBanner a:focus {
+  color: #111 !important;                /* leicht dunkler beim Hover/Focus */
+  outline: none;
+}
+/* ===== Mobile-Optimiertes Cookie-Banner ===== */
+@media (max-width: 768px) {
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    background: var(--surface, #121417);
+    color: var(--text, #e6e9ee);
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding: 16px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,.4);
+    border-radius: 12px 12px 0 0;
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+  }
+
+  .cookie-banner p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .cookie-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .cookie-buttons button {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 2px solid var(--brand, #18a196);
+    background: transparent;
+    color: var(--brand, #18a196);
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .cookie-buttons button:hover {
+    background: var(--brand, #18a196);
+    color: #041413;
+  }
+}
+
+/* ===== Extra kleine Handys ===== */
+@media (max-width: 480px) {
+  .cookie-banner {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .cookie-buttons button {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+}

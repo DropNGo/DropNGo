@@ -1,0 +1,125 @@
+für css
+<!--FÜR DEN LAUNCH-->
+:root{ 
+    --bg:#0b0d0f; --surface:#121417; --text:#e6e9ee; --muted:#aab3be;
+    --brand:#18a196; --brand-700:#0e9d90; --ring:rgba(24,161,150,.25);
+  }
+  /* Overlay nimmt die komplette Seite ein */
+  #launch-overlay{
+    position:fixed; inset:0; z-index:99999;
+    display:grid; place-items:center;
+    background:
+      radial-gradient(900px 600px at 10% 90%, rgba(24,161,150,.08), transparent 60%),
+      radial-gradient(900px 600px at 90% 10%, rgba(24,161,150,.06), transparent 60%),
+      var(--bg);
+    color:var(--text);
+  }
+  .launch-inner{
+    text-align:center; width:min(720px,92%);
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px; padding:28px 22px; box-shadow:0 18px 60px rgba(0,0,0,.45);
+  }
+  .brand{display:flex; gap:10px; align-items:center; justify-content:center; margin-bottom:8px; color:#dfe6ee;}
+  .brand .logo{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--brand),var(--brand-700)); color:#041413; font-weight:800;}
+  h1{margin:.2rem 0 .4rem; font-size:clamp(22px,4.5vw,36px);}
+  .sub{color:var(--muted); margin:0 0 16px;}
+  .countdown{display:flex; gap:14px; justify-content:center; margin:10px 0 6px;}
+  .countdown div{background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.09);
+    border-radius:12px; padding:10px 14px; min-width:88px;}
+  .countdown span{display:block; font-size:clamp(20px,5vw,34px); font-weight:800; color:#fff;}
+  .countdown label{display:block; font-size:12px; color:var(--muted); letter-spacing:.4px;}
+  .note{margin-top:10px; color:var(--muted);}
+  .note a{color:#cfe9e6; text-decoration:underline;}
+  /* Body scroll sperren solange Overlay aktiv ist */
+  body.launch-lock{overflow:hidden;}
+  #launch-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  background: #0b0d0f; /* Fallback */
+  overflow: hidden;
+}
+
+#launch-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('/assets/images/dropngo-hero.png') repeat-x;
+  background-size: 1400px auto;   /* Bild größer ziehen */
+  background-position: center top;
+  animation: slideBg 30s linear infinite;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+
+/* Inhalt vom Launch bleibt oben */
+#launch-overlay .launch-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keyframes für die Bewegung */
+@keyframes slideBg {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -2000px 0; /* Geschwindigkeit einstellen */
+  }
+}
+@media (max-width: 768px) {
+  #launch-overlay::before {
+    background-size: cover;         /* Bild füllt den ganzen Screen */
+    background-position: center top; /* zentriert oben */
+    background-repeat: no-repeat;    /* kein mehrfaches Kacheln */
+  }
+
+  .launch-inner {
+    width: 90%;          /* schmaler */
+    padding: 20px 14px;  /* enger, damit es nicht riesig wirkt */
+  }
+
+  .countdown div {
+    min-width: 70px;     /* kleiner, aber lesbar */
+    padding: 8px 10px;
+  }
+}
+
+direkt nach erste body
+<!-- LAUNCH OVERLAY -->
+<div id="launch-overlay" aria-hidden="true">
+  <div class="launch-inner">
+    <div class="brand">
+     <a class="brand" href="index.html" style="display:flex; align-items:center; gap:8px;">
+  <img src="favicon.ico" alt="DropNGo Logo" style="width:34px; height:34px; border-radius:10px; box-shadow:0 6px 18px rgba(24,161,150,.3);" />
+  <span>DropNGo</span>
+</a>
+
+
+    </div>
+
+    <h1>Wir starten bald! 🚀</h1>
+    <p class="sub">Offizieller Launch am <strong>11.09.25 · 18:00 Uhr</strong></p>
+
+    <div class="countdown" role="timer" aria-live="polite">
+      <div><span id="dd">00</span><label>Tage</label></div>
+      <div><span id="hh">00</span><label>Stunden</label></div>
+      <div><span id="mm">00</span><label>Minuten</label></div>
+      <div><span id="ss">00</span><label>Sekunden</label></div>
+    </div>
+
+    <p class="note">Folge uns für Updates:
+      <a href="https://www.instagram.com/dropngo.shop" target="_blank">Instagram</a> ·
+      <a href="https://www.tiktok.com/@dropngo.shop" target="_blank">TikTok</a>
+    </p>
+
+    <noscript>
+      <p style="margin-top:12px;color:#c9d2dc;">Bitte JavaScript aktivieren, um den Launch zu sehen.</p>
+    </noscript>
+  </div>
+</div>

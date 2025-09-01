@@ -10,6 +10,8 @@
   <link rel="icon" href="../assets/favicon.ico" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Cookie banner CSS: relative path corrected to reference parent css folder -->
+    <link rel="stylesheet" href="../css/cookie-banner.css" />
   <style>
     :root{--bg:#0b0d0f;--surface:#121417;--elev:#191c20;--text:#e6e9ee;--muted:#aab3be;--brand:#18a196;--brand-700:#0e9d90;--radius:14px;--shadow:0 10px 30px rgba(0,0,0,.35)}
     *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
@@ -1130,6 +1132,41 @@ html[data-theme="light"] .trustpilot-dark {
 html[data-theme="light"] .trustpilot-dark a {
   color: #000 !important;  /* Linktext schwarz */
 }
+/* Einheitliche Bildgrößen für Produktkarten */
+.card img,
+.related-card img,
+.product-detail-image,
+.hero__img img {
+  width: 100%;
+  max-height: 260px;   /* Höhe begrenzen */
+  object-fit: contain; /* Bild bleibt vollständig sichtbar */
+  border-radius: 12px;
+}
+
+/* Für Mobile noch kleiner */
+@media (max-width: 600px) {
+  .card img,
+  .related-card img,
+  .product-detail-image,
+  .hero__img img {
+    max-height: 200px;
+  }
+}
+/* Einheitliche Bildboxen – kein schwarzer Hintergrund */
+.card__img,
+.related .card__img {
+  background: transparent !important;  /* Schwarz raus */
+}
+
+/* Bilder richtig skalieren */
+.card__img img,
+.related .card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* ganzes Bild sichtbar */
+  object-position: center;
+  border-radius: 8px;    /* optional kleine Rundung */
+}
 
   </style>
 </head>
@@ -1314,7 +1351,7 @@ html[data-theme="light"] .trustpilot-dark a {
     <div class="container footer-grid">
       <div>
         <h4>DropNGo</h4>
-        <p class="meta">Dein kuratierter Marktplatz für Fitness & Gesundheit – seriös, fair, schnell.</p>
+        <p class="meta">Ausgewählte Produkte, transparente Partner – einfach, schnell, seriös.</p>
       </div>
       <div>
         <h4>Rechtliches</h4>
@@ -1493,5 +1530,9 @@ document.addEventListener('DOMContentLoaded', () => {
   btn.style.zIndex = btn.style.zIndex || '5';
 });
 </script>
+  <!-- Cookie banner placeholder and script injection -->
+  <div id="cookieBanner"></div>
+  <!-- Cookie banner script: relative path corrected to parent js folder -->
+  <script src="../js/cookie-banner.js" defer></script>
 </body>
 </html>
