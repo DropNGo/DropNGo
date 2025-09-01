@@ -1501,6 +1501,40 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
   .theme-toggle-btn .icon { display: none; }
   html[data-theme="light"] .theme-toggle-btn .sun { display: block; }
   html[data-theme="dark"]  .theme-toggle-btn .moon { display: block; }
+/* === Mobile-only: 2er-Grid + kompaktere Karten === */
+@media (max-width: 600px){
+  /* 2 Spalten und engeres Grid */
+  .products.container .grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  /* Karten kompakter – beide Varianten abdecken (.card-body und .card__body) */
+  .card-body, .card__body{
+    padding: 10px !important;
+    gap: 6px !important;
+  }
+  .card-body h3, .card__body h3{
+    font-size: 0.92rem !important;
+    line-height: 1.25 !important;
+    margin: 0 0 4px !important;
+  }
+  .price{
+    font-size: 0.9rem !important;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  /* kleine Abstände in Reihen innerhalb der Karten */
+  .card .row{ gap: 4px !important; }
+}
+
+/* Winzige Geräte: unter 360 px lieber 1 Spalte */
+@media (max-width: 360px){
+  .products.container .grid{
+    grid-template-columns: 1fr !important;
+  }
+}
 
   </style>
 </head>
