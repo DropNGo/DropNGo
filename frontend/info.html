@@ -1245,6 +1245,57 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
   background: #000 !important;
   color: #fff !important;
 }
+/* --- About-Boxes für beide Layouts --- */
+.about-grid {
+  gap: 32px;                           /* etwas mehr Luft zwischen den Boxen */
+}
+
+.about-grid > div {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  padding: 24px 24px 22px;
+  box-shadow: var(--shadow);
+  transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.about-grid > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.45);
+}
+
+.about-grid > div h2 {
+  margin: 4px 0 10px;
+  color: var(--brand);                  /* bleibt im Dark-Theme Türkis */
+}
+
+.about-grid > div p {
+  color: var(--muted);
+  margin: 0;
+}
+
+/* --- Light Theme Overrides --- */
+html[data-theme="light"] .about-grid > div {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 24px rgba(15,23,42,.06);
+}
+
+html[data-theme="light"] .about-grid > div h2 {
+  color: #0f172a;                       /* schwarze Überschrift im hellen Layout */
+}
+
+html[data-theme="light"] .about-grid > div p {
+  color: #334155;                       /* gut lesbares Grau im Light Theme */
+}
+
+/* Mobile Feinschliff */
+@media (max-width: 640px) {
+  .about-grid > div { padding: 18px; border-radius: 14px; }
+}
 
   </style>
 </head>

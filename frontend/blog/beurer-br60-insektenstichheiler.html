@@ -132,6 +132,41 @@
   object-position: center;
   border-radius: 8px;    /* optional kleine Rundung */
 }
+/* Mobile Fix: Bilder und Texte untereinander anordnen */
+@media (max-width: 768px) {
+  /* Produkt- / Blog-Content */
+  .product-content,
+  .blog-content,
+  .product-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  /* Bild auf volle Breite */
+  .product-content img,
+  .blog-content img,
+  .product-media img {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Texte mit etwas Abstand */
+  .product-info,
+  .blog-text,
+  .product-description {
+    padding: 0 4px;
+    text-align: left;
+  }
+
+  /* Überschrift + Preis */
+  .product-info h1,
+  .product-info .price {
+    text-align: center;
+  }
+}
 
   </style>
     <link rel="stylesheet" href="../css/theme.css">

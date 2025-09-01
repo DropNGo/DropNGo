@@ -45,8 +45,13 @@ async function init() {
   // fill related products
   const relGrid = document.querySelector('.related .rel-grid');
   if (relGrid) {
-    const related = products.filter(p => p.id !== currentId).slice(0, 3);
-    relGrid.innerHTML = related.map(p => `
+      const pool = products.filter(p => p.id !== currentId);
+    const chosen = [];
+    while (pool.length && chosen.length < 3) {
+      const idx = Math.floor(Math.random() * pool.length);
+      chosen.push(pool.splice(idx, 1)[0]);
+    }
+    relGrid.innerHTML = chosen.map(p => `
       <article class="rel-card">
         <a href="${p.link}">
           <img src="${p.image}" alt="${p.title}">
