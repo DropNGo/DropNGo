@@ -253,11 +253,6 @@ main:hover {
 }
 
 /* Responsive */
-@media (max-width: 600px) {
-  .products {
-    gap: 15px;
-    padding: 20px 10px;
-  }
 
   .product {
     width: 90vw;
@@ -469,30 +464,10 @@ footer {
   box-shadow: 0 -2px 10px rgba(0, 255, 136, 0.2);
 }
 
-.footer-links {
-  margin-bottom: 15px;
-}
-
-.footer-links a {
-  margin: 0 15px;
-  color: rgb(24, 161, 150);
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: white;
-  text-shadow: 0 0 10px rgb(24, 161, 150);
-}
 
 
-@media (max-width: 600px) {
-  .footer-links a {
-    display: block;
-    margin: 10px 0;
-  }
-}
+
+
 
 .home-btn {
   display: inline-block;
@@ -579,10 +554,6 @@ footer {
   text-shadow: 0 0 10px rgb(24, 161, 150);
 }
 
-@media (max-width: 600px) {
-  .footer-contact {
-    text-align: center;
-  }
 }
 
 
@@ -1153,18 +1124,6 @@ footer {
 }
 
 /* Responsive: Bei kleinen Bildschirmen Sidebar oben als horizontale Leiste */
-@media (max-width: 600px) {
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    justify-content: center;
-    padding: 15px 0;
-    box-shadow: none;
-    backdrop-filter: none;
-    background: rgba(0,0,0,0.7);
-  }
   .sidebar button {
     width: auto;
     flex: 1;

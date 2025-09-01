@@ -61,10 +61,13 @@
     .legal-card a { color: var(--brand); text-decoration: underline; }
     .legal-card a:hover { color: var(--brand-hover); }
 
-    footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,.06); color: var(--muted); font-size: 14px; margin-top: 60px; }
-    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
-    .footer-links a { color: var(--muted); transition: var(--transition); }
-    .footer-links a:hover { color: var(--text); }
+    footer.site-footer{ margin-top: 60px; border-top:1px solid rgba(255,255,255,.06); background:#0a0c0e; }
+    .footer-grid{ display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap:18px; padding: 26px 0; }
+    .footer-col h4{ margin:0 0 8px; font-size: 16px; color:#d7dde6; }
+    .footer-col a{ color:var(--muted); display:inline-block; padding:6px 0; }
+    .footer-col a:hover{ color:var(--text); }
+    .copyright{ color:#8f98a3; font-size: 14px; padding: 12px 0 32px; }
+    @media (max-width: 760px){ .footer-grid{ grid-template-columns: 1fr; } }
 
     @media(max-width:600px){
       .nav-links, .brand { width: 100%; text-align: center; margin-top: 10px; }
@@ -268,17 +271,81 @@
     </div>
   </main>
 
-  <footer>
-    <div class="container footer-links">
-      <a href="impressum.html" style="color: var(--text);">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-      <a href="agb.html">AGB</a>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>DropNGo</h4>
+        <p class="meta">Hinweis: DropNGo vermittelt Produkte externer Anbieter. Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen Händler.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <a href="impressum.html">Impressum</a><br/>
+        <a href="datenschutz.html">Datenschutz</a><br/>
+        <a href="agb.html">AGB</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <a href="mailto:kontakt@dropngo.shop">kontakt@dropngo.shop</a><br/>
+        <!-- <a href="support-formular.html">Support</a> -->
+      </div>
+
+      <div class="footer-col">
+        <h4>Folge uns</h4>
+        <a href="https://www.instagram.com/dropngo.shop" target="_blank" rel="noopener">Instagram</a><br/>
+        <a href="https://www.tiktok.com/@dropngo.shop" target="_blank" rel="noopener">TikTok</a>
+      </div>
     </div>
+<!-- TrustBox widget - Review Collector -->
+<div class="trustpilot-widget trustpilot-dark"
+     data-locale="de-DE"
+     data-template-id="56278e9abfbbba0bdcd568bc"
+     data-businessunit-id="68b1c25fbc94b86a86ac2baa"
+     data-style-height="52px"
+     data-style-width="100%"
+     data-token="134582dc-89e6-4eaa-9938-6d937d8901bc">
+  <a href="https://de.trustpilot.com/review/www.dropngo.shop" target="_blank" rel="noopener">Trustpilot</a>
+</div>
+<!-- End TrustBox widget -->
+
+<style>
+  /* Dark-Theme: schwarz wie bisher */
+  html[data-theme="dark"] .trustpilot-dark {
+    background-color: #121212 !important;
+    border: 1px solid #2a2a2a !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+    text-align: center !important;
+  }
+  html[data-theme="dark"] .trustpilot-dark a {
+    color: #00b67a !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+  }
+  html[data-theme="dark"] .trustpilot-dark a:hover { color: #1ed760 !important; }
+
+  /* Light-Theme: weiße Box */
+  html[data-theme="light"] .trustpilot-dark {
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+    text-align: center !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08) !important;
+  }
+  html[data-theme="light"] .trustpilot-dark a {
+    color: #000 !important;
+    font-weight: 600 !important;
+  }
+</style>
+
     <div class="container">
-      <p>&copy; 2025 DropNGo – Alle Rechte vorbehalten. Hinweis: DropNGo vermittelt Produkte
-        externer Anbieter. Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen
-        Händler.</p>
+      <p class="copyright">© 2025 DropNGo – Alle Rechte vorbehalten. | Hinweis: DropNGo vermittelt Produkte externer Anbieter. Kaufverträge entstehen zwischen Kund:innen und dem jeweiligen Händler.</p>
     </div>
+  </footer>
+
       <!-- ===== Scripts ===== -->
   <script>
     // Mobile menu toggle
