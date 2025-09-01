@@ -88,9 +88,6 @@
     footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,.06); color: var(--muted); font-size: 14px; }
 
     /* Footer Links */
-    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
-    .footer-links a { color: var(--muted); transition: var(--transition); }
-    .footer-links a:hover { color: var(--text); }
 
     /* Responsive Mobile */
     @media(max-width:600px){
@@ -221,20 +218,6 @@ footer{
   background:#0a0c0e;
   color:var(--muted);
   font-size:14px;
-}
-.footer-links{
-  display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:10px;
-}
-.footer-links a{
-  color:var(--muted);
-  padding:6px 10px; border-radius:8px;
-  transition:color .2s ease, background .2s ease;
-  position:relative;
-}
-.footer-links a:hover{ color:var(--text); background:rgba(255,255,255,.06); }
-.footer-links a + a::before{
-  content:""; position:absolute; left:-8px; top:50%; transform:translate(-50%,-50%);
-  width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.25);
 }
 footer p{ max-width:900px; margin:8px auto 0; line-height:1.6; }
 /* Footer – identisch zur Startseite */
@@ -1534,66 +1517,6 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
   .products.container .grid{
     grid-template-columns: 1fr !important;
   }
-}
-/* ===============================
-   DropNGo – MOBILE ONLY (products)
-   Ziel: 2er-Grid, kleinere Karten,
-         Hero-Highlight deutlich kompakter
-   =============================== */
-@media (max-width: 820px){
-
-  /* Container enger */
-  .container{ width:100%; max-width:100%; padding:0 14px; }
-
-  /* ---------- HERO OBERHALB DER PRODUKTE ---------- */
-  .hero{ padding:28px 0 10px; display:grid; grid-template-columns:1fr !important; gap:14px; text-align:left; }
-  .hero h1{ font-size: clamp(22px, 6.2vw, 28px); margin:0 0 8px; line-height:1.15; }
-  .hero p{ font-size:.95rem; color:var(--muted); margin: 4px 0 12px; }
-
-  /* Highlight-Produkt (die Karte rechts im Hero) deutlich kleiner */
-  .hero-product-card{
-    max-width: 300px !important;
-    margin: 6px auto 0 !important;
-    padding: 12px !important;
-    border-radius: 12px !important;
-    box-shadow: 0 8px 18px rgba(0,0,0,.32) !important;
-  }
-  .hero-product-card img{ border-radius: 10px !important; }
-  .hero-product-card h3{ font-size:1.02rem !important; }
-  .hero-product-card .price{ font-size:1rem !important; }
-
-  /* CTA Button im Hero kompakter */
-  .hero .btn{ padding:10px 12px; border-radius:10px; font-size:.95rem; }
-
-  /* ---------- PRODUKT-GRID ---------- */
-  .products.container .grid{
-    display:grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px !important;
-  }
-  /* Falls irgendwo noch alte Spaltenklassen gesetzt sind */
-  .products.container .grid .col-3{ grid-column: auto / span 1 !important; }
-
-  /* Karten kompakter */
-  .card{ border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,.28); }
-  .card__img{ padding:8px !important; background:transparent !important; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; }
-  .card__img img{ width:100%; height:auto; object-fit:contain; }
-  .card__body, .card-body{ padding:10px !important; gap:6px !important; }
-  .card__body h3, .card-body h3{ font-size:.92rem !important; line-height:1.25 !important; margin:0 0 4px !important; }
-  .price{ font-size:.9rem !important; white-space:nowrap; font-variant-numeric: tabular-nums; }
-  .card .row{ gap:4px !important; }
-  .meta{ font-size:12px; }
-
-  /* Winzige Geräte → 1 Spalte */
-  @media (max-width: 360px){
-    .products.container .grid{ grid-template-columns: 1fr !important; }
-  }
-
-  /* ---------- TRUST & FOOTER ---------- */
-  .trust{ padding:14px; gap:12px; border-radius:12px; margin:20px 0; }
-  .trust span{ font-size:13px; }
-
-  .footer-grid{ grid-template-columns:1fr !important; gap:14px; }
 }
 
   </style>
