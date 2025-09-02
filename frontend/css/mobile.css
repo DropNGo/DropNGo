@@ -167,3 +167,78 @@ a.btn, .btn{ min-height:44px; min-width:44px; }
 .danke-page a:hover {
   background-color: #0e9d90;
 }
+
+/* === Global mobile header and menu background styles === */
+html[data-theme="light"] .dng-header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+html[data-theme="dark"] .dng-header {
+  background: #0b0d0f !important;
+  border-bottom: 1px solid rgba(255,255,255,.06) !important;
+}
+
+/* Drawer-Hintergrund */
+html[data-theme="light"] .dng-drawer {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-left: 1px solid #e5e7eb !important;
+}
+html[data-theme="dark"] .dng-drawer {
+  background: #0b0d0f !important;
+  color: #e6e9ee !important;
+  border-left: 1px solid rgba(255,255,255,.12) !important;
+}
+
+/* Burger‑Button */
+html[data-theme="light"] .dng-burger {
+  background: transparent !important;
+  border: 1px solid #e5e7eb !important;
+  color: #0f172a !important;
+}
+html[data-theme="dark"] .dng-burger {
+  background: #12161b !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  color: #e6e9ee !important;
+}
+
+/* Theme‑Toggle‑Button */
+html[data-theme="light"] .theme-toggle-btn {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #e5e7eb !important;
+}
+html[data-theme="dark"] .theme-toggle-btn {
+  background: #12161b !important;
+  color: #e6e9ee !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+}
+html[data-theme="light"] .theme-toggle-btn:hover {
+  background: #f5f6f8 !important;
+  color: #0f172a !important;
+}
+html[data-theme="dark"] .theme-toggle-btn:hover {
+  background: #0e9d90 !important;
+  color: #041413 !important;
+}
+
+
+/* ===== Global overrides for all pages ===== */
+html[data-theme="light"] header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+html[data-theme="dark"] header {
+  background: #0b0d0f !important;
+  border-bottom: 1px solid rgba(255,255,255,.06) !important;
+}
+
+/* Linkfarben im Header */
+html[data-theme="light"] header a {
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+}
+html[data-theme="dark"] header a {
+  color: #e6e9ee !important;
+  -webkit-text-fill-color: #e6e9ee !important;
+}

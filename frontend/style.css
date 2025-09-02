@@ -1,5 +1,5 @@
 body {
-  background-image: url('images/grt.png');
+  background-image: url('../assets/images/grt.png');
   background-repeat: no-repeat;       /* Keine Kacheln */
   background-position: center center; /* Bild mittig */
   background-size: cover;              /* Passt sich dem Bildschirm an */
@@ -144,19 +144,127 @@ main:hover {
 
 
 
-/* PRODUKTE */
+/* Container Grid */
 .products {
   display: flex;
-  justify-content: center;
-  gap: 20px;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
+  justify-content: center;
+  gap: 25px;
+  padding: 40px 20px;
 }
+
+/* Produkt-Karte */
 .product {
+  --shadow-color: rgba(248, 246, 246, 0.4);
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px var(--shadow-color);
+  width: 280px;
+  color: white;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
   animation: floatUpDown 3s ease-in-out infinite;
-  animation-delay: var(--delay); /* wenn du willst, dass sie versetzt starten */
+  animation-delay: var(--delay);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
 }
+
+/* Hover Effekt */
+.product:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(248, 246, 246, 0.7);
+  z-index: 10;
+}
+
+/* Bild Wrapper für schönen Rahmen & Zoom */
+.image-wrapper {
+  overflow: hidden;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 200px;
+  position: relative;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product:hover .image-wrapper img {
+  transform: scale(1.1);
+}
+
+/* Info Bereich */
+.info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+/* Titel */
+.info h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+/* Preis */
+.info p {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f5a623; /* Orange/Gold für Highlights */
+}
+
+/* Button */
+.btn {
+  padding: 10px 0;
+  background: #f5a623;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 10px rgba(245, 166, 35, 0.4);
+}
+
+.btn:hover {
+  background: #ddb347;
+  box-shadow: 0 6px 15px rgba(221, 179, 71, 0.6);
+}
+
+/* Animation für float up/down */
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .products {
+    gap: 15px;
+    padding: 20px 10px;
+  }
+
+  .product {
+    width: 90vw;
+  }
+}
+
+
 
 @keyframes floatUpDown {
   0%, 100% {
@@ -248,7 +356,7 @@ main:hover {
   position: fixed;
   width: 30px;
   height: 30px;
-  background: url('images/shopping-cart.png') no-repeat center/contain;
+  background: url('../assets/images/shopping-cart.png') no-repeat center/contain;
   pointer-events: none;
   animation: flyToCart 1s forwards ease-in-out;
   z-index: 9999;
@@ -741,6 +849,58 @@ footer {
 
 
 
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  max-width: 440px;
+  background-color: #0a0a0a;
+  color: rgb(24, 161, 150);
+  border: 2px solid rgb(24, 161, 150);
+  border-radius: 8px;
+  padding: 15px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgb(24, 161, 150);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.cookie-banner.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+.cookie-banner p {
+  margin: 0;
+  padding-right: 10px;
+  flex: 1;
+}
+.cookie-buttons {
+  display: flex;
+  gap: 10px;
+}
+#accept-cookies-btn, #decline-cookies-btn {
+  background-color: transparent;
+  color: rgb(24, 161, 150);
+  border: 2px solid rgb(24, 161, 150);
+  padding: 8px 15px;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#accept-cookies-btn:hover, #decline-cookies-btn:hover {
+  background-color: rgb(24, 161, 150);
+  color: #000;
+  box-shadow: 0 0 10px rgb(24, 161, 150);
+}
 
 
 
@@ -1024,3 +1184,1028 @@ footer {
 
 
 
+
+/* Für Bildschirme bis 600px Breite (Handys) */
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 14px;
+    margin: 10px;
+  }
+  /* Beispiel für Menü, Bilder, etc. */
+  nav {
+    display: block;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+
+/* Einheitliche Navi-Styles (Desktop) */
+.nav__links{ display:flex; gap:18px; align-items:center; }
+.nav__cta{ display:flex; gap:10px; }
+.nav-toggle{ display:none; background:transparent; border:1px solid rgba(255,255,255,.14); padding:10px; border-radius:10px; }
+.nav-toggle svg{ width:22px; height:22px; }
+
+/* Sticky Header wie gewohnt */
+.site-header{
+  position: sticky; top: 0; z-index: 999; 
+  background: rgba(11,13,15,.85); 
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+/* === Account-Icon + Dropdown (DropNGo Clean) === */
+.account{ position:relative; }
+
+.account__btn{
+  display:inline-grid; place-items:center;
+  width:38px; height:38px; padding:0;
+  border-radius:12px; border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.02);
+  color:#e6e9ee; cursor:pointer;
+  transition:.2s background,.2s border-color,.2s transform;
+}
+.account__btn:hover,
+.account__btn:focus-visible{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.18);
+  outline:none;
+}
+.acc-badge{
+  position:relative;
+  width:28px; height:28px; border-radius:50%;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg,#121417,#191c20);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 6px 14px rgba(0,0,0,.25);
+}
+.acc-badge svg{ width:16px; height:16px; opacity:.9; }
+
+.acc-dot{
+  position:absolute; right:-1px; bottom:-1px;
+  width:9px; height:9px; border-radius:50%;
+  background:var(--brand,#18a196);
+  border:2px solid rgba(11,13,15,.85); /* gleicht den Header aus */
+  display:none;
+}
+.acc-dot[data-active="true"]{ display:block; }
+
+/* Dropdown */
+.account__dd{
+  position:absolute; right:0; top:calc(100% + 10px);
+  min-width:220px;
+  background:#121417; border:1px solid rgba(255,255,255,.08);
+  border-radius:12px; box-shadow:0 18px 36px rgba(0,0,0,.38);
+  padding:8px; z-index:100; display:none;
+  transform-origin: top right; transform:scale(.98); opacity:0;
+  transition:.16s transform,.16s opacity;
+}
+.account__dd[data-open="true"]{ display:block; transform:scale(1); opacity:1; }
+.account__dd .dd-head{
+  padding:8px 10px; color:#8f98a3; font-size:12px;
+}
+.account__dd a, .account__dd button{
+  width:100%; display:flex; align-items:center; gap:8px;
+  background:transparent; border:0; color:#aab3be; cursor:pointer;
+  text-align:left; padding:10px 12px; border-radius:10px;
+}
+.account__dd a:hover, .account__dd button:hover{
+  background:rgba(255,255,255,.06); color:#e6e9ee;
+}
+
+/* Mobile: Icon bleibt, Größe wie Buttons */
+@media (max-width:900px){
+  .account__btn{ width:36px; height:36px; border-radius:10px; }
+  .acc-badge{ width:26px; height:26px; }
+}
+
+
+/* === Account-Icon + Dropdown === */
+.account{ position:relative; }
+.account__btn{
+  display:inline-grid; place-items:center;
+  width:38px; height:38px; padding:0;
+  border-radius:12px; border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.02);
+  color:#e6e9ee; cursor:pointer; transition:.2s background,.2s border-color,.2s transform;
+}
+.account__btn:hover,.account__btn:focus-visible{
+  background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.18); outline:none;
+}
+.acc-badge{
+  position:relative; width:28px; height:28px; border-radius:50%;
+  display:grid; place-items:center; background:linear-gradient(135deg,#121417,#191c20);
+  border:1px solid rgba(255,255,255,.14); box-shadow:0 6px 14px rgba(0,0,0,.25);
+}
+.acc-badge svg{ width:16px; height:16px; opacity:.9; }
+.acc-dot{
+  position:absolute; right:-1px; bottom:-1px; width:9px; height:9px; border-radius:50%;
+  background:#18a196; border:2px solid rgba(11,13,15,.85); display:none;
+}
+.acc-dot[data-active="true"]{ display:block; }
+
+.account__dd{
+  position:absolute; right:0; top:calc(100% + 10px); min-width:220px;
+  background:#121417; border:1px solid rgba(255,255,255,.08); border-radius:12px;
+  box-shadow:0 18px 36px rgba(0,0,0,.38); padding:8px; z-index:100; display:none;
+  transform-origin:top right; transform:scale(.98); opacity:0; transition:.16s transform,.16s opacity;
+}
+.account__dd[data-open="true"]{ display:block; transform:scale(1); opacity:1; }
+.account__dd .dd-head{ padding:8px 10px; color:#8f98a3; font-size:12px; }
+.account__dd a,.account__dd button{
+  width:100%; display:flex; align-items:center; gap:8px; background:transparent; border:0; color:#aab3be;
+  text-align:left; padding:10px 12px; border-radius:10px; cursor:pointer;
+}
+.account__dd a:hover,.account__dd button:hover{ background:rgba(255,255,255,.06); color:#e6e9ee; }
+
+@media (max-width:900px){
+  .account__btn{ width:36px; height:36px; border-radius:10px; }
+  .acc-badge{ width:26px; height:26px; }
+}
+
+
+/* ========= Account Icon + Tooltip + Drawer (DropNGo) ========= */
+:root{
+  --acc-bg:#121417; --acc-elev:#191c20; --acc-border:rgba(255,255,255,.1);
+}
+
+.account { position:relative; }
+
+/* Icon-Button */
+.acc-btn{
+  display:inline-grid; place-items:center;
+  width:38px; height:38px; padding:0;
+  border-radius:12px; border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.02); color:#e6e9ee; cursor:pointer;
+  transition:.2s background,.2s border-color,.2s transform;
+}
+.acc-btn:hover,.acc-btn:focus-visible{
+  background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.18); outline:none;
+}
+
+/* Piktogramm (SVG-Kreis) + Statuspunkt */
+.acc-glyph{
+  position:relative; width:26px; height:26px; border-radius:50%;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg,#101215,#171b20);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 6px 14px rgba(0,0,0,.28);
+}
+.acc-glyph svg{ width:16px; height:16px; opacity:.9; }
+.acc-dot{
+  position:absolute; right:-1px; bottom:-1px;
+  width:9px; height:9px; border-radius:50%;
+  background:#18a196; border:2px solid rgba(11,13,15,.85); display:none;
+}
+.acc-dot[data-active="true"]{ display:block; }
+
+/* Hover-Tooltip (wie Snipes „Mein Account…“) */
+.acc-tip{
+  position:absolute; right:0; top:calc(100% + 10px);
+  width:260px; background:var(--acc-bg); border:1px solid var(--acc-border);
+  border-radius:12px; box-shadow:0 14px 30px rgba(0,0,0,.35);
+  padding:10px; color:#aab3be; font-size:13px; display:none; z-index:70;
+}
+.acc-tip b{ color:#e6e9ee; display:block; margin-bottom:2px; }
+.account:hover .acc-tip{ display:block; }
+
+/* Overlay + Drawer */
+.acc-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.45);
+  opacity:0; pointer-events:none; transition:.2s opacity; z-index:120;
+}
+.acc-overlay[data-open="true"]{ opacity:1; pointer-events:auto; }
+
+.acc-drawer{
+  position:fixed; top:0; right:0; height:100dvh; width:min(420px,92vw);
+  background:linear-gradient(180deg,var(--acc-bg),var(--acc-elev));
+  border-left:1px solid var(--acc-border); box-shadow: -24px 0 48px rgba(0,0,0,.45);
+  transform:translateX(100%); transition:.25s transform; z-index:130;
+  display:flex; flex-direction:column;
+}
+.acc-drawer[data-open="true"]{ transform:translateX(0); }
+
+.acc-drawer header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px; border-bottom:1px solid var(--acc-border);
+}
+.acc-drawer h3{ margin:0; font-size:18px; }
+.acc-close{ background:transparent; border:0; color:#e6e9ee; font-size:22px; cursor:pointer; }
+
+.acc-body{ padding:16px; display:grid; gap:14px; }
+.acc-desc{ color:#aab3be; font-size:14px; margin-bottom:8px; }
+
+.acc-actions{ display:grid; gap:10px; }
+.acc-actions .btn{ width:100%; }
+.acc-actions .btn--ghost{ background:transparent; color:#e6e9ee; border:1px solid rgba(255,255,255,.14); }
+.acc-actions .btn--ghost:hover{ background:rgba(255,255,255,.06); }
+
+@media (max-width:900px){
+  .acc-btn{ width:36px; height:36px; border-radius:10px; }
+  .acc-glyph{ width:24px; height:24px; }
+}
+
+
+/* ========= Account Icon + Tooltip + Drawer ========= */
+:root{
+  --acc-bg:#121417; --acc-elev:#191c20; --acc-border:rgba(255,255,255,.1);
+}
+
+.account { position:relative; }
+
+/* Icon-Button */
+.acc-btn{
+  display:inline-grid; place-items:center;
+  width:38px; height:38px; padding:0;
+  border-radius:12px; border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.02); color:#e6e9ee; cursor:pointer;
+  transition:.2s background,.2s border-color,.2s transform;
+}
+.acc-btn:hover,.acc-btn:focus-visible{
+  background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.18); outline:none;
+}
+
+/* Piktogramm + Statuspunkt */
+.acc-glyph{
+  position:relative; width:26px; height:26px; border-radius:50%;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg,#101215,#171b20);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 6px 14px rgba(0,0,0,.28);
+}
+.acc-glyph svg{ width:16px; height:16px; opacity:.9; }
+.acc-dot{
+  position:absolute; right:-1px; bottom:-1px;
+  width:9px; height:9px; border-radius:50%;
+  background:#18a196; border:2px solid rgba(11,13,15,.85); display:none;
+}
+.acc-dot[data-active="true"]{ display:block; }
+
+/* Hover-Tooltip */
+.acc-tip{
+  position:absolute; right:0; top:calc(100% + 10px);
+  width:260px; background:var(--acc-bg); border:1px solid var(--acc-border);
+  border-radius:12px; box-shadow:0 14px 30px rgba(0,0,0,.35);
+  padding:10px; color:#aab3be; font-size:13px; display:none; z-index:70;
+}
+.acc-tip b{ color:#e6e9ee; display:block; margin-bottom:2px; }
+.account:hover .acc-tip{ display:block; }
+
+/* Overlay + Drawer */
+.acc-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.45);
+  opacity:0; pointer-events:none; transition:.2s opacity; z-index:120;
+}
+.acc-overlay[data-open="true"]{ opacity:1; pointer-events:auto; }
+
+.acc-drawer{
+  position:fixed; top:0; right:0; height:100dvh; width:min(420px,92vw);
+  background:linear-gradient(180deg,var(--acc-bg),var(--acc-elev));
+  border-left:1px solid var(--acc-border); box-shadow: -24px 0 48px rgba(0,0,0,.45);
+  transform:translateX(100%); transition:.25s transform; z-index:130;
+  display:flex; flex-direction:column;
+}
+.acc-drawer[data-open="true"]{ transform:translateX(0); }
+
+.acc-drawer header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px; border-bottom:1px solid var(--acc-border);
+}
+.acc-drawer h3{ margin:0; font-size:18px; }
+.acc-close{ background:transparent; border:0; color:#e6e9ee; font-size:22px; cursor:pointer; }
+
+.acc-body{ padding:16px; display:grid; gap:14px; }
+.acc-desc{ color:#aab3be; font-size:14px; margin-bottom:8px; }
+
+.acc-actions{ display:grid; gap:10px; }
+.acc-actions .btn{ width:100%; }
+.acc-actions .btn--ghost{ background:transparent; color:#e6e9ee; border:1px solid rgba(255,255,255,.14); }
+.acc-actions .btn--ghost:hover{ background:rgba(255,255,255,.06); }
+
+@media (max-width:900px){
+  .acc-btn{ width:36px; height:36px; border-radius:10px; }
+  .acc-glyph{ width:24px; height:24px; }
+}
+
+
+/* --- Account-Icon im Header --- */
+.acc-btn{
+  display:inline-grid; place-items:center;
+  width:40px; height:40px; border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  color:#e6e9ee; cursor:pointer;
+  transition:transform .08s ease, background .2s ease, border-color .2s ease;
+}
+.acc-btn:hover{ background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); }
+.acc-glyph{ width:22px; height:22px; }
+.acc-dot{
+  position:absolute; margin-left:22px; margin-top:-22px;
+  width:8px; height:8px; border-radius:50%; background:#18a196; box-shadow:0 0 0 2px #0b0d0f;
+}
+
+/* --- Karten/Forms wie auf login.html (leicht) --- */
+.auth-card, .profile-card{
+  background:#121417; border:1px solid rgba(255,255,255,.06);
+  border-radius:14px; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+.auth-tabs{ display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
+.auth-tabs button{ padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.14); background:transparent; color:#e6e9ee; cursor:pointer; }
+.auth-tabs button[aria-selected="true"]{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.18); }
+
+.row{ display:grid; gap:10px; }
+label{ font-weight:600; }
+input{
+  background:#23272c; color:#e6e9ee; border:none; border-radius:10px; padding:10px 12px;
+}
+.hint{ color:#aab3be; font-size:.9rem; }
+.alert{ margin-top:8px; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.12); }
+.alert--ok{ background:rgba(24,161,150,.12); border-color:rgba(24,161,150,.35); }
+.alert--warn{ background:rgba(220,75,75,.12); border-color:rgba(220,75,75,.35); }
+
+/* Passwort-Stärke */
+.meter{ height:6px; background:rgba(255,255,255,.08); border-radius:999px; overflow:hidden;}
+.meter > span{ display:block; height:100%; width:0%; background:#18a196; transition:width .25s ease; }
+
+
+#accountSlot{display:flex;align-items:center;margin-left:8px}
+.acc-btn{all:unset;cursor:pointer;position:relative;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;color:#e6e9ee;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.acc-btn:hover{background:rgba(255,255,255,.08)}
+.acc-glyph{width:20px;height:20px}
+.acc-dot{position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:50%;background:#18a196;box-shadow:0 0 0 2px #0b0d0f}
+
+#accountSlot{display:flex;align-items:center;margin-left:8px}
+.acc-btn{all:unset;cursor:pointer;position:relative;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;color:#e6e9ee;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.acc-btn:hover{background:rgba(255,255,255,.08)}
+.acc-glyph{width:20px;height:20px}
+.acc-dot{position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:50%;background:#18a196;box-shadow:0 0 0 2px #0b0d0f}
+
+
+/* === Account-Seite: 1:1 Dark Theme wie Index erzwingen === */
+body.account-page{
+  background: var(--bg) !important;
+  background-image: none !important;
+}
+
+/* Deko-/Pseudo-Layer (Hero-Wellen etc.) auf der Seite abschalten */
+body.account-page::before,
+body.account-page::after,
+body.account-page main::before,
+body.account-page main::after{
+  content: none !important;
+  display: none !important;
+}
+
+/* Abstand unter Sticky-Header */
+body.account-page .account-main{
+  padding: clamp(24px, 3vw, 36px) 0 70px !important;
+}
+
+/* Karten/Flächen exakt wie Index */
+body.account-page .card,
+body.account-page .account-card{
+  background: var(--surface) !important;
+  border: 1px solid rgba(255,255,255,.06) !important;
+  border-radius: var(--radius, 14px) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35) !important;
+  color: var(--text) !important;
+}
+
+/* Typo-Farben */
+body.account-page h1,
+body.account-page h2,
+body.account-page h3,
+body.account-page h4{
+  color: var(--text) !important;
+}
+body.account-page .muted{ color: var(--muted) !important; }
+
+/* Inputs wie auf Index */
+body.account-page input{
+  background: #0f1114 !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+}
+body.account-page input::placeholder{ color: #8f98a3; }
+
+/* Buttons wie auf Index */
+body.account-page .btn{
+  background: var(--brand) !important;
+  color: #041413 !important;
+  border: 1px solid transparent !important;
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+}
+body.account-page .btn--ghost{
+  background: transparent !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,.15) !important;
+}
+
+/* Alerts */
+body.account-page .alert{ display:none; border-radius:10px; padding:10px 12px; }
+body.account-page .alert--ok{ display:block; background:rgba(24,161,150,.10); color:#bdf3ec; border:1px solid rgba(24,161,150,.35); }
+body.account-page .alert--warn{ display:block; background:rgba(255,196,0,.10); color:#ffe6a6; border:1px solid rgba(255,196,0,.35); }
+
+/* PW-Meter */
+body.account-page .pw-meter{ height:6px; background:rgba(255,255,255,.08); border-radius:999px; overflow:hidden; }
+body.account-page .pw-bar{ height:100%; width:0%; background:#18a196; transition:width .25s ease; }
+
+/* Sicherheitshalber: alle Account-Deko-Layer killen */
+body.account-page .account-card::before,
+body.account-page .account-card::after{ display:none !important; content:none !important; }
+
+/* Account-Icon (gleich wie in account.html) */
+#accountSlot{ display:flex; align-items:center; margin-left:8px; }
+.acc-btn{
+  all:unset; cursor:pointer; position:relative;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:36px; height:36px; border-radius:10px; color:#e6e9ee;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+}
+.acc-btn:hover{ background:rgba(255,255,255,.08); }
+.acc-glyph{ width:20px; height:20px; }
+.acc-dot{
+  position:absolute; right:4px; top:4px; width:8px; height:8px;
+  border-radius:50%; background:#18a196; box-shadow:0 0 0 2px #0b0d0f;
+}
+
+
+/* === Account-Icon im Header (vereinheitlicht) === */
+header .acc-btn,
+header .account__btn{
+  all: unset;                                    /* natives Button-Face killen */
+  display: inline-grid; place-items: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  color: #e6e9ee;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  cursor: pointer;
+  transition: .2s background, .2s border-color, .08s transform;
+}
+header .acc-btn:hover,
+header .account__btn:hover{
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.18);
+}
+
+/* Kreis-Glyph + Statuspunkt */
+header .acc-glyph,
+header .acc-badge{
+  position: relative;
+  width: 20px; height: 20px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg,#101215,#171b20);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 6px 14px rgba(0,0,0,.28);
+}
+header .acc-glyph svg,
+header .acc-badge svg{ width: 16px; height: 16px; opacity: .9; }
+
+header .acc-dot{
+  position: absolute; right: 4px; top: 4px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #18a196; box-shadow: 0 0 0 2px #0b0d0f;
+  display: none;
+}
+header .acc-dot[data-active="true"]{ display: block; }
+
+
+/* === DropNGo Account-Icon (global, alle Seiten) === */
+#accountSlot{ display:flex; align-items:center; margin-left:8px; }
+
+#accountSlot > button,
+#accountSlot .account__btn,
+#accountSlot .acc-btn{
+  all:unset !important;
+  display:inline-grid !important; place-items:center !important;
+  width:36px !important; height:36px !important;
+  border-radius:10px !important;
+  border:1px solid rgba(255,255,255,.12) !important;
+  background:rgba(255,255,255,.04) !important;
+  color:#e6e9ee !important;
+  cursor:pointer !important;
+  transition:.2s background,.2s border-color,.08s transform !important;
+}
+#accountSlot > button:hover,
+#accountSlot .account__btn:hover,
+#accountSlot .acc-btn:hover{
+  background:rgba(255,255,255,.08) !important;
+  border-color:rgba(255,255,255,.18) !important;
+}
+
+#accountSlot .acc-glyph, 
+#accountSlot .acc-badge{
+  position:relative !important;
+  width:20px !important; height:20px !important; border-radius:50% !important;
+  display:grid !important; place-items:center !important;
+  background:linear-gradient(135deg,#101215,#171b20) !important;
+  border:1px solid rgba(255,255,255,.14) !important;
+  box-shadow:0 6px 14px rgba(0,0,0,.28) !important;
+}
+#accountSlot .acc-glyph svg,
+#accountSlot .acc-badge svg{ width:16px !important; height:16px !important; opacity:.9 !important; }
+
+#accountSlot .acc-dot{
+  position:absolute !important; right:4px !important; top:4px !important;
+  width:8px !important; height:8px !important; border-radius:50% !important;
+  background:#18a196 !important; box-shadow:0 0 0 2px #0b0d0f !important;
+  display:none;
+}
+#accountSlot .acc-dot[data-active="true"]{ display:block; }
+
+/* Platz, wenn Burger-Button daneben steht */
+.nav-toggle{ margin-left:8px; }
+
+
+/* Force: DropNGo-Brand immer weiß (alle Seiten & Zustände) */
+header .brand,
+header .brand:link,
+header .brand:visited,
+header .brand:hover,
+header .brand:active,
+.site-header .brand,
+.site-header .brand:link,
+.site-header .brand:visited,
+.site-header .brand:hover,
+.site-header .brand:active {
+  color: #e6e9ee !important; /* weiß */
+}
+
+/* Falls der Text im <span> steckt, ebenfalls hart weiß setzen */
+header .brand span,
+.site-header .brand span {
+  color: #e6e9ee !important;
+}
+
+
+/* Marke im Header überall weiß */
+.site-header .brand span{ color:#fff !important; }
+
+/* Basis-Buttons (robust gegen Transparenz) */
+.btn{
+  background: var(--brand) !important;
+  color:#041413 !important;
+  border:1px solid transparent !important;
+}
+.btn--ghost{
+  background: transparent !important;
+  color: var(--text) !important;
+  border:1px solid rgba(255,255,255,.14) !important;
+}
+
+/* ---------- Mobile-Menü Fixes ---------- */
+.mobile-menu{ backdrop-filter: blur(6px); } /* optional hübsch */
+
+/* Links im Mobile-Menü normal */
+.mobile-menu nav a{
+  display:block;
+  padding:12px 10px;
+  color:var(--text);
+  background:transparent;           /* nur normale Links */
+  border-radius:10px;
+}
+
+/* CTA-Buttons im Mobile-Menü dürfen NIE transparent sein */
+.mobile-menu .mobile-cta a.btn,
+.mobile-menu .mobile-cta button.btn{
+  background: var(--brand) !important;
+  color:#041413 !important;
+  border:1px solid transparent !important;
+}
+
+/* Der „Ghost“-CTA bleibt bewusst transparent mit Rand */
+.mobile-menu .mobile-cta .btn--ghost{
+  background: transparent !important;
+  color: var(--text) !important;
+  border:1px solid rgba(255,255,255,.14) !important;
+}
+
+/* Abstände/Stack im Mobile-Menü */
+.mobile-menu .mobile-cta{
+  display:grid;
+  gap:10px;
+  margin-top:10px;
+}
+
+
+/* Scroll-Lock, wenn Mobile-Menü offen */
+.no-scroll { overflow: hidden; }
+
+/* Optional: Das Mobile-Menü oberhalb des Backdrops halten */
+.mobile-menu { position: relative; z-index: 100; }
+
+
+/* Scroll-Lock, solange das Mobile-Menü offen ist */
+.no-scroll { overflow: hidden; }
+
+/* Backdrop fürs Mobile-Menü */
+.mobile-menu-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s ease;
+  z-index: 90;
+}
+.mobile-menu-backdrop[data-open="true"]{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Menü über dem Backdrop halten */
+.mobile-menu{ position: relative; z-index: 100; }
+
+/* Mobile-Menü Buttons NICHT transparent */
+.mobile-menu .btn{
+  background: var(--brand, #18a196) !important;
+  color: #041413 !important;
+  border: 1px solid transparent !important;
+}
+.mobile-menu .btn--ghost{
+  background: transparent !important;
+  color: #e6e9ee !important;
+  border: 1px solid rgba(255,255,255,.15) !important;
+}
+
+/* Optional: Mobile-Links als Tappable Flächen */
+.mobile-menu nav a{
+  display: block;
+  padding: 12px 14px;
+  margin: 6px 0;
+  border-radius: 10px;
+  color: #e6e9ee;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.mobile-menu nav a:hover{
+  background: rgba(255,255,255,.08);
+}
+
+
+/* Header: sauberes Layout für Seiten ohne CTA-Block */
+.site-header .nav {
+  display: flex;
+  align-items: center;
+  min-height: 64px;            /* gleiche Höhe überall */
+}
+
+.site-header .nav__links {
+  display: flex;
+  gap: 22px;
+  margin-left: 24px;
+}
+
+.site-header .nav__right {
+  margin-left: auto;           /* schiebt Account+Burger nach rechts */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* Header-Layout immer gleich */
+.site-header .nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 64px;
+}
+
+/* Links nebeneinander */
+.site-header .nav__links {
+  display: flex;
+  gap: 22px;
+}
+
+/* Platzhalter schiebt rechte Elemente ganz nach rechts */
+.site-header .nav__spacer {
+  flex: 1 1 auto;
+}
+
+/* CTA nur auf Startseite sichtbar */
+.site-header .nav__cta { display: none; }
+.home .site-header .nav__cta { display: flex; gap: 10px; }
+
+/* Brand immer weiß (falls irgendwo überschrieben war) */
+.site-header .brand span { color: #fff !important; }
+
+/* Account + Burger rechts schön gruppieren */
+#accountSlot { display: inline-flex; align-items: center; margin-left: 6px; }
+.nav-toggle { margin-left: 6px; }
+
+/* Mobile Menü Buttons – Hintergrund nicht transparent */
+.mobile-menu a,
+.mobile-menu .btn {
+  display: block;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #e6e9ee;
+}
+.mobile-menu a + a,
+.mobile-menu .btn + .btn { margin-top: 8px; }
+.mobile-menu a:hover,
+.mobile-menu .btn:hover { background: rgba(255,255,255,.10); }
+
+
+/* Header-Layout immer identisch */
+.site-header .nav{
+  display:flex; align-items:center; gap:14px;
+  min-height:64px;
+}
+.site-header .nav__links{ display:flex; gap:22px; }
+.site-header .nav__spacer{ flex:1 1 auto; }
+
+/* CTA nur auf Startseite sichtbar */
+.site-header .nav__cta{ display:none; }
+.home .site-header .nav__cta{ display:flex; gap:10px; }
+
+/* Brand immer weiß */
+.site-header .brand span{ color:#fff !important; }
+
+/* Burger-Button Styling (Icon sichtbar, nicht weißer Klotz) */
+.nav-toggle{
+  display:none; /* erst auf Mobile sichtbar */
+  width:40px; height:40px; border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  color:#e6e9ee; /* -> currentColor für das SVG */
+  align-items:center; justify-content:center;
+}
+.nav-toggle svg{ width:22px; height:22px; }
+
+/* Mobile Breakpoint */
+@media (max-width: 900px){
+  .nav-toggle{ display:inline-flex; }
+  .site-header .nav__links{ display:none; }
+  /* CTA nicht oben zeigen; sie stehen im Mobile-Menü */
+  .home .site-header .nav__cta{ display:none; }
+}
+
+/* Mobile-Menü – Buttons NICHT transparent */
+.mobile-menu a,
+.mobile-menu .btn{
+  display:block;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  padding:10px 12px;
+  color:#e6e9ee;
+}
+.mobile-menu a + a,
+.mobile-menu .btn + .btn{ margin-top:8px; }
+.mobile-menu a:hover,
+.mobile-menu .btn:hover{ background:rgba(255,255,255,.10); }
+
+
+
+/* === Header Layout für alle Seiten gleich === */
+.site-header .nav{
+  display:flex; align-items:center; gap:14px;
+  min-height:64px;
+}
+.site-header .nav__links{ display:flex; gap:22px; }
+.site-header .nav__spacer{ flex:1 1 auto; }
+
+/* Brand immer weiß */
+.site-header .brand span{ color:#fff !important; }
+
+/* CTAs oben NUR auf Startseite */
+.site-header .nav__cta{ display:none; }
+.home .site-header .nav__cta{ display:flex; gap:10px; }
+
+/* Burger-Button (sichtbar auf Mobile, Icon via currentColor) */
+.nav-toggle{
+  display:none;
+  width:40px; height:40px; border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  color:#e6e9ee;                  /* wichtig für SVG-Farbe */
+  align-items:center; justify-content:center;
+}
+.nav-toggle svg{ width:22px; height:22px; }
+
+/* Mobile Layout */
+@media (max-width: 900px){
+  .nav-toggle{ display:inline-flex; }
+  .site-header .nav__links{ display:none; }
+  /* Auf der Startseite oben keine CTAs – sie stehen im Mobile-Menü */
+  .home .site-header .nav__cta{ display:none; }
+}
+
+/* ===== Mobile-Menü Panel ===== */
+.mobile-menu{
+  position:absolute; top:100%; left:0; right:0;
+  background:#0b0d0f;
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:14px 16px; z-index:60;
+}
+.mobile-menu[hidden]{ display:none !important; }
+
+.mobile-menu nav{ display:grid; gap:10px; }
+.mobile-menu a,
+.mobile-menu .btn{
+  display:block;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  padding:10px 12px;
+  color:#e6e9ee;
+}
+.mobile-menu a + a,
+.mobile-menu .btn + .btn{ margin-top:8px; }
+.mobile-menu a:hover,
+.mobile-menu .btn:hover{ background:rgba(255,255,255,.10); }
+
+/* ===== Backdrop + Scroll-Lock (wird von deiner script.js benutzt!) ===== */
+.mobile-menu-backdrop{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.45);
+  opacity:0; pointer-events:none; transition:opacity .2s;
+  z-index:55;
+}
+.mobile-menu-backdrop[data-open="true"]{
+  opacity:1; pointer-events:auto;
+}
+body.no-scroll{ overflow:hidden; }
+
+
+
+/* ===== Mobile Menu: only keep these ===== */
+
+/* Toggle-Button */
+.nav-toggle{
+  display:none; align-items:center; justify-content:center;
+  width:40px; height:40px; border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04); color:#e6e9ee; cursor:pointer;
+}
+.nav-toggle:hover{ background:rgba(255,255,255,.08); }
+
+/* Drawer */
+.mobile-menu[hidden]{ display:none !important; }
+.mobile-menu{
+  position:fixed; top:0; right:0; height:100dvh; width:min(420px,92vw);
+  background:linear-gradient(180deg,#121417,#191c20);
+  border-left:1px solid rgba(255,255,255,.10);
+  box-shadow:-24px 0 48px rgba(0,0,0,.45);
+  padding:18px 16px; z-index:130;
+}
+.mobile-menu nav{ display:grid; gap:10px; }
+.mobile-menu a{ display:block; padding:12px 14px; border-radius:10px; color:#e6e9ee; text-decoration:none; }
+.mobile-menu a:hover{ background:rgba(255,255,255,.06); }
+
+/* CTA im Drawer (nicht transparent) */
+.mobile-cta{ display:grid; gap:10px; margin-top:10px; }
+.mobile-cta .btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:12px 14px; border-radius:12px; border:1px solid transparent;
+  background:var(--brand,#18a196); color:#041413; font-weight:800; text-decoration:none;
+}
+.mobile-cta .btn--ghost{
+  background:transparent; color:#e6e9ee; border:1px solid rgba(255,255,255,.18);
+}
+.mobile-cta .btn:hover{ filter:brightness(1.08); }
+
+/* Backdrop */
+.mobile-menu-backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,.45);
+  opacity:0; pointer-events:none; transition:.2s opacity; z-index:120;
+}
+.mobile-menu-backdrop[data-open="true"]{ opacity:1; pointer-events:auto; }
+
+/* Body Scroll-Lock */
+.no-scroll{ overflow:hidden; }
+
+/* Sichtbarkeit: Desktop vs. Mobile */
+@media (max-width:900px){
+  .nav__links, .nav__cta{ display:none; }
+  .nav-toggle{ display:inline-flex; }
+}
+
+/* ===== Stoppt Mobile-Template-/Demo-Deko auf echten Seiten ===== */
+.no-demo,
+.no-demo main {
+  background: var(--bg) !important;            /* Dein dunkler Hintergrund */
+}
+
+/* Alle pseudo Deko-Layer (Wellen, Partikel, etc.) abschalten */
+.no-demo::before,
+.no-demo::after,
+.no-demo main::before,
+.no-demo main::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Kein "Glas"-Panel um Header/Sections */
+.no-demo .site-header,
+.no-demo .auth-card,
+.no-demo .profile-card,
+.no-demo .glass,
+.no-demo .card-demo {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Falls die Demo irgendwo die Container-Breite verengt */
+.no-demo .container {
+  max-width: var(--container, 1200px) !important;
+  width: min(92%, var(--container, 1200px)) !important;
+}
+
+/* Sicherheitshalber: keine fremden Rahmen/Schatten auf Sektionen */
+.no-demo .section,
+.no-demo .hero,
+.no-demo .hero .container {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+
+/* === Passwort-Auge === */
+.pw-wrap{ position:relative; }
+.pw-wrap input{ padding-right:44px; } /* Platz für das Auge */
+.pw-toggle{
+  position:absolute; right:8px; top:50%; transform:translateY(-50%);
+  width:36px; height:36px; display:inline-grid; place-items:center;
+  border-radius:10px; border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04); color:var(--muted);
+  cursor:pointer; -webkit-tap-highlight-color:transparent;
+}
+.pw-toggle:hover{ background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:var(--text); }
+.pw-toggle svg{ width:18px; height:18px; }
+.pw-toggle .eye-off{ display:none; }
+.pw-toggle[data-visible="true"] .eye{ display:none; }
+.pw-toggle[data-visible="true"] .eye-off{ display:block; }
+
+/* Basis-Design (Dark-optimiert) */
+.health-warning{
+  margin: 24px 0 0;
+  padding: 14px 18px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  border-radius: 12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  color: #aab3be;            /* dein muted Text im Dark-Theme */
+  line-height: 1.6;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  font-size: .95rem;
+}
+
+.health-warning::before{
+  content:"⚠️";
+  font-size: 1.05rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.health-warning strong{
+  color: inherit;
+  margin-right: 6px;
+  font-weight: 700;
+}
+
+/* Full-Width Variante (optional) */
+.health-warning--full{
+  /* „Full bleed“ über den Container hinaus */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+/* Light-Theme Overrides – mehrere mögliche Theme-Schalter abgedeckt */
+html[data-theme="light"] .health-warning,
+body.light .health-warning,
+.light-theme .health-warning{
+  background: #f9fafb;
+  border-color: #e5e7eb;
+  color: #374151;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+html[data-theme="light"] .health-warning strong,
+body.light .health-warning strong,
+.light-theme .health-warning strong{
+  color: #111827;
+}

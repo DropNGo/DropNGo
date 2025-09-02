@@ -1160,6 +1160,45 @@ html[data-theme="light"] .trustpilot-dark a {
   object-position: center;
   border-radius: 8px;    /* optional kleine Rundung */
 }
+/* === Light Layout: Mobiles Menü weiß === */
+@media (max-width: 900px){
+  /* Drawer/Offcanvas (alle möglichen Klassen abdecken) */
+  html[data-theme="light"] #mobileMenu,
+  html[data-theme="light"] .dng-drawer,
+  html[data-theme="light"] .nav-drawer,
+  html[data-theme="light"] .mobile-menu {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-top: 1px solid #e5e7eb !important;
+    border-left: 1px solid #e5e7eb !important; /* falls von rechts einfährt */
+    box-shadow: 0 10px 30px rgba(15,23,42,.08) !important;
+  }
+
+  /* Links im Menü */
+  html[data-theme="light"] #mobileMenu a,
+  html[data-theme="light"] .dng-drawer a {
+    color: #0f172a !important;
+  }
+  html[data-theme="light"] #mobileMenu a:hover,
+  html[data-theme="light"] .dng-drawer a:hover {
+    background: rgba(2,6,23,.04) !important; /* leichtes Grau */
+    color: #0f172a !important;
+  }
+
+  /* Optional: Suchfeld/Buttons im Drawer */
+  html[data-theme="light"] #mobileMenu input,
+  html[data-theme="light"] #mobileMenu button {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #e5e7eb !important;
+  }
+
+  /* Dim-Overlay hinter dem Menü etwas heller im Light-Mode */
+  html[data-theme="light"] .menu-backdrop,
+  html[data-theme="light"] .dng-backdrop {
+    background: rgba(15,23,42,.25) !important;
+  }
+}
 
   </style>
 </head>
@@ -1170,6 +1209,7 @@ html[data-theme="light"] .trustpilot-dark a {
       <a class="dng-brand" href="../index.html">
         <img class="dng-logo" src="../favicon.ico" alt="">
         <span>DropNGo</span>
+         </a>
          <!-- Mobile Theme Toggle (hidden on desktop) -->
     <!--
       We remove the generic `theme-toggle` class here and use a unique class `theme-toggle-btn`.
