@@ -450,5 +450,91 @@
       <div id="cookieBanner"></div>
   <!-- Cookie banner script: relative path corrected to parent js folder -->
   <script src="../js/cookie-banner.js" defer></script>
+    <style>
+    /* ===== BLOG – Mobile Cleanup (≤820px): Artikelbereich & CTA ===== */
+@media (max-width: 820px){
+
+  /* Artikel-Container & Typo */
+  main.container > .article{
+    padding: 16px !important;
+    margin: 16px 0 !important;
+    border-radius: 14px !important;
+  }
+  .article header{ margin-bottom: 10px !important; }
+
+  .article h1{
+    margin: 0 0 6px !important;
+    font-size: clamp(22px, 6vw, 26px) !important;  /* kleiner & ruhiger auf Handy */
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+  }
+  .article .muted{ font-size: 13px !important; }
+
+  /* Figure, Bild, Caption („Gezielte Wärme …“) */
+  .article figure{
+    margin: 12px auto 14px !important;
+    text-align: center !important;
+  }
+  .article figure img{
+    width: 100% !important;
+    max-width: 360px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+    object-fit: contain !important;
+    border-radius: 12px !important;
+  }
+  .article figure figcaption{
+    margin-top: 8px !important;
+    font-size: 13px !important;
+  }
+
+  /* Zwischenüberschriften & Textfluss */
+  .article h2{
+    font-size: clamp(18px, 4.8vw, 20px) !important;
+    line-height: 1.25 !important;
+    margin: 16px 0 8px !important;
+  }
+  .article p{ font-size: 15px !important; margin: 8px 0 10px !important; }
+  .article ul,
+  .article ol{
+    padding-left: 18px !important;
+    margin: 6px 0 12px !important;
+  }
+  .article li{ margin: 6px 0 !important; }
+
+  /* CTA: Buttons stapeln + "|" ausblenden */
+  .article .cta{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    margin-top: 12px !important;
+    font-size: 0 !important;         /* versteckt den Texttrenner „ | “ */
+  }
+  .article .cta a{
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: 12px 14px !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--border, rgba(255,255,255,.15)) !important;
+    font-size: 14px !important;      /* setzt die Schrift zurück */
+  }
+  html[data-theme="light"] .article .cta a{
+    border-color: #e5e7eb !important;
+    background: #fff !important;
+  }
+
+  /* Blog-Meta im Artikel (Datum) – kompakter & mittig */
+  .article .blog-meta{
+    margin-top: 16px !important;
+    padding-top: 10px !important;
+    border-top: 1px solid var(--border, rgba(255,255,255,.12)) !important;
+    text-align: center !important;
+    font-size: 12.5px !important;
+  }
+}
+
+  </style>
 </body>
 </html>
