@@ -1801,6 +1801,17 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
 </section>
 
 
+<!-- ===== CATEGORY FILTER BAR ===== -->
+<section class="container category-filter" id="catFilter">
+  <div class="cat-scroll">
+    <button class="cat-btn is-active" data-filter="all">Alle <span class="count">0</span></button>
+    <button class="cat-btn" data-filter="fitness">Fitness &amp; Performance <span class="count">0</span></button>
+    <button class="cat-btn" data-filter="outdoor">Insekten &amp; Outdoor <span class="count">0</span></button>
+    <button class="cat-btn" data-filter="pain">Schmerz &amp; Regeneration <span class="count">0</span></button>
+    <button class="cat-btn" data-filter="care">Haut, Ohren &amp; Pflege <span class="count">0</span></button>
+    <button class="cat-btn" data-filter="sleep">Schlaf &amp; Ergonomie <span class="count">0</span></button>
+  </div>
+</section>
 
 
 <section class="products container" id="products">
@@ -2450,7 +2461,125 @@ document.addEventListener('DOMContentLoaded', () => {
   btn.style.zIndex = btn.style.zIndex || '5';
 });
 </script>
+<script>
+(function(){
+  if (window.__catFilterV2__) return; window.__catFilterV2__ = true;
+
+  const grid  = document.querySelector('#products .grid');
+  const btns  = Array.from(document.querySelectorAll('#catFilter .cat-btn'));
+  if(!grid || !btns.length) return;
+
+  const cards = Array.from(grid.querySelectorAll('.card--product'));
+
+  // ---- Auto-Kategorisierung (wie zuvor; Glückstoff -> pain) ----
+  const assignCategory = (slug, title) => {
+    const s = (slug||'').toLowerCase() + ' ' + (title||'').toLowerCase();
+    if (s.includes('glueckstoff') || s.includes('glückstoff') || s.includes('kissen')) return 'pain'; // Wunsch
+    if (/(sanotact|ashwagandha)/.test(s)) return 'fitness';
+    if (/(insektenstich|autan|heat[\s-]?it|stichheiler)/.test(s)) return 'outdoor';
+    if (/(bienengift|venen|viscospot|fuss|fuß|massagerolle|terratherm|heizkissen|gittertape|em\s?-?49)/.test(s)) return 'pain';
+    if (/(audispray|h[äa]morr|warzen|sanohra)/.test(s)) return 'care';
+    if (/(sleep|ergonomie|schlaf)/.test(s)) return 'sleep';
+    return 'fitness';
+  };
+
+  cards.forEach(card=>{
+    if (!card.dataset.cat) {
+      const link  = card.querySelector('a');
+      const h3    = card.querySelector('h3');
+      const href  = link ? link.getAttribute('href') : '';
+      const title = h3 ? h3.textContent.trim() : '';
+      card.dataset.cat = assignCategory(href, title);
+    }
+  });
+
+  // ---- Zähler + Buttons ohne Treffer ausblenden ----
+  const updateCounts = ()=>{
+    const counts = { all: cards.length, fitness:0, outdoor:0, pain:0, care:0, sleep:0 };
+    cards.forEach(c=>{ const k=c.dataset.cat; if(k && counts[k]!=null) counts[k]++; });
+    btns.forEach(b=>{
+      const key = b.dataset.filter;
+      const el  = b.querySelector('.count');
+      if(el && counts[key]!=null) el.textContent = counts[key];
+      if(key !== 'all') b.style.display = counts[key] ? '' : 'none';
+    });
+  };
+
+  // ---- Scroll-Helper: scrollt so, dass nichts vom Header verdeckt wird ----
+  const scrollToGridTop = ()=>{
+    // Header oder Topbar erkennen (falls vorhanden)
+    const header = document.querySelector('header, .header, nav.sticky, .topbar, .site-header');
+    const headerH = header ? header.getBoundingClientRect().height : 0;
+    const offset  = Math.max(headerH, 60) + 8; // 60px fallback + etwas Luft
+
+    // Nach Layout-Update messen und scrollen
+    requestAnimationFrame(()=>{
+      const top = grid.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  };
+
+  // ---- Filtern ----
+  const applyFilter = (key)=>{
+    btns.forEach(b=>b.classList.toggle('is-active', b.dataset.filter===key));
+    if(key==='all'){
+      cards.forEach(c=>c.hidden=false);
+    }else{
+      cards.forEach(c=>{ c.hidden = c.dataset.cat !== key; });
+    }
+    // WICHTIG: korrekt an den Grid-Anfang scrollen (mit Offset)
+    scrollToGridTop();
+  };
+
+  updateCounts();
+  applyFilter('all');
+
+  btns.forEach(b=>{
+    b.addEventListener('click', ()=>{
+      applyFilter(b.dataset.filter);
+    });
+  });
+
+})();
+</script>
+
+
 <div id="cookieBanner"></div>
 <script src="js/cookie-banner.js" defer></script>
+<style>
+/* ===== Category Filter — look clean, mobile-first ===== */
+.category-filter{ margin: 10px auto 6px; }
+.category-filter .cat-scroll{
+  display: flex; gap: 8px; overflow-x: auto; padding: 6px 0;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.category-filter .cat-scroll::-webkit-scrollbar{ display:none; }
+
+.cat-btn{
+  white-space: nowrap; padding: 8px 12px; border-radius: 999px;
+  border: 1px solid var(--border, rgba(255,255,255,.15));
+  background: transparent; color: var(--text,#e6e9ee);
+  font-size: 13px; line-height: 1; cursor: pointer;
+}
+.cat-btn .count{ opacity:.8; margin-left:6px; font-variant-numeric: tabular-nums; }
+
+html[data-theme="light"] .cat-btn{
+  border-color: #e5e7eb; color: #0f172a; background: #fff;
+}
+.cat-btn.is-active{
+  border-color: #18a196; box-shadow: 0 0 0 2px rgba(24,161,150,.15) inset;
+}
+
+/* leichte Fade-Animation beim Filtern */
+#products .grid .card--product{ transition: opacity .18s ease, transform .18s ease; }
+#products .grid .card--product[hidden]{ display:none !important; }
+</style>
+<style>
+@media (max-width: 820px){
+  /* wenn via JS gescrollt wird oder Anker/scrollIntoView: Oberkante bleibt sichtbar */
+  #products .grid{ scroll-margin-top: 76px; }
+}
+</style>
+
 </body>
 </html>
