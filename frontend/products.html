@@ -1611,6 +1611,61 @@ html[data-theme="dark"]  .theme-toggle { color: #e6e9ee; }
   }
   .trust.container span{ font-size: 13px !important; }
 }
+
+@media (max-width: 820px){
+  /* ---------- HERO kompakter (nur auf dieser Seite) ---------- */
+  /* Dein Hero ist eine Flex-Zeile mit inline gap:40px; wir überschreiben das. */
+  section.hero.container{
+    padding-top: 18px !important;
+    padding-bottom: 12px !important;
+    gap: 14px !important;                   /* statt 40px */
+    flex-direction: column !important;      /* untereinander statt nebeneinander */
+    align-items: stretch !important;
+  }
+  .hero-text h1{
+    font-size: clamp(20px, 6vw, 26px) !important;
+    line-height: 1.15 !important;
+    margin: 0 0 6px !important;
+  }
+  .hero-text p{
+    font-size: .95rem !important;
+    margin: 4px 0 12px !important;
+  }
+  .hero-text .btn{
+    width: 100% !important;
+  }
+  /* Produkt-Card im Hero etwas kleiner halten */
+  .hero-img-wrapper .hero-product-card{
+    max-width: 260px !important;            /* vorher ~380px */
+  }
+
+  /* ---------- PRODUKT-GRID: 2 Spalten fix ---------- */
+  /* Container auf echte 2 Spalten setzen */
+  #products .grid{
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: 14px !important;
+    margin-top: 12px !important;
+  }
+  /* Alle col-Helper neutralisieren (mobile.css setzt .col-3 => span 6) */
+  #products .grid > .col-3{
+    grid-column: span 1 !important;         /* genau 1 Zelle → 2er-Grid */
+    min-width: 0 !important;
+  }
+
+  /* leichte Karten-Politur (optional) */
+  #products .card{ border-radius: 12px !important; overflow: hidden !important; }
+  #products .card__img{ padding: 8px !important; }
+  #products .card__img img{ width:100%; height:auto; object-fit: contain !important; }
+  #products .card__body{ padding: 10px !important; }
+  #products .card__body h3{
+    margin: 0 0 4px !important;
+    font-size: 13px !important; line-height: 1.25 !important;
+    max-height: calc(1.25em * 2) !important; overflow: hidden !important; /* 2 Zeilen */
+  }
+  #products .price{ font-size: 14px !important; font-weight: 700 !important; }
+}
+
   </style>
 </head>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
