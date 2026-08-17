@@ -1,0 +1,6 @@
+{
+  "endpoint":"POST /api/research",
+  "request":{"query":"string","detailLevel":"short|standard|full","location":"string|null"},
+  "response":{"requestId":"string","status":"queued|running|complete|partial|failed","interpretedQuery":{},"sourcesChecked":0,"listings":[],"marketReality":{},"warnings":[],"evidence":[]},
+  "listing":{"source":"string","sourceUrl":"string","title":"string","priceEur":"number|null","vehicle":{},"matchScore":"number","why":"string[]","verification":{},"imageInspection":{},"priceAssessment":{}}
+}
