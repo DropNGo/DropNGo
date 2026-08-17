@@ -1,0 +1,8 @@
+{
+  "modes":{
+    "quick":{"label":"Kurz","sections":["identity","price","fit","key_findings"]},
+    "standard":{"label":"Standard","sections":["identity","price","fit","powertrain","dimensions","running_gear","maintenance","key_findings"]},
+    "expert":{"label":"Alle Details","sections":["identity","price","fit","powertrain","dimensions","performance","running_gear","systems","maintenance","sources","key_findings"]}
+  },
+  "rule":"Store and calculate full knowledge internally, but expose only the selected detail depth. The user can switch modes at any time without repeating the search."
+}
