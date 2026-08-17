@@ -1,0 +1,11 @@
+{
+  "policy":"Only use sources whose access and terms permit the intended retrieval. Never bypass robots, authentication, rate limits, paywalls, or anti-bot controls.",
+  "adapters":[
+    {"id":"official-manufacturer","type":"reference","enabled":false,"purpose":"vehicle specifications"},
+    {"id":"wikidata","type":"knowledge","enabled":true,"purpose":"model identity and semantic relationships","endpoint":"https://query.wikidata.org/sparql"},
+    {"id":"user-supplied-listing","type":"listing","enabled":false,"purpose":"inspect a URL supplied by the user"},
+    {"id":"licensed-listing-api","type":"listing","enabled":false,"purpose":"current offers through a permitted API/feed"}
+  ],
+  "requiredEvidence":["sourceUrl","retrievedAt","rawEvidence"],
+  "status":"adapter-ready-not-live"
+}
