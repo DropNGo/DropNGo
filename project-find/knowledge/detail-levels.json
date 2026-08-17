@@ -1,0 +1,9 @@
+{
+  "levels": {
+    "simple": {"label":"Kurz","show":["identity","price","year","mileage","power","fuel","match","key_risks"],"hide":["fluid_capacities","dimensions","engine_codes","chassis_details","service_data"]},
+    "balanced": {"label":"Standard","show":["identity","price","year","mileage","power","fuel","transmission","dimensions","tank","consumption","key_equipment","key_risks"],"hide":["deep_engine_data","all_service_data"]},
+    "expert": {"label":"Alle Details","show":["*"]}
+  },
+  "default": "simple",
+  "principle": "The knowledge layer stores deep facts; the UI decides how many are shown."
+}

@@ -1,0 +1,26 @@
+{
+  "version":"0.1",
+  "principle":"Visual evidence is evidence, not proof. Never state hidden damage or accident history as fact from photos alone.",
+  "severity":["info","watch","warning","critical"],
+  "confidence":["low","medium","high"],
+  "checks":{
+    "body_damage":["dent","deep_scratch","paint_transfer","cracked_bumper","broken_lamp","deformed_panel","missing_trim","uneven_panel_gap"],
+    "accident_indicators":["structural_deformation_visible","airbag_deployment_indicator","multiple_adjacent_panels_damaged","mismatched_panel_color","unusual_weld_or_fastener_visible"],
+    "paint":["color_mismatch","overspray","orange_peel","clearcoat_damage","fresh_repair_indicator"],
+    "tires":["low_visible_tread","uneven_wear","sidewall_damage","cracking","bulge","different_tire_models_front_rear","incorrect_size_if_visible"],
+    "wheels":["curb_rash","crack_visible","corrosion","missing_cap"],
+    "interior":["warning_light","airbag_light","water_damage_indicator","excessive_wear","broken_trim","seat_damage"],
+    "engine_bay":["visible_fluid_leak","corrosion","missing_cover","non_factory_component_visible"],
+    "underbody":["visible_leak","corrosion","impact_damage","damaged_undertray"]
+  },
+  "output_contract":{
+    "finding":"string",
+    "category":"string",
+    "severity":"string",
+    "confidence":"string",
+    "evidence_image_index":"number|null",
+    "evidence_region":"string|null",
+    "recommendation":"string",
+    "limitations":"string"
+  }
+}

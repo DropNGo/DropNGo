@@ -1,0 +1,7 @@
+{
+  "fuel": {"diesel":["diesel","tdi","cdi","dci","crdi","d-4d"],"petrol":["benzin","benziner","petrol","tsi","tfsi","tce","ecoboost"]},
+  "body_style": {"coupe":["coupé","coupe","2-türer"],"suv":["suv","geländewagen","crossover"],"estate":["kombi","estate","touring","avant","variant"]},
+  "transmission": {"automatic":["automatik","automatikgetriebe","9g-tronic","8g-dct","dsg","tiptronic"],"manual":["schalter","handschaltung","6-gang schalter"]},
+  "drivetrain": {"awd":["4matic","quattro","xdrive","4motion","awd","allrad"],"rwd":["heckantrieb","rwd"],"fwd":["frontantrieb","fwd"]},
+  "note": "Aliases are candidate signals only. They never override a higher-confidence structured source."
+}
