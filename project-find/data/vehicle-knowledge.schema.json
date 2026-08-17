@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Project Find Vehicle Knowledge",
+  "type":"object",
+  "required":["identity","sources","confidence"],
+  "properties":{
+    "identity":{"type":"object","properties":{"make":{"type":["string","null"]},"model":{"type":["string","null"]},"generation":{"type":["string","null"]},"facelift":{"type":["string","null"]},"body":{"type":["string","null"]},"variant":{"type":["string","null"]},"production_years":{"type":"object","properties":{"from":{"type":["integer","null"]},"to":{"type":["integer","null"]}}}},
+    "engine":{"type":"object","properties":{"family":{"type":["string","null"]},"code":{"type":["string","null"]},"displacement_cc":{"type":["integer","null"]},"cylinders":{"type":["integer","null"]},"induction":{"type":["string","null"]},"fuel":{"type":["string","null"]},"power_ps":{"type":["number","null"]},"power_kw":{"type":["number","null"]},"torque_nm":{"type":["number","null"]}}},
+    "drivetrain":{"type":"object","properties":{"transmission":{"type":["string","null"]},"gears":{"type":["integer","null"]},"drive":{"type":["string","null"]}}},
+    "dimensions":{"type":"object","properties":{"length_mm":{"type":["number","null"]},"width_mm":{"type":["number","null"]},"height_mm":{"type":["number","null"]},"wheelbase_mm":{"type":["number","null"]},"curb_weight_kg":{"type":["number","null"]},"seats":{"type":["integer","null"]},"doors":{"type":["integer","null"]},"boot_l":{"type":["number","null"]},"fuel_tank_l":{"type":["number","null"]}}},
+    "performance":{"type":"object","properties":{"zero_to_100_s":{"type":["number","null"]},"top_speed_kmh":{"type":["number","null"]},"combined_consumption_l_100km":{"type":["number","null"]},"range_km":{"type":["number","null"]}}},
+    "systems":{"type":"object","properties":{"dpf":{"type":["boolean","null"]},"egr":{"type":["boolean","null"]},"adblue":{"type":["boolean","null"]},"hybrid":{"type":["boolean","null"]}}},
+    "running_gear":{"type":"object","properties":{"tire_sizes":{"type":"array","items":{"type":"string"}},"wheel_sizes":{"type":"array","items":{"type":"string"}},"brake_notes":{"type":["string","null"]}}},
+    "maintenance":{"type":"object","properties":{"interval_notes":{"type":["string","null"]},"known_issues":{"type":"array","items":{"type":"string"}},"recall_notes":{"type":"array","items":{"type":"string"}}}},
+    "sources":{"type":"array","items":{"type":"object","required":["url","type"],"properties":{"url":{"type":"string"},"type":{"type":"string"},"retrieved_at":{"type":"string"}}}},
+    "confidence":{"type":"object","additionalProperties":{"type":"number","minimum":0,"maximum":1}}
+  }
+}
