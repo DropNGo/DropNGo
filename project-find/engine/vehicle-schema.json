@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Project Find Vehicle Intelligence Record",
+  "type":"object",
+  "properties":{
+    "identity":{"type":"object","properties":{"make":{"type":["string","null"]},"model":{"type":["string","null"]},"generation":{"type":["string","null"]},"facelift":{"type":["string","null"]},"body":{"type":["string","null"]},"variant":{"type":["string","null"]},"market":{"type":["string","null"]},"aliases":{"type":"array","items":{"type":"string"}}}},
+    "powertrain":{"type":"object","properties":{"engine_family":{"type":["string","null"]},"engine_code":{"type":["string","null"]},"fuel":{"type":["string","null"]},"displacement_cc":{"type":["number","null"]},"cylinders":{"type":["number","null"]},"layout":{"type":["string","null"]},"aspiration":{"type":["string","null"]},"power_ps":{"type":["number","null"]},"power_kw":{"type":["number","null"]},"torque_nm":{"type":["number","null"]},"transmission":{"type":["string","null"]},"gears":{"type":["number","null"]},"drive":{"type":["string","null"]}}},
+    "dimensions":{"type":"object","properties":{"length_mm":{"type":["number","null"]},"width_mm":{"type":["number","null"]},"height_mm":{"type":["number","null"]},"wheelbase_mm":{"type":["number","null"]},"curb_weight_kg":{"type":["number","null"]},"seats":{"type":["number","null"]},"doors":{"type":["number","null"]},"boot_liters":{"type":["number","null"]},"fuel_tank_liters":{"type":["number","null"]}}},
+    "performance":{"type":"object","properties":{"zero_to_100_s":{"type":["number","null"]},"top_speed_kmh":{"type":["number","null"]},"combined_consumption_l_100km":{"type":["number","null"]},"co2_g_km":{"type":["number","null"]},"range_km":{"type":["number","null"]}}},
+    "running_gear":{"type":"object","properties":{"front_brakes":{"type":["string","null"]},"rear_brakes":{"type":["string","null"]},"front_tire_sizes":{"type":"array","items":{"type":"string"}},"rear_tire_sizes":{"type":"array","items":{"type":"string"}},"wheel_sizes_in":{"type":"array","items":{"type":"number"}}}},
+    "systems":{"type":"object","properties":{"dpf":{"type":["boolean","null"]},"egr":{"type":["boolean","null"]},"adblue":{"type":["boolean","null"]},"start_stop":{"type":["boolean","null"]},"hybrid":{"type":["boolean","null"]}}},
+    "maintenance":{"type":"object","properties":{"service_intervals":{"type":"array","items":{"type":"string"}},"known_issues":{"type":"array","items":{"type":"string"}},"inspection_points":{"type":"array","items":{"type":"string"}}}},
+    "confidence":{"type":"object","properties":{"overall":{"type":"number","minimum":0,"maximum":1},"fields":{"type":"object","additionalProperties":{"type":"number","minimum":0,"maximum":1}}}},
+    "sources":{"type":"array","items":{"type":"object","properties":{"url":{"type":"string"},"type":{"type":"string"},"retrieved_at":{"type":"string"},"supports":{"type":"array","items":{"type":"string"}}}}}
+  }
+}
