@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Project Find Vehicle Knowledge",
+  "description": "Canonical vehicle knowledge model. Facts are source-backed; unknown values stay unknown.",
+  "type": "object",
+  "properties": {
+    "identity": {"type":"object","properties":{"make":{"type":"string"},"model":{"type":"string"},"generation":{"type":"string"},"facelift":{"type":"string"},"body_style":{"type":"string"},"market":{"type":"string"},"model_year_from":{"type":"integer"},"model_year_to":{"type":"integer"},"aliases":{"type":"array","items":{"type":"string"}}}},
+    "engine": {"type":"object","properties":{"engine_family":{"type":"string"},"engine_code":{"type":"string"},"displacement_cc":{"type":"number"},"cylinders":{"type":"integer"},"configuration":{"type":"string"},"fuel":{"type":"string"},"aspiration":{"type":"string"},"power_hp":{"type":"number"},"power_kw":{"type":"number"},"torque_nm":{"type":"number"},"emissions_standard":{"type":"string"},"co2_g_km":{"type":"number"}}},
+    "drivetrain": {"type":"object","properties":{"transmission":{"type":"string"},"gears":{"type":"integer"},"drive":{"type":"string"},"differential":{"type":"string"}}},
+    "dimensions": {"type":"object","properties":{"length_mm":{"type":"number"},"width_mm":{"type":"number"},"height_mm":{"type":"number"},"wheelbase_mm":{"type":"number"},"curb_weight_kg":{"type":"number"},"gross_weight_kg":{"type":"number"},"cargo_l":{"type":"number"},"cargo_max_l":{"type":"number"},"seats":{"type":"integer"},"doors":{"type":"integer"}}},
+    "fluids_and_capacity": {"type":"object","properties":{"fuel_tank_l":{"type":"number"},"adblue_l":{"type":"number"},"engine_oil_l":{"type":"number"},"coolant_l":{"type":"number"},"washer_fluid_l":{"type":"number"},"brake_fluid_spec":{"type":"string"}}},
+    "performance": {"type":"object","properties":{"top_speed_kmh":{"type":"number"},"zero_to_100_s":{"type":"number"},"zero_to_200_s":{"type":"number"},"combined_consumption_l_100km":{"type":"number"},"urban_consumption_l_100km":{"type":"number"},"extraurban_consumption_l_100km":{"type":"number"},"real_world_consumption_l_100km":{"type":"number"},"range_km":{"type":"number"}}},
+    "chassis": {"type":"object","properties":{"front_suspension":{"type":"string"},"rear_suspension":{"type":"string"},"brakes_front":{"type":"string"},"brakes_rear":{"type":"string"},"steering":{"type":"string"},"tire_sizes":{"type":"array","items":{"type":"string"}},"wheel_sizes":{"type":"array","items":{"type":"string"}}}},
+    "service_and_risk": {"type":"object","properties":{"service_intervals":{"type":"array","items":{"type":"string"}},"known_maintenance_items":{"type":"array","items":{"type":"string"}},"known_weak_points":{"type":"array","items":{"type":"string"}},"timing_system":{"type":"string"},"dpf":{"type":"boolean"},"egr":{"type":"boolean"},"adblue_system":{"type":"boolean"},"hybrid_system":{"type":"string"}}},
+    "market": {"type":"object","properties":{"new_price_range_eur":{"type":"string"},"used_price_range_eur":{"type":"string"},"common_trim_names":{"type":"array","items":{"type":"string"}},"common_equipment":{"type":"array","items":{"type":"string"}}}},
+    "provenance": {"type":"array","items":{"type":"object","properties":{"field":{"type":"string"},"value":{"type":"string"},"source":{"type":"string"},"observed_at":{"type":"string"},"confidence":{"type":"number","minimum":0,"maximum":1}}}},
+    "unknowns": {"type":"array","items":{"type":"string"}}
+  }
+}
