@@ -105,15 +105,13 @@ async function research(request, env) {
 
   const system = `You are Project Find, an evidence-first vehicle research engine.\nYour job is to understand a user's natural-language request, identify hard constraints versus preferences, assess market reality, and research current public information.\nNever invent listings, prices, specifications, or evidence. A URL must be a real source URL returned by web search. Distinguish facts from inference.\nFor vehicle requests, think like a highly experienced automotive researcher and inspection advisor, but never claim that a photo proves a hidden accident or mechanical defect.\nDetail level: ${detailLevel}. User location: ${location || "unknown"}. Return only the requested JSON schema.`;
 
-  const input = `User request:\n${query}`;
-
   const payload = {
     model: "gpt-5.6",
     store: false,
     tools: [{ type: "web_search" }],
     input: [
       { role: "system", content: [{ type: "input_text", text: system }] },
-      { role: "user", content: [{ type: "input_text", text: input }] }
+      { role: "user", content: [{ type: "input_text", text: query }] }
     ],
     text: {
       format: {
@@ -135,32 +133,42 @@ async function research(request, env) {
   });
 
   const raw = await response.text();
-  if (!response.ok) {
-    return json({ error: "OpenAI request failed", status: response.status, details: raw.slice(0, 1200) }, 502);
-  }
+  if (!response.ok) return json({ error: "OpenAI request failed", status: response.status, details: raw.slice(0, 1200) }, 502);
 
-  let parsed;
   try {
     const api = JSON.parse(raw);
     const text = api.output_text || api.output?.flatMap(item => item.content || []).find(part => part.type === "output_text")?.text;
-    parsed = JSON.parse(text || "{}");
+    const parsed = JSON.parse(text || "{}");
     return json({ requestId: api.id || null, status: "complete", ...parsed });
   } catch {
     return json({ error: "OpenAI returned an unexpected response format" }, 502);
   }
 }
 
+async function serveApp(request, env) {
+  const url = new URL(request.url);
+  if (url.pathname !== "/" && url.pathname !== "/index.html") {
+    return env.ASSETS.fetch(new Request(url, request));
+  }
+
+  const assetUrl = new URL(request.url);
+  assetUrl.pathname = "/index.html";
+  const response = await env.ASSETS.fetch(new Request(assetUrl, request));
+  if (!response.ok) return response;
+
+  const html = await response.text();
+  const injected = html.replace("</body>", '<script src="/js/live-research.js"></script></body>');
+  return new Response(injected, {
+    status: response.status,
+    headers: new Headers(response.headers)
+  });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-
     if (url.pathname === "/api/research") return research(request, env);
-
-    if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: { "access-control-allow-origin": "*" } });
-    }
-
-    if (url.pathname === "/") url.pathname = "/index.html";
-    return env.ASSETS.fetch(new Request(url, request));
+    if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: { "access-control-allow-origin": "*" } });
+    return serveApp(request, env);
   }
 };
