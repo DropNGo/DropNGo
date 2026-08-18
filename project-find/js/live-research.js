@@ -39,8 +39,19 @@
     try {
       const location = document.getElementById('location')?.value.trim() || null;
       const res = await fetch('/api/research',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({query:q,location,detailLevel:'standard'})});
-      const data = await res.json();
-      if(!res.ok) throw new Error(data?.error || 'Research fehlgeschlagen');
+      const data = await res.json().catch(() => ({}));
+      if(!res.ok){
+        const rawDetails = data?.details;
+        let detail = '';
+        if (typeof rawDetails === 'string') {
+          try {
+            const parsed = JSON.parse(rawDetails);
+            detail = parsed?.error?.message || parsed?.message || rawDetails;
+          } catch { detail = rawDetails; }
+        } else if (rawDetails?.error?.message) detail = rawDetails.error.message;
+        const status = data?.status ? ` (${data.status})` : ` (HTTP ${res.status})`;
+        throw new Error(`${data?.error || 'Research fehlgeschlagen'}${status}${detail ? `: ${detail}` : ''}`);
+      }
       renderCriteria(data.interpretedQuery);
       if(data.marketReality?.statement){const smart=document.getElementById('smart');smart.style.display='block';smart.innerHTML=`🧠 <b>Marktrealität:</b> ${esc(data.marketReality.statement)}`;}
       const count=Array.isArray(data.findings)?data.findings.length:0;
@@ -54,7 +65,7 @@
       document.getElementById('sources').textContent='—';
       document.getElementById('resultCount').textContent='Fehler';
       document.getElementById('resultTitle').textContent='Live-Recherche nicht verfügbar';
-      document.getElementById('results').innerHTML=`<div class="empty"><strong>${esc(err.message)}</strong><br><span style="color:#777">Für Live-Recherche muss im Cloudflare Worker das Secret <b>OPENAI_API_KEY</b> vorhanden sein.</span></div>`;
+      document.getElementById('results').innerHTML=`<div class="empty"><strong>OpenAI-Anfrage fehlgeschlagen</strong><br><span style="color:#aaa">${esc(err.message)}</span><br><br><span style="color:#777">Der genaue API-Fehler wird jetzt angezeigt, damit wir nicht mehr blind debuggen müssen.</span></div>`;
     }
     document.getElementById('panel')?.scrollIntoView({behavior:'smooth',block:'start'});
   };
