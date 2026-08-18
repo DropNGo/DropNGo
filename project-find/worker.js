@@ -105,8 +105,6 @@ Return only the requested JSON schema.`;
     for (const finding of Array.isArray(parsed.findings) ? parsed.findings : []) {
       const matchedUrl = webUrls.find(url => sameUrl(url, finding.sourceUrl));
       if (!matchedUrl) continue;
-      // Keep only actual marketplace/dealer pages when the model claims this is a vehicle offer.
-      // Other reputable dealer domains remain allowed; marketplace URLs receive an extra confidence signal.
       const sourceIsMarketplace = isMarketplaceListing(matchedUrl);
       verified.push({ ...finding, sourceUrl: matchedUrl, verifiedLiveSource: true, marketplace: sourceIsMarketplace });
     }
@@ -125,11 +123,7 @@ async function serveApp(request, env) {
   const url = new URL(request.url);
   if (!url.pathname.startsWith("/api/") && url.pathname !== "/" && url.pathname !== "/index.html") return env.ASSETS.fetch(new Request(url, request));
   const assetUrl = new URL(request.url); assetUrl.pathname = "/index.html";
-  const response = await env.ASSETS.fetch(new Request(assetUrl, request));
-  if (!response.ok) return response;
-  const html = await response.text();
-  const injected = html.replace("</body>", '<script src="/js/live-research.js"></script><script src="/js/growth.js"></script><script src="/js/interactions.js"></script></body>');
-  return new Response(injected, { status: response.status, headers: new Headers(response.headers) });
+  return env.ASSETS.fetch(new Request(assetUrl, request));
 }
 
 export default { async fetch(request, env) { const url = new URL(request.url); if (url.pathname === "/api/research") return research(request, env); if (url.pathname === "/api/health") return health(request, env); if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: { "access-control-allow-origin": "*" } }); return serveApp(request, env); } };
