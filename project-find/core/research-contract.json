@@ -1,0 +1,7 @@
+{
+  "version":"0.1",
+  "principles":["never invent listings","preserve source URL","preserve observed text","separate facts from inference","record timestamp"],
+  "listing":{"source":"string","sourceUrl":"string","title":"string","priceEur":"number|null","currency":"string|null","location":"string|null","sellerType":"dealer|private|unknown","sellerName":"string|null","mileageKm":"number|null","firstRegistration":"string|null","powerPs":"number|null","fuel":"string|null","transmission":"string|null","images":[],"description":"string|null","retrievedAt":"ISO-8601","rawEvidence":[]},
+  "verification":{"vehicleIdentity":"verified|probable|unknown","price":"observed|unknown","mileage":"observed|unknown","seller":"observed|unknown","imageInspection":"not_run|partial|run","redFlags":[],"confidence":0},
+  "ranking":{"hardConstraintPass":false,"preferenceScore":0,"conditionScore":0,"priceScore":0,"sourceTrustScore":0,"finalScore":0,"explanation":[]}
+}

@@ -1,0 +1,1 @@
+The legacy repository gitlink is intentionally removed in the deployment commit because Cloudflare Workers Builds was failing during submodule checkout.
