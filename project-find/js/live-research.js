@@ -1,54 +1,63 @@
 (() => {
-  const escapeHtml = (value) => String(value ?? "")
-    .replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;").replaceAll("'", "&#039;");
-  const money = (value) => Number.isFinite(Number(value)) ? Number(value).toLocaleString("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }) : "Preis unbekannt";
-  const fmtKm = (value) => Number.isFinite(Number(value)) ? `${Number(value).toLocaleString("de-DE")} km` : "";
+  const esc = (v) => String(v ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
+  const money = (v) => Number.isFinite(Number(v)) ? Number(v).toLocaleString('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}) : 'Preis unbekannt';
+  const km = (v) => Number.isFinite(Number(v)) ? `${Number(v).toLocaleString('de-DE')} km` : '';
 
-  const renderCriteria = (q) => {
+  function renderCriteria(q) {
     const i = q || {};
-    const rows = [["Marke", i.brand],["Modell", i.model],["Karosserie", i.body],["Kraftstoff", i.fuel],["Baujahr", i.minYear ? `${i.minYear}+` : null],["Leistung", i.minPowerPs ? `${i.minPowerPs} PS+` : null],["Budget", i.maxPriceEur ? `≤ ${money(i.maxPriceEur)}` : null],["Kilometer", i.maxMileageKm ? `≤ ${fmtKm(i.maxMileageKm)}` : null],["Getriebe", i.transmission],["Ort", i.location]].filter(([,v]) => v);
-    document.getElementById("criteria").innerHTML = rows.length ? rows.map(([k,v]) => `<div class="pill"><b>${escapeHtml(k)}:</b> ${escapeHtml(v)}</div>`).join("") : `<div class="pill"><b>Anfrage:</b> Freie Suche</div>`;
-  };
+    const rows = [['Marke',i.brand],['Modell',i.model],['Karosserie',i.body],['Kraftstoff',i.fuel],['Baujahr',i.minYear ? `${i.minYear}+` : null],['Leistung',i.minPowerPs ? `${i.minPowerPs} PS+` : null],['Budget',i.maxPriceEur ? `≤ ${money(i.maxPriceEur)}` : null],['Kilometer',i.maxMileageKm ? `≤ ${km(i.maxMileageKm)}` : null],['Getriebe',i.transmission],['Ort',i.location]].filter(([,v])=>v);
+    document.getElementById('criteria').innerHTML = rows.length ? rows.map(([k,v])=>`<div class="pill"><b>${esc(k)}:</b> ${esc(v)}</div>`).join('') : '<div class="pill"><b>Anfrage:</b> Freie Suche</div>';
+  }
 
-  const renderFindings = (findings = []) => {
-    const el = document.getElementById("results");
+  function renderFindings(findings=[]) {
+    const el = document.getElementById('results');
     if (!findings.length) {
-      el.innerHTML = `<div class="nearbox">Keine verifizierten aktuellen Angebote gefunden. Find erfindet keine Fahrzeuge.</div>`;
+      el.innerHTML = '<div class="empty"><strong>Keine verifizierten Angebote gefunden</strong>Find zeigt bewusst keine erfundenen Fahrzeuge. Lockerere Kriterien oder ein anderer Ort können helfen.</div>';
       return;
     }
-    el.innerHTML = findings.map((f, idx) => {
-      const specs = [["Jahr", f.year],["km", fmtKm(f.mileageKm)],["PS", f.powerPs ? `${f.powerPs} PS` : null],["Kraftstoff", f.fuel],["Getriebe", f.transmission],["Ort", f.location]].filter(([,v]) => v).map(([k,v]) => `<span class="spec">${escapeHtml(k)}: ${escapeHtml(v)}</span>`).join("");
-      const cautions = (f.caution || []).map(x => `<div class="flag"><span class="dot"></span><span>${escapeHtml(x)}</span></div>`).join("");
-      const why = (f.whyMatch || []).map(x => `<div class="flag"><span class="dot green"></span><span>${escapeHtml(x)}</span></div>`).join("");
-      const image = f.imageUrl ? `<div class="photo"><img loading="lazy" src="${escapeHtml(f.imageUrl)}" alt="${escapeHtml(f.title)}"><div class="match">Live-Treffer</div><button class="heart" type="button">♡</button></div>` : `<div class="photo" style="display:flex;align-items:center;justify-content:center"><div class="match">Live-Treffer</div><span style="color:#666">Kein verifiziertes Bild geliefert</span><button class="heart" type="button" style="position:absolute;right:12px;top:12px">♡</button></div>`;
-      return `<article class="car">${image}<div class="body"><div class="meta">#${idx + 1} · ${escapeHtml(f.sourceName || "Webquelle")}</div><div class="name">${escapeHtml(f.title)}</div><div class="price">${money(f.priceEur)}</div><div class="specs">${specs}</div><div class="details" style="display:block"><div class="analysis"><h4>Warum Find das zeigt</h4>${why || '<div class="flag"><span class="dot"></span><span>Keine zusätzlichen Match-Argumente geliefert.</span></div>'}${cautions}</div></div><div class="sharebar"><button class="sharebtn inspect-btn" type="button">🔎 Prüfen</button><a class="sharebtn" style="text-align:center;text-decoration:none" href="${escapeHtml(f.sourceUrl)}" target="_blank" rel="noopener">Originalangebot ↗</a></div><div class="source">Quelle: ${escapeHtml(f.sourceName || "Webquelle")}</div></div></article>`;
-    }).join("");
-  };
+    el.innerHTML = findings.map((f,i)=>{
+      const specs = [['Baujahr',f.year],['km',km(f.mileageKm)],['Leistung',f.powerPs ? `${f.powerPs} PS` : null],['Kraftstoff',f.fuel],['Getriebe',f.transmission],['Ort',f.location]].filter(([,v])=>v).map(([k,v])=>`<span class="spec">${esc(k)}: ${esc(v)}</span>`).join('');
+      const why = (f.whyMatch||[]).map(x=>`<div class="flag"><span class="dot green"></span><span>${esc(x)}</span></div>`).join('');
+      const caution = (f.caution||[]).map(x=>`<div class="flag"><span class="dot"></span><span>${esc(x)}</span></div>`).join('');
+      const verified = f.verifiedLiveSource === true;
+      const photo = verified && f.imageUrl ? `<div class="photo"><img loading="lazy" src="${esc(f.imageUrl)}" alt="${esc(f.title)}"><div class="match">VERIFIZIERT</div><button class="heart" type="button">♡</button></div>` : `<div class="photo" style="display:flex;align-items:center;justify-content:center;position:relative"><div class="match">VERIFIZIERT · OHNE BILD</div><span style="color:#666;font-size:11px">Kein Bild zuverlässig verifiziert</span><button class="heart" type="button">♡</button></div>`;
+      return `<article class="car" data-source-url="${esc(f.sourceUrl||'')}"><div class="body" style="padding-top:12px">${photo}<div class="meta">#${i+1} · ${esc(f.sourceName||'Öffentliche Quelle')}</div><div class="name">${esc(f.title)}</div><div class="price">${money(f.priceEur)}</div><div class="specs">${specs}</div><div class="details"><div class="analysis"><h4>Warum Find das zeigt</h4>${why || '<div class="flag"><span class="dot"></span><span>Keine zusätzlichen Match-Gründe geliefert.</span></div>'}${caution}</div></div><div class="actionbar"><button class="action primary details-btn" type="button">Details</button><button class="action inspect-btn" type="button">Teilen</button><a class="action" style="text-align:center;text-decoration:none" href="${esc(f.sourceUrl||'#')}" target="_blank" rel="noopener">Originalangebot ↗</a></div><div class="source">Quelle verifiziert · ${esc(f.sourceName||'Webquelle')}</div></div></article>`;
+    }).join('');
+  }
 
-  window.run = async function liveRun() {
-    const input = document.getElementById("q"); const panel = document.getElementById("panel"); const q = input?.value.trim();
-    if (!q || !panel) return;
-    panel.classList.add("show");
-    document.getElementById("resultTitle").textContent = "Ich recherchiere…";
-    document.getElementById("results").innerHTML = `<div class="thinking"><b>Find recherchiert live…</b><small>Quellen werden geprüft und reale Treffer verifiziert.</small></div>`;
-    document.getElementById("near").innerHTML = ""; document.getElementById("smart").style.display = "none"; document.getElementById("sources").textContent = "…";
+  window.run = async function() {
+    const input = document.getElementById('q');
+    const panel = document.getElementById('panel');
+    const q = input?.value.trim();
+    if (!q) return;
+    panel?.classList.add('show');
+    document.getElementById('resultTitle').textContent = 'Live-Recherche läuft…';
+    document.getElementById('results').innerHTML = '<div class="thinking"><b>Find recherchiert das Live-Web…</b><small>Es werden echte Angebotsseiten gesucht und verifiziert.</small></div>';
+    document.getElementById('near').innerHTML='';
+    document.getElementById('smart').style.display='none';
+    document.getElementById('sources').textContent='…';
     try {
-      const res = await fetch("/api/research", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ query: q, detailLevel: "standard" }) });
+      const location = document.getElementById('location')?.value.trim() || null;
+      const res = await fetch('/api/research',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({query:q,location,detailLevel:'standard'})});
       const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || "Research failed");
+      if(!res.ok) throw new Error(data?.error || 'Research fehlgeschlagen');
       renderCriteria(data.interpretedQuery);
-      const reality = data.marketReality?.statement;
-      if (reality) { const smart = document.getElementById("smart"); smart.style.display = "block"; smart.innerHTML = `🧠 <b>Marktrealität:</b> ${escapeHtml(reality)}`; }
-      const count = Array.isArray(data.findings) ? data.findings.length : 0;
-      document.getElementById("sources").textContent = count; document.getElementById("resultTitle").textContent = `${count} echte Recherche-Ergebnisse`;
+      if(data.marketReality?.statement){const smart=document.getElementById('smart');smart.style.display='block';smart.innerHTML=`🧠 <b>Marktrealität:</b> ${esc(data.marketReality.statement)}`;}
+      const count=Array.isArray(data.findings)?data.findings.length:0;
+      document.getElementById('sources').textContent=count;
+      document.getElementById('resultCount').textContent=`${count} verifiziert`;
+      document.getElementById('resultTitle').textContent=count?`${count} verifizierte Angebote`:'Keine verifizierten Angebote';
       renderFindings(data.findings);
-      document.getElementById("near").innerHTML = Array.isArray(data.researchPlan) && data.researchPlan.length ? `<div class="nearbox"><b>Rechercheplan:</b><br>${data.researchPlan.map(x => `• ${escapeHtml(x)}`).join("<br>")}</div>` : "";
-    } catch (error) {
-      document.getElementById("sources").textContent = "—"; document.getElementById("resultTitle").textContent = "Research nicht verfügbar";
-      document.getElementById("results").innerHTML = `<div class="nearbox">${escapeHtml(error.message)}<br><br><small>Der Cloudflare Worker braucht das Secret <b>OPENAI_API_KEY</b>, damit Live-Webrecherche läuft.</small></div>`;
+      const plan=Array.isArray(data.researchPlan)?data.researchPlan:[];
+      document.getElementById('near').innerHTML=plan.length?`<div class="nearbox"><b>Transparenz:</b><br>${plan.map(x=>`• ${esc(x)}`).join('<br>')}</div>`:'';
+    } catch(err){
+      document.getElementById('sources').textContent='—';
+      document.getElementById('resultCount').textContent='Fehler';
+      document.getElementById('resultTitle').textContent='Live-Recherche nicht verfügbar';
+      document.getElementById('results').innerHTML=`<div class="empty"><strong>${esc(err.message)}</strong><br><span style="color:#777">Für Live-Recherche muss im Cloudflare Worker das Secret <b>OPENAI_API_KEY</b> vorhanden sein.</span></div>`;
     }
+    document.getElementById('panel')?.scrollIntoView({behavior:'smooth',block:'start'});
   };
 
-  window.demo = function demo(chip) { const q = chip?.textContent?.replace(" · ", ", ") || ""; const input = document.getElementById("q"); if (input) input.value = q; window.run(); };
+  window.demo = function(chip){const input=document.getElementById('q');if(input) input.value=chip?.textContent?.replace(' · ', ', ')||'';window.run();};
 })();
